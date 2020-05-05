@@ -29,12 +29,15 @@ href = '/2010-04-01/Accounts/{AccountSID}/Messages.json'
   some-http-header = 42
 
   [map.SendMessage.http.request.'application/x-www-form-urlencoded'.body]
-  # jq syntax - https://stedolan.github.io/jq
-  from = '.From'
-  to = '.To'
-  message = '.Body'
+
+  # values are using jq syntax - https://stedolan.github.io/jq, https://jqplay.org/#
+  # alternativelly we can consider JSON Pointer https://tools.ietf.org/html/rfc6901
+
+  from = '.From'      # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/from
+  to = '.To'          # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/to
+  message = '.Body'   # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/message
 
   [map.SendMessage.http.response.200.'application/json'.body]
   # jq syntax
-  to = '.to'
-  id = '.sid'
+  to = '.to'          # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/rt/to
+  id = '.sid'         # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/rt/sid

@@ -29,11 +29,8 @@ type = 'unsafe'
   #
   # Resource Type
   #
-  [descriptors.SendMessage.rt.id]
-  type = 'string'
+  [descriptors.SendMessage.rt.to]
+  type = 'semantic'
 
-  [descriptors.SendMessage.rt.name]
-  type = 'string'
-
-  [descriptors.SendMessage.rt.website]
-  type = 'string'
+  [descriptors.SendMessage.rt.sid]
+  type = 'semantic'
