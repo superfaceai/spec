@@ -1,0 +1,39 @@
+#
+# Map for profile
+#
+profile = 'http://supermodel.io/superface/CRM/Customers'
+
+[traits.stream]
+profile = 'http://supermodel.io/superface/superdriver/Page'
+
+#
+# Provider details
+#
+[provider]
+id = 'http://superface.ai/directory/pipedrive'
+
+#
+# Affordance map
+#
+[map.RetrieveCustomers.http]
+method = 'GET'
+href = '/organizations'
+
+  # Query parameters
+  [map.RetrieveCustomers.http.query]
+  start = 'stream:offset'
+  limit = 'stream:limit'
+
+  [map.RetrieveCustomers.http.query.api_token]
+  source = 'security/apikey'
+
+  # Response
+  [map.RetrieveCustomers.http.response.200.'application/json'.body]
+  # jq syntax – https://jqplay.org
+  'customers/id' = '.data[].id'
+  'customers/name' = '.data[].name'
+  'customerCount' = '.data | length'  # count the objects in the response's data array
+  
+  # Streaming trait
+  'stream:offset' = '.additional_data.pagination.next_start' # -> resolves to http://supermodel.io/superface/superdriver/Page#/offset
+  'stream:hasMore' = '.additional_data.pagination.more_items_in_collection'
