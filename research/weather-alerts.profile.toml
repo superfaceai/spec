@@ -1,0 +1,47 @@
+'$id' = 'http://supermodel.io/superface/WeatherAlerts'
+'$schema' = 'http://superschema.org/draft-01/schema#'
+
+title = 'Weather Alerts Profile'
+
+#
+# Descriptors
+#
+[descriptors.RetrieveAlerts]
+title = 'Retrieve Alerts'
+description = 'Retrieves alert at given address locality'
+type = 'safe'
+
+  #
+  # Nested descriptors a.k.a. parameters
+  #
+  [descriptors.RetrieveAlerts.descriptors.addressLocality]
+  description = 'Address locality to retrieve the alerts for'
+  type = 'semantic'
+
+  #
+  # Resource type a.k.a. response
+  #
+  [descriptors.RetrieveAlerts.rt.title]
+  description = 'A brief description of the alert'
+  type = 'semantic'
+
+  [descriptors.RetrieveAlerts.rt.description]
+  description = 'A detailed description of the alert'
+  type = 'semantic'
+
+  [descriptors.RetrieveAlerts.rt.severity]
+  description = '''
+    The severity of the weather alert. Will take one of the following values:
+    - `advisory` (an individual should be aware of potentially severe weather)
+    - `watch` (an individual should prepare for potentially severe weather)
+    - `warning` (an individual should take immediate action to protect themselves and others from potentially severe weather).
+  '''
+  type = 'semantic'
+
+  [descriptors.RetrieveAlerts.rt.startDate]
+  description = 'A brief description of the alert'
+  type = 'semantic'
+
+  [descriptors.RetrieveAlerts.rt.endDate]
+  description = 'A brief description of the alert'
+  type = 'semantic'

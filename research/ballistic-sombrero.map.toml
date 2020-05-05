@@ -1,0 +1,29 @@
+#
+# Map for profile
+#
+profile = 'http://supermodel.io/superface/WeatherAlerts'
+
+#
+# Provider details
+#
+[provider]
+id = 'http://superface.ai/directory/ballistic-sombrero'
+
+#
+# Affordance map
+#
+[map.RetrieveAlerts.http]
+method = 'GET'
+href = '/alerts'
+
+  # Query parameters
+  [map.RetrieveCustomers.http.query]
+  'addressLocality' = 'addressLocality' # -> value resolves to http://supermodel.io/superface/WeatherAlerts#/descriptors/RetrieveAlerts/descriptors/addressLocality
+
+  # Response
+  [map.RetrieveCustomers.http.response.200.'application/json'.body]
+  'title' = '.title'
+  'description' = '.description'
+  'severity' = '.severity'
+  'startDate' = '.startDate'
+  'endDate' = '.endDate'
