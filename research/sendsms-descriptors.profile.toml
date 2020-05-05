@@ -1,0 +1,39 @@
+'$id' = 'http://supermodel.io/superface/telco/SendSMS'
+'$schema' = 'http://superschema.org/draft-01/schema#'
+
+title = 'Send SMS'
+description = 'Send short text messages. A service conforming to this profile will offer  the affordance to send a text message between two phone numbers.'
+
+#
+# Send Message Affordance
+#
+[descriptors.SendMessage]
+title = 'Send a short SMS'
+type = 'unsafe'
+
+  #
+  # Descriptors
+  #
+  [descriptors.SendMessage.descriptors.from]
+  type = 'semantic'
+  description = 'E.164 phone number of the sender. See <https://www.twilio.com/docs/glossary/what-e164> for details.'
+
+  [descriptors.SendMessage.descriptors.to]
+  type = 'semantic'
+  description = 'E.164 phone number of the receiver.'
+
+  [descriptors.SendMessage.descriptors.message]
+  type = 'semantic'
+  description = 'The body of the SMS message.'
+
+  #
+  # Resource Type
+  #
+  [descriptors.SendMessage.rt.id]
+  type = 'string'
+
+  [descriptors.SendMessage.rt.name]
+  type = 'string'
+
+  [descriptors.SendMessage.rt.website]
+  type = 'string'

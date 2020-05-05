@@ -1,0 +1,40 @@
+#
+# Profile Id
+#
+profile = 'http://supermodel.io/superface/telco/SendSMS'
+
+#
+# Provider details
+#
+[provider]
+id = 'http://superface.ai/providers/twilio'
+
+  [[provider.servers]]
+  url = 'https://api.twilio.com'
+
+  [[provider.servers]]
+  url = 'https://api2.twilio.com'
+
+#
+# Send Message
+#
+[map.SendMessage.http]
+method = 'GET'
+href = '/2010-04-01/Accounts/{AccountSID}/Messages.json'
+
+  [map.SendMessage.http.hrefVariables.AccountSID]
+  source = 'security/basic.user'
+
+  [map.SendMessage.http.request.headers]
+  some-http-header = 42
+
+  [map.SendMessage.http.request.'application/x-www-form-urlencoded'.body]
+  # jq syntax - https://stedolan.github.io/jq
+  from = '.From'
+  to = '.To'
+  message = '.Body'
+
+  [map.SendMessage.http.response.200.'application/json'.body]
+  # jq syntax
+  to = '.to'
+  id = '.sid'

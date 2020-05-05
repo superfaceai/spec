@@ -1,0 +1,37 @@
+$id: http://supermodel.io/superface/telco/SendSMS
+$schema: http://superschema.org/draft-01/schema#
+
+title: Send SMS
+description: >-
+    Send short text messages. A service conforming to this profile will offer 
+    the affordance to send a text message between two phone numbers.
+
+descriptors:
+  SendMessage:
+    title: Send a short SMS
+    type: unsafe
+
+    descriptors:
+      from:
+        type: semantic
+        description: >-
+          E.164 phone number of the sender.
+          See <https://www.twilio.com/docs/glossary/what-e164> for details.
+
+      to:
+        type: semantic
+        description: E.164 phone number of the receiver.
+
+      message:
+        type: semantic
+        description: The body of the SMS message.
+    
+    rt:
+      id: 
+        type: string
+      name: 
+        type: string
+      website:
+        type: string
+      
+
