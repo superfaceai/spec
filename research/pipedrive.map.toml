@@ -28,8 +28,8 @@ href = '/organizations'
   source = 'security/apikey'
 
   # Response
+  # jq syntax – https://jqplay.org  
   [map.RetrieveCustomers.http.response.200.'application/json'.body]
-  # jq syntax – https://jqplay.org
   'customers/id' = '.data[].id'
   'customers/name' = '.data[].name'
   'customerCount' = '.data | length'  # count the objects in the response's data array
