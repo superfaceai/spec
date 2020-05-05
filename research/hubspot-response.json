@@ -1,0 +1,138 @@
+{
+  "has-more": false,
+  "offset": 2968623108,
+  "companies": [
+    {
+      "portalId": 7134530,
+      "companyId": 2968598210,
+      "isDeleted": false,
+      "properties": {
+        "website": {
+          "value": "centralperk.com",
+          "timestamp": 1581323943468,
+          "source": "CALCULATED",
+          "sourceId": null,
+          "versions": [
+            {
+              "name": "website",
+              "value": "centralperk.com",
+              "timestamp": 1581323943468,
+              "source": "CALCULATED",
+              "sourceVid": [],
+              "requestId": "9145bd74-4e9f-48db-8fc3-63a0e341fa0f"
+            }
+          ]
+        },
+        "name": {
+          "value": "Central Perk",
+          "timestamp": 1581323943468,
+          "source": "IMPORT",
+          "sourceId": "8091003",
+          "versions": [
+            {
+              "name": "name",
+              "value": "Central Perk",
+              "timestamp": 1581323943468,
+              "sourceId": "8091003",
+              "source": "IMPORT",
+              "sourceVid": [],
+              "sourceMetadata": "MjU1MTM2MjA2MTgtNA==",
+              "requestId": "9145bd74-4e9f-48db-8fc3-63a0e341fa0f"
+            }
+          ]
+        }
+      },
+      "additionalDomains": [],
+      "stateChanges": [],
+      "mergeAudits": []
+    },
+    {
+      "portalId": 7134530,
+      "companyId": 2968609333,
+      "isDeleted": false,
+      "properties": {
+        "website": {
+          "value": "dundermifflin.com",
+          "timestamp": 1581323944288,
+          "source": "CALCULATED",
+          "sourceId": null,
+          "versions": [
+            {
+              "name": "website",
+              "value": "dundermifflin.com",
+              "timestamp": 1581323944288,
+              "source": "CALCULATED",
+              "sourceVid": [],
+              "requestId": "edcb3781-8f3b-4d89-b22e-8ae5761d2e3e"
+            }
+          ]
+        },
+        "name": {
+          "value": "Dunder Mifflin",
+          "timestamp": 1581323944288,
+          "source": "IMPORT",
+          "sourceId": "8091003",
+          "versions": [
+            {
+              "name": "name",
+              "value": "Dunder Mifflin",
+              "timestamp": 1581323944288,
+              "sourceId": "8091003",
+              "source": "IMPORT",
+              "sourceVid": [],
+              "sourceMetadata": "MjU1MTM2MjA2MTgtMg==",
+              "requestId": "edcb3781-8f3b-4d89-b22e-8ae5761d2e3e"
+            }
+          ]
+        }
+      },
+      "additionalDomains": [],
+      "stateChanges": [],
+      "mergeAudits": []
+    },
+    {
+      "portalId": 7134530,
+      "companyId": 2968623107,
+      "isDeleted": false,
+      "properties": {
+        "website": {
+          "value": "lukescafe.com",
+          "timestamp": 1581323943470,
+          "source": "CALCULATED",
+          "sourceId": null,
+          "versions": [
+            {
+              "name": "website",
+              "value": "lukescafe.com",
+              "timestamp": 1581323943470,
+              "source": "CALCULATED",
+              "sourceVid": [],
+              "requestId": "5129a9da-fe9b-4cda-8409-de0aea076cca"
+            }
+          ]
+        },
+        "name": {
+          "value": "Luke's Cafe",
+          "timestamp": 1581323943470,
+          "source": "IMPORT",
+          "sourceId": "8091003",
+          "versions": [
+            {
+              "name": "name",
+              "value": "Luke's Cafe",
+              "timestamp": 1581323943470,
+              "sourceId": "8091003",
+              "source": "IMPORT",
+              "sourceVid": [],
+              "sourceMetadata": "MjU1MTM2MjA2MTgtMw==",
+              "requestId": "5129a9da-fe9b-4cda-8409-de0aea076cca"
+            }
+          ]
+        }
+      },
+      "additionalDomains": [],
+      "stateChanges": [],
+      "mergeAudits": []
+    }
+  ]
+}

@@ -19,18 +19,20 @@ href = '/2010-04-01/Accounts/{AccountSID}/Messages.json'
   [map.SendMessage.http.hrefVariables.AccountSID]
   source = 'security/basic.user'
 
+  # Any http headers, if needed
   [map.SendMessage.http.request.headers]
   some-http-header = 42
 
-  [map.SendMessage.http.request.'application/x-www-form-urlencoded'.body]
+  # Request body mapping
   # values are using jq syntax - https://stedolan.github.io/jq, https://jqplay.org/#
-  # alternativelly we can consider JSON Pointer https://tools.ietf.org/html/rfc6901
-
+  #   alternativelly we can consider JSON Pointer https://tools.ietf.org/html/rfc6901
+  [map.SendMessage.http.request.'application/x-www-form-urlencoded'.body]
   from = '.From'      # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/from
   to = '.To'          # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/to
   message = '.Body'   # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/message
 
-  [map.SendMessage.http.response.200.'application/json'.body]
+  # JSON body mapping
   # jq syntax
+  [map.SendMessage.http.response.200.'application/json'.body]
   to = '.to'          # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/rt/to
   id = '.sid'         # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/rt/sid
