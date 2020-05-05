@@ -15,25 +15,64 @@ id = 'http://superface.ai/directory/pipedrive'
 #
 # Affordance map
 #
-[map.RetrieveCustomers.http]
+[[map.RetrieveCustomers.steps]]
+step = 'AddFilter'
+  
+[[map.RetrieveCustomers.steps]]
+step = 'RetrieveOrganizations'
+
+[[map.RetrieveCustomers.steps.parameters]]
+filterId = '.steps[0].filterId'
+
+
+
+# 
+# Steps
+#
+
+# Add filter
+[steps.AddFilter.http]
+method = 'POST'
+href = '/filters'
+
+  [steps.AddFilter.http.query.api_token]
+  source = '$security.apikey'
+
+  # Crazy pipedrive API madness
+  # See https://pipedrive.readme.io/docs/adding-a-filter
+  # This is actually not real pipedrive condition as that is very complex for this demo
+  [steps.AddFilter.http.request.'application/json'.body]
+  '.name' = ':a filter'       # hard-set value 'a filter'
+  '.type' = ':organization'   # hard-set value 'organization'
+  '.since' = 'since'          # TODO descriptor id resolves to ->  http://supermodel.io/superface/CRM/Customers ??? 
+
+  [steps.AddFilter.http.response.200.'application/json'.body]
+  '.filterId' = '.id' # get the value of '.id' and store it in 'filterId' variable
+
+
+# RetrieveOrganizations
+[steps.RetrieveOrganizations.http]
 method = 'GET'
 href = '/organizations'
 
   # Query parameters
-  [map.RetrieveCustomers.http.query]
+  [steps.RetrieveOrganizations.http.query]
   start = 'stream:offset'
   limit = 'stream:limit'
+  api_token = '$security.apikey'
+  filter_id = '$filterId'
 
-  [map.RetrieveCustomers.http.query.api_token]
-  source = 'security/apikey'
-
-  # Response
-  # jq syntax – https://jqplay.org  
-  [map.RetrieveCustomers.http.response.200.'application/json'.body]
+  [steps.RetrieveOrganizations.http.response.200.'application/json'.body]
   'customers/id' = '.data[].id'
   'customers/name' = '.data[].name'
   'customerCount' = '.data | length'  # count the objects in the response's data array
   
-  # Streaming trait
   'stream:offset' = '.additional_data.pagination.next_start' # -> resolves to http://supermodel.io/superface/superdriver/Page#/offset
   'stream:hasMore' = '.additional_data.pagination.more_items_in_collection'
+
+
+# Right-hand values starting with:
+# `:`         - literal value, example: `:value`
+# `.`         - jq expression, example: `.expression`
+# `$`         - global superface variable `$variable`
+# no prefix   - relative or absolute URL of a descriptor `descriptor`
