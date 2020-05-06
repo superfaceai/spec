@@ -1,21 +1,16 @@
-#
-# Map for profile
-#
+# Context
 profile = 'http://supermodel.io/superface/telco/SendSMS'
 
-#
-# Provider details
-#
+# Provider
 [provider]
 id = 'http://superface.ai/directory/twilio'
 
-#
-# Affordance map
-#
+# Mapping
 [map.SendMessage.http]
 method = 'GET'
 href = '/2010-04-01/Accounts/{AccountSID}/Messages.json'
 
+  # href variables
   [map.SendMessage.http.hrefVariables]
   AccountSID = '$security.basic.user'
 
@@ -24,15 +19,14 @@ href = '/2010-04-01/Accounts/{AccountSID}/Messages.json'
   some-http-header = 42
 
   # Request body mapping
-  # values are using jq syntax - https://stedolan.github.io/jq, https://jqplay.org/#
-  #   alternativelly we can consider JSON Pointer https://tools.ietf.org/html/rfc6901
   [map.SendMessage.http.request.'application/x-www-form-urlencoded'.body]
-  'From' = 'from'      # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/from
-  'To' = 'to'          # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/to
-  'Body' = 'message'   # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/message
+  '.From' = '@from'                                                             # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/from
+  '.To' = '@to'                                                                 # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/to
+  '.Body' = '@message'                                                          # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/descriptors/message
 
-  # JSON body mapping
-  # jq syntax
+  # Response body mapping
+  #   values are using jq syntax - https://stedolan.github.io/jq, https://jqplay.org/#
+  #     alternativelly we can consider JSON Pointer https://tools.ietf.org/html/rfc6901
   [map.SendMessage.http.response.200.'application/json'.body]
-  to = '.to'          # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/rt/to
-  id = '.sid'         # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/rt/sid
+  '@to' = '.to'                                                                 # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/rt/to
+  '@id' = '.sid'                                                                # -> resolves http://supermodel.io/superface/telco/SendSMS#/descriptors/SendMessage/rt/sid

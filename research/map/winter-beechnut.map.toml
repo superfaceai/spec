@@ -16,24 +16,24 @@ id = 'http://superface.ai/directory/winter-beechnut'
 method = 'POST'
 href = '/meteo/actuelle'
 
-  # Request body
+  # Request body map
   #
   # syntax: <target field identifier> (jq) = <profile descriptor> (JSON pointer)
   # 
-  # -> key resolves using jq (https://jqplay.org/) in request JSON body
-  # -> value resolves to http://supermodel.io/superface/WeatherAlerts#/descriptors/RetrieveAlerts/descriptors/addressLocality
+  #     -> key resolves using jq (https://jqplay.org/) in request JSON body
+  #     -> value resolves to http://supermodel.io/superface/WeatherAlerts#/descriptors/RetrieveAlerts/descriptors/addressLocality
   [map.RetrieveAlerts.http.request.'application/json'.body]
-  '.city' = 'addressLocality'
+  '.city' = '@addressLocality'
   
-  # Response body
+  # Response body map
   #
-  # syntax: <profile descriptor> (JSON pointer) = <source field identifier> (jq)
+  #     syntax: <profile descriptor> (JSON pointer) = <source field identifier> (jq)
   #
-  # -> key resolves to http://supermodel.io/superface/WeatherAlerts#/descriptors/RetrieveAlerts/rt/{key}
-  # -> value resolves to using jq (https://jqplay.org/) in response JSON body
+  #     -> key resolves to http://supermodel.io/superface/WeatherAlerts#/descriptors/RetrieveAlerts/rt/{key}
+  #     -> value resolves to using jq (https://jqplay.org/) in response JSON body
   [map.RetrieveCustomers.http.response.200.'application/json'.body]
-  'title' = '.caption'  
-  'description' = '.detail'
-  'severity' = '.level'
-  'startDate' = '.start'
-  'endDate' = '.end'
+  '@title' = '.caption'  
+  '@description' = '.detail'
+  '@severity' = '.level'
+  '@startDate' = '.start'
+  '@endDate' = '.end'

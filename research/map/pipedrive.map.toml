@@ -3,7 +3,7 @@
 #
 profile = 'http://supermodel.io/superface/CRM/Customers'
 
-[traits.stream]
+[curies.stream]
 profile = 'http://supermodel.io/superface/superdriver/Page'
 
 #

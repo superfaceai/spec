@@ -1,20 +1,15 @@
-#
-# Map for profile
-#
+# Profile Id
 profile = 'http://supermodel.io/superface/CRM/Customers'
 
-[traits.stream]
+# Curies
+[curies.stream]
 profile = 'http://supermodel.io/superface/superdriver/Stream'
 
-#
-# Provider details
-#
+# Provider for this map
 [provider]
 id = 'http://superface.ai/directory/hubspot'
 
-#
-# Affordance map
-#
+# Mapping
 [map.RetrieveCustomers.http]
 method = 'GET'
 href = '/companies/v2/companies/paged'

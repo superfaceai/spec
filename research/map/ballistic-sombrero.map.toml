@@ -17,12 +17,12 @@ method = 'GET'
 href = '/alerts'
 
   # Query parameters
-  [map.RetrieveCustomers.http.query]
-  'addressLocality' = '@addressLocality'                                        # -> value resolves to http://supermodel.io/superface/WeatherAlerts#/descriptors/RetrieveAlerts/descriptors/addressLocality
+  [map.RetrieveAlerts.http.query]
+  'addressLocality' = '@addressLocality'                                        # -> @ resolves to http://supermodel.io/superface/WeatherAlerts#/descriptors/RetrieveAlerts/descriptors/addressLocality
 
   # Response mapping
-  [map.RetrieveCustomers.http.response.200.'application/json'.body]
-  '@title' = '.title'
+  [map.RetrieveAlerts.http.response.200.'application/json'.body]
+  '@title' = '.title'                                                           # -> @ resolves to http://supermodel.io/superface/WeatherAlerts#/descriptors/RetrieveAlerts/rt/title
   '@description' = '.description'
   '@severity' = '.severity'
   '@startDate' = '.startDate'
