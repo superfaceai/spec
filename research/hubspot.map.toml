@@ -21,19 +21,20 @@ href = '/companies/v2/companies/paged'
 
   # Query parameters
   [map.RetrieveCustomers.http.query]
-  offset = 'stream:offset'    # TODO: what are values and what are variables
+  offset = 'stream:offset'
   limit = 'stream:limit'
-  properties = ['name', 'website']
+  properties = [':name', ':website']
 
   [map.RetrieveCustomers.http.query.hapikey]
-  source = 'security/apikey'
+  source = '$security.apikey'
 
   # Response
   [map.RetrieveCustomers.http.response.200.'application/json'.body]
   'customers/id' = '.companies[].companyId'
   'customers/name' = '.companies[].properties.name.value'
   'customers/website' = '.companies[].properties.website.value'
-  'customerCount' = '.companies | length'
+  # 'customerCount' = '.companies | length'
+  'customerCount' = 'COUNT(.companies)'
   
   # Streaming
   'stream:offset' = '.offset'

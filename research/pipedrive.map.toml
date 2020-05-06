@@ -16,63 +16,96 @@ id = 'http://superface.ai/directory/pipedrive'
 # Affordance map
 #
 [[map.RetrieveCustomers.steps]]
-step = 'AddFilter'
+when = 'since'
+run = 'FindFilter'
+
+  [map.RetrieveCustomers.steps.parameters]
+  filterName = ':superface-filter'
+
+  [map.RetrieveCustomers.steps.result]
+  '$filterId' = '.filterId'
+
+[[map.RetrieveCustomers.steps]]
+when = 'since && !$filterId'  # AND(since, NOT($filterId)) - https://formulajs.info/functions/
+
+  [map.RetrieveCustomers.steps.parameters]
+  since = 'since' # resolves to -> http://supermodel.io/superface/CRM/Customers#/descriptors/RetrieveCustomers/descriptors/since
+
+  [map.RetrieveCustomers.steps.result]
+  '$filterId' = '.filterId'  
   
 [[map.RetrieveCustomers.steps]]
-step = 'RetrieveOrganizations'
+run = 'RetrieveOrganizations'
 
-[[map.RetrieveCustomers.steps.parameters]]
-filterId = '.steps[0].filterId'
+  [map.RetrieveCustomers.steps.parameters]
+  offset = 'stream:offset'
+  limit = 'stream:limit'
+  filterId = '$filterId'
 
-
+  [map.RetrieveCustomers.steps.result]
+  'customers' = '.customers'
+  'customersCount' = '.count'
 
 # 
-# Steps
+# Operations
 #
 
 # Add filter
-[steps.AddFilter.http]
+[ops.AddFilter]
+parameters = [ 'since' ]
+
+[ops.AddFilter.http]
 method = 'POST'
 href = '/filters'
 
-  [steps.AddFilter.http.query.api_token]
-  source = '$security.apikey'
+  [ops.AddFilter.http.query.api_token]
+  api_token = '$security.apikey'
 
   # Crazy pipedrive API madness
   # See https://pipedrive.readme.io/docs/adding-a-filter
   # This is actually not real pipedrive condition as that is very complex for this demo
-  [steps.AddFilter.http.request.'application/json'.body]
+  [ops.AddFilter.http.request.'application/json'.body]
   '.name' = ':a filter'       # hard-set value 'a filter'
   '.type' = ':organization'   # hard-set value 'organization'
-  '.since' = 'since'          # TODO descriptor id resolves to ->  http://supermodel.io/superface/CRM/Customers ??? 
+  '.updatedAfter' = 'since'   # input step input parameter
 
-  [steps.AddFilter.http.response.200.'application/json'.body]
-  '.filterId' = '.id' # get the value of '.id' and store it in 'filterId' variable
+  [ops.AddFilter.http.response.200.'application/json'.body]
+  '.filterId' = '.id' # get the value of '.id' and store it in 'filterId' field
 
 
 # RetrieveOrganizations
-[steps.RetrieveOrganizations.http]
+[ops.RetrieveOrganizations]
+parameters = [ 'filterId', 'offset', 'limit' ]
+
+[ops.RetrieveOrganizations.http]
 method = 'GET'
 href = '/organizations'
 
   # Query parameters
-  [steps.RetrieveOrganizations.http.query]
-  start = 'stream:offset'
-  limit = 'stream:limit'
+  [ops.RetrieveOrganizations.http.query]
   api_token = '$security.apikey'
-  filter_id = '$filterId'
+  filter_id = 'filterId'
+  start = 'offset'
+  limit = 'limit'  
 
-  [steps.RetrieveOrganizations.http.response.200.'application/json'.body]
-  'customers/id' = '.data[].id'
-  'customers/name' = '.data[].name'
-  'customerCount' = '.data | length'  # count the objects in the response's data array
+  [ops.RetrieveOrganizations.http.response.200.'application/json'.body]
+  '.customers[].id' = '.data[].id'
+  '.customers[].name' = '.data[].name'
+  # '.customerCount' = '.data | COUNT'      # mixed formula.js and jq syntax
+  '.count' = 'COUNT(.data)'       # formula.js syntax
+  # '.customerCount' = '.data | length'   # jq syntax
   
-  'stream:offset' = '.additional_data.pagination.next_start' # -> resolves to http://supermodel.io/superface/superdriver/Page#/offset
-  'stream:hasMore' = '.additional_data.pagination.more_items_in_collection'
+
+  '.offset' = '.additional_data.pagination.next_start'
+  '.hasMore' = '.additional_data.pagination.more_items_in_collection'
 
 
 # Right-hand values starting with:
 # `:`         - literal value, example: `:value`
 # `.`         - jq expression, example: `.expression`
-# `$`         - global superface variable `$variable`
+# `$`         - variable `$variable`
 # no prefix   - relative or absolute URL of a descriptor `descriptor`
+
+# consider
+# `$$`        - for global variables
+# `@`         - for descrioptor identifiers
