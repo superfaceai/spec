@@ -1,50 +1,51 @@
-#
-# Map for profile
-#
+# Context
 profile = 'http://supermodel.io/superface/CRM/Customers'
 
+# Curies
 [curies.stream]
 profile = 'http://supermodel.io/superface/superdriver/Page'
 
-#
 # Provider details
-#
 [provider]
 id = 'http://superface.ai/directory/pipedrive'
 
-#
+
 # Affordance map
-#
-[[map.RetrieveCustomers.steps]]
-when = 'since'
+
+# Step 1: Check if filter exists
+[[map.RetrieveCustomers.steps]]  
+when = '@since'
 run = 'FindFilter'
 
   [map.RetrieveCustomers.steps.parameters]
-  filterName = ':superface-filter'
+  filterName = 'superface-filter'
 
   [map.RetrieveCustomers.steps.result]
   '$filterId' = '.filterId'
 
+
+# Step 2: Create filter if not
 [[map.RetrieveCustomers.steps]]
-when = 'since && !$filterId'  # AND(since, NOT($filterId)) - https://formulajs.info/functions/
+when = '@since && !$filterId'                                                   # Alternative syntax: AND(@since, NOT($filterId)) - https://formulajs.info/functions/
 
   [map.RetrieveCustomers.steps.parameters]
-  since = 'since' # resolves to -> http://supermodel.io/superface/CRM/Customers#/descriptors/RetrieveCustomers/descriptors/since
+  since = '@since'                                                              # -> resolves to http://supermodel.io/superface/CRM/Customers#/descriptors/RetrieveCustomers/descriptors/since
 
   [map.RetrieveCustomers.steps.result]
   '$filterId' = '.filterId'  
   
+# Step 3: Retrieve organizations
 [[map.RetrieveCustomers.steps]]
 run = 'RetrieveOrganizations'
 
-  [map.RetrieveCustomers.steps.parameters]
-  offset = 'stream:offset'
-  limit = 'stream:limit'
+  [map.RetrieveCustomers.steps.parameters]      # available as $parameters inside the operation
+  offset = '@stream:offset'
+  limit = '@stream:limit'
   filterId = '$filterId'
 
-  [map.RetrieveCustomers.steps.result]
-  'customers' = '.customers'
-  'customersCount' = '.count'
+  [map.RetrieveCustomers.steps.result]          # available as $result inside the operation
+  '@customers' = '.customers'
+  '@customersCount' = '.count'
 
 # 
 # Operations
@@ -62,12 +63,12 @@ href = '/filters'
   api_token = '$security.apikey'
 
   # Crazy pipedrive API madness
-  # See https://pipedrive.readme.io/docs/adding-a-filter
-  # This is actually not real pipedrive condition as that is very complex for this demo
+  #   See https://pipedrive.readme.io/docs/adding-a-filter
+  #   Note: This is actually not real pipedrive condition as that is very complex for this demo
   [ops.AddFilter.http.request.'application/json'.body]
-  '.name' = ':a filter'       # hard-set value 'a filter'
-  '.type' = ':organization'   # hard-set value 'organization'
-  '.updatedAfter' = 'since'   # input step input parameter
+  '.name' = 'a filter'          # hard-set value 'a filter'
+  '.type' = 'organization'      # hard-set value 'organization'
+  '.updatedAfter' = '$parameters.since'    # input step parameter using jq notation
 
   [ops.AddFilter.http.response.200.'application/json'.body]
   '.filterId' = '.id' # get the value of '.id' and store it in 'filterId' field
@@ -84,15 +85,16 @@ href = '/organizations'
   # Query parameters
   [ops.RetrieveOrganizations.http.query]
   api_token = '$security.apikey'
-  filter_id = 'filterId'
-  start = 'offset'
-  limit = 'limit'  
+  filter_id = '$parameters.filterId'
+  start = '$parameters.offset'
+  limit = '$parameters.limit'  
 
+  # Map response to result structure
   [ops.RetrieveOrganizations.http.response.200.'application/json'.body]
-  '.customers[].id' = '.data[].id'
+  '.customers[].id' = '.data[].id'                                              # Also `.customers[].id` is short for `$result.customers[].id`
   '.customers[].name' = '.data[].name'
-  # '.customerCount' = '.data | COUNT'      # mixed formula.js and jq syntax
   '.count' = 'COUNT(.data)'       # formula.js syntax
+  # '.customerCount' = '.data | COUNT'      # mixed formula.js and jq syntax
   # '.customerCount' = '.data | length'   # jq syntax
   
 
