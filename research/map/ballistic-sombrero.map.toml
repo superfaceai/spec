@@ -18,7 +18,7 @@ href = '/alerts'
 
   # Query parameters
   [map.RetrieveCustomers.http.query]
-  'addressLocality' = '@addressLocality' # -> value resolves to http://supermodel.io/superface/WeatherAlerts#/descriptors/RetrieveAlerts/descriptors/addressLocality
+  'addressLocality' = '@addressLocality'                                        # -> value resolves to http://supermodel.io/superface/WeatherAlerts#/descriptors/RetrieveAlerts/descriptors/addressLocality
 
   # Response mapping
   [map.RetrieveCustomers.http.response.200.'application/json'.body]

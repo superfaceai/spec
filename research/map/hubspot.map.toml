@@ -33,8 +33,8 @@ href = '/companies/v2/companies/paged'
   'customers/id' = '.companies[].companyId'
   'customers/name' = '.companies[].properties.name.value'
   'customers/website' = '.companies[].properties.website.value'
-  # 'customerCount' = '.companies | length'
   'customerCount' = 'COUNT(.companies)'
+  # 'customerCount' = '.companies | length'
   
   # Streaming
   'stream:offset' = '.offset'
