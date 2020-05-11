@@ -27,7 +27,7 @@ type = 'safe'
   # Resource Type
   #
   [descriptors.RetrieveCustomers.rt.customers]
-  '$ref' = '#/descriptors/Customer'
+  '$ref' = '#/models/Customer'
 
   [descriptors.RetrieveCustomers.rt.customerCount]
   type = 'semantic'
@@ -35,7 +35,7 @@ type = 'safe'
 #
 # Customer
 #
-[descriptors.Customer]
+[models.Customer]
 type = 'semantic'
 
   [descriptors.Customer.id]

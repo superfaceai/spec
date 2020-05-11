@@ -15,7 +15,7 @@ type = 'unsafe'
   # Descriptors
   #
   [descriptors.SendMessage.descriptors.from]
-  type = 'semantic'
+  type = 'semantic'                                                             # <- introduce hard typing here 
   description = 'E.164 phone number of the sender. See <https://www.twilio.com/docs/glossary/what-e164> for details.'
 
   [descriptors.SendMessage.descriptors.to]

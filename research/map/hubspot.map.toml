@@ -16,7 +16,7 @@ href = '/companies/v2/companies/paged'
 
   # Query parameters
   [map.RetrieveCustomers.http.query]
-  offset = 'stream:offset'
+  offset = 'stream:offset' # -> http://supermodel.io/superface/superdriver/Stream#/descriptors/offset
   limit = 'stream:limit'
   properties = [':name', ':website']
 

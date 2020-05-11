@@ -27,6 +27,7 @@ run = 'FindFilter'
 # Step 2: Create filter if not
 [[map.RetrieveCustomers.steps]]
 when = '@since && !$filterId'                                                   # Alternative syntax: AND(@since, NOT($filterId)) - https://formulajs.info/functions/
+run = 'CreateFilter'
 
   [map.RetrieveCustomers.steps.parameters]
   since = '@since'                                                              # -> resolves to http://supermodel.io/superface/CRM/Customers#/descriptors/RetrieveCustomers/descriptors/since

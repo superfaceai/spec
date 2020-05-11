@@ -6,7 +6,7 @@ title = 'Weather Alerts Profile'
 #
 # Descriptors
 #
-[descriptors.RetrieveAlerts]
+[functions.RetrieveAlerts]
 title = 'Retrieve Alerts'
 description = 'Retrieves alert at given address locality'
 type = 'safe'
@@ -14,22 +14,22 @@ type = 'safe'
   #
   # Nested descriptors a.k.a. parameters
   #
-  [descriptors.RetrieveAlerts.descriptors.addressLocality]
+  [functions.RetrieveAlerts.parameters.addressLocality]                         # -> http://supermodel.io/superface/WeatherAlerts#/functions/RetrieveAlerts/parameters/addressLocality
   description = 'Address locality to retrieve the alerts for'
   type = 'semantic'
 
   #
   # Resource type a.k.a. response
   #
-  [descriptors.RetrieveAlerts.rt.title]
+  [functions.RetrieveAlerts.response.title]
   description = 'A brief description of the alert'
   type = 'semantic'
 
-  [descriptors.RetrieveAlerts.rt.description]
+  [functions.RetrieveAlerts.response.description]
   description = 'A detailed description of the alert'
   type = 'semantic'
 
-  [descriptors.RetrieveAlerts.rt.severity]
+  [functions.RetrieveAlerts.response.severity]
   description = '''
     The severity of the weather alert. Will take one of the following values:
     - `advisory` (an individual should be aware of potentially severe weather)
@@ -38,10 +38,15 @@ type = 'safe'
   '''
   type = 'semantic'
 
-  [descriptors.RetrieveAlerts.rt.startDate]
+  [functions.RetrieveAlerts.response.startDate]
   description = 'A brief description of the alert'
   type = 'semantic'
 
-  [descriptors.RetrieveAlerts.rt.endDate]
+  [functions.RetrieveAlerts.response.endDate]
   description = 'A brief description of the alert'
   type = 'semantic'
+
+  [functions.RetrieveAlerts.Error]
+
+[models.Error.message]
+  description = 'Error message'
