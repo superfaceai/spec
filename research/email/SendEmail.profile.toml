@@ -1,0 +1,30 @@
+id = 'https://superface.ai/profiles/email/SendEmail'
+schema = 'http://superschema.org/draft-01/schema#'
+
+title = 'Send Email Profile'
+description = 'Basic profile for sending emails'
+
+[function.SendEmail]
+title = 'Send Email'
+description = 'Send plain text email'
+type = 'unsafe'
+
+  [function.SendEmail.parameter.to]
+  description = 'Email address to send email to'
+  type = 'string'
+
+  [function.SendEmail.parameter.from]
+  description = 'Email address to send email from'
+  type = 'string'
+
+  [function.SendEmail.parameter.subject]
+  description = 'Subject of the email'
+  type = 'string'
+
+  [function.SendEmail.parameter.body]
+  description = 'Plain text content of the body'
+  type = 'string'
+
+  [function.SendEmail.response.messageId]
+  description = 'Id of the message sent'
+  type = 'string'

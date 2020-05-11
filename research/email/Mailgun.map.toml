@@ -1,0 +1,24 @@
+profile = 'https://superface.ai/profiles/email/SendEmail'
+
+[provider]
+id = 'http://superface.ai/directory/Mailgun'                                    # https://documentation.mailgun.com/en/latest/api-sending.html#examples
+
+[map.SendEmail.http]
+method = 'POST'
+url = 'https://api.mailgun.net/v3/${YOUR_DOMAIN_NAME}/messages'                 # Custom URL variables
+
+  [map.SendEmail.http.security]
+  type = 'basic'
+
+  [map.SendMessage.http.urlVariables]
+  YOUR_DOMAIN_NAME = '$provider.domainName'                                     # Option 1: Get the domain from provider config
+  YOUR_DOMAIN_NAME2 = '=REGEXEXTRACT("@parameters/from", "@(.*)")'              # Option 2: Get the domain from sender
+
+  [map.SendEmail.http.request.'multipart/form-data'.body]                       # BEWARE: Mutlipart https://ec.haxx.se/http/http-multipart
+  '.from' = '@parameters/from'
+  '.to' = '@parameters/to'
+  '.subject' = '@parameters/subject'
+  '.text' = '@parameters/body'
+
+  [map.SendEmail.http.response.200.'application/json'.headers]
+  '@response/messageId' = '.id'
