@@ -1,0 +1,22 @@
+# https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions
+# https://help.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
+
+[[steps]]
+name = "Explain why this job ran"
+uses = "monacorp/action-name@master"
+  
+  [steps.with]
+  entrypoint = "/bin/echo"
+  args = "The ${{ github.event_name }} event triggered this step."
+
+[[steps]]
+name = "My first step"
+if = "${{ github.event_name == 'pull_request' && github.event.action == 'unassigned' }}"
+  run = "echo This event is a pull request that had an assignee removed."
+
+
+# MY extension
+[[steps]]
+name = "Z's test"
+for = "${{ email in @parameters.to }}"
+  '.personalizations[0].to[${{ index }}].email' = '${{ email }}'
