@@ -14,11 +14,11 @@ url = 'https://api.sendgrid.com/v3/mail/send'
   # authorization = 'bearer ${security.bearertoken}'
   
   [map.SendEmail.http.request.'application/json'.body]
-  # '.personalizations[].to[].email' = '${ @parameters.to }'
+  # '.personalizations[].to[].email' = '${ parameters.to }'
   '.personalizations[0].to[].email' = '${ @parameters.to.email }'
   '.personalizations[0].to[].name' = '${ @parameters.to.name }'
   # '.personalizations[0].to[0].email2' = '${ @https://superface.ai/profiles/email/SendEmail#/functions/SendEmail/parameters/to }'    <- not supported
-  '.personalizations[0].subject' = '${ @parameters.subject }'
+  '.personalizations[0].subject' = '${ toLowerCase(@parameters.subject) }'
   '.personalizations[0].subject2' = 'Message about ${ @parameters.subject }'
   '.from.email' = '@parameters.from'
   '.content[0].type' = 'text/plain'

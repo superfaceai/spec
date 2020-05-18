@@ -6,7 +6,7 @@ name = "Explain why this job ran"
 uses = "monacorp/action-name@master"
   
   [steps.with]
-  entrypoint = "/bin/echo"
+
   args = "The ${{ github.event_name }} event triggered this step."
 
 [[steps]]

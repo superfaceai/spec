@@ -14,8 +14,8 @@ id = 'http://superface.ai/directory/pipedrive'
 
 # Step 1: Check if filter exists
 [[map.RetrieveCustomers.steps]]  
-when = '@since'
-run = 'FindFilter'
+if = '@since'
+  run = 'FindFilter'
 
   [map.RetrieveCustomers.steps.parameters]
   filterName = 'superface-filter'
