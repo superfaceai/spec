@@ -29,5 +29,30 @@ url = 'https://api.sendgrid.com/v3/mail/send'
   '@response/messageId' = 'X-Message-Id'
 
   [map.SendEmail.http.response.200.'application/json'.body]
+  # context let body = {}, parameters = {}, profile = {}
   '@response/neco' = 42
+  '@response/neco/jineho' = '${ .path.to[0].data }'
+  '@response/neco/jineho2' = '${ body.path.to[0].data }'
+
+
+  '@response/neco/uplne/jineho' = '${ .path.to[0].data + @parameters.to.email }'
   
+  '@response/neco/uplne/jinehoAlt' = '${ body.path.to[0].data + parameters.to.email }'
+
+
+  '@names' = '.body.values[].name'
+  '@namesUpper' = '${ map(".body.values[].name", uppercase) }'
+  '@namesUpper2' = '${ map( body.values,(value) => { value.toUpperCase() } ))'
+
+
+[[steps]]
+  if = "x"
+    do  = "hello!"
+[[steps]]    
+  if = "x"
+    do  = "hello!"
+  
+
+
+# 1. jq
+# 2. interpret, omezen, formula JS -like

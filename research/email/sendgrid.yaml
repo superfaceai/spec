@@ -1,0 +1,45 @@
+profile: https://superface.ai/profiles/email/SendEmail
+
+provider:
+  id: http://superface.ai/directory/SendGrid
+
+map:
+  SendEmail:
+    http:
+      method: POST
+      url: https://api.sendgrid.com/v3/mail/send
+
+      request:
+        application/json:
+          body:
+            ".content[0].type": "text/plain"
+            ".content[0].value": "@parameters.body"
+            ".from.email": "@parameters.from"
+            ".personalizations[0].subject": ${ toLowerCase(@parameters.subject) }
+            ".personalizations[0].subject2": ${ Message about ${ @parameters.subject }
+            ".personalizations[0].to[].email": ${ @parameters.to.email }
+            ".personalizations[0].to[].name": ${ @parameters.to.name }
+
+      response:
+        '200':
+          "*/*":
+            headers:
+              "@response/messageId": X-Message-Id
+          
+          application/json:
+            body:
+              "@response/neco": 42
+              "@response/neco/jineho": "${ .path.to[0].data }"
+              "@response/neco/uplne/jineho": "${ .path.to[0].data + @parameters.to.email }"
+              "@response/neco/uplne/jinehoAlt": "${ body.path.to[0].data + parameters.to.email }"
+
+      security:
+        type: bearer
+        
+
+
+steps:
+  - if: x
+    do: x
+  - if: y
+    do: y

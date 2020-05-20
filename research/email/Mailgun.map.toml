@@ -11,8 +11,10 @@ url = 'https://api.mailgun.net/v3/${YOUR_DOMAIN_NAME}/messages'                 
   type = 'basic'
 
   [map.SendMessage.http.urlVariables]
-  YOUR_DOMAIN_NAME = '$provider.domainName'                                     # Option 1: Get the domain from provider config
+  YOUR_DOMAIN_NAME = '${ provider.domainName }'                                 # Option 1: Get the domain from provider config
   YOUR_DOMAIN_NAME2 = '=REGEXEXTRACT("@parameters/from", "@(.*)")'              # Option 2: Get the domain from sender
+  YOUR_DOMAIN_NAME3 = '${ /@(.*)/.exec( parameters.from )[1] }'
+  YOUR_DOMAIN_NAME4 = '${ extract(/@(.*)/, parameters.from) }'
 
   [map.SendEmail.http.request.'multipart/form-data'.body]                       # BEWARE: Mutlipart https://ec.haxx.se/http/http-multipart
   '.from' = '@parameters/from'
@@ -22,3 +24,24 @@ url = 'https://api.mailgun.net/v3/${YOUR_DOMAIN_NAME}/messages'                 
 
   [map.SendEmail.http.response.200.'application/json'.headers]
   '@response/messageId' = '.id'
+  'response.messageId' = '.id'
+
+  '@response/contacts/email' = '.contacts[].email'
+  'response.contacts.email' = '.contacts[].email'
+  '@response/contacts/email2' = 'z@goodapi.co'
+  
+  '.contacts[].email2' = 'z@goodapi.co'
+  '.contacts[].name' = '.contacts[].name'
+
+  'response.contacts' = "${ map( body.contacts, { name = 'x.name'  , email2 = 'z@goodapi.co' } )" 
+
+  'response.contacts2' = """
+  ${ 
+    map(body.contacts, (val) => ({ 
+      name: val.name;
+      email2: 'z@goodapi.co' 
+    }))
+  }
+  """ 
+
+

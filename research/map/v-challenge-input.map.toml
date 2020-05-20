@@ -1,0 +1,33 @@
+
+#
+# Map
+#
+[map.Foo.http]
+
+[map.Foo.http.request.'application/json'.body]
+"response.arr3[0].names" = "{}"
+"response.arr3[1].names" = "${ parameters.names }"
+"response.arr3[2].names" = "{}"
+
+  
+[map.Foo.http.response.200.'application/json'.body]
+# "@response/arr3/names" = ".arr1[].arr2[].name"
+"response.arr3[0].names" = "{}"
+"response.arr3[1].names" = "${ jq('parameters.organizations[].contacts[].name') }"
+"response.arr3[1].names" = ".organizations[].contacts[].name"
+"response.arr3[2].names" = "{}"
+
+#
+# Profile
+#
+[functions.Foo.parameters]
+  
+  [functions.Foo.parameters.organizations]
+  type = "array"
+  
+  [[functions.Foo.parameters.organizations.items]]
+  [[functions.Foo.parameters.organizations.items.contacts.items]]
+  [functions.Foo.parameters.organizations.items.contacts.items.name]
+  type = "string"
+
+  
