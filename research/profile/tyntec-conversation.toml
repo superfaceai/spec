@@ -1,0 +1,71 @@
+#
+# Send Image
+#
+[usecases.SendText]
+
+  [usecases.SendText.parameters]
+  channel = 'sms' # viber, whatsap
+  to = "somebody"
+  from = "me"
+  userContext = "xxxxx"  
+  text = "Hello!"
+
+  [usecases.SendText.response]
+  messageId = "112334234"
+  userContext = "xxxxx"
+
+  [usecases.SendText.asyncResponse]
+  messageId = "112334234"
+  userContext = "xxxxx"
+
+  [usecases.SendText.errors]
+  title = "some problem"
+  detail = "lorem ipsum"
+  
+  [usecases.SendText.asyncError]
+  orignalErrorResponse = {}   # TBD: <- non-harmonized response
+
+#
+# Send Image
+#
+[usecases.SendImage]
+
+  [usecases.SendImage.parameters]
+  to = "somebody"
+  from = "me"
+  userContext = "xxxxx"
+
+    [usecases.SendImage.parameters.image]
+    url = ""
+    base64 = ""
+    mediatype = "image/png"
+
+  [usecases.SendImage.response]
+
+
+#
+# Send Message
+#
+[usecases.SendMessage]
+
+  [usecases.SendMessage.parameters]
+  to = "somebody"
+  from = "me"
+  userContext = "xxxxx"
+
+    [[usecases.SendMessage.parameters.components]]
+    type = "text"
+    body = "Hello World"
+
+    [[usecases.SendMessage.parameters.components]]
+    type = "image"
+    url = ""
+    base64 = ""
+    mediatype = "image/png"
+
+    [[usecases.SendMessage.parameters.components]]
+    type = "button"
+    caption = "Press me"
+    url = "http://google.com"
+
+  [usecases.SendMessage.response]

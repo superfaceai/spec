@@ -10,29 +10,28 @@ url = 'https://api.sendgrid.com/v3/mail/send'
   [map.SendEmail.http.security]
   type = 'bearer'   # http header authorization: bearer
 
-  # [map.SendEmail.http.request.headers]
-  # authorization = 'bearer ${security.bearertoken}'
+  [map.SendEmail.http.request.headers]
+  authorization = ': "bearer " + security.bearer.token'
   
   [map.SendEmail.http.request.'application/json'.body]
-  # '.personalizations[].to[].email' = '${ parameters.to }'
-  '.personalizations[0].to[].email' = '${ @parameters.to.email }'
-  '.personalizations[0].to[].name' = '${ @parameters.to.name }'
-  # '.personalizations[0].to[0].email2' = '${ @https://superface.ai/profiles/email/SendEmail#/functions/SendEmail/parameters/to }'    <- not supported
-  '.personalizations[0].subject' = '${ toLowerCase(@parameters.subject) }'
-  '.personalizations[0].subject2' = 'Message about ${ @parameters.subject }'
-  '.from.email' = '@parameters.from'
-  '.content[0].type' = 'text/plain'
-  '.content[0].value' = '@parameters.body'
-
+  
+  '.personalizations[0].to[].email' = '$parameters.to.email'                     # care: this is JQ syntax into parameters object
+  '.personalizations[0].to[].name' = '$parameters.to.name'
+  '.personalizations[0].subject' = ': toLowerCase(parameters.subject)'          
+  '.personalizations[0].subject2' = ': "Message about " + parameters.subject'
+  '.from.email' = ': parameters.from'
+  '.content[0].type' = ': "text/plain"'
+  '.content[0].value' = ': parameters.body'
 
   [map.SendEmail.http.response.200.'*/*'.headers]
   '@response/messageId' = 'X-Message-Id'
 
   [map.SendEmail.http.response.200.'application/json'.body]
-  # context let body = {}, parameters = {}, profile = {}
+
+  
   '@response/neco' = 42
-  '@response/neco/jineho' = '${ .path.to[0].data }'
-  '@response/neco/jineho2' = '${ body.path.to[0].data }'
+  '@response/neco/jineho' = 'body.path.to[0].data'
+  '@response/neco/jineho2' = 'body.path.to[0].data'
 
 
   '@response/neco/uplne/jineho' = '${ .path.to[0].data + @parameters.to.email }'
@@ -43,16 +42,3 @@ url = 'https://api.sendgrid.com/v3/mail/send'
   '@names' = '.body.values[].name'
   '@namesUpper' = '${ map(".body.values[].name", uppercase) }'
   '@namesUpper2' = '${ map( body.values,(value) => { value.toUpperCase() } ))'
-
-
-[[steps]]
-  if = "x"
-    do  = "hello!"
-[[steps]]    
-  if = "x"
-    do  = "hello!"
-  
-
-
-# 1. jq
-# 2. interpret, omezen, formula JS -like

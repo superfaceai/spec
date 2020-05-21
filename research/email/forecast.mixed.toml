@@ -1,0 +1,33 @@
+
+# Map
+[map.GetWeather.http]
+method = 'GET'
+url = 'https://api.weather.com/forecast'
+
+  [map.GetWeather.http.200.'application/json'.body]
+  '@result/temperature' = ': jq`.forecast.temp`'
+  '@result/unit' = 'F'
+  '@result/location' = ': jq`.forecast.location.city`'
+
+#
+# Profile
+#
+[usecase.GetWeather]
+  [usecase.GetWeather.parameters]
+    [usecase.GetWeather.parameters.location]
+    model = 'Location'
+  
+  [usecase.GetWeather.result]
+    [usecase.GetWeather.result.temperature]
+    type = 'string'
+
+    [usecase.GetWeather.result.unit]
+    type = 'string'
+
+    [usecase.GetWeather.result.location]
+    model = 'Location'
+
+
+[models.Location]
+  [models.Location.city]
+  type = 'string'

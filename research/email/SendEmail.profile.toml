@@ -8,24 +8,6 @@ description = 'Basic profile for sending emails'
 title = 'Send Email'
 description = 'Send plain text email'
 type = 'unsafe'                                                                 # if omitted default: "unsafe"
-# errorTypes = ['technical', 'business', 'platform']
-
-  # For later 
-  [[functions.SendEmail.examples]]
-  parameters = '''
-  {}
-  '''
-  response = '''
-  {}
-  '''
-  
-  [[functions.SendEmail.examples]]
-  parameters = '''
-  {}
-  '''
-  response = '''
-  {}
-  '''
 
   [functions.SendEmail.parameters.to]
   description = 'Email address to send email to'
@@ -69,6 +51,23 @@ type = 'unsafe'                                                                 
 
   [functions.SendEmail.errors.RateLimitGlobal]
   '$ref' = 'https://superface.ai/profiles/errors/RateLimit@1.0.1'               # FORBIDEN
+
+  # For later 
+  [[functions.SendEmail.examples]]
+  parameters = '''
+  {}
+  '''
+  response = '''
+  {}
+  '''
+  
+  [[functions.SendEmail.examples]]
+  parameters = '''
+  {}
+  '''
+  response = '''
+  {}
+  '''  
 
 #
 # Models

@@ -1,0 +1,126 @@
+
+[functions]
+
+# Function Foo
+[functions.Foo]
+  [functions.Foo.result]
+  '.answer[0]' = ': parameters.a'                   # parameters are implicit in context
+  '.answer[1]' = ': parameters.a + parameters.b'
+  '.answer[2]' = ': toLowerCase(paramters.a)'
+  '.answer[3]' = ': (parameters.a > parameters.b) ? parameters.a : parameters.b'
+  '.answer[4]' = ': "fixed string"'
+
+# Function Bar
+[functions.Bar]
+  [functions.Bar.http]
+  method = 'GET'
+  href = 'https://api.exchangeratesapi.io/latest?symbols=EUR,USD'
+
+    [functions.Bar.http.request.headers]
+    'accept' = 'application/json'
+    'accept-language' = ': parameters.language'
+
+    [functions.Bar.http.request.'application/json'.body]
+    # in HTTP requests identity ('.') is request body
+    'property' = ': parameters.value'
+    'property1' = ': parameters.value'
+    'property2' = 'literal value'
+    
+
+    [functions.Bar.http.response.200.'application/json'.body]
+    # in HTTP responses identity ('.') is response body
+    
+    # set directly using JQ and explicit body variable
+    '.result.rate1' = '.rates.USD'
+
+    # set using JS and JS direct object access
+    '.rate3' = ': body.rates.USD'
+
+    # set using JS and JQ via jq() function
+    '.rate4' = ': jq(body, ".rates.USD")'
+    '.rate4a' = ': jq`body.rates.USD`'       # JS tag syntax
+
+    # set as fixed literal value (number)
+    '.rate5' = 1.097
+
+    # set as fixed literal value (string) (using JS syntax)
+    '.rate6' = ': "1.097"'
+
+    # Computation
+    '.resultInUSD' = ': parameters.eurValue * jq(body, ".rates.USD")'
+
+    # Computation without JS (direct JS object access)
+    '.resultInUSD2' = ': parameters.eurValue * rates.USD'
+
+# Function3
+[functions.Function3]
+
+  # Step one
+  [[functions.Function3.steps]]
+  if = ': true'   # example condition,  the `:` can be skipped in ifs 
+    run = 'Foo'
+
+    [functions.Function3.steps.parameters]
+    a = 42
+    b = 2
+
+    [functions.Function3.steps.result]
+    '.priceInEuros1' = 'result.answer[1]'             # direct JQ
+    '.priceInEuros2' = ': result.answer[1]'           # Object access with JS
+    '.priceInEuros3' = ': jq(result, ".answer[1]")'   # JQ via JS
+    '.comment' = ': "created with superface"'         # literal string
+    'globalPrice' = ': result.answer[1]'              # Store the price in a global var instead of this step result
+
+  # Step two
+  [[functions.Function3.steps]]
+  run = 'Bar'
+
+    [functions.Function3.steps.parameters]
+    eurValue = ': steps[0].result.priceInEuros'
+
+    [functions.Function3.steps.result]
+    '.usd' = 'result.resultInUSD'
+
+
+# JQ
+# --
+#
+# left hand:
+#     ".path.to[].something" = ...
+#     "variable.path.to[].something" = ...
+#
+# right hand:
+#     ... = ".path.to[].something"
+#     ... = "variable.path.to[].something"
+#     ... = "jq`variable.path.to[].something`"
+
+# Literal Value
+# -------------
+#
+# right hand only:
+#    ... = ": 'some string value'"   # string
+#    ... = 42                        # number
+
+
+# JS expression
+# -------------
+#
+# expression is any unit of code that can be evaluated to a value
+#
+# right hand only:
+#   ... = ": js expression here"
+#   ... = ": true"
+#   ... = ": foo(variable) + 2"
+#   ... = ": 42"                 <- this is a number
+#   ... = ": "Hello World""      <- this is a string
+
+
+lhs01 = '$.path.to[].something'           # JQ implicit context
+lhs02 = '$variable.path.to[].something'   # JQ explicit context
+lhs03 = 42                                 # Literal number
+lhs04 = ': "42"'                           # Literal string
+lhs05 = ': true'                           # JS
+lhs06 = ': 42'                             # JS resolves to: 42 (number)
+lhs07 = ': a + 2'                          # JS "a" is variable
+lhs08 = ': jq(variable, ".path.to[].something")'  # JS equivalent of lhs2
+
