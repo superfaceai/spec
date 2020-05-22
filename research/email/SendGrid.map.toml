@@ -6,39 +6,27 @@ id = 'http://superface.ai/directory/SendGrid'                                   
 [map.SendEmail.http]
 method = 'POST'
 url = 'https://api.sendgrid.com/v3/mail/send'
- 
-  [map.SendEmail.http.security]
-  type = 'bearer'   # http header authorization: bearer
 
-  [map.SendEmail.http.request.headers]
-  authorization = ': "bearer " + security.bearer.token'
-  
+  [map.SendEmail.http.security]
+  type = 'bearer'
+
   [map.SendEmail.http.request.'application/json'.body]
-  
-  '.personalizations[0].to[].email' = '$parameters.to.email'                     # care: this is JQ syntax into parameters object
-  '.personalizations[0].to[].name' = '$parameters.to.name'
-  '.personalizations[0].subject' = ': toLowerCase(parameters.subject)'          
-  '.personalizations[0].subject2' = ': "Message about " + parameters.subject'
-  '.from.email' = ': parameters.from'
-  '.content[0].type' = ': "text/plain"'
-  '.content[0].value' = ': parameters.body'
+  'personalizations[0].to[0].email' = '${ parameters.to.email }'
+  'personalizations[0].to[0].name' = '${ parameters.to.name }'
+  'personalizations' = '''${ 
+    map(paramters.to, (value) => {
+      
+    }) 
+  }'''
+  'personalizations[0].subject' = '${ parameters.subject }'
+  'from.email' = '${ parameters.from }'
+  'content[0].type' = 'text/plain'
+  'content[0].value' = '${ parameters.body }'
 
   [map.SendEmail.http.response.200.'*/*'.headers]
   '@response/messageId' = 'X-Message-Id'
 
   [map.SendEmail.http.response.200.'application/json'.body]
-
-  
-  '@response/neco' = 42
-  '@response/neco/jineho' = 'body.path.to[0].data'
-  '@response/neco/jineho2' = 'body.path.to[0].data'
-
-
-  '@response/neco/uplne/jineho' = '${ .path.to[0].data + @parameters.to.email }'
-  
-  '@response/neco/uplne/jinehoAlt' = '${ body.path.to[0].data + parameters.to.email }'
-
-
-  '@names' = '.body.values[].name'
-  '@namesUpper' = '${ map(".body.values[].name", uppercase) }'
-  '@namesUpper2' = '${ map( body.values,(value) => { value.toUpperCase() } ))'
+  'result[0]' = 42
+  'result[1]' = '${ map(".body.values[].name", uppercase) }'
+  'result[2]' = '${ map( body.values,(value) => { value.toUpperCase() } ))'

@@ -31,26 +31,26 @@
     # in HTTP responses identity ('.') is response body
     
     # set directly using JQ and explicit body variable
-    '.result.rate1' = '.rates.USD'
+    'result.rate1' = '.rates.USD'
 
     # set using JS and JS direct object access
-    '.rate3' = ': body.rates.USD'
+    'rate3' = ': body.rates.USD'
 
     # set using JS and JQ via jq() function
-    '.rate4' = ': jq(body, ".rates.USD")'
-    '.rate4a' = ': jq`body.rates.USD`'       # JS tag syntax
+    'rate4' = ': jq(body, ".rates.USD")'
+    'rate4a' = ': jq`body.rates.USD`'       # JS tag syntax
 
     # set as fixed literal value (number)
-    '.rate5' = 1.097
+    'rate5' = 1.097
 
     # set as fixed literal value (string) (using JS syntax)
-    '.rate6' = ': "1.097"'
+    'rate6' = ': "1.097"'
 
     # Computation
-    '.resultInUSD' = ': parameters.eurValue * jq(body, ".rates.USD")'
+    'resultInUSD' = ': parameters.eurValue * jq(body, ".rates.USD")'
 
     # Computation without JS (direct JS object access)
-    '.resultInUSD2' = ': parameters.eurValue * rates.USD'
+    'resultInUSD2' = ': parameters.eurValue * rates.USD'
 
 # Function3
 [functions.Function3]

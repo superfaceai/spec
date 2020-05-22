@@ -25,11 +25,28 @@ href = '/companies/v2/companies/paged'
 
   # Response
   [map.RetrieveCustomers.http.response.200.'application/json'.body]
-  'customers/id' = '.companies[].companyId'
-  'customers/name' = '.companies[].properties.name.value'
-  'customers/website' = '.companies[].properties.website.value'
-  'customerCount' = 'COUNT(.companies)'
+  'customers[].id' = '.companies[].companyId'
+  'customers[].name' = '.companies[].properties.name.value'
+  'customers[].website' = '.companies[].properties.website.value'
+  
+  
+  'customerCount' = '${ body.companies.length() }'
+
+  [map.RetrieveCustomers.result]
+  context = "http.response.200.'application/json'.body"
+
+
   # 'customerCount' = '.companies | length'
+
+  'customers' = '''${
+    return map(body.companies, (company) => {
+      return {
+        id = company.companyId
+        name = company.properties.name.value
+        website = company.properties.website.value
+      }
+    }
+  }'''
   
   # Streaming
   'stream:offset' = '.offset'

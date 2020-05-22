@@ -4,56 +4,56 @@ schema = 'http://superschema.org/draft-01/schema#'
 title = 'Send Email Profile'
 description = 'Basic profile for sending emails'
 
-[functions.SendEmail]
+[usecase.SendEmail]
 title = 'Send Email'
 description = 'Send plain text email'
 type = 'unsafe'                                                                 # if omitted default: "unsafe"
 
-  [functions.SendEmail.parameters.to]
+  [usecase.SendEmail.parameters.to]
   description = 'Email address to send email to'
   type = 'array'                                                               # if omitted default: "any"
   
-  [functions.SendEmail.parameters.to.items]
+  [usecase.SendEmail.parameters.to.items]
   type = 'string'
 
-  [functions.SendEmail.parameters.from]
+  [usecase.SendEmail.parameters.from]
   description = 'Email address to send email from'
   type = 'string'
 
-  [functions.SendEmail.parameters.subject]
+  [usecase.SendEmail.parameters.subject]
   description = 'Subject of the email'
   type = 'string'
 
-  [functions.SendEmail.parameters.body]
+  [usecase.SendEmail.parameters.body]
   description = 'Plain text content of the body'
   type = 'string'
 
-  [functions.SendEmail.response.messageId]
+  [usecase.SendEmail.response.messageId]
   description = 'Id of the message sent'
 
-  [functions.SendEmail.errors.RececpientQuotaExceeded]                          # -> https://superface.ai/profiles/email/SendEmail#/functions/SendEmail/errors/RececpientQuotaExceeded
+  [usecase.SendEmail.errors.RececpientQuotaExceeded]                            # -> https://superface.ai/profiles/email/SendEmail#/usecase/SendEmail/errors/RececpientQuotaExceeded
   description = ''
   # title = 'Lorem'                                                             # <- A short, human-readable summary of the problem type.
   # detail = 'Lorem Ipsum'                                                      # <- A human-readable explanation specific to this occurrence of the problem.
   # instance = ''                                                               # <- Reference-id: For http -> URL of the request including
   # fullErrorResponse                                                           # <- As came from fetch()
 
-  [functions.SendEmail.errors.RececpientQuotaExceeded.quota]
+  [usecase.SendEmail.errors.RececpientQuotaExceeded.quota]
   description = ''
   type = 'number'
   
-  [functions.SendEmail.errors.RececpientQuotaExceeded.actualNumberOfRecepients]
+  [usecase.SendEmail.errors.RececpientQuotaExceeded.actualNumberOfRecepients]
   description = ''
   type = 'number'
 
-  [functions.SendEmail.errors.RateLimit]
+  [usecase.SendEmail.errors.RateLimit]
   '$ref' = '#/models/RateLimitError'
 
-  [functions.SendEmail.errors.RateLimitGlobal]
+  [usecase.SendEmail.errors.RateLimitGlobal]
   '$ref' = 'https://superface.ai/profiles/errors/RateLimit@1.0.1'               # FORBIDEN
 
   # For later 
-  [[functions.SendEmail.examples]]
+  [[usecase.SendEmail.examples]]
   parameters = '''
   {}
   '''
@@ -61,7 +61,7 @@ type = 'unsafe'                                                                 
   {}
   '''
   
-  [[functions.SendEmail.examples]]
+  [[usecase.SendEmail.examples]]
   parameters = '''
   {}
   '''

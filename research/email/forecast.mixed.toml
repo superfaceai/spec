@@ -1,23 +1,19 @@
-
-# Map
-[map.GetWeather.http]
-method = 'GET'
-url = 'https://api.weather.com/forecast'
-
-  [map.GetWeather.http.200.'application/json'.body]
-  '@result/temperature' = ': jq`.forecast.temp`'
-  '@result/unit' = 'F'
-  '@result/location' = ': jq`.forecast.location.city`'
-
 #
 # Profile
 #
+
+# Get Weather
 [usecase.GetWeather]
+  title = 'Get Weather'
+  description = 'Lorem Ipsum'
+  
+  # Parameters
   [usecase.GetWeather.parameters]
     [usecase.GetWeather.parameters.location]
     model = 'Location'
   
-  [usecase.GetWeather.result]
+  # Result
+  [usecase.GetWeather.results]
     [usecase.GetWeather.result.temperature]
     type = 'string'
 
@@ -27,7 +23,29 @@ url = 'https://api.weather.com/forecast'
     [usecase.GetWeather.result.location]
     model = 'Location'
 
+  # Business Errors
+  [usecase.GetWeather.errors]
+    [usecase.GetWeather.errors.LocationNotFound]
 
+
+# Reusable models
 [models.Location]
   [models.Location.city]
   type = 'string'
+
+
+# ------------------------------------------------------------------------------
+
+
+
+#
+# Map
+#
+[map.GetWeather.http]
+method = 'GET'
+url = 'https://api.weather.com/forecast'
+
+  [map.GetWeather.http.200.'application/json'.body]
+  'result.temperature' = '${ jq`.forecast.temp` }'
+  'result.location.city' = '${ jq`.forecast.location.city` }'
+  'result.unit' = 'F'
