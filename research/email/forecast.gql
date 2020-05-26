@@ -1,4 +1,8 @@
+#
+# Profile
+#
 
+# Get Weather
 usecase GetWeather {
   title: "Get Weather"
   description: "Lorem Ipsum"
@@ -6,9 +10,7 @@ usecase GetWeather {
 
   # Parameters
   parameters {
-    location: {
-      type: string
-    } 
+    location: { type: string } 
   }
 
   # Response
@@ -35,7 +37,6 @@ error LocationNotFound {
   title: string
 }
 
-
 # ------------- Mapping 
 
 profile: "https://superface.ai/profiles/GetWeather"
@@ -44,7 +45,7 @@ map GetWeather (http) {
   method: "GET"
   url: "http://api.weather.com/"
 
-  response 200 (application/json) {
+  response 200 application/json {
     # reuse 
     temperature: .temp
     city: .location.city

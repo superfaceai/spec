@@ -6,13 +6,15 @@
 [usecase.GetWeather]
   title = 'Get Weather'
   description = 'Lorem Ipsum'
+  type = 'safe'
+  errors = ['LocationNotFound']
   
   # Parameters
   [usecase.GetWeather.parameters]
     [usecase.GetWeather.parameters.location]
-    model = 'Location'
+    type = 'string'
   
-  # Result
+  # Response
   [usecase.GetWeather.results]
     [usecase.GetWeather.result.temperature]
     type = 'string'
@@ -20,32 +22,30 @@
     [usecase.GetWeather.result.unit]
     type = 'string'
 
-    [usecase.GetWeather.result.location]
-    model = 'Location'
-
-  # Business Errors
-  [usecase.GetWeather.errors]
-    [usecase.GetWeather.errors.LocationNotFound]
-
+    [usecase.GetWeather.result.city]
+    type = 'string'
 
 # Reusable models
-[models.Location]
-  [models.Location.city]
+[models.Location.city]
+type = 'string'
+  
+  [models.Location.city.country]
+  description = 'ISO country code of the location'
   type = 'string'
 
 
-# ------------------------------------------------------------------------------
+[error.LocationNotFound.title]
+type = 'string'
 
+# ------------- Mapping 
 
+profile = "https://superface.ai/profiles/GetWeather"
 
-#
-# Map
-#
 [map.GetWeather.http]
 method = 'GET'
 url = 'https://api.weather.com/forecast'
 
   [map.GetWeather.http.200.'application/json'.body]
-  'result.temperature' = '${ jq`.forecast.temp` }'
-  'result.location.city' = '${ jq`.forecast.location.city` }'
+  'result.temperature' = '.temp'
+  'result.location.city' = '.location.city'
   'result.unit' = 'F'
