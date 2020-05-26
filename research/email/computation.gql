@@ -1,0 +1,36 @@
+operation foo {
+
+}
+
+operation bar (http) {
+
+  request {
+    headers {
+      accept: 'application/json'
+      accept-language: parameters.language
+    }
+
+    body (application/json) {
+      property1: 'string value'
+      property2: variable
+      property3: variable + 3 # JavaScript secure expression
+    }
+  }
+  
+  response {
+    body (application/json) {
+      property1: jq`.some.value`
+      property2: jq`.some.other.value`
+      property3: map(jq`.some.stuff`, (value) => { 
+        return (value + 3) 
+      })
+    }
+  }
+
+}
+
+operation multistep {
+  step { 
+    
+  }
+}

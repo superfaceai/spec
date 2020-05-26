@@ -15,7 +15,7 @@
     type = 'string'
   
   # Response
-  [usecase.GetWeather.results]
+  [usecase.GetWeather.result]
     [usecase.GetWeather.result.temperature]
     type = 'string'
 
@@ -29,9 +29,9 @@
 [models.Location.city]
 type = 'string'
   
-  [models.Location.city.country]
-  description = 'ISO country code of the location'
-  type = 'string'
+[models.Location.country]
+description = 'ISO country code of the location'
+type = 'string'
 
 
 [error.LocationNotFound.title]

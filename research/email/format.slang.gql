@@ -1,0 +1,33 @@
+value {
+  nested {
+    more {
+      property: 31      
+    }
+  }
+}
+
+
+value nested more {
+  property: 31
+}
+
+
+function {
+  foo {
+    parameters {
+      something: "Hello World"
+    }
+  }  
+}
+
+function foo {
+  parameters {
+    something: "Hello World
+  }  
+}
+
+function foo parameters {
+    something: "Hello World
+  }  
+}
+
