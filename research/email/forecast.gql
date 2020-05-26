@@ -1,0 +1,53 @@
+
+usecase GetWeather {
+  title: "Get Weather"
+  description: "Lorem Ipsum"
+  type: safe
+
+  # Parameters
+  parameters {
+    location: {
+      type: string
+    } 
+  }
+
+  # Response
+  response {
+    temperature: { type: string }
+    unit: { type: string }
+    city: { type: string }
+  }
+
+  # Errors
+  errors: [ LocationNotFound ]
+}
+
+# Reusable model
+model Location {
+  city: { type: string }
+  country: { 
+    description: "ISO country code of the location"
+    type: string 
+  }
+}
+
+error LocationNotFound {
+  title: string
+}
+
+
+# ------------- Mapping 
+
+profile: "https://superface.ai/profiles/GetWeather"
+
+map GetWeather (http) {
+  method: "GET"
+  url: "http://api.weather.com/"
+
+  response 200 (application/json) {
+    # reuse 
+    temperature: .temp
+    city: .location.city
+    unit: "F"
+  }
+}
