@@ -2,7 +2,7 @@ operation foo {
 
 }
 
-operation bar (http) {
+operation bar http {
 
   request {
     headers {
@@ -10,15 +10,14 @@ operation bar (http) {
       accept-language: parameters.language
     }
 
-    body (application/json) {
+    body application/json {
       property1: 'string value'
       property2: variable
       property3: variable + 3 # JavaScript secure expression
     }
   }
   
-  response {
-    body (application/json) {
+  response body application/json {
       property1: jq`.some.value`
       property2: jq`.some.other.value`
       property3: map(jq`.some.stuff`, (value) => { 
