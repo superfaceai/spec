@@ -1,0 +1,398 @@
+{
+  "kind": "Document",
+  "definitions": [
+    {
+      "kind": "ObjectTypeDefinition",
+      "name": {
+        "kind": "Name",
+        "value": "A",
+        "loc": {
+          "start": 133,
+          "end": 134
+        }
+      },
+      "interfaces": [],
+      "directives": [],
+      "fields": [
+        {
+          "kind": "FieldDefinition",
+          "name": {
+            "kind": "Name",
+            "value": "name",
+            "loc": {
+              "start": 140,
+              "end": 144
+            }
+          },
+          "arguments": [],
+          "type": {
+            "kind": "NamedType",
+            "name": {
+              "kind": "Name",
+              "value": "string",
+              "loc": {
+                "start": 146,
+                "end": 152
+              }
+            },
+            "loc": {
+              "start": 146,
+              "end": 152
+            }
+          },
+          "directives": [],
+          "loc": {
+            "start": 140,
+            "end": 152
+          }
+        }
+      ],
+      "loc": {
+        "start": 128,
+        "end": 154
+      }
+    },
+    {
+      "kind": "OperationDefinition",
+      "operation": "query",
+      "name": {
+        "kind": "Name",
+        "value": "GetUser",
+        "loc": {
+          "start": 162,
+          "end": 169
+        }
+      },
+      "variableDefinitions": [
+        {
+          "kind": "VariableDefinition",
+          "variable": {
+            "kind": "Variable",
+            "name": {
+              "kind": "Name",
+              "value": "userId",
+              "loc": {
+                "start": 171,
+                "end": 177
+              }
+            },
+            "loc": {
+              "start": 170,
+              "end": 177
+            }
+          },
+          "type": {
+            "kind": "NonNullType",
+            "type": {
+              "kind": "NamedType",
+              "name": {
+                "kind": "Name",
+                "value": "ID",
+                "loc": {
+                  "start": 179,
+                  "end": 181
+                }
+              },
+              "loc": {
+                "start": 179,
+                "end": 181
+              }
+            },
+            "loc": {
+              "start": 179,
+              "end": 182
+            }
+          },
+          "directives": [],
+          "loc": {
+            "start": 170,
+            "end": 182
+          }
+        }
+      ],
+      "directives": [],
+      "selectionSet": {
+        "kind": "SelectionSet",
+        "selections": [
+          {
+            "kind": "Field",
+            "name": {
+              "kind": "Name",
+              "value": "user",
+              "loc": {
+                "start": 188,
+                "end": 192
+              }
+            },
+            "arguments": [
+              {
+                "kind": "Argument",
+                "name": {
+                  "kind": "Name",
+                  "value": "id",
+                  "loc": {
+                    "start": 193,
+                    "end": 195
+                  }
+                },
+                "value": {
+                  "kind": "Variable",
+                  "name": {
+                    "kind": "Name",
+                    "value": "userId",
+                    "loc": {
+                      "start": 198,
+                      "end": 204
+                    }
+                  },
+                  "loc": {
+                    "start": 197,
+                    "end": 204
+                  }
+                },
+                "loc": {
+                  "start": 193,
+                  "end": 204
+                }
+              }
+            ],
+            "directives": [],
+            "selectionSet": {
+              "kind": "SelectionSet",
+              "selections": [
+                {
+                  "kind": "Field",
+                  "name": {
+                    "kind": "Name",
+                    "value": "id",
+                    "loc": {
+                      "start": 212,
+                      "end": 214
+                    }
+                  },
+                  "arguments": [],
+                  "directives": [],
+                  "loc": {
+                    "start": 212,
+                    "end": 214
+                  }
+                },
+                {
+                  "kind": "Field",
+                  "name": {
+                    "kind": "Name",
+                    "value": "name",
+                    "loc": {
+                      "start": 220,
+                      "end": 224
+                    }
+                  },
+                  "arguments": [],
+                  "directives": [],
+                  "loc": {
+                    "start": 220,
+                    "end": 224
+                  }
+                },
+                {
+                  "kind": "Field",
+                  "name": {
+                    "kind": "Name",
+                    "value": "isViewerFriend",
+                    "loc": {
+                      "start": 230,
+                      "end": 244
+                    }
+                  },
+                  "arguments": [],
+                  "directives": [],
+                  "loc": {
+                    "start": 230,
+                    "end": 244
+                  }
+                },
+                {
+                  "kind": "Field",
+                  "name": {
+                    "kind": "Name",
+                    "value": "profilePicture",
+                    "loc": {
+                      "start": 250,
+                      "end": 264
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "kind": "Argument",
+                      "name": {
+                        "kind": "Name",
+                        "value": "size",
+                        "loc": {
+                          "start": 265,
+                          "end": 269
+                        }
+                      },
+                      "value": {
+                        "kind": "IntValue",
+                        "value": "50",
+                        "loc": {
+                          "start": 271,
+                          "end": 273
+                        }
+                      },
+                      "loc": {
+                        "start": 265,
+                        "end": 273
+                      }
+                    }
+                  ],
+                  "directives": [],
+                  "selectionSet": {
+                    "kind": "SelectionSet",
+                    "selections": [
+                      {
+                        "kind": "FragmentSpread",
+                        "name": {
+                          "kind": "Name",
+                          "value": "PictureFragment",
+                          "loc": {
+                            "start": 287,
+                            "end": 302
+                          }
+                        },
+                        "directives": [],
+                        "loc": {
+                          "start": 284,
+                          "end": 302
+                        }
+                      }
+                    ],
+                    "loc": {
+                      "start": 276,
+                      "end": 308
+                    }
+                  },
+                  "loc": {
+                    "start": 250,
+                    "end": 308
+                  }
+                }
+              ],
+              "loc": {
+                "start": 206,
+                "end": 312
+              }
+            },
+            "loc": {
+              "start": 188,
+              "end": 312
+            }
+          }
+        ],
+        "loc": {
+          "start": 184,
+          "end": 314
+        }
+      },
+      "loc": {
+        "start": 156,
+        "end": 314
+      }
+    },
+    {
+      "kind": "FragmentDefinition",
+      "name": {
+        "kind": "Name",
+        "value": "PictureFragment",
+        "loc": {
+          "start": 325,
+          "end": 340
+        }
+      },
+      "typeCondition": {
+        "kind": "NamedType",
+        "name": {
+          "kind": "Name",
+          "value": "Picture",
+          "loc": {
+            "start": 344,
+            "end": 351
+          }
+        },
+        "loc": {
+          "start": 344,
+          "end": 351
+        }
+      },
+      "directives": [],
+      "selectionSet": {
+        "kind": "SelectionSet",
+        "selections": [
+          {
+            "kind": "Field",
+            "name": {
+              "kind": "Name",
+              "value": "uri",
+              "loc": {
+                "start": 356,
+                "end": 359
+              }
+            },
+            "arguments": [],
+            "directives": [],
+            "loc": {
+              "start": 356,
+              "end": 359
+            }
+          },
+          {
+            "kind": "Field",
+            "name": {
+              "kind": "Name",
+              "value": "width",
+              "loc": {
+                "start": 363,
+                "end": 368
+              }
+            },
+            "arguments": [],
+            "directives": [],
+            "loc": {
+              "start": 363,
+              "end": 368
+            }
+          },
+          {
+            "kind": "Field",
+            "name": {
+              "kind": "Name",
+              "value": "height",
+              "loc": {
+                "start": 372,
+                "end": 378
+              }
+            },
+            "arguments": [],
+            "directives": [],
+            "loc": {
+              "start": 372,
+              "end": 378
+            }
+          }
+        ],
+        "loc": {
+          "start": 352,
+          "end": 380
+        }
+      },
+      "loc": {
+        "start": 316,
+        "end": 380
+      }
+    }
+  ],
+  "loc": {
+    "start": 0,
+    "end": 381
+  }
+}

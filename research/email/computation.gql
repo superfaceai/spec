@@ -17,7 +17,13 @@ operation bar http {
     }
   }
   
-  response body application/json {
+  response  { 
+
+    headers {
+
+    }
+    
+    body application/json {
       property1: jq`.some.value`
       property2: jq`.some.other.value`
       property3: map(jq`.some.stuff`, (value) => { 
@@ -31,5 +37,11 @@ operation bar http {
 operation multistep {
   step { 
     
+  }
+}
+
+
+operation X  {
+  response body {
   }
 }
