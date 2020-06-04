@@ -1,43 +1,33 @@
-### Profile Elements
+### Typed Profile Elements
 
-- id
-- use case
-  - title
-  - description
-  - type (enum)
-    - safe
-    - unsafe
-    - idempotent
-  - errors
-  - examples
-  - input element
-    - name
-    - description
-    - type (string -> maybe null)  
-
-  - response element
-    - name
-    - description
-    - namedType
-    - optionality
-
-- model
-  - name 
-  - description
-  - field element
-    - name
-    - description
-    - namedType 
-    - optionality
+* id
+* use case
+  * title
+  * description
+  * idempotency
+    * safe
+    * unsafe
+    * idempotent
+    
+  * errors
+  * examples
+  * input element
+    * name
+    * description
 
 
-### Element
+  * result element
+    * name
+    * description
+    * namedType
+    * optionality
 
-```yaml
-kind: 
-loc: 
-  start: 0
-  end: 1
-elements:
-  - 
-```
+* model
+  * name 
+  * description
+  * field element
+    * name
+    * description
+    * namedType 
+    * optionality
+  
