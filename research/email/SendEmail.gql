@@ -15,10 +15,8 @@ Send Email
 Send plain text email
 """
 mutation SendEmail(parameters: SendEmailInput) : EmailResult 
-  @traits( 
-    safety: "unsafe",
-    errors: [RecepientQuotaExceeded, RateLimit]
-  )
+  @unsafe
+  @errors(models: [RecepientQuotaExceeded, RateLimit])
 
 input SendEmailInput {
   "Email address to send email to"

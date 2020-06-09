@@ -3,19 +3,17 @@ Send Email Profile
 
 Basic profile for sending emails
 """
-profile {
-  id: "https://superface.ai/profiles/email/SendEmail"
-}
+profile https://superface.ai/profiles/email/SendEmail
 
 """
 Send Email
 
 Send plain text email
 """
-usecase SendEmail @unsafe {
+usecase SendEmail unsafe { 
   input {
     "Email address to send email to"
-    to: [String!]!
+    to: String! 
     
     "Email address to send email from"
     from: String!
@@ -29,10 +27,10 @@ usecase SendEmail @unsafe {
 
   result {
     "Id of the message sent"
-    id: String
+    mailId: String
   }
 
-  error {                     # TODO: decide wheter use GQL enum syntax or Array syntax
+  error {
     RecepientQuotaExceeded
     RateLimit 
   }
@@ -46,5 +44,6 @@ model RecepientQuotaExceeded {
 model RateLimit {
   # ...
 }
+
 
 
