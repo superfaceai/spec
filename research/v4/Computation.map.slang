@@ -8,7 +8,7 @@ operation foo {
 operation bar {
   run foo {
     ok return {
-      betterAnswer = foo.return.answer
+      betterAnswer = run.return.answer
     }
   }
 }
@@ -18,10 +18,15 @@ operation countArray {
     count = 0
   }
 
-  run forEach(args.array as element) {
+  run forEach(args.array) {
     set {
       count = count + 1
     }
   }
-}
 
+  run { 
+    return {
+      result = 'this is the count: ' + count
+    }
+  }
+}

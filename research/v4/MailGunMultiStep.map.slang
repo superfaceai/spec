@@ -4,7 +4,9 @@ super {
 }
 
 map SendEmail {
-  run SendOneEmail forEach(input.email as email) {
+
+  run SendOneEmail forEach(input.email as email) if(true) {
+
     args {
       domain = /@(.*)/.exec( input.from )[1]
       from = input.from
@@ -13,19 +15,20 @@ map SendEmail {
       body = input.body
     }
 
-    ok {
-      result {
-        mailId: run.return.id
-      }
+    result {
+      mailId = run.result.rid
     }
+
   }
 }
 
 
 operation SendOneEmail {
-  http POST https://api.mailgun.net/v3/${YOUR_DOMAIN_NAME}/messages {
-    
-    security basic {}
+  
+  http POST https://api.mailgun.net/v3/${YOUR_DOMAIN_NAME}/messages {    
+    security {
+      scheme = basic
+    }
 
     set {
       YOUR_DOMAIN_NAME = args.domain
@@ -43,6 +46,14 @@ operation SendOneEmail {
     response 200 application/json {
       return {
         id = body.id
+      }
+      
+      result {
+        xxx = 42
+      }
+
+      set {
+        YOUR_DOMAIN_NAME = 11
       }
     }
   }

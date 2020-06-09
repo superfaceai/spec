@@ -1,19 +1,49 @@
 profile https://superface.ai/profiles/email/SendEmail
 provider http://superface.ai/directory/SendGrid
 
-map SendEmail {
-  http POST https://api.sendgrid.com/v3/mail/send  {    
+map B {
+  run SendEmailNetwork {
+    result {
+
+    }
+  }
+}
+
+map A {
+  run X {
+    result {
+
+    }
+  }
+}
+
+map B {
+  run X {
+    result {
+
+    }
+  }
+}
+
+operation X {
+
+}
+
+operation SendEmailNetwork {
+  http POST https://api.sendgrid.com/v3/mail/send {
+
     request application/json {
+      
       security {
-        scheme = basic
+        scheme: basic
       }
 
       headers {
-        accept = 'application/json'
+        accept: 'application/json'
       }
 
       body {
-        personalizations = input.to.map((inputEmail) => (
+        personalizations: input.to.map((inputEmail) => (
           { to: [ { email: inputEmail }] subject: input.subject }
         )
         from.email = input.from
@@ -23,11 +53,12 @@ map SendEmail {
     }
 
     response 200 application/json {
-      result {
-        id: headers.'X-Message-Id'
-        name: body.username
-        username: body.name
+      
+      return {
+        id = headers.'X-Message-Id'
+        name = body.username
+        username = body.name
       }
     }
-  }
+  }  
 }

@@ -1,0 +1,31 @@
+$id: http://supermodel.io/superface/map/MapAST
+$schema: http://json-schema.org/draft-07/schema#
+
+title: Map AST
+description: Map AST model description
+type: object
+
+properties: 
+  kind:
+    $ref: http://supermodel.io/superface/map/Kind
+
+  map:
+    type: object
+    properties: 
+      kind: 
+        type: string
+
+      profileId:
+        type: object
+        
+        properties: 
+          kind:
+
+
+      provider:
+        type: object 
+
+  definitions:
+    type: array
+    items: 
+      - $ref: http://supermodel.io/superface/map/MapDefinition

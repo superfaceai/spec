@@ -9,13 +9,13 @@ map SendEmail {
   http POST https://api.mailgun.net/v3/${YOUR_DOMAIN_NAME}/messages {    
     
     request multipart/form-data {
-      
+
       queryParameters {
         page = 42
       }
 
       headers {
-        my-header = 'superface-test'
+        'my-header' = 'superface-test'
       }
 
       body {
@@ -29,7 +29,9 @@ map SendEmail {
 
     response 200 {
       result {
-        id: headers.['X-Message-ID']
+        id = headers.['X-Message-ID']
+        name = body.name
+        names = [1, 2]
       }
     }
   }

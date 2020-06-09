@@ -13,7 +13,7 @@ Send plain text email
 usecase SendEmail unsafe { 
   input {
     "Email address to send email to"
-    to: String! 
+    to: String!
     
     "Email address to send email from"
     from: String!

@@ -9,6 +9,10 @@ map RetrieveCustomers {
 
   # Step 1
   run FindFilter if(input.since) {
+    args {
+      filterName = "my-superface-map-filter"
+    }
+
     ok {
       set {
         filterId = run.result.filterId
@@ -36,6 +40,11 @@ map RetrieveCustomers {
     ok result {
       customers = run.result.customers
     }
+  }
+
+  # Step 4
+  run Cleanup if(filterId) {
+
   }
 }
 
