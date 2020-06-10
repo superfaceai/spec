@@ -1,16 +1,13 @@
-$id: http://supermodel.io/superface/map/MapDefinition
+$id: http://supermodel.io/superface/map/OperationDefinition
 $schema: http://json-schema.org/draft-07/schema#
 
-title: MapDefinition
-description: MapDefinition model description
-type: object
+title: OperationDefinition
+description: OperationDefinition model description
+type: object  # Change to the desired model type (http://json-schema.org/latest/json-schema-validation.html#rfc.section.6.1.1)
 
 properties: 
   kind:
     $ref: http://supermodel.io/superface/map/Kind
-
-  usecaseName: 
-    type: string
 
   stepsDefinition:
     type: array
@@ -19,4 +16,3 @@ properties:
 
   loc:
     $ref: http://supermodel.io/superface/map/Location
-
