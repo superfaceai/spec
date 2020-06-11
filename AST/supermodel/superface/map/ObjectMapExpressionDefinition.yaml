@@ -1,0 +1,19 @@
+$id: http://supermodel.io/superface/map/ObjectMapExpressionDefinition
+$schema: http://json-schema.org/draft-07/schema#
+
+title: ObjectMapExpressionDefinition
+description: ObjectMapExpressionDefinition model description
+type: object
+
+properties:
+  kind:
+    $ref: http://supermodel.io/superface/map/Kind
+
+  left:
+    type: string
+
+  right:
+    $ref: http://supermodel.io/superface/map/SourceDefinition
+
+  loc:
+    $ref: http://supermodel.io/superface/map/Location

@@ -43,5 +43,3 @@ properties:
     items:
       - $ref: http://supermodel.io/superface/map/MapDefinition
       - $ref: http://supermodel.io/superface/map/OperationDefinition
-
-

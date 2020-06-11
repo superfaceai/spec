@@ -1,0 +1,22 @@
+$id: http://supermodel.io/superface/map/OperationCallDefinition
+$schema: http://json-schema.org/draft-07/schema#
+
+title: OperationCallDefinition
+description: OperationCallDefinition model description
+type: object
+
+properties:
+  kind:
+    $ref: http://supermodel.io/superface/map/Kind
+
+  operationName:
+    type: string
+
+  arguments:
+    $ref: http://supermodel.io/superface/map/KeyMapExpressionDefinition
+
+  resultDefinition:
+    $ref: http://supermodel.io/superface/map/MapExpressionDefinition
+
+  loc:
+    $ref: http://supermodel.io/superface/map/Location

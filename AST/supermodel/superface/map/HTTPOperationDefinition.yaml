@@ -1,0 +1,50 @@
+$id: http://supermodel.io/superface/map/HTTPOperationDefinition
+$schema: http://json-schema.org/draft-07/schema#
+
+title: HTTPOperationDefinition
+description: HTTPOperationDefinition model description
+type: object
+
+properties:
+  kind:
+    $ref: http://supermodel.io/superface/map/Kind
+
+  method:
+    type: string
+    enum:
+      - GET
+      - POST
+      - PUT
+      - PATCH
+      - DELETE
+
+  security:
+    type: string
+    enum:
+      - basic
+      - bearer
+      - other
+
+  url:
+    type: string
+    format: uri
+
+  urlVariablesDefinition:
+    $ref: http://supermodel.io/superface/map/KeyMapExpressionDefinition
+
+  queryParametersDefinition:
+    $ref: http://supermodel.io/superface/map/KeyMapExpressionDefinition
+
+  requestDefinition:
+    type: object
+    properties:
+      headers:
+        $ref: http://supermodel.io/superface/map/KeyMapExpressionDefinition
+      body:
+        $ref: http://supermodel.io/superface/map/ObjectMapExpressionDefinition
+
+  responseDefinition:
+    $ref: http://supermodel.io/superface/map/StatusDefinition
+
+  loc:
+    $ref: http://supermodel.io/superface/map/Location
