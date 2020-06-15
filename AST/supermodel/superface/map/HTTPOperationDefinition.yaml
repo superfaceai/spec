@@ -11,40 +11,41 @@ properties:
 
   method:
     type: string
-    enum:
-      - GET
-      - POST
-      - PUT
-      - PATCH
-      - DELETE
-
-  security:
-    type: string
-    enum:
-      - basic
-      - bearer
-      - other
 
   url:
     type: string
-    format: uri
 
-  urlVariablesDefinition:
-    $ref: http://supermodel.io/superface/map/KeyMapExpressionDefinition
+  varialbeExpressionsDefinitino:
+    $ref: http://supermodel.io/superface/map/VariableExpressionsDefinition
 
-  queryParametersDefinition:
-    $ref: http://supermodel.io/superface/map/KeyMapExpressionDefinition
 
   requestDefinition:
     type: object
     properties:
+      security:
+        type: string
+        enum:
+          - basic
+          - bearer
+          - other
       headers:
-        $ref: http://supermodel.io/superface/map/KeyMapExpressionDefinition
+        $ref: http://supermodel.io/superface/map/VariableExpressionsDefinition
       body:
-        $ref: http://supermodel.io/superface/map/ObjectMapExpressionDefinition
+        $ref: http://supermodel.io/superface/map/MapExpressionsDefinition
+      queryParametersDefinition:
+        $ref: http://supermodel.io/superface/map/VariableExpressionsDefinition
 
   responseDefinition:
-    $ref: http://supermodel.io/superface/map/StatusDefinition
+    type: object
+    properties:
+      statusCode:
+        type: string
+      contentType:
+        type: string
+      contentLanguage:
+        type: string
+      outcomeDefinition:
+        $ref: http://supermodel.io/superface/map/OutcomeDefinition
 
   loc:
     $ref: http://supermodel.io/superface/map/Location

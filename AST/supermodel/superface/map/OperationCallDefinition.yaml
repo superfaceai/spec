@@ -13,10 +13,13 @@ properties:
     type: string
 
   arguments:
-    $ref: http://supermodel.io/superface/map/KeyMapExpressionDefinition
+    $ref: http://supermodel.io/superface/map/VariableExpressionsDefinition
 
-  resultDefinition:
-    $ref: http://supermodel.io/superface/map/MapExpressionDefinition
+  successOutcomeDefinition:
+    $ref: http://supermodel.io/superface/map/OutcomeDefinition
+
+  failureOutcomeDefinition:
+    $ref: http://supermodel.io/superface/map/OutcomeDefinition
 
   loc:
     $ref: http://supermodel.io/superface/map/Location

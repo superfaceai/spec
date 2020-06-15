@@ -15,14 +15,17 @@ properties:
   condition:
     $ref: http://supermodel.io/superface/map/JSExpression
 
+  iterationDefinition:
+    $ref: http://supermodel.io/superface/map/IterationDefinition
+
+  variableExpressionsDefinition:
+    $ref: http://supermodel.io/superface/map/VariableExpressionsDefinition
+
   run:
     oneOf:
-      - $ref: http://supermodel.io/superface/map/MapExpressionDefinition
+      - $ref: http://supermodel.io/superface/map/EvalDefinition
       - $ref: http://supermodel.io/superface/map/NetworkOperationDefinition
       - $ref: http://supermodel.io/superface/map/OperationCallDefinition
-
-  stepResult:
-    $ref: http://supermodel.io/superface/map/MapExpressionDefinition
 
   loc:
     $ref: http://supermodel.io/superface/map/Location

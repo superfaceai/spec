@@ -5,20 +5,19 @@ title: Kind
 description: Kind of an AST Node
 type: string
 enum:
+  - EvalDefinition
   - HTTPOperationDefinition
+  - IterationDefinition
   - JSExpression
-  - KeyMapExpressionDefinition
   - Map
   - MapDefinition
   - MapDocument
-  - MapExpressionDefinition
+  - MapExpressionsDefinition
   - NetworkOperationDefinition
-  - ObjectMapExpressionDefinition
   - OperationCallDefinition
   - OperationDefinition
+  - OutcomeDefinition
   - ProfileId
   - Provider
-  - SourceDefinition
-  - StatusDefinition
   - StepDefinition
-  - TargetDefinition
+  - VariableExpressionsDefinition
