@@ -24,6 +24,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+      env:
+        SUPERMODEL_TOKEN: ${{ secrets.SUPERMODEL_TOKEN }}        
     - run: yarn install --frozen-lockfile
     - run: yarn test
     - run: yarn publish-supermodel
