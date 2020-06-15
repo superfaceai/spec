@@ -9,6 +9,9 @@ properties:
   kind:
     $ref: http://supermodel.io/superface/map/Kind
 
+  operationName:
+    type: string
+
   variableExpressionsDefinition:
     $ref: http://supermodel.io/superface/map/VariableExpressionsDefinition
 
