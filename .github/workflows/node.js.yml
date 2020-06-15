@@ -18,14 +18,15 @@ jobs:
       matrix:
         node-version: [14.x]
 
+    env:
+      SUPERMODEL_TOKEN: ${{ secrets.SUPERMODEL_TOKEN }}        
+
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-      env:
-        SUPERMODEL_TOKEN: ${{ secrets.SUPERMODEL_TOKEN }}        
     - run: yarn install --frozen-lockfile
     - run: yarn test
     - run: yarn publish-supermodel
