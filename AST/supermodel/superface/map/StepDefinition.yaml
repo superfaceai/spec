@@ -3,13 +3,29 @@ $schema: http://json-schema.org/draft-07/schema#
 
 title: StepDefinition
 description: StepDefinition model description
-type: object  # Change to the desired model type (http://json-schema.org/latest/json-schema-validation.html#rfc.section.6.1.1)
+type: object
 
-# Add your model properties here:
-#
-# properties:
-#   modelProperty:
-#     type: string
-#
-#   anotherProperty:
-#     $ref: AnotherModel  # Reference to another model in the same directory
+properties:
+  kind:
+    $ref: http://supermodel.io/superface/map/Kind
+
+  stepName:
+    type: string
+
+  condition:
+    $ref: http://supermodel.io/superface/map/JSExpression
+
+  iterationDefinition:
+    $ref: http://supermodel.io/superface/map/IterationDefinition
+
+  variableExpressionsDefinition:
+    $ref: http://supermodel.io/superface/map/VariableExpressionsDefinition
+
+  run:
+    oneOf:
+      - $ref: http://supermodel.io/superface/map/EvalDefinition
+      - $ref: http://supermodel.io/superface/map/NetworkOperationDefinition
+      - $ref: http://supermodel.io/superface/map/OperationCallDefinition
+
+  loc:
+    $ref: http://supermodel.io/superface/map/Location

@@ -9,8 +9,14 @@ properties:
   kind:
     $ref: http://supermodel.io/superface/map/Kind
 
+  mapName:
+    type: string
+
   usecaseName: 
     type: string
+
+  variableExpressionsDefinition:
+    $ref: http://supermodel.io/superface/map/VariableExpressionsDefinition
 
   stepsDefinition:
     type: array

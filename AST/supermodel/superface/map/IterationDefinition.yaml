@@ -1,0 +1,6 @@
+$id: http://supermodel.io/superface/map/IterationDefinition
+$schema: http://json-schema.org/draft-07/schema#
+
+title: IterationDefinition
+description: IterationDefinition - TBD
+type: object

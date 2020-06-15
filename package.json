@@ -1,0 +1,24 @@
+{
+  "name": "superface-dsl",
+  "version": "1.0.0",
+  "description": "DSL and AST definitions for superface",
+  "main": "index.js",
+  "scripts": {
+    "test": "supermodel schema validate ./AST/supermodel/superface",
+    "publish-supermodel": "cd ./AST/supermodel/superface && supermodel push"   
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superindustries/dsl.git"
+  },
+  "author": "z@superface.ai",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/superindustries/dsl/issues"
+  },
+  "homepage": "https://github.com/superindustries/dsl#readme",
+  "private": true,
+  "devDependencies": {
+    "@supermodel/cli": "^0.48.1"
+  }
+}

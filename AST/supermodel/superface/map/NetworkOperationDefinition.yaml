@@ -1,0 +1,17 @@
+$id: http://supermodel.io/superface/map/NetworkOperationDefinition
+$schema: http://json-schema.org/draft-07/schema#
+
+title: NetworkOperationDefinition
+description: NetworkOperationDefinition model description
+type: object
+
+properties:
+  kind:
+    $ref: http://supermodel.io/superface/map/Kind
+
+  definition:
+    oneOf:
+      - $ref: http://supermodel.io/superface/map/HTTPOperationDefinition
+
+  loc:
+    $ref: http://supermodel.io/superface/map/Location
