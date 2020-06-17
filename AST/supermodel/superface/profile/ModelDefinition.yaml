@@ -1,0 +1,19 @@
+$id: http://supermodel.io/superface/profile/ModelDefinition
+$schema: http://json-schema.org/draft-07/schema#
+
+title: ModelDefinition
+description: ModelDefinition model description
+type: object
+
+properties: 
+  kind:
+    $ref: http://supermodel.io/superface/profile/Kind
+
+  modelName: 
+    type: string  
+
+  title: 
+    type: string  
+
+  description: 
+    type: string

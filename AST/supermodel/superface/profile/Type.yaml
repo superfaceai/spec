@@ -1,0 +1,12 @@
+$id: http://supermodel.io/superface/profile/Type
+$schema: http://json-schema.org/draft-07/schema#
+
+title: Type
+description: Type model description
+type: object
+
+oneOf:
+  - $ref: http://supermodel.io/superface/profile/NamedType
+  - $ref: http://supermodel.io/superface/profile/ListType
+  - $ref: http://supermodel.io/superface/profile/NonNullType
+

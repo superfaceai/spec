@@ -1,0 +1,41 @@
+$id: http://supermodel.io/superface/profile/UseCaseDefinition
+$schema: http://json-schema.org/draft-07/schema#
+
+title: UseCaseDefinition
+description: UseCaseDefinition model description
+type: object
+
+properties:
+  kind:
+    $ref: http://supermodel.io/superface/profile/Kind
+
+  usecaseName:
+    type: string
+
+  title:
+    type: string
+
+  description:
+    type: string
+
+  safety:
+    type: string
+    enum:
+    - safe
+    - unsafe
+    - idempotent
+
+  input:
+    oneOf:
+      - $ref: http://supermodel.io/superface/profile/FieldsDefinition
+      - $ref: http://supermodel.io/superface/profile/NamedType
+
+  result:
+    oneOf:
+      - $ref: http://supermodel.io/superface/profile/FieldsDefinition
+      - $ref: http://supermodel.io/superface/profile/NamedType
+
+  errors:
+    type: array
+    items:
+      - $ref: http://supermodel.io/superface/profile/NamedType

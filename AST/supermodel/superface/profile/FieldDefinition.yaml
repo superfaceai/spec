@@ -1,0 +1,30 @@
+$id: http://supermodel.io/superface/profile/FieldDefinition
+$schema: http://json-schema.org/draft-07/schema#
+
+title: FieldDefinition
+description: FieldDefinition model description
+type: object
+
+properties:
+  kind:
+    $ref: http://supermodel.io/superface/profile/Kind
+
+  fieldName:
+    type: string  
+
+  title: 
+    type: string  
+
+  description: 
+    type: string
+
+  type:
+    oneOf:
+      - $ref: http://supermodel.io/superface/profile/NamedType
+      - $ref: http://supermodel.io/superface/profile/ListType
+      - $ref: http://supermodel.io/superface/profile/NonNullType
+
+  exampleValue:
+    description: Field example value serialized as JSON string
+    type: string
+

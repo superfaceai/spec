@@ -1,0 +1,8 @@
+$id: http://supermodel.io/superface/profile/FieldsDefinition
+$schema: http://json-schema.org/draft-07/schema#
+
+title: FieldsDefinition
+description: FieldsDefinition model description
+type: array
+items:
+  $ref: http://supermodel.io/superface/profile/FieldDefinition

@@ -1,0 +1,6 @@
+$id: http://supermodel.io/superface/profile/NamedType
+$schema: http://json-schema.org/draft-07/schema#
+
+title: NamedType
+description: Name of primitive type or model
+type: string
