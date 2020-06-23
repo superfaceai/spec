@@ -1,0 +1,40 @@
+
+usecase GetMap @safe {
+  input {
+    mapUrl
+  }
+}
+
+usecase CreateMap @unsafe {
+  input {
+    'Source code of the mapping to create'
+    source
+  }
+  
+  result {
+    'URL of the mapping'
+    mapUrl
+  }
+}
+
+usecase UpdateMap @idempotent {
+  input {
+    source
+    mapUrl
+  }
+
+  result {
+    mapUrl
+  }
+}
+
+usecase DeleteMap @unsafe {
+  input {
+    mapUrl
+  }
+
+  result {}
+}
+
+
+field mapUrl: String

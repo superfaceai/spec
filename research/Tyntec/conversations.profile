@@ -4,7 +4,7 @@ Send one message
 usecase Send Message {
   parameters {
     sender: string
-    channel: string   # <- move to "provider" selection
+    channel: string   # <- consider move to "provider" selection
     receiverId: string
     
     content: union {
