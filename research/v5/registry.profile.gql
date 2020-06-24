@@ -89,7 +89,7 @@ Bind
 Binds caller to a service. Notify the registry the intention to connect with and
  use another service.
 '''
-usecase Bind {
+usecase Bind @idempotent {
   input {
     serviceUrl
     profileId
