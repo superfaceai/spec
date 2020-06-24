@@ -50,7 +50,7 @@ usecase RegisterService @unsafe {
   input {
     profileId
     serviceUrl
-    mappingUrl
+    mapUrl
   }
 
   result: Service
@@ -77,7 +77,7 @@ usecase UpdateRegistration @idempotent {
   input {
     profileId
     serviceUrl
-    mappingUrl
+    mapUrl
   }
 
   result: Service  
@@ -118,13 +118,41 @@ Model of a service in the registry
 model Service {
   registryId
   serviceUrl
-  mappingUrl
+  mapUrl
   profileId
 }
 
 #
 # Reusable Fields
 #
+
+'''
+Registry id
+
+The id (URL) of the registry entry
+'''
+field registryId: String
+
+'''
+Service URL
+
+The url of the service (provider) conforming to a profile. 
+'''
+field serviceUrl: String
+
+'''
+Map URL
+
+The URL of the map source between a profile and the actual provider interface
+'''
+field mapUrl: String
+
+'''
+Map URL
+
+The URL of the map source between a profile and the actual provider interface
+'''
+field mapUrl: String
 
 '''
 Profile Id
