@@ -27,12 +27,10 @@ Creates new map from map source and assigns a URL to it
 '''
 usecase CreateMap @unsafe {
   input {
-    'Map source code'
     source
   }
   
   result {
-    'URL of the mapping'
     mapUrl
   }
 }
@@ -64,8 +62,19 @@ usecase DeleteMap @unsafe {
   }
 }
 
+#
+# Reusable fields definitions
+#
 'URL of a map'
 field mapUrl: String
 
 'Source code of a map'
 field source: String
+
+#
+# Reusable models definition
+#
+model Map {
+  mapUrl
+  source
+}
