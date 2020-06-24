@@ -80,7 +80,7 @@ usecase UpdateRegistration @idempotent {
     mappingUrl
   }
 
-  return: Service  
+  result: Service  
 }
 
 '''
