@@ -1,13 +1,33 @@
+'''
+Superface Map
+'''
+profile: https://superface.ai/profiles/superface/Map
 
+'''
+Get Map
+
+Retrieves a map based on its URL (id)
+'''
 usecase GetMap @safe {
   input {
     mapUrl
   }
+  
+  result {
+    mapUrl
+    source
+  }
 }
 
+
+'''
+Create Map
+
+Creates new map from map source and assigns a URL to it
+'''
 usecase CreateMap @unsafe {
   input {
-    'Source code of the mapping to create'
+    'Map source code'
     source
   }
   
@@ -17,10 +37,15 @@ usecase CreateMap @unsafe {
   }
 }
 
+'''
+Udpate Map
+
+Updates map source based on its URL
+'''
 usecase UpdateMap @idempotent {
   input {
-    source
     mapUrl
+    source
   }
 
   result {
@@ -28,13 +53,19 @@ usecase UpdateMap @idempotent {
   }
 }
 
+'''
+Delete Map
+
+Deletes map based on its URL
+'''
 usecase DeleteMap @unsafe {
   input {
     mapUrl
   }
-
-  result {}
 }
 
-
+'URL of a map'
 field mapUrl: String
+
+'Source code of a map'
+field source: String
