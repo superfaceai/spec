@@ -1,7 +1,15 @@
 '''
-Superface Map
+Map store
+
+Definition of operations of the super-inteface map store. See http://superface.ai
+for more details.
 '''
+
 profile: https://superface.ai/profiles/superface/Map
+
+#
+# Use cases
+#
 
 '''
 Get Map
@@ -10,11 +18,12 @@ Retrieves a map based on its URL (id)
 '''
 usecase GetMap @safe {
   input {
-    mapUrl
+    mapId
   }
   
   result {
-    mapUrl
+    mapId
+    sourceUrl
     source
   }
 }
@@ -23,16 +32,14 @@ usecase GetMap @safe {
 '''
 Create Map
 
-Creates new map from map source and assigns a URL to it
+Creates new map from the map source and assigns a store URL to it
 '''
 usecase CreateMap @unsafe {
   input {
     source
   }
   
-  result {
-    mapUrl
-  }
+  result: Map
 }
 
 '''
@@ -42,13 +49,11 @@ Updates map source based on its URL
 '''
 usecase UpdateMap @idempotent {
   input {
-    mapUrl
+    mapId
     source
   }
 
-  result {
-    mapUrl
-  }
+  result: Map
 }
 
 '''
@@ -58,23 +63,29 @@ Deletes map based on its URL
 '''
 usecase DeleteMap @unsafe {
   input {
-    mapUrl
+    mapId
   }
 }
 
 #
-# Reusable fields definitions
+# Reusable Models
 #
-'URL of a map'
-field mapUrl: String
 
-'Source code of a map'
+model Map {
+  mapId
+  source
+  sourceUrl
+}
+
+#
+# Reusable Fields
+#
+
+'Id of the map in the store'
+field mapId: String
+
+'Source code of the map'
 field source: String
 
-#
-# Reusable models definition
-#
-model Map {
-  mapUrl
-  source
-}
+'Direct "download" URL where the source code can be downloaded'
+field sourceUrl: String
