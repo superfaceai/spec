@@ -23,7 +23,6 @@ usecase RetrieveOneService @safe {
   result: Service
 }
 
-
 '''
 Find Service
 
@@ -78,6 +77,7 @@ usecase UpdateRegistration @idempotent {
     profileId
     serviceUrl
     mapUrl
+    country
   }
 
   result: Service  
@@ -120,6 +120,9 @@ model Service {
   serviceUrl
   mapUrl
   profileId
+  provider {
+    providerId
+  }
 }
 
 #
@@ -136,7 +139,7 @@ field registryId: String
 '''
 Service URL
 
-The url of the service (provider) conforming to a profile. 
+The url of the service (provider host) conforming to a profile. 
 '''
 field serviceUrl: String
 

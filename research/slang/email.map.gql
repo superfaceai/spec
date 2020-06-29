@@ -19,7 +19,7 @@ map SendEmail {
       personalizations[0].subject: input.subject
       from.email: input.from
       content[0].type: 'text/plain'
-      content[0].value' = input.subject
+      content[0].value': input.subject
     }
 
     response 200 */* headers {
