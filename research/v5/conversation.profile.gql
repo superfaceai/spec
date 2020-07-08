@@ -5,17 +5,25 @@ Set of use cases on sending a message in a conversation
 """"
 
 """
-Send Message 
+Send Message
 
 Sends single message
 """
 usecase SendMessage {
+  
   input {
-    receiver
-    sender
-    content {
-      text: String
-      media: Media
+    to
+    from
+    channel: Enum {
+      whatsapp
+      sms
+    }
+
+    text: String
+    image: {
+      url
+      mediaId
+      caption
     }
   }
 
@@ -25,7 +33,7 @@ usecase SendMessage {
 
   async result {
     messageId
-    deliveryUpdate: enum {
+    deliveryUpdate: Enum {
       accepted
       delivered
       seen
@@ -35,7 +43,7 @@ usecase SendMessage {
 
 model Receiver {
   id: PhoneNumber | Email
-} 
+}
 
 model Sender {
   id: String
@@ -45,22 +53,22 @@ model Media {
 
 }
 
-scalar PhoneNumber 
-scalar Email 
+scalar PhoneNumber
+scalar Email
 
 '''
 Receiver of the message
 '''
-field receiver: Receiver
+field to: Receiver
 
 '''
 Sender of the message
 '''
-field sender: Sender
+field from: Sender
 
 '''
 Message Id
 
 The id of the message assigned by the channel
 '''
-field messageId: String 
+field messageId: String
