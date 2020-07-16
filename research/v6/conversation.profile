@@ -1,7 +1,7 @@
 profile = "http://superface.ai/profile/conversation/SendMessage"
 
 "Send single conversation message"
-usecase SendMessage {
+usecase SendMessage unsafe {
   input {
     to
     from
@@ -23,7 +23,6 @@ usecase SendMessage {
     detail
     instance
   }
-
 }
 
 "Retrieve status of a sent message"
@@ -39,35 +38,19 @@ usecase RetrieveMessageStatus safe {
 
 "Identifier of Message
   The identifier is channel-specific and not unique. It should be treated as an opaque value and only used in subsequent calls"
-field messageId: String
+field messageId String
 
 "Delivery Status of Message
   Status of a sent message. Harmonized across different channels."
-field deliveryStatus Enum {
+field deliveryStatus enum {
   accepted
   delivered
   seen
 }
 
-field channel Enum {
+field channel enum {
   sms
   whatsapp
   apple_business_chat
   facebook_messenger
 }
-
-
-model X [ 
-  Enum {
-    A
-    B
-  }
-]
-
-model A { 
-
-} 
-
-model Y { name } | { email }
-
-field fieldName B! | A!

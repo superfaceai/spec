@@ -1,0 +1,46 @@
+profile = "http://superface.ai/profile/SomeProfile"
+provider = "http://superface.ai/directory/SomeProvider"
+
+map SomeUsecase {
+  http GET / {
+    # 200 OK
+    response 200 "application/json" {
+
+      # Response is 200 but body field "ok" can signalize error
+      result if (body.ok === "success") {
+        someResultField = 42
+      }
+
+      # Response is 200 but body field "ok" signalize error
+      error if (body.ok === "fail") {
+        someErrorField
+      }
+
+      # If multiple error models are provided in profile
+      #   use the Profile error model name after the error keyword before the condition
+      error ErrorA if (something) {
+        ...
+      }
+
+      error ErrorB if (something else) {
+        ...
+      }
+      
+    }
+
+    # 404 Not Found
+    response 404 {
+      error {
+        title = "not found"
+      }
+    }
+
+    # 403 Not Authorized
+    # Set to a specific error
+    response 403 {
+      error ErrorA { 
+        someFielOfErrorAModel = 42
+      }
+    }
+  }
+}
