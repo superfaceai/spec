@@ -31,7 +31,7 @@ map SendMessage {
 }
 
 map RetrieveMessageStatus {
-  http GET https://api.tyntec.com/chat-api/v2/messages/{messageId}/history {
+  http GET "https://api.tyntec.com/chat-api/v2/messages/{messageId}/history" {
     set {
       messageId = input.messageId
     }

@@ -1,0 +1,59 @@
+
+operation foo {
+  run {
+    return {
+      answer = 42             # RHS Jessie
+      hash = { a: 1, b: 2 }   # RHS Jessie 
+    }
+  }
+}
+
+operation fooWithArgs {
+  run {
+    return if (args.success) {
+      answer = 42
+    }
+
+    error if (args.failure) {
+      message = "I am supposed to fail"
+    }
+  }
+}
+
+operation bar {
+  run fooWithArgs(success: true) {
+    return if (!run.error) {
+      finalAnswer = "The final answer is " + run.return.answer
+    }
+
+    return if (run.error) {
+      finalAnswer = "There was an error " + run.error.message 
+    }
+  }
+}
+
+operation bar {
+  run foo {
+    ok return {
+      betterAnswer = run.return.answer
+    }
+  }
+}
+
+operation countArray {
+  set {
+    count = 0
+  }
+
+  run forEach(args.array) {
+    set {
+      count = count + 1
+    }
+  }
+
+  run { 
+    return {
+      result = 'this is the count: ' + count
+    }
+  }
+}

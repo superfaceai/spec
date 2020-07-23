@@ -34,11 +34,13 @@ usecase RetrieveMessageStatus safe {
   result {
     deliveryStatus
   }
+
+  async result A 
 }
 
 "Identifier of Message
   The identifier is channel-specific and not unique. It should be treated as an opaque value and only used in subsequent calls"
-field messageId String
+field messageId string
 
 "Delivery Status of Message
   Status of a sent message. Harmonized across different channels."
