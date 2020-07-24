@@ -1,20 +1,20 @@
 
 operation foo {
-  run {
-    return {
-      answer = 42             # RHS Jessie
-      hash = { a: 1, b: 2 }   # RHS Jessie 
+  run {                       # Eval step
+    return {                  # "return" context variable, the evaluation ends immediately after this block
+      answer = 42             # LHS JSON path = RHS Jessie
+      hash = { a: 1, b: 2 }   # LHS JSON path = RHS Jessie
     }
   }
 }
 
 operation fooWithArgs {
-  run {
-    return if (args.success) {
+  run {                           # Eval step
+    return if (args.success) {    # "return" context variable, evaluated only when input argument "success" is truthy
       answer = 42
     }
 
-    error if (args.failure) {
+    error if (!args.succes) {     # "error" context variable, evaluated only when input argument "success" is false
       message = "I am supposed to fail"
     }
   }
@@ -27,33 +27,26 @@ operation bar {
     }
 
     return if (run.error) {
-      finalAnswer = "There was an error " + run.error.message 
+      finalAnswer = "There was an error " + run.error.message
     }
   }
 }
 
-operation bar {
-  run foo {
-    ok return {
-      betterAnswer = run.return.answer
-    }
-  }
-}
-
+#
+# BEWARE: experimental syntax without explicit run / set steps from here 
+#
 operation countArray {
-  set {
-    count = 0
+  # Expermiental syntax without set
+  count = 0
+
+  # Experimental syntax without explicit `run` (step)
+  forEach(args.array) {
+    count = count + 1
   }
 
-  run forEach(args.array) {
-    set {
-      count = count + 1
-    }
+  # Experimental syntax without enclosing `run` (step)
+  return {
+    answer = 'this is the count: ' + count
   }
 
-  run { 
-    return {
-      result = 'this is the count: ' + count
-    }
-  }
 }

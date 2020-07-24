@@ -2,7 +2,7 @@ profile = "http://superface.ai/profile/SomeProfile"
 provider = "http://superface.ai/directory/SomeProvider"
 
 map SomeUsecase {
-  http GET / {
+  http GET "/" {
     # 200 OK
     response 200 "application/json" {
 
