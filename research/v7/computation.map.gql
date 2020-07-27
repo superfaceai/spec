@@ -1,0 +1,58 @@
+operation foo {
+  return {
+    answer = 42
+    hash = { a: 1, b: 2 }
+  }
+}
+
+operation fooWithArgs {
+  return if (args.success) {
+    answer = 42
+  }
+
+  error if (!args.succes) {
+    message = "I am supposed to fail"
+  }
+}
+
+operation bar {
+  fooWithArgs(success: true) {
+    return if (!error) {
+      finalAnswer = "The final answer is " + return.answer
+    }
+
+    return if (error) {
+      finalAnswer = "There was an error " + error.message
+    }
+  }
+}
+
+operation countArray {
+  count = 0
+  
+  forEach(args.array) {
+    count = count + 1
+  }
+
+  return {
+    answer = 'this is the count: ' + count
+  }
+
+}
+
+operation NetworkFun {
+  http get "https://api.github.com/gists" {
+    request {
+      headers {
+        accept = "application/vnd.github.v3+json"
+      }
+    }
+
+    response 200 "application/json" {
+      return {
+        requestId = headers["X-GitHub-Request-Id"]
+        numberOfResults = body.length()
+      }
+    }
+  }
+}
