@@ -21,7 +21,11 @@ operation fooWithArgs {
 }
 
 operation bar {
-  run fooWithArgs(success: true) {
+  run fooWithArgs {
+    args { 
+      success = true
+    }
+    
     return if (!run.error) {
       finalAnswer = "The final answer is " + run.return.answer
     }
@@ -43,10 +47,9 @@ operation countArray {
   forEach(args.array) {
     count = count + 1
   }
-
+  
   # Experimental syntax without enclosing `run` (step)
   return {
     answer = 'this is the count: ' + count
   }
-
 }
