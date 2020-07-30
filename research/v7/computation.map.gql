@@ -40,7 +40,7 @@ operation countArray {
 
 }
 
-operation NetworkFun {
+operation GitHubGists {
   http get "https://api.github.com/gists" {
     request {
       headers {
@@ -52,6 +52,7 @@ operation NetworkFun {
       return {
         requestId = headers["X-GitHub-Request-Id"]
         numberOfResults = body.length()
+        authors = body.map((gist) => { return gist.owner.login })
       }
     }
   }
