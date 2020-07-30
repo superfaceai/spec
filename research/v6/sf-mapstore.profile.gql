@@ -1,0 +1,84 @@
+"Map store service
+  Definition of operations of the super-inteface map store. See http://superface.ai for more details."
+
+profile = https://superface.ai/profiles/superface/Map
+
+#
+# Use cases
+#
+
+"Get Map
+  Retrieves a map based on its URL (id)"
+usecase GetMap safe {
+  input {
+    mapId
+  }
+  
+  result {
+    mapId
+    sourceUrl
+    source
+  }
+}
+
+"Create Map
+  Creates new map from the map source and assigns a store URL to it"
+usecase CreateMap unsafe {
+  input {
+    source
+  }
+  
+  result Map
+}
+
+"Udpate Map
+  Updates map source based on its URL"
+usecase UpdateMap idempotent {
+  input {
+    mapId
+    source
+  }
+
+  result Map
+}
+
+"Delete Map
+  Deletes map based on its URL"
+usecase DeleteMap unsafe {
+  input {
+    mapId
+  }
+}
+
+"Retrieve Map Source
+  Fetches the map source as stored"
+usecase GetMapSource safe {
+  input {
+    sourceUrl
+  }
+
+  "Source code of the map"
+  return string
+}
+
+#
+# Reusable Models
+#
+model Map {
+  mapId
+  source
+  sourceUrl
+}
+
+#
+# Reusable Fields
+#
+
+"Id of the map in the store"
+field mapId string
+
+"Source code of the map"
+field source string
+
+"Direct download URL where the source code can be downloaded"
+field sourceUrl string
