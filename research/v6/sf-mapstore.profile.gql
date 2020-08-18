@@ -14,11 +14,7 @@ usecase GetMap safe {
     mapId
   }
   
-  result {
-    mapId
-    sourceUrl
-    source
-  }
+  result Map
 }
 
 "Create Map
