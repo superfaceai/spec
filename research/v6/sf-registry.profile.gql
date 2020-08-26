@@ -1,13 +1,13 @@
 "Autonomous Service Registry
-  Set of usecases provided by the autonomous service registry."
+  Set of use cases to manage the registration of an autonomous service"
 
-profile = "https://superface.ai/profiles/superface/registry"
+profile = "https://superface.ai/profile/superface/Register"
 
 #
 # Use cases
 #
 "Retrieve Service
-  Retrieve a specific service by its registry id (URL)"
+ Retrieve a specific service by its registry id (URL)"
 usecase RetrieveOneService safe {
   input {
     registryId
@@ -34,7 +34,7 @@ usecase RegisterService unsafe {
   input {
     profileId
     serviceUrl
-    mapUrl
+    mapSourceUrl
   }
 
   result Service
@@ -55,7 +55,7 @@ usecase UpdateRegistration idempotent {
   input {
     profileId
     serviceUrl
-    mapUrl
+    mapSourceUrl
   }
 
   result Service  
@@ -90,9 +90,9 @@ usecase Bind idempotent {
   Model of a service in the registry"
 model Service {
   registryId
-  serviceUrl
-  mapUrl
   profileId
+  serviceUrl
+  mapSourceUrl
   provider {
     providerId
   }
@@ -103,17 +103,16 @@ model Service {
 #
 
 "Registry id
-  The id (URL) of the registry entry"
+  The id of the registry entry"
 field registryId string
 
 "Service URL
   The url of the service (provider host) conforming to a profile."
 field serviceUrl string
 
-
 "Map URL
   The URL of the map source between a profile and the actual provider interface"
-field mapUrl string
+field mapSourceUrl string
 
 "Profile Id
   Reusable profile id property. Identifier of a semantic profile. Link (URL) to a profile in the profile service."
