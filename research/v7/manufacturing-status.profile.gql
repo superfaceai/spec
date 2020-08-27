@@ -1,0 +1,44 @@
+"""
+Completion Status
+
+  Information about manufacturing completion status.
+"""
+
+profile = "https://superface.ai/profile/manufacturing/CompletionStatus"
+
+"""
+Retrieve Completion Status
+
+Get the status of manufacturing, delivery or other works related to a Manufacturer's Serial Number.
+"""
+usecase CompletionStatus safe {
+  input {
+    """
+    MSN
+    
+    Manufacturer's Serial Number is a unique number or code assigned to a unit.
+    """
+    MSN string 
+  }
+
+  result {
+    """
+    Completion status
+    
+    The expected completion status for the manufacturing, delivery or other work related to the input MSN.
+    """
+    status enum {
+      unknown
+      paused
+      inprogress
+      completed
+    }
+
+    """
+    Estimated time of completion
+
+    When available, the estimated time and date of completion.
+    """
+    estimatedCompletion string 
+  }
+}
