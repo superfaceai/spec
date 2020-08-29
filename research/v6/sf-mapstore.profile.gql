@@ -1,64 +1,168 @@
-"Map store service
-  Definition of operations of the super-inteface map store. See http://superface.ai for more details."
+"""
+Superface Map
 
-profile = https://superface.ai/profiles/superface/Map
+Definition of use-cases for the superface map store. See http://superface.ai for more details.
+"""
+
+profile = "https://superface.ai/profiles/superface/Map"
 
 #
 # Use cases
 #
 
-"Get Map
-  Retrieves a map based on its URL (id)"
+"""
+Get Map
+
+Retrieves information about a map based on its id
+"""
 usecase GetMap safe {
   input {
+    """
+    Map ID
+    Unique id of the map to retrieve the information for
+    """
     mapId
   }
   
   result {
+    """
+    Map ID
+
+    Id of the map
+    """
     mapId
+
+    """
+    Source URL
+    URL of the map source. Can be directly queried using the HTTP GET method
+    """
     sourceUrl
+
+    """
+    Source
+    
+    Source code of the map
+    """
     source
   }
 }
 
-"Create Map
-  Creates new map from the map source and assigns a store URL to it"
+"""
+Create Map
+
+Creates new map from the map source and assigns a store Map ID to it
+"""
 usecase CreateMap unsafe {
   input {
+    """
+    Source 
+
+    Source code of the map
+    """
     source
   }
   
-  result Map
+  result {
+    """
+    Map ID
+
+    Id of the map
+    """
+    mapId
+
+    """
+    Source URL
+    URL of the map source. Can be directly queried using the HTTP GET method
+    """
+    sourceUrl
+
+    """
+    Source
+    
+    Source code of the map
+    """
+    source
+  }
 }
 
-"Udpate Map
-  Updates map source based on its URL"
+"""
+Udpate Map
+
+Updates map source based on its URL
+"""
 usecase UpdateMap idempotent {
   input {
+    """
+    Map ID
+
+    Id of the map
+    """    
     mapId
+
+    """
+    Source
+    
+    Source code of the map
+    """    
     source
   }
 
-  result Map
+  result {
+    """
+    Map ID
+
+    Id of the map
+    """
+    mapId
+
+    """
+    Source URL
+    URL of the map source. Can be directly queried using the HTTP GET method
+    """
+    sourceUrl
+
+    """
+    Source
+    
+    Source code of the map
+    """
+    source
+  }
 }
 
-"Delete Map
-  Deletes map based on its URL"
+"""
+Delete Map
+
+Deletes map based on its URL
+"""
 usecase DeleteMap unsafe {
   input {
+    """
+    Map ID
+
+    Id of the map
+    """
     mapId
   }
 }
 
-"Retrieve Map Source
-  Fetches the map source as stored"
+"""
+Retrieve Map Source
+
+Fetches the map source as stored
+"""
 usecase GetMapSource safe {
   input {
-    sourceUrl
+    """
+    Map ID
+
+    Id of the map
+    """
+    mapId
   }
 
-  "Source code of the map"
-  return string
+  # "Source code of the map"
+  result string
 }
 
 #
@@ -77,8 +181,8 @@ model Map {
 "Id of the map in the store"
 field mapId string
 
-"Source code of the map"
-field source string
+# "Source code of the map"
+# field source string
 
 "Direct download URL where the source code can be downloaded"
 field sourceUrl string

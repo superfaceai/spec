@@ -16,14 +16,22 @@ operation fooWithArgs {
 }
 
 operation bar {
-  fooWithArgs(success: true) {
-    return if (!error) {
-      finalAnswer = "The final answer is " + return.answer
-    }
 
-    return if (error) {
-      finalAnswer = "There was an error " + error.message
-    }
+  fooWithArgs(success = `Muj string ${someVar}`, neco = 4+2 ) 
+  myReturn = return
+  myError = error
+
+  return if (!error) {
+    finalAnswer = "The final answer is " + return.answer
+  }
+
+  return if (error) {
+    finalAnswer = "There was an error " + error.message
+  }
+
+  someOtherFoo()
+  return if (error) {
+    ...
   }
 }
 
@@ -55,5 +63,20 @@ operation GitHubGists {
         authors = body.map((gist) => { return gist.owner.login })
       }
     }
+  }
+}
+
+
+
+
+
+
+operation funcMain {
+  run funcA {
+    ...
+  }
+
+  run funcB {
+    ...
   }
 }
