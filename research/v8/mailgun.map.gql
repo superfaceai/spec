@@ -1,0 +1,29 @@
+profile = "https://superface.ai/profiles/email/SendEmail"
+provider = "http://superface.ai/directory/MailGun"
+
+map SendEmail {
+  domainName = /@(.*)/.exec(input.from)[1]
+
+  http POST "https://api.mailgun.net/v3/${domainName}/messages" {
+    request "multipart/form-data" {
+      headers {
+        "my-header" = "superaface-test"
+      }
+
+      body {
+        from = input.from
+        to = input.to
+        subject = input.subject
+        text = input.body
+        domain = domainName
+      }
+    }
+
+    response 200 "applicaton/json" {
+      map result {
+        id = headers.["X-Message-ID"]
+        name = body.name
+      }
+    }
+  }
+}

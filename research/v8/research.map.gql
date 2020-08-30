@@ -37,8 +37,6 @@ operation ComplexObject {
 
 
 
-
-
 #
 # Slang
 #
@@ -54,4 +52,49 @@ some {
 
 some {
   thing.a = 4 
+}
+
+
+
+
+
+
+
+#
+# GraphQL
+#
+
+# https://gist.github.com/jamesluberda/d73376298e22e3fc4abbca590b97d5e0
+map GetGitHubGistsGQL {
+  gql """
+query { 
+  viewer { 
+    gists (first: 100, orderBy: {field: CREATED_AT, direction: DESC} ) {
+      edges {
+        node {
+          createdAt
+          description
+          name
+          pushedAt
+          stargazers (first: 100) {
+            totalCount
+            edges {
+              node {
+                id
+              }
+            }
+          }
+          updatedAt
+        }
+      }
+    }
+  }
+}
+""" 
+  {
+    map result {
+      
+    }
+  }
+
 }

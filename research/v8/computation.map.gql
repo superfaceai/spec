@@ -1,0 +1,69 @@
+operation foo {
+  end {
+    answer = 42
+    hash = { a: 1, b: 2 }
+  }
+}
+
+operation fooWithArgs {
+  end if (args.success) {
+    answer = 42
+  }
+
+  fail if (!args.succes) {
+    message = "I am supposed to fail"
+  }
+}
+
+operation bar {
+  fooWithArgs(success: `Muj string ${someVar}`, neco: 4+2 ) 
+
+  ok end {
+    finalAnswer = "The final answer is " + return.answer
+  }
+
+  !ok end {
+    finalAnswer = "There was an error " + error.message
+  }
+
+  someOtherFoo()
+  !ok end {
+    ...
+  }
+}
+
+operation countArray {
+  count = 0
+  
+  forEach(args.array) {
+    count = count + 1
+  }
+
+  end {
+    answer = 'this is the count: ' + count
+  }
+}
+
+
+
+
+# Error states
+operation F {
+  foo(arg1: 42, arg2: "Hello World")
+
+  ok {    # if foo() OK do stuff
+
+  }
+
+  !ok {   # if foo() NOT OK do some other stuff
+
+  }
+
+  end {  # result in success
+
+  }
+
+  fail {  # result in error
+    
+  }
+}

@@ -1,0 +1,50 @@
+profile = "http://supermodel.io/superface/CRM/Customers"
+provider = "http://superface.ai/directory/Pipedrive"
+
+map RetrieveCustomers {
+  # Local variables
+  filterId = null
+
+  # Step 1
+  FindFilter(filterName: "my-superface-map-filter") if(input.since) {
+    if (!error) {
+      filterId = return.filterId
+    }
+  }
+
+  # Step 2
+  CreateFilter(filterId: filterId) if(input.since && !filterId) {
+    if (!error) { 
+      filterId = return.filterId
+    }
+  }
+
+  # Step 3
+  RetrieveOrganizations(filterId: filterId) {
+    map result {
+      customers = return.customers
+    }
+  }
+
+  # Step 4
+  Cleanup() if(filterId) {
+    # ... 
+  }
+}
+
+operation FindFilter {
+
+}
+
+operation CreateFilter {
+
+}
+
+operation RetrieveOrganizations {
+
+}
+
+
+
+
+
