@@ -6,28 +6,28 @@ map RetrieveCustomers {
   filterId = null
 
   # Step 1
-  FindFilter(filterName: "my-superface-map-filter") if(input.since) {
-    if (!error) {
+  call FindFilter(filterName = "my-superface-map-filter") if(input.since) {
+    set if (!error) {
       filterId = return.filterId
     }
   }
 
   # Step 2
-  CreateFilter(filterId: filterId) if(input.since && !filterId) {
-    if (!error) { 
+  call CreateFilter(filterId = filterId) if(input.since && !filterId) {
+    set if (!error) {
       filterId = return.filterId
     }
   }
 
   # Step 3
-  RetrieveOrganizations(filterId: filterId) {
-    map result {
-      customers = return.customers
+  call RetrieveOrganizations(filterId = filterId) {
+    map result if (!error && data) {
+      customers = data.customers
     }
   }
 
   # Step 4
-  Cleanup() if(filterId) {
+  call Cleanup() if(filterId) {
     # ... 
   }
 }

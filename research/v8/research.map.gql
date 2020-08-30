@@ -1,42 +1,3 @@
-map GetGitHubGists {
-  http GET "/gists" {
-    request headers {
-      accept = "application/vnd.github.v3+json"
-    }
-
-    response 200 "application/json" {
-      map.result.numberOfResults = body.length()
-      map.result.auhtors = ProcessAuthors(body)
-    }
-
-    response 500 {
-      map.error = "No gists for you"
-    }
-
-  }
-}
-
-operation ProcessAuthors {
-  authors = args.authors.map((gist) => return gist.owner.login)
-  return authors
-}
-
-operation ComplexObject {
-  return {
-    a = 1
-    b.c = 2
-    d.e.f = 42
-  }
-}
-
-
-
-
-
-
-
-
-
 #
 # Slang
 #
@@ -53,6 +14,136 @@ some {
 some {
   thing.a = 4 
 }
+
+some.thing.a = 4 
+
+
+
+
+
+
+
+
+
+
+
+#
+# Functions I.
+#
+# Use return and fail keyword
+#
+
+function Foo {
+  fail if (args.condition) {
+    # always fail instead of return
+    message = "I have failed!"
+  }
+
+  return {
+    message = "Hello World!"
+  }
+}
+
+function Bar {
+  call Foo (message = "Hello World!") {
+    return if (data && someCondition) {
+      fieldName = data.value
+    }
+
+    return if (!error) {
+      fieldName = 42
+    }
+
+    fail if (error) {
+      errorFieldName = "It all failed"
+    }
+  }
+}
+
+
+#
+# Functions II.
+#
+# Use data and error after the return keyword
+#
+
+function Foo {
+  return error if (args.condition) {
+    # always fail instead of return
+    message = "I have failed!"
+  }
+
+  return data {
+    message = "Hello World!"
+  }
+}
+
+function Bar {
+  call Foo (message = "Hello World!") {
+
+    return data if (data && someCondition) {
+      fieldName = data.value
+    }
+
+    return data if (!error) {
+      fieldName = 42
+    }
+
+    return error if (error) {
+      errorFieldName = "It all failed"
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+#
+#  HTTP
+#
+map GetGitHubGists {
+  http GET "/gists" {
+    request headers {
+      accept = "application/vnd.github.v3+json"
+    }
+
+    response 200 "application/json" {
+      map result {
+        numberOfResults = body.length()
+        auhtors = call ProcessAuthors(body)
+      }
+    }
+
+    response 500 {
+      map error {
+        message = "No gist for you"
+      } 
+    }
+
+  }
+}
+
+operation ProcessAuthors {
+  authors = args.authors.map((gist) => return gist.owner.login)
+  return authors
+}
+
+operation ComplexObject {
+  return data {
+    a = 1
+    b.c = 2
+    d.e.f = 42
+  }
+}
+
+
 
 
 
