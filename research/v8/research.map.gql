@@ -28,40 +28,6 @@ some.thing.a = 4
 
 
 #
-# Functions I.
-#
-# Use return and fail keyword
-#
-
-function Foo {
-  fail if (args.condition) {
-    # always fail instead of return
-    message = "I have failed!"
-  }
-
-  return {
-    message = "Hello World!"
-  }
-}
-
-function Bar {
-  call Foo (message = "Hello World!") {
-    return if (data && someCondition) {
-      fieldName = data.value
-    }
-
-    return if (!error) {
-      fieldName = 42
-    }
-
-    fail if (error) {
-      errorFieldName = "It all failed"
-    }
-  }
-}
-
-
-#
 # Functions II.
 #
 # Use data and error after the return keyword
@@ -188,4 +154,42 @@ query {
     }
   }
 
+}
+
+
+
+
+
+#
+# Functions I.
+#
+# Use return and fail keyword
+# For research ONLU, the  actual proposed syntax in in Funcitons II.
+#
+
+function Foo {
+  fail if (args.condition) {
+    # always fail instead of return
+    message = "I have failed!"
+  }
+
+  return {
+    message = "Hello World!"
+  }
+}
+
+function Bar {
+  call Foo (message = "Hello World!") {
+    return if (data && someCondition) {
+      fieldName = data.value
+    }
+
+    return if (!error) {
+      fieldName = 42
+    }
+
+    fail if (error) {
+      errorFieldName = "It all failed"
+    }
+  }
 }
