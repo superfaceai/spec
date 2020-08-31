@@ -17,59 +17,43 @@ some {
 
 some.thing.a = 4 
 
-
-
-
-
-
-
-
-
-
-
 #
-# Functions II.
+# Functions
 #
 # Use data and error after the return keyword
 #
 
-function Foo {
-  return error if (args.condition) {
-    # always fail instead of return
+operation Foo {
+  # fail instead of return, break this operation execution flow
+  # the the error value is available in caller's `error` variable
+  fail if (args.condition) {
     message = "I have failed!"
   }
 
+  # successfully finish, break execution flow
+  # the the return value is available in caller's `data` variable
   return data {
     message = "Hello World!"
   }
 }
 
-function Bar {
+operation Bar {  
   call Foo (message = "Hello World!") {
-
-    return data if (data && someCondition) {
+    # operation call have `data` and `error` variables availabe
+    # when `error` is set then the call Foo() ended with error
+    return if (data && someCondition) {
       fieldName = data.value
     }
 
-    return data if (!error) {
+    return if (!error) {
       fieldName = 42
     }
 
-    return error if (error) {
+    fail if (error) {
       errorFieldName = "It all failed"
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 #
 #  HTTP
@@ -82,8 +66,8 @@ map GetGitHubGists {
 
     response 200 "application/json" {
       map result {
-        numberOfResults = body.length()
-        auhtors = call ProcessAuthors(body)
+        numberOfResults = body.length()                     # RHS is Jessie expression
+        auhtors = call ProcessAuthors(auhtors = body)       # RHS is one operation call, the call MUST not result in error
       }
     }
 
@@ -97,28 +81,47 @@ map GetGitHubGists {
 }
 
 operation ProcessAuthors {
+  # operation call have its arguments available under the `args` variable
   authors = args.authors.map((gist) => return gist.owner.login)
   return authors
 }
 
 operation ComplexObject {
-  return data {
+  return {
     a = 1
     b.c = 2
     d.e.f = 42
   }
 }
 
+#
+# Explicit map execution flow control with `return`
+#
+map UseCase {
+  call OperationA { }
 
+  call OperationB {
+    map result {
+      answer = data.answerFromOperationB
+    }
 
+    # if call OperationA ends with error the whole use case ends with error 
+    # if call OperationA ends with success then the result has value from call OperationC
+    return map error if (error) {
+      message = error.message
+    }
+  }
 
-
-
-
+  call OperationC {
+    map result {
+      answer = data.answerFromOperationC
+    }
+  }
+}
 
 
 #
-# GraphQL
+# GraphQL – WORK IN PROGRESS 
 #
 
 # https://gist.github.com/jamesluberda/d73376298e22e3fc4abbca590b97d5e0
@@ -154,42 +157,4 @@ query {
     }
   }
 
-}
-
-
-
-
-
-#
-# Functions I.
-#
-# Use return and fail keyword
-# For research ONLU, the  actual proposed syntax in in Funcitons II.
-#
-
-function Foo {
-  fail if (args.condition) {
-    # always fail instead of return
-    message = "I have failed!"
-  }
-
-  return {
-    message = "Hello World!"
-  }
-}
-
-function Bar {
-  call Foo (message = "Hello World!") {
-    return if (data && someCondition) {
-      fieldName = data.value
-    }
-
-    return if (!error) {
-      fieldName = 42
-    }
-
-    fail if (error) {
-      errorFieldName = "It all failed"
-    }
-  }
 }

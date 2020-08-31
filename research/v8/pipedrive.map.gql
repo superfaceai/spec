@@ -2,20 +2,25 @@ profile = "http://supermodel.io/superface/CRM/Customers"
 provider = "http://superface.ai/directory/Pipedrive"
 
 map RetrieveCustomers {
+  # use-case's input (from user) is available in the `input` variable
+  # use-case's result (presented to user) is available in the `map.result` variable
+  # use-case's error (presented to user) is available in the `map.error` variable
+
   # Local variables
   filterId = null
 
   # Step 1
   call FindFilter(filterName = "my-superface-map-filter") if(input.since) {
+    # conditional block for setting the variables
     set if (!error) {
-      filterId = return.filterId
+      filterId = data.filterId
     }
   }
 
   # Step 2
   call CreateFilter(filterId = filterId) if(input.since && !filterId) {
     set if (!error) {
-      filterId = return.filterId
+      filterId = data.filterId
     }
   }
 

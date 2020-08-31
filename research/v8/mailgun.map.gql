@@ -4,7 +4,7 @@ provider = "http://superface.ai/directory/MailGun"
 map SendEmail {
   domainName = /@(.*)/.exec(input.from)[1]
 
-  http POST "https://api.mailgun.net/v3/${domainName}/messages" {
+  http POST `https://api.mailgun.net/v3/${domainName}/messages` {
     request "multipart/form-data" {
       headers {
         "my-header" = "superaface-test"
@@ -21,7 +21,7 @@ map SendEmail {
 
     response 200 "applicaton/json" {
       map result {
-        id = headers.["X-Message-ID"]
+        id = headers["X-Message-ID"]
         name = body.name
       }
     }

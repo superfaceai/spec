@@ -1,27 +1,27 @@
 operation foo {
-  return data {
+  return {
     answer = 42
     hash = { a: 1, b: 2 }
   }
 }
 
 operation fooWithArgs {
-  return data if (args.success) {
+  return if (args.success) {
     answer = 42
   }
 
-  return error if (!args.succes) {
+  fail if (!args.succes) {
     message = "I am supposed to fail"
   }
 }
 
 operation bar {
-  call fooWithArgs(success: `Muj string ${someVar}`, neco: 4+2 ) {
-    return data if (!error) {
-      finalAnswer = "The final answer is " + return.answer
+  call fooWithArgs(success = `Muj string ${someVar}`, neco = 4+2 ) {
+    return if (!error) {
+      finalAnswer = "The final answer is " + data.answer
     }
 
-    return error if (error) {
+    fail if (error) {
       finalAnswer = "There was an error " + error.message
     }
   }
@@ -35,37 +35,7 @@ operation countArray {
     count = count + 1
   }
 
-  return data {
-    answer = 'this is the count: ' + count
+  return {
+    answer = "This is the count " + count
   }
-}
-
-
-
-
-
-
-#
-# Error states
-#
-# NOT USED: Forr illustration of possible shrothands ONLY!
-operation F {
-  foo(arg1: 42, arg2: "Hello World") {
-    ok {    # if foo() OK => do stuff
-
-    }
-
-    !ok {   # if foo() NOT OK  => do some other stuff
-
-    }
-
-    end {  # result in success
-
-    }
-
-    fail {  # result in error
-      
-    }
-  }
-
 }
