@@ -17,34 +17,10 @@ Retrieves information about a map based on its id
 """
 usecase GetMap safe {
   input {
-    """
-    Map ID
-    Unique id of the map to retrieve the information for
-    """
     mapId
   }
   
-  result {
-    """
-    Map ID
-
-    Id of the map
-    """
-    mapId
-
-    """
-    Source URL
-    URL of the map source. Can be directly queried using the HTTP GET method
-    """
-    sourceUrl
-
-    """
-    Source
-    
-    Source code of the map
-    """
-    source
-  }
+  result Map
 }
 
 """
@@ -54,35 +30,10 @@ Creates new map from the map source and assigns a store Map ID to it
 """
 usecase CreateMap unsafe {
   input {
-    """
-    Source 
-
-    Source code of the map
-    """
     source
   }
   
-  result {
-    """
-    Map ID
-
-    Id of the map
-    """
-    mapId
-
-    """
-    Source URL
-    URL of the map source. Can be directly queried using the HTTP GET method
-    """
-    sourceUrl
-
-    """
-    Source
-    
-    Source code of the map
-    """
-    source
-  }
+  result Map
 }
 
 """
@@ -92,42 +43,11 @@ Updates map source based on its URL
 """
 usecase UpdateMap idempotent {
   input {
-    """
-    Map ID
-
-    Id of the map
-    """    
     mapId
-
-    """
-    Source
-    
-    Source code of the map
-    """    
     source
   }
 
-  result {
-    """
-    Map ID
-
-    Id of the map
-    """
-    mapId
-
-    """
-    Source URL
-    URL of the map source. Can be directly queried using the HTTP GET method
-    """
-    sourceUrl
-
-    """
-    Source
-    
-    Source code of the map
-    """
-    source
-  }
+  result Map
 }
 
 """
@@ -137,11 +57,6 @@ Deletes map based on its URL
 """
 usecase DeleteMap unsafe {
   input {
-    """
-    Map ID
-
-    Id of the map
-    """
     mapId
   }
 }
@@ -153,11 +68,6 @@ Fetches the map source as stored
 """
 usecase GetMapSource safe {
   input {
-    """
-    Map ID
-
-    Id of the map
-    """
     mapId
   }
 
@@ -178,11 +88,23 @@ model Map {
 # Reusable Fields
 #
 
-"Id of the map in the store"
+"""
+Map ID
+
+Id of the map
+"""
 field mapId string
 
-# "Source code of the map"
-# field source string
+"""
+Source
 
-"Direct download URL where the source code can be downloaded"
+Source code of the map
+"""
+field source string
+
+"""
+Source URL
+
+URL of the map source. Can be directly queried using the HTTP GET method
+"""
 field sourceUrl string
