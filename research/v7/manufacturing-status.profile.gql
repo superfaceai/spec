@@ -1,13 +1,13 @@
 """
 Completion Status
 
-  Information about manufacturing completion status.
+Information about manufacturing completion status.
 """
 
 profile = "https://superface.ai/profile/manufacturing/CompletionStatus"
 
 """
-Retrieve Completion Status
+Get Completion Status
 
 Get the status of manufacturing, delivery or other works related to a Manufacturer's Serial Number.
 """

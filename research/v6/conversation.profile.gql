@@ -1,6 +1,13 @@
-profile = "http://superface.ai/profile/conversation/SendMessage"
+"""
+Send Message
 
-"Send single conversation message"
+Send single conversation message.
+"""
+
+profile = "http://superface.ai/profile/superface/SendMessage"
+
+"Send Message
+  Send single conversation message"
 usecase SendMessage unsafe {
   input {
     to
@@ -25,7 +32,8 @@ usecase SendMessage unsafe {
   }
 }
 
-"Retrieve status of a sent message"
+"Message Status
+  Retrieve status of a sent message"
 usecase RetrieveMessageStatus safe {
   input {
     messageId
@@ -35,7 +43,7 @@ usecase RetrieveMessageStatus safe {
     deliveryStatus
   }
 
-  async result A 
+  async result A
 }
 
 "Identifier of Message
