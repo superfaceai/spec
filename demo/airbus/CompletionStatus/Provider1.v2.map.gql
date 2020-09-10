@@ -9,8 +9,8 @@ map CompletionStatus {
     
     response 200 "application/json" {
       map result {
-        workInfo = body.status
-        completionDate = body.date
+        status = body.workInfo
+        estimatedCompletion = body.completionDate
       }
     }
   }
