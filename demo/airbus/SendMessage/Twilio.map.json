@@ -22,7 +22,7 @@
 					"left": "accountSid",
 					"right": {
 						"kind": "JSExpression",
-						"expression": "input.TWILIO_SID"
+						"expression": "input.auth.basic.username"
 					}
 				}
 			],
@@ -107,7 +107,7 @@
 					"left": "accountSid",
 					"right": {
 						"kind": "JSExpression",
-						"expression": "input.TWILIO_SID"
+						"expression": "input.auth.basic.username"
 					}
 				},
 				{

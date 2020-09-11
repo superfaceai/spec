@@ -42,7 +42,7 @@
 										"left": "ApiKey",
 										"right": {
 											"kind": "JSExpression",
-											"expression": "input.TYNTEC_KEY"
+											"expression": "input.auth.apikey.key"
 										}
 									}
 								],
@@ -152,7 +152,7 @@
 										"left": "ApiKey",
 										"right": {
 											"kind": "JSExpression",
-											"expression": "input.TYNTEC_KEY"
+											"expression": "input.auth.apikey.key"
 										}
 									}
 								],

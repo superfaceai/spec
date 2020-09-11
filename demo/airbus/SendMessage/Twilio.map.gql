@@ -5,7 +5,7 @@ provider = "http://superface.ai/directory/Twilio#SMS"
 #   https://www.twilio.com/docs/sms/send-messages#send-an-sms-with-twilios-api
 
 map SendMessage {
-  accountSid = input.TWILIO_SID
+  accountSid = input.auth.basic.username
 
   http POST `https://api.twilio.com/2010-04-01/Accounts/{accountSid}/Messages.json` {
     request "application/x-www-form-urlencoded" {
@@ -25,7 +25,7 @@ map SendMessage {
 }
 
 map RetrieveMessageStatus {
-  accountSid = input.TWILIO_SID
+  accountSid = input.auth.basic.username
   sid = input.messageId
 
   http GET `https://api.twilio.com/2010-04-01/Accounts/{accountSid}/Messages/{sid}.json` {

@@ -8,7 +8,7 @@ map SendMessage {
   http POST "https://api.tyntec.com/chat-api/v2/messages" {
     request "application/json" {
       headers {
-        "ApiKey" = input.TYNTEC_KEY
+        "ApiKey" = input.auth.apikey.key
       }
 
       body {
@@ -33,7 +33,7 @@ map RetrieveMessageStatus {
 
   http GET `https://api.tyntec.com/chat-api/v2/messages/{messageId}/history` {
     body headers {
-      "ApiKey" = input.TYNTEC_KEY
+      "ApiKey" = input.auth.apikey.key
     }
 
     response 200 "application/json" {
