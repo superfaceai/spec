@@ -1,4 +1,4 @@
-profile = "https://superface.ai/profile/manufacturing/CompletionStatus""
+profile = "https://superface.ai/profile/manufacturing/CompletionStatus"
 provider = "http://superface.ai/directory/demo/CompletionProvider2"
 
 map CompletionStatus {

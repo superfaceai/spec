@@ -1,0 +1,39 @@
+profile = "http://superface.ai/profile/conversation/SendMessage"
+provider = "http://superface.ai/directory/Twilio#SMS"
+
+# Twilio API documentation available at:
+#   https://www.twilio.com/docs/sms/send-messages#send-an-sms-with-twilios-api
+
+map SendMessage {
+  accountSid = input.auth.basic.username
+
+  http POST `https://api.twilio.com/2010-04-01/Accounts/{accountSid}/Messages.json` {
+    request "application/x-www-form-urlencoded" {
+      body {
+        To = input.to,
+        From = input.from,
+        Body = input.text
+      }
+    }
+
+    response 200 "application/json" {
+      map result {
+        messageId = body.sid
+      }
+    }
+  }
+}
+
+map RetrieveMessageStatus {
+  accountSid = input.auth.basic.username
+  sid = input.messageId
+
+  http GET `https://api.twilio.com/2010-04-01/Accounts/{accountSid}/Messages/{sid}.json` {
+    response 200 "application/json" {
+      map result {
+        deliveryStatus = body.status
+      }
+    }
+  } 
+}
+  

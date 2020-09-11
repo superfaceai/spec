@@ -1,0 +1,169 @@
+{
+	"kind": "MapDocument",
+	"map": {
+		"kind": "Map",
+		"profileId": {
+			"kind": "ProfileId",
+			"profileId": "http://superface.ai/profile/conversation/SendMessage"
+		},
+		"provider": {
+			"kind": "Provider",
+			"providerId": "http://superface.ai/directory/Twilio#SMS"
+		}
+	},
+	"definitions": [
+		{
+			"kind": "MapDefinition",
+			"mapName": "SendMessage",
+			"usecaseName": "SendMessage",
+			"variableExpressionsDefinition": [
+				{
+					"kind": "MapExpressionsDefinition",
+					"left": "accountSid",
+					"right": {
+						"kind": "JSExpression",
+						"expression": "input.auth.basic.username"
+					}
+				}
+			],
+			"stepsDefinition": [
+				{
+					"kind": "StepDefinition",
+					"stepName": "",
+					"condition": {
+						"kind": "JSExpression",
+						"expression": "true"
+					},
+					"variableExpressionsDefinition": [],
+					"run": {
+						"kind": "NetworkOperationDefinition",
+						"definition": {
+							"kind": "HTTPOperationDefinition",
+							"method": "POST",
+							"url": "https://api.twilio.com/2010-04-01/Accounts/{accountSid}/Messages.json",
+							"variableExpressionsDefinition": [],
+							"requestDefinition": {
+								"contentType": "application/x-www-form-urlencoded",
+								"security": "basic",
+								"headers": [],
+								"body": [
+									{
+										"kind": "MapExpressionsDefinition",
+										"left": "To",
+										"right": {
+											"kind": "JSExpression",
+											"expression": "input.to"
+										}
+									},
+									{
+										"kind": "MapExpressionsDefinition",
+										"left": "From",
+										"right": {
+											"kind": "JSExpression",
+											"expression": "input.from"
+										}
+									},
+									{
+										"kind": "MapExpressionsDefinition",
+										"left": "Body",
+										"right": {
+											"kind": "JSExpression",
+											"expression": "input.text"
+										}
+									}
+								],
+								"queryParametersDefinition": []
+							},
+							"responseDefinition": {
+								"statusCode": 200,
+								"contentType": "application/json",
+								"contentLanguage": "en-US",
+								"outcomeDefinition": {
+									"kind": "OutcomeDefinition",
+									"resultDefinition": [
+										{
+											"kind": "MapExpressionsDefinition",
+											"left": "messageId",
+											"right": {
+												"kind": "JSExpression",
+												"expression": "body.sid"
+											}
+										}
+									]
+								}
+							}
+						}
+					}
+				}
+			]
+		},
+		{
+			"kind": "MapDefinition",
+			"mapName": "RetrieveMessageStatus",
+			"usecaseName": "RetrieveMessageStatus",
+			"variableExpressionsDefinition": [
+				{
+					"kind": "MapExpressionsDefinition",
+					"left": "accountSid",
+					"right": {
+						"kind": "JSExpression",
+						"expression": "input.auth.basic.username"
+					}
+				},
+				{
+					"kind": "MapExpressionsDefinition",
+					"left": "sid",
+					"right": {
+						"kind": "JSExpression",
+						"expression": "input.messageId"
+					}
+				}
+			],
+			"stepsDefinition": [
+				{
+					"kind": "StepDefinition",
+					"stepName": "",
+					"condition": {
+						"kind": "JSExpression",
+						"expression": "true"
+					},
+					"variableExpressionsDefinition": [],
+					"run": {
+						"kind": "NetworkOperationDefinition",
+						"definition": {
+							"kind": "HTTPOperationDefinition",
+							"method": "GET",
+							"url": "https://api.twilio.com/2010-04-01/Accounts/{accountSid}/Messages/{sid}.json",
+							"variableExpressionsDefinition": [],
+							"requestDefinition": {
+								"contentType": "application/json",
+								"security": "basic",
+								"headers": [],
+								"body": [],
+								"queryParametersDefinition": []
+							},
+							"responseDefinition": {
+								"statusCode": 200,
+								"contentType": "application/json",
+								"contentLanguage": "en-US",
+								"outcomeDefinition": {
+									"kind": "OutcomeDefinition",
+									"resultDefinition": [
+										{
+											"kind": "MapExpressionsDefinition",
+											"left": "deliveryStatus",
+											"right": {
+												"kind": "JSExpression",
+												"expression": "body.status"
+											}
+										}
+									]
+								}
+							}
+						}
+					}
+				}
+			]
+		}
+	]
+}
