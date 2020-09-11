@@ -4,15 +4,25 @@ Send Message
 Send single conversation message.
 """
 
-profile = "http://superface.ai/profile/superface/SendMessage"
+profile = "http://superface.ai/profile/conversation/SendMessage"
 
 "Send Message
-  Send single conversation message"
+
+Send single conversation message"
 usecase SendMessage unsafe {
   input {
+    "To
+      recepient of the message"
     to
+
+    "From
+      sender of the message"    
     from
+    
     channel
+
+    "Text 
+      the text of the message"
     text
   }
 
@@ -33,6 +43,7 @@ usecase SendMessage unsafe {
 }
 
 "Message Status
+
   Retrieve status of a sent message"
 usecase RetrieveMessageStatus safe {
   input {
@@ -58,6 +69,8 @@ field deliveryStatus enum {
   seen
 }
 
+"Channel
+  Over-the-air channel for the communication"
 field channel enum {
   sms
   whatsapp
