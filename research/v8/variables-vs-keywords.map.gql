@@ -1,0 +1,80 @@
+
+# Rules:
+#   1. Keywords DO NOT have dot '.' accessor: Therefore 'keyword.key = 1' is invalid.
+#   2. Variables of object type MAY USE the dot '.' accessor: Therefore 'variable.key = 1' is valid.
+#   3. Everything after assignment '=' must be either Jessie or operation call
+#   4. ONLY object variables MAY use slang map for its keys: Therefore 'variable { key = 1 }' is valid.
+#   5. Keys are NOT variables, they MUST NOT use slang map for its (sub)keys: Therefore 'variable { key { inner = 2 } }' is invalid.
+
+# 
+# Example:
+#   'body' is a variable, 'request' is a keyword
+#   The 'body' variable of an object type can use the dot '.' accessor: 'body.key = 1' is therefore valid.
+#   The 'request' is not a variable it cannot use the dot '.' accessor: 'request.body = 1' is therefore invalid.
+
+
+operation A {
+
+  # Ignoring http ... for brevity
+  
+  # Following is all VALID and EQUIVALENT:
+  request { 
+    body {
+      key = 1
+    } 
+  }
+
+  reqest body {
+    key = 1
+  }  
+
+  request body.key = 1 
+}
+
+operation B {
+  # Following is all VALID and EQUIVALENT
+  set {
+    variableA = {
+      key: 2
+    }
+    variableB {        # No RHS, use slang map -> map key to its context variable 'variableB'
+      key = 1
+    }
+  }
+
+  set variableA.key = 1 
+  set variableB.key = 2
+}
+
+operation C {
+  # Following is all VALID and EQUIVALENT
+  set {
+    variableA = {
+      key: {
+        innerKey: 1
+      }
+    }
+    variableB {
+      key.innerKey = 1
+    }
+  }
+
+  set variableA.key.innerKey = 1 
+  set variableB.key.innerKey = 2
+}
+
+operation D {
+  # Following is all INVALID
+  set {
+    variableA = {
+      key = {               # INVALID: Not a Jessie
+        innerKey: 1
+      }
+    }
+    variableB {
+      key {                 # INVALID: 'key' is not a variable but a key
+        innerKey = 1
+      }
+    }
+  }  
+}
