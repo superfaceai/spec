@@ -1,0 +1,39 @@
+# dot accessor
+body {
+  to = input.to
+  channels = ['sms']
+  sms.from = input.from
+  sms.contentType = 'text'
+  sms.text = input.text
+}
+
+# "slang" accessor
+body {
+  to = input.to
+  channels = ['sms']
+  sms from = input.from
+  sms contentType = 'text'
+  sms text = input.text
+}
+
+# slang 
+body {
+  to = input.to
+  channels = ['sms']
+  sms {
+    from = input.from
+    contentType = 'text'
+    text = input.text
+  }
+}
+
+# jessie 
+body {
+  to = input.to
+  channels = ['sms']
+  sms = {
+    from: input.from
+    contentType: 'text'
+    text: input.text
+  }
+}
