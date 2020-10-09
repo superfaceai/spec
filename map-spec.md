@@ -53,7 +53,7 @@ MapSlot :
 
 ```example
 map RetrieveMessageStatus {  
-  http GET `/chat-api/v2/messages/{nput.messageId}/history` {
+  http GET "/chat-api/v2/messages/{input.messageId}/history" {
     response 200 "application/json" {
       map result {
         deliveryStatus = body.history[0].state
@@ -296,7 +296,21 @@ NetworkCall :
 
 # HTTP Call
 
-HTTPCall : http HTTPMethod URL { HTTPTransaction }
+HTTPCall : http HTTPMethod URLTemplate { HTTPTransaction }
+
+HTTPMethod : one of GET HEAD POST PUT DELETE CONNECT OPTIONS TRACE PATCH 
+
+URLTemplate : `"` URLPath+ `"` 
+
+URLPath : `/` URLPathSegment
+
+URLPathSegment : 
+- URLPathLiteral 
+- URLPathVariable
+
+URLPathLiteral : String
+
+URLPathVariable : { VariableName }
 
 ```example
 map SendMessage {
@@ -397,6 +411,12 @@ StringValue :: `"` String `"`
 ## Number
 
 Number :: /[0-9]/
+
+## String
+
+TODO: Check for correct regex with @ELA
+
+String : /[\_A-Za-z][_0-9a-za-z]/
 
 # A. Appendix: Keywords
 

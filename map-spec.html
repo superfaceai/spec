@@ -919,6 +919,7 @@ pre[class*="language-"] {
 <li><a href="#sec-URL-Value"><span class="spec-secid">11.2</span>URL Value</a></li>
 <li><a href="#sec-String-Value"><span class="spec-secid">11.3</span>String Value</a></li>
 <li><a href="#sec-Number"><span class="spec-secid">11.4</span>Number</a></li>
+<li><a href="#sec-String"><span class="spec-secid">11.5</span>String</a></li>
 </ol>
 </li>
 <li><a href="#sec-Appendix-Keywords"><span class="spec-secid">A</span>Appendix: Keywords</a></li>
@@ -978,8 +979,8 @@ map RetrieveMessageStatus {
 <ul>
 <li><var data-name="input">input</var> - User input as stated in the profile</li>
 </ul>
-<pre id="example-b6be0" class="spec-example"><a href="#example-b6be0">Example № 2</a><code>map RetrieveMessageStatus {  
-  http GET `/chat-api/v2/messages/{nput.messageId}/history` {
+<pre id="example-0c5b6" class="spec-example"><a href="#example-0c5b6">Example № 2</a><code>map RetrieveMessageStatus {  
+  http GET &quot;/chat-api/v2/messages/{input.messageId}/history&quot; {
     response 200 &quot;application/json&quot; {
       map result {
         deliveryStatus = body.history[0].state
@@ -1226,7 +1227,29 @@ map RetrieveMessageStatus {
 <section id="sec-HTTP-Call" secid="8">
 <h2><span class="spec-secid" title="link to this section"><a href="#sec-HTTP-Call">8</a></span>HTTP Call</h2>
 <div class="spec-production" id="HTTPCall">
-<span class="spec-nt"><a href="#HTTPCall" data-name="HTTPCall">HTTPCall</a></span><div class="spec-rhs"><span class="spec-t">http</span><span class="spec-nt"><span data-name="HTTPMethod">HTTPMethod</span></span><span class="spec-nt"><span data-name="URL">URL</span></span><span class="spec-t">{</span><span class="spec-nt"><a href="#HTTPTransaction" data-name="HTTPTransaction">HTTPTransaction</a></span><span class="spec-t">}</span></div>
+<span class="spec-nt"><a href="#HTTPCall" data-name="HTTPCall">HTTPCall</a></span><div class="spec-rhs"><span class="spec-t">http</span><span class="spec-nt"><a href="#HTTPMethod" data-name="HTTPMethod">HTTPMethod</a></span><span class="spec-nt"><a href="#URLTemplate" data-name="URLTemplate">URLTemplate</a></span><span class="spec-t">{</span><span class="spec-nt"><a href="#HTTPTransaction" data-name="HTTPTransaction">HTTPTransaction</a></span><span class="spec-t">}</span></div>
+</div>
+<div class="spec-production" id="HTTPMethod">
+<span class="spec-nt"><a href="#HTTPMethod" data-name="HTTPMethod">HTTPMethod</a></span><div class="spec-oneof"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-nt"><span data-name="GET">GET</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="HEAD">HEAD</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="POST">POST</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="PUT">PUT</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="DELETE">DELETE</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="CONNECT">CONNECT</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="OPTIONS">OPTIONS</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="TRACE">TRACE</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="PATCH">PATCH</span></span></td></tr>
+</table></div>
+</div>
+<div class="spec-production" id="URLTemplate">
+<span class="spec-nt"><a href="#URLTemplate" data-name="URLTemplate">URLTemplate</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-quantified"><span class="spec-nt"><a href="#URLPath" data-name="URLPath">URLPath</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span><span class="spec-t">&quot;</span></div>
+</div>
+<div class="spec-production" id="URLPath">
+<span class="spec-nt"><a href="#URLPath" data-name="URLPath">URLPath</a></span><div class="spec-rhs"><span class="spec-t">/</span><span class="spec-nt"><a href="#URLPathSegment" data-name="URLPathSegment">URLPathSegment</a></span></div>
+</div>
+<div class="spec-production" id="URLPathSegment">
+<span class="spec-nt"><a href="#URLPathSegment" data-name="URLPathSegment">URLPathSegment</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#URLPathLiteral" data-name="URLPathLiteral">URLPathLiteral</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#URLPathVariable" data-name="URLPathVariable">URLPathVariable</a></span></div>
+</div>
+<div class="spec-production" id="URLPathLiteral">
+<span class="spec-nt"><a href="#URLPathLiteral" data-name="URLPathLiteral">URLPathLiteral</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#String" data-name="String">String</a></span></div>
+</div>
+<div class="spec-production" id="URLPathVariable">
+<span class="spec-nt"><a href="#URLPathVariable" data-name="URLPathVariable">URLPathVariable</a></span><div class="spec-rhs"><span class="spec-t">{</span><span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><span class="spec-t">}</span></div>
 </div>
 <pre id="example-cddc3" class="spec-example"><a href="#example-cddc3">Example № 14</a><code>map SendMessage {
   http POST &quot;/chat-api/v2/messages&quot; {
@@ -1340,13 +1363,21 @@ Check for correct regex with @ELA</div>
 <section id="sec-String-Value" secid="11.3">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-String-Value">11.3</a></span>String Value</h3>
 <div class="spec-production d2" id="StringValue">
-<span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-nt"><span data-name="String">String</span></span><span class="spec-t">&quot;</span></div>
+<span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-nt"><a href="#String" data-name="String">String</a></span><span class="spec-t">&quot;</span></div>
 </div>
 </section>
 <section id="sec-Number" secid="11.4">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Number">11.4</a></span>Number</h3>
 <div class="spec-production d2" id="Number">
 <span class="spec-nt"><a href="#Number" data-name="Number">Number</a></span><div class="spec-rhs"><span class="spec-rx">/[0-9]/</span></div>
+</div>
+</section>
+<section id="sec-String" secid="11.5">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-String">11.5</a></span>String</h3>
+<div class="spec-todo">
+Check for correct regex with @ELA</div>
+<div class="spec-production" id="String">
+<span class="spec-nt"><a href="#String" data-name="String">String</a></span><div class="spec-rhs"><span class="spec-rx">/[\_A-Za-z][_0-9a-za-z]/</span></div>
 </div>
 </section>
 </section>
@@ -1359,7 +1390,7 @@ Check for correct regex with @ELA</div>
 <h2><span class="spec-secid" title="link to this section"><a href="#sec-Appendix-Spec-Markdown">B</a></span>Appendix: Spec Markdown</h2>
 <p>Written in <a href="https://spec-md.com">&rarr;_Spec Markdown_&larr;</a>. </p>
 </section>
-<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#Argument">Argument</a></li><li><a href="#Body">Body</a></li><li><a href="#BodyValueDefinition">BodyValueDefinition</a></li><li><a href="#Condition">Condition</a></li><li><a href="#ContentLanguage">ContentLanguage</a></li><li><a href="#ContentType">ContentType</a></li><li><a href="#HTTPCall">HTTPCall</a></li><li><a href="#HTTPRequest">HTTPRequest</a></li><li><a href="#HTTPRequestSlot">HTTPRequestSlot</a></li><li><a href="#HTTPResponseSlot">HTTPResponseSlot</a></li><li><a href="#HTTPRespose">HTTPRespose</a></li><li><a href="#HTTPTransaction">HTTPTransaction</a></li><li><a href="#Headers">Headers</a></li><li><a href="#JessieExpression">JessieExpression</a></li><li><a href="#KeyName">KeyName</a></li><li><a href="#LHS">LHS</a></li><li><a href="#Map">Map</a></li><li><a href="#MapDocument">MapDocument</a></li><li><a href="#MapError">MapError</a></li><li><a href="#MapResult">MapResult</a></li><li><a href="#MapSlot">MapSlot</a></li><li><a href="#Name">Name</a></li><li><a href="#NetworkCall">NetworkCall</a></li><li><a href="#Number">Number</a></li><li><a href="#Operation">Operation</a></li><li><a href="#OperationArguments">OperationArguments</a></li><li><a href="#OperationCall">OperationCall</a></li><li><a href="#OperationCallEvaluation">OperationCallEvaluation</a></li><li><a href="#OperationFail">OperationFail</a></li><li><a href="#OperationName">OperationName</a></li><li><a href="#OperationReturn">OperationReturn</a></li><li><a href="#OperationSlot">OperationSlot</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#Provider">Provider</a></li><li><a href="#ProviderId">ProviderId</a></li><li><a href="#Query">Query</a></li><li><a href="#RHS">RHS</a></li><li><a href="#RequestBodyAssignment">RequestBodyAssignment</a></li><li><a href="#SetFailVariables">SetFailVariables</a></li><li><a href="#SetMapErrorVariables">SetMapErrorVariables</a></li><li><a href="#SetMapOutcome">SetMapOutcome</a></li><li><a href="#SetMapResultVariables">SetMapResultVariables</a></li><li><a href="#SetOperationOutcome">SetOperationOutcome</a></li><li><a href="#SetOutcome">SetOutcome</a></li><li><a href="#SetReturnVariables">SetReturnVariables</a></li><li><a href="#SetVariables">SetVariables</a></li><li><a href="#StatusCode">StatusCode</a></li><li><a href="#StringValue">StringValue</a></li><li><a href="#URLValue">URLValue</a></li><li><a href="#UsecaseName">UsecaseName</a></li><li><a href="#VariableKeyPath">VariableKeyPath</a></li><li><a href="#VariableName">VariableName</a></li><li><a href="#VariableStatement">VariableStatement</a></li><li><a href="#VariableStatements">VariableStatements</a></li></ol></section></article>
+<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#Argument">Argument</a></li><li><a href="#Body">Body</a></li><li><a href="#BodyValueDefinition">BodyValueDefinition</a></li><li><a href="#Condition">Condition</a></li><li><a href="#ContentLanguage">ContentLanguage</a></li><li><a href="#ContentType">ContentType</a></li><li><a href="#HTTPCall">HTTPCall</a></li><li><a href="#HTTPMethod">HTTPMethod</a></li><li><a href="#HTTPRequest">HTTPRequest</a></li><li><a href="#HTTPRequestSlot">HTTPRequestSlot</a></li><li><a href="#HTTPResponseSlot">HTTPResponseSlot</a></li><li><a href="#HTTPRespose">HTTPRespose</a></li><li><a href="#HTTPTransaction">HTTPTransaction</a></li><li><a href="#Headers">Headers</a></li><li><a href="#JessieExpression">JessieExpression</a></li><li><a href="#KeyName">KeyName</a></li><li><a href="#LHS">LHS</a></li><li><a href="#Map">Map</a></li><li><a href="#MapDocument">MapDocument</a></li><li><a href="#MapError">MapError</a></li><li><a href="#MapResult">MapResult</a></li><li><a href="#MapSlot">MapSlot</a></li><li><a href="#Name">Name</a></li><li><a href="#NetworkCall">NetworkCall</a></li><li><a href="#Number">Number</a></li><li><a href="#Operation">Operation</a></li><li><a href="#OperationArguments">OperationArguments</a></li><li><a href="#OperationCall">OperationCall</a></li><li><a href="#OperationCallEvaluation">OperationCallEvaluation</a></li><li><a href="#OperationFail">OperationFail</a></li><li><a href="#OperationName">OperationName</a></li><li><a href="#OperationReturn">OperationReturn</a></li><li><a href="#OperationSlot">OperationSlot</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#Provider">Provider</a></li><li><a href="#ProviderId">ProviderId</a></li><li><a href="#Query">Query</a></li><li><a href="#RHS">RHS</a></li><li><a href="#RequestBodyAssignment">RequestBodyAssignment</a></li><li><a href="#SetFailVariables">SetFailVariables</a></li><li><a href="#SetMapErrorVariables">SetMapErrorVariables</a></li><li><a href="#SetMapOutcome">SetMapOutcome</a></li><li><a href="#SetMapResultVariables">SetMapResultVariables</a></li><li><a href="#SetOperationOutcome">SetOperationOutcome</a></li><li><a href="#SetOutcome">SetOutcome</a></li><li><a href="#SetReturnVariables">SetReturnVariables</a></li><li><a href="#SetVariables">SetVariables</a></li><li><a href="#StatusCode">StatusCode</a></li><li><a href="#String">String</a></li><li><a href="#StringValue">StringValue</a></li><li><a href="#URLPath">URLPath</a></li><li><a href="#URLPathLiteral">URLPathLiteral</a></li><li><a href="#URLPathSegment">URLPathSegment</a></li><li><a href="#URLPathVariable">URLPathVariable</a></li><li><a href="#URLTemplate">URLTemplate</a></li><li><a href="#URLValue">URLValue</a></li><li><a href="#UsecaseName">UsecaseName</a></li><li><a href="#VariableKeyPath">VariableKeyPath</a></li><li><a href="#VariableName">VariableName</a></li><li><a href="#VariableStatement">VariableStatement</a></li><li><a href="#VariableStatements">VariableStatements</a></li></ol></section></article>
 <footer>
 Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</footer>
 <input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label>
@@ -1408,6 +1439,7 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <li id="_sidebar_11.2"><a href="#sec-URL-Value"><span class="spec-secid">11.2</span>URL Value</a></li>
 <li id="_sidebar_11.3"><a href="#sec-String-Value"><span class="spec-secid">11.3</span>String Value</a></li>
 <li id="_sidebar_11.4"><a href="#sec-Number"><span class="spec-secid">11.4</span>Number</a></li>
+<li id="_sidebar_11.5"><a href="#sec-String"><span class="spec-secid">11.5</span>String</a></li>
 </ol>
 </li>
 <li id="_sidebar_A"><a href="#sec-Appendix-Keywords"><span class="spec-secid">A</span>Appendix: Keywords</a></li>
