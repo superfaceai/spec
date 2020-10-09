@@ -7,7 +7,8 @@
     "test": "supermodel schema validate ./AST/supermodel/superface",
     "publish-supermodel": "cd ./AST/supermodel/superface && supermodel push",
     "build": "spec-md map-spec.md > map-spec.html",
-    "watch:map-spec": "nodemon --exec 'spec-md > map-spec.html' map-spec.md"
+    "watch:map-spec": "nodemon --exec 'spec-md > map-spec.html' map-spec.md",
+    "surge": "yarn build && mkdir -p ./surge && cp ./map-spec.html surge/map.html  && surge --project ./surge/ --domain sfspec.surge.sh"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@supermodel/cli": "^0.48.1",
     "nodemon": "^2.0.4",
-    "spec-md": "^1.1.1"
+    "spec-md": "^1.1.1",
+    "surge": "^0.21.6"
   }
 }
