@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "supermodel schema validate ./AST/supermodel/superface",
-    "publish-supermodel": "cd ./AST/supermodel/superface && supermodel push"   
+    "publish-supermodel": "cd ./AST/supermodel/superface && supermodel push",
+    "build": "spec-md map-spec.md > map-spec.html",
+    "watch:map-spec": "nodemon --exec 'spec-md > map-spec.html' map-spec.md"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,8 @@
   "homepage": "https://github.com/superindustries/dsl#readme",
   "private": true,
   "devDependencies": {
-    "@supermodel/cli": "^0.48.1"
+    "@supermodel/cli": "^0.48.1",
+    "nodemon": "^2.0.4",
+    "spec-md": "^1.1.1"
   }
 }
