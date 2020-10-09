@@ -933,7 +933,7 @@ pre[class*="language-"] {
 <span class="spec-nt"><a href="#MapDocument" data-name="MapDocument">MapDocument</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Profile" data-name="Profile">Profile</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#Provider" data-name="Provider">Provider</a></span></div>
 <div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span></div>
-<div class="spec-rhs"><span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span><span class="spec-t">\*</span></div>
+<div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
 <div class="spec-production" id="Profile">
 <span class="spec-nt"><a href="#Profile" data-name="Profile">Profile</a></span><div class="spec-rhs"><span class="spec-t">profile</span><span class="spec-t">=</span><span class="spec-nt"><a href="#ProfileId" data-name="ProfileId">ProfileId</a></span></div>
@@ -947,14 +947,14 @@ pre[class*="language-"] {
 <div class="spec-production" id="ProviderId">
 <span class="spec-nt"><a href="#ProviderId" data-name="ProviderId">ProviderId</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#URLValue" data-name="URLValue">URLValue</a></span></div>
 </div>
-<pre id="example-f1760" class="spec-example"><a href="#example-f1760">Example № 1</a><code>profile = &quot;https://superface.dev/profile/weather/GetWeather&quot;
-provider = &quot;https://superface.dev/directory/ACME&quot;
+<pre id="example-a835c" class="spec-example"><a href="#example-a835c">Example № 1</a><code>profile = &quot;http://superface.ai/profile/conversation/SendMessage&quot;
+provider = &quot;http://superface.ai/directory/MyTelcoCompany&quot;
 
-map GetWeather {
+map SendMessage {
   ...
 }
 
-operation ConvertToCelsius {
+map RetrieveMessageStatus {
   ...
 }
 </code></pre>
@@ -962,7 +962,7 @@ operation ConvertToCelsius {
 <section id="sec-Usecase-Map" secid="2">
 <h2><span class="spec-secid" title="link to this section"><a href="#sec-Usecase-Map">2</a></span>Usecase Map</h2>
 <div class="spec-production" id="Map">
-<span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><span class="spec-t">{</span><span class="spec-nt"><a href="#MapSlot" data-name="MapSlot">MapSlot</a></span><span class="spec-t">\*</span><span class="spec-t">}</span></div>
+<span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#MapSlot" data-name="MapSlot">MapSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
 </div>
 <div class="spec-production" id="UsecaseName">
 <span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
@@ -1022,7 +1022,7 @@ operation ConvertToCelsius {
 <section id="sec-Operation" secid="3">
 <h2><span class="spec-secid" title="link to this section"><a href="#sec-Operation">3</a></span>Operation</h2>
 <div class="spec-production" id="Operation">
-<span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><span class="spec-t">{</span><span class="spec-nt"><a href="#OperationSlot" data-name="OperationSlot">OperationSlot</a></span><span class="spec-t">\*</span><span class="spec-t">}</span></div>
+<span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#OperationSlot" data-name="OperationSlot">OperationSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
 </div>
 <div class="spec-production" id="OperationName">
 <span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
@@ -1091,7 +1091,7 @@ operation ConvertToCelsius {
 <span class="spec-nt"><a href="#VariableStatement" data-name="VariableStatement">VariableStatement</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#LHS" data-name="LHS">LHS</a></span><span class="spec-t">=</span><span class="spec-nt"><a href="#RHS" data-name="RHS">RHS</a></span></div>
 </div>
 <div class="spec-production" id="LHS">
-<span class="spec-nt"><a href="#LHS" data-name="LHS">LHS</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><span class="spec-nt"><a href="#VariableKeyPath" data-name="VariableKeyPath">VariableKeyPath</a><span class="spec-params"><span class="spec-param">ObjectVariable</span></span></span><span class="spec-t">\*</span></div>
+<span class="spec-nt"><a href="#LHS" data-name="LHS">LHS</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#VariableKeyPath" data-name="VariableKeyPath">VariableKeyPath</a><span class="spec-params"><span class="spec-param">ObjectVariable</span></span></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
 <div class="spec-production" id="VariableName">
 <span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
@@ -1129,7 +1129,7 @@ operation ConvertToCelsius {
 <span class="spec-nt"><a href="#OperationCall" data-name="OperationCall">OperationCall</a></span><div class="spec-rhs"><span class="spec-t">call</span><span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#OperationArguments" data-name="OperationArguments">OperationArguments</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#Condition" data-name="Condition">Condition</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#OperationCallEvaluation" data-name="OperationCallEvaluation">OperationCallEvaluation</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
 <div class="spec-production" id="OperationArguments">
-<span class="spec-nt"><a href="#OperationArguments" data-name="OperationArguments">OperationArguments</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-nt"><a href="#Argument" data-name="Argument">Argument</a></span><span class="spec-t">\*</span><span class="spec-t">)</span></div>
+<span class="spec-nt"><a href="#OperationArguments" data-name="OperationArguments">OperationArguments</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-quantified"><span class="spec-nt"><a href="#Argument" data-name="Argument">Argument</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">)</span></div>
 </div>
 <div class="spec-production" id="Argument">
 <span class="spec-nt"><a href="#Argument" data-name="Argument">Argument</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span><span class="spec-t">=</span><span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span></div>
@@ -1251,13 +1251,13 @@ operation ConvertToCelsius {
 <section id="sec-HTTP-Transaction" secid="8.1">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-HTTP-Transaction">8.1</a></span>HTTP Transaction</h3>
 <div class="spec-production" id="HTTPTransaction">
-<span class="spec-nt"><a href="#HTTPTransaction" data-name="HTTPTransaction">HTTPTransaction</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><span data-name="HTTPResponse">HTTPResponse</span></span><span class="spec-t">\*</span></div>
+<span class="spec-nt"><a href="#HTTPTransaction" data-name="HTTPTransaction">HTTPTransaction</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><span data-name="HTTPResponse">HTTPResponse</span></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
 </section>
 <section id="sec-HTTP-Request" secid="8.2">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-HTTP-Request">8.2</a></span>HTTP Request</h3>
 <div class="spec-production" id="HTTPRequest">
-<span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span><div class="spec-rhs"><span class="spec-t">request</span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentLanguage" data-name="ContentLanguage">ContentLanguage</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">{</span><span class="spec-nt"><a href="#HTTPRequestSlot" data-name="HTTPRequestSlot">HTTPRequestSlot</a></span><span class="spec-t">\*</span><span class="spec-t">}</span></div>
+<span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span><div class="spec-rhs"><span class="spec-t">request</span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentLanguage" data-name="ContentLanguage">ContentLanguage</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#HTTPRequestSlot" data-name="HTTPRequestSlot">HTTPRequestSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
 </div>
 <div class="spec-production" id="HTTPRequestSlot">
 <span class="spec-nt"><a href="#HTTPRequestSlot" data-name="HTTPRequestSlot">HTTPRequestSlot</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Query" data-name="Query">Query</a></span></div>
@@ -1284,7 +1284,7 @@ operation ConvertToCelsius {
 <section id="sec-HTTP-Response" secid="8.3">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-HTTP-Response">8.3</a></span>HTTP Response</h3>
 <div class="spec-production" id="HTTPRespose">
-<span class="spec-nt"><a href="#HTTPRespose" data-name="HTTPRespose">HTTPRespose</a></span><div class="spec-rhs"><span class="spec-t">response</span><span class="spec-quantified"><span class="spec-nt"><a href="#StatusCode" data-name="StatusCode">StatusCode</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentLanguage" data-name="ContentLanguage">ContentLanguage</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">{</span><span class="spec-nt"><a href="#HTTPResponseSlot" data-name="HTTPResponseSlot">HTTPResponseSlot</a></span><span class="spec-t">\*</span><span class="spec-t">}</span></div>
+<span class="spec-nt"><a href="#HTTPRespose" data-name="HTTPRespose">HTTPRespose</a></span><div class="spec-rhs"><span class="spec-t">response</span><span class="spec-quantified"><span class="spec-nt"><a href="#StatusCode" data-name="StatusCode">StatusCode</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentLanguage" data-name="ContentLanguage">ContentLanguage</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#HTTPResponseSlot" data-name="HTTPResponseSlot">HTTPResponseSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
 </div>
 <div class="spec-production" id="StatusCode">
 <span class="spec-nt"><a href="#StatusCode" data-name="StatusCode">StatusCode</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Number" data-name="Number">Number</a></span></div>

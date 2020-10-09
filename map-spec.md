@@ -10,7 +10,7 @@ MapDocument :
 - Profile
 - Provider
 - Map+
-- Operation\*
+- Operation*
 
 Profile : `profile` = ProfileId
 
@@ -21,21 +21,21 @@ Provider : `provider` = ProviderId
 ProviderId : URLValue
 
 ```example
-profile = "https://superface.dev/profile/weather/GetWeather"
-provider = "https://superface.dev/directory/ACME"
+profile = "http://superface.ai/profile/conversation/SendMessage"
+provider = "http://superface.ai/directory/MyTelcoCompany"
 
-map GetWeather {
+map SendMessage {
   ...
 }
 
-operation ConvertToCelsius {
+map RetrieveMessageStatus {
   ...
 }
 ```
 
 # Usecase Map
 
-Map : UsecaseName { MapSlot\* }
+Map : UsecaseName { MapSlot* }
 
 UsecaseName : Name
 
@@ -93,7 +93,7 @@ map GetWeather {
 
 # Operation
 
-Operation : OperationName { OperationSlot\* }
+Operation : OperationName { OperationSlot* }
 
 OperationName : Name
 
@@ -157,7 +157,7 @@ VariableStatements : { VariableStatement+ }
 
 VariableStatement : LHS `=` RHS
 
-LHS : VariableName VariableKeyPath[ObjectVariable]\*
+LHS : VariableName VariableKeyPath[ObjectVariable]*
 
 VariableName : Name
 
@@ -198,7 +198,7 @@ set {
 
 OperationCall: `call` OperationName OperationArguments? Condition? OperationCallEvaluation?
 
-OperationArguments : ( Argument\* )
+OperationArguments : ( Argument* )
 
 Argument : Name `=` JessieExpression
 
@@ -322,11 +322,11 @@ map SendMessage {
 
 ## HTTP Transaction
 
-HTTPTransaction : HTTPRequest? HTTPResponse\*
+HTTPTransaction : HTTPRequest? HTTPResponse*
 
 ## HTTP Request
 
-HTTPRequest : `request` ContentType? ContentLanguage? { HTTPRequestSlot\* }
+HTTPRequest : `request` ContentType? ContentLanguage? { HTTPRequestSlot* }
 
 HTTPRequestSlot :
 
@@ -349,7 +349,7 @@ RequestBodyAssignment : `=` RHS
 
 ## HTTP Response
 
-HTTPRespose : `response` StatusCode? ContentType? ContentLanguage? { HTTPResponseSlot\* }
+HTTPRespose : `response` StatusCode? ContentType? ContentLanguage? { HTTPResponseSlot* }
 
 StatusCode: Number
 
