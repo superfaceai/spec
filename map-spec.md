@@ -119,9 +119,9 @@ operation CountArray {
 
 ## Operation Return
 
-OperationReturn : `return` Condition? SetReturnVariables?
+OperationReturn : `return` Condition? SetOperationReturnVariables?
 
-SetReturnVariables: VariableStatements
+SetOperationReturnVariables: VariableStatements
 
 ```example
 operation Foo {
@@ -137,9 +137,9 @@ operation Foo {
 
 ## Operation Fail
 
-OperationFail : `fail` Condition? SetFailVariables?
+OperationFail : `fail` Condition? SetOperationFailVariables?
 
-SetFailVariables: VariableStatements
+SetOperationFailVariables: VariableStatements
 
 ```example
 operation Foo {
@@ -159,7 +159,9 @@ VariableStatement : LHS `=` RHS
 
 LHS : VariableName VariableKeyPath[ObjectVariable]*
 
-VariableName : Name
+VariableName : 
+- Name
+- `"` String `"`
 
 VariableKeyPath[ObjectVariable] : `.`KeyName
 
@@ -196,15 +198,15 @@ set {
 
 # Operation Call
 
-OperationCall: `call` OperationName OperationArguments? Condition? OperationCallEvaluation?
+OperationCall: `call` OperationName OperationArguments? Condition? OperationCallSlot?
 
 OperationArguments : ( Argument* )
 
 Argument : Name `=` JessieExpression
 
-OperationCallEvaluation: { SetVariables* SetOutcome* }
+OperationCallSlot: { SetVariables* SetOutcome* }
 
-{OperationCallEvaluation} context variables:
+{OperationCallSlot} context variables:
 
 - {data} - data as returned by the callee
 - {error} - error as returned by the callee
@@ -266,26 +268,30 @@ map RetrieveCustomers {
 
 # Outcome
 
-Evaluation of a use-case map or operation outcome.
-
 SetOutcome[Map, Operation] :
 
 - [if Map] SetMapOutcome
 - [if Operation] SetOperationOutcome
 
-## Map Evaluation
+Evaluation of a use-case map or operation outcome. The outcome definition depends on its context. When specified in the {Map} context the outcome is defined as {SetMapOutcome}. When specified in the {Operation} context the outcome is defined as {SetOperationOutcome}.
+
+## Map Outcome
 
 SetMapOutcome :
 
 - MapResult
 - MapError
 
-## Operation Evalutation
+Outcome in the {Map} context.
+
+## Operation Outcome
 
 SetOperationOutcome :
 
 - OperationReturn
 - OperationFail
+
+Outcome in the {Operation} context.
 
 # Network Operation
 
@@ -296,7 +302,7 @@ NetworkCall :
 
 # HTTP Call
 
-HTTPCall : http HTTPMethod URLTemplate { HTTPTransaction }
+HTTPCall : `http` HTTPMethod URLTemplate { HTTPTransaction }
 
 HTTPMethod : one of GET HEAD POST PUT DELETE CONNECT OPTIONS TRACE PATCH 
 
@@ -344,28 +350,51 @@ HTTPRequest : `request` ContentType? ContentLanguage? { HTTPRequestSlot* }
 
 HTTPRequestSlot :
 
-- Query
-- Headers
-- Body
+- URLQuery
+- HTTPHeaders
+- HTTPBody
 
-Query : `query` VariableStatements
+URLQuery : `query` VariableStatements
 
-Headers : `headers` VariableStatements
+HTTPHeaders : `headers` VariableStatements
 
-Body : `body` BodyValueDefinition
+HTTPBody : `body` HTTPBodyValueDefinition
 
-BodyValueDefinition:
+HTTPBodyValueDefinition:
 
-- RequestBodyAssignment
+- HTTPRequestBodyAssignment
 - VariableStatements
 
-RequestBodyAssignment : `=` RHS
+HTTPRequestBodyAssignment : `=` RHS
+
+```example
+http GET / {
+  query {
+    parameter = "Hello World!"
+  }
+
+  headers {
+    "my-header" = 42
+  }
+
+  body {
+    key = 1
+  }
+}
+```
+
+
+```example
+http GET / {
+  body = [1, 2, 3]
+}
+```
 
 ## HTTP Response
 
 HTTPRespose : `response` StatusCode? ContentType? ContentLanguage? { HTTPResponseSlot* }
 
-StatusCode: Number
+HTTPStatusCode: Number
 
 ContentType: StringValue
 
