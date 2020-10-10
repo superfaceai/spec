@@ -72,7 +72,7 @@ SetMapResultVariables: VariableStatements
 ```example
 map GetWeather {
   map result {
-    airTemperature = temp  # Sets the value returned to user
+    airTemperature = 42  # Sets the value returned to user
   }
 }
 ```
@@ -450,7 +450,3 @@ String : /[\_A-Za-z][_0-9a-za-z]/
 # A. Appendix: Keywords
 
 TODO:
-
-# B. Appendix: Spec Markdown
-
-Written in [-->_Spec Markdown_<--](https://spec-md.com).
