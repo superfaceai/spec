@@ -161,7 +161,7 @@ LHS : VariableName VariableKeyPath[ObjectVariable]*
 
 VariableName : 
 - Name
-- `"` String `"`
+- StringValue
 
 VariableKeyPath[ObjectVariable] : `.`KeyName
 
@@ -314,7 +314,7 @@ URLPathSegment :
 - URLPathLiteral 
 - URLPathVariable
 
-URLPathLiteral : String
+URLPathLiteral : StringCharacter+
 
 URLPathVariable : { VariableName }
 
@@ -411,6 +411,72 @@ HTTPResponseSlot :
 - {headers} - HTTP response headers in the form of object
 - {body} - HTTP response body parsed as JSON
 
+
+```example
+http GET / {
+  response 200 "application/json" {
+    map result {
+      outputKey = body.someKey
+    }
+  }
+}
+```
+
+```example
+http POST "/users" {
+  response 201 "application/json" {
+    return {
+      id = body.userId
+    }
+  }
+}
+```
+
+Handling HTTP errors:
+
+```example
+http POST "/users" {
+  response 201 "application/json" {
+    ...
+  }
+  
+  response 400 "application/json" {
+    error {
+      title = "Wrong attributes"
+      details = body.message
+    }
+  }
+}
+```
+
+Handling business errors:
+
+```example
+http POST "/users" {
+  response 201 "application/json" {
+    map result if(body.ok) {
+      ...
+    }
+
+    map error if(!body.ok) {
+      ...
+    }
+  }
+}
+```
+
+When {ContentType} is not relevant but {ContentLanguage} is needed, use the `*` wildchar in place of the {ContentType} as follows:
+
+```example
+http GET / {
+  response  "*" "en-US" {
+    map result {
+      rawOutput = body
+    }
+  }
+}
+```
+
 # Conditions
 
 Condition : `if` ( JessieExpression )
@@ -421,13 +487,11 @@ TODO: Well define what is Jessie and what expression we support
 
 JessieExpression: JessieScript
 
-# General Types
+# Language
 
 ## Name
 
-TODO: Check for correct regex with @ELA
-
-Name :: /[\_A-Za-z][_0-9a-za-z]/
+Name :: /[_A-Za-z][_0-9A-Za-z]*/
 
 ## URL Value
 
@@ -435,17 +499,35 @@ URLValue :: `"` URL `"`
 
 ## String Value
 
-StringValue :: `"` String `"`
+StringValue :: `"` StringCharacter* `"`
+
+StringCharacter ::
+  - SourceCharacter but not `"` or \ or LineTerminator
+  - \ EscapedCharacter
+
+EscapedCharacter :: one of `"` \ `/` n r t
 
 ## Number
 
-Number :: /[0-9]/
+Number :: /[0-9]+/
 
-## String
+### Comments
 
-TODO: Check for correct regex with @ELA
+Comment :: `#` CommentChar*
 
-String : /[\_A-Za-z][_0-9a-za-z]/
+CommentChar :: SourceCharacter but not LineTerminator
+
+### Line Terminators
+
+LineTerminator ::
+  - "New Line (U+000A)"
+  - "Carriage Return (U+000D)" [ lookahead ! "New Line (U+000A)" ]
+  - "Carriage Return (U+000D)" "New Line (U+000A)"
+
+### Source Text
+
+SourceCharacter :: /[\u0009\u000A\u000D\u0020-\uFFFF]/
+
 
 # A. Appendix: Keywords
 
