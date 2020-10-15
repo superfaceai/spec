@@ -368,25 +368,39 @@ HTTPBodyValueDefinition:
 HTTPRequestBodyAssignment : `=` RHS
 
 ```example
-http GET / {
-  query {
-    parameter = "Hello World!"
+http GET /greeting {
+  request {
+    query {
+      myName = "John"
+    }
   }
+}
+```
 
-  headers {
-    "my-header" = 42
-  }
+```example
+http POST /users {
+  request "application/json" {
+    query {
+      parameter = "Hello World!"
+    }
 
-  body {
-    key = 1
+    headers {
+      "my-header" = 42
+    }
+
+    body {
+      key = 1
+    }
   }
 }
 ```
 
 
 ```example
-http GET / {
-  body = [1, 2, 3]
+http POST /users {
+  request "application/json" {
+    body = [1, 2, 3]
+  }
 }
 ```
 
