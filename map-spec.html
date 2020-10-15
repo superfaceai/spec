@@ -918,14 +918,10 @@ pre[class*="language-"] {
 <li><a href="#sec-Name"><span class="spec-secid">11.1</span>Name</a></li>
 <li><a href="#sec-URL-Value"><span class="spec-secid">11.2</span>URL Value</a></li>
 <li><a href="#sec-String-Value"><span class="spec-secid">11.3</span>String Value</a></li>
-<li><a href="#sec-Number"><span class="spec-secid">11.4</span>Number</a>
-<input hidden class="toggle" type="checkbox" checked id="_toggle_11.4" /><label for="_toggle_11.4"></label>
-<ol>
-<li><a href="#sec-Comments"><span class="spec-secid">11.4.1</span>Comments</a></li>
-<li><a href="#sec-Line-Terminators"><span class="spec-secid">11.4.2</span>Line Terminators</a></li>
-<li><a href="#sec-Source-Text"><span class="spec-secid">11.4.3</span>Source Text</a></li>
-</ol>
-</li>
+<li><a href="#sec-Number"><span class="spec-secid">11.4</span>Number</a></li>
+<li><a href="#sec-Comments"><span class="spec-secid">11.5</span>Comments</a></li>
+<li><a href="#sec-Line-Terminators"><span class="spec-secid">11.6</span>Line Terminators</a></li>
+<li><a href="#sec-Source-Text"><span class="spec-secid">11.7</span>Source Text</a></li>
 </ol>
 </li>
 <li><a href="#sec-Appendix-Keywords"><span class="spec-secid">A</span>Appendix: Keywords</a></li>
@@ -1457,8 +1453,9 @@ Well define what is Jessie and what expression we support</div>
 <div class="spec-production d2" id="Number">
 <span class="spec-nt"><a href="#Number" data-name="Number">Number</a></span><div class="spec-rhs"><span class="spec-rx">/[0-9]+/</span></div>
 </div>
-<section id="sec-Comments" secid="11.4.1">
-<h4><span class="spec-secid" title="link to this section"><a href="#sec-Comments">11.4.1</a></span>Comments</h4>
+</section>
+<section id="sec-Comments" secid="11.5">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Comments">11.5</a></span>Comments</h3>
 <div class="spec-production d2" id="Comment">
 <span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-t">#</span><span class="spec-quantified"><span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
@@ -1466,20 +1463,19 @@ Well define what is Jessie and what expression we support</div>
 <span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
 </div>
 </section>
-<section id="sec-Line-Terminators" secid="11.4.2">
-<h4><span class="spec-secid" title="link to this section"><a href="#sec-Line-Terminators">11.4.2</a></span>Line Terminators</h4>
+<section id="sec-Line-Terminators" secid="11.6">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Line-Terminators">11.6</a></span>Line Terminators</h3>
 <div class="spec-production d2" id="LineTerminator">
 <span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span><div class="spec-rhs"><span class="spec-prose">New Line (U+000A)</span></div>
 <div class="spec-rhs"><span class="spec-prose">Carriage Return (U+000D)</span><span class="spec-lookahead not"><span class="spec-prose">New Line (U+000A)</span></span></div>
 <div class="spec-rhs"><span class="spec-prose">Carriage Return (U+000D)</span><span class="spec-prose">New Line (U+000A)</span></div>
 </div>
 </section>
-<section id="sec-Source-Text" secid="11.4.3">
-<h4><span class="spec-secid" title="link to this section"><a href="#sec-Source-Text">11.4.3</a></span>Source Text</h4>
+<section id="sec-Source-Text" secid="11.7">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Source-Text">11.7</a></span>Source Text</h3>
 <div class="spec-production d2" id="SourceCharacter">
 <span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><div class="spec-rhs"><span class="spec-rx">/[\u0009\u000A\u000D\u0020-\uFFFF]/</span></div>
 </div>
-</section>
 </section>
 </section>
 <section id="sec-Appendix-Keywords" secid="A">
@@ -1535,14 +1531,10 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <li id="_sidebar_11.1"><a href="#sec-Name"><span class="spec-secid">11.1</span>Name</a></li>
 <li id="_sidebar_11.2"><a href="#sec-URL-Value"><span class="spec-secid">11.2</span>URL Value</a></li>
 <li id="_sidebar_11.3"><a href="#sec-String-Value"><span class="spec-secid">11.3</span>String Value</a></li>
-<li id="_sidebar_11.4"><a href="#sec-Number"><span class="spec-secid">11.4</span>Number</a>
-<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_11.4" /><label for="_sidebar_toggle_11.4"></label>
-<ol>
-<li id="_sidebar_11.4.1"><a href="#sec-Comments"><span class="spec-secid">11.4.1</span>Comments</a></li>
-<li id="_sidebar_11.4.2"><a href="#sec-Line-Terminators"><span class="spec-secid">11.4.2</span>Line Terminators</a></li>
-<li id="_sidebar_11.4.3"><a href="#sec-Source-Text"><span class="spec-secid">11.4.3</span>Source Text</a></li>
-</ol>
-</li>
+<li id="_sidebar_11.4"><a href="#sec-Number"><span class="spec-secid">11.4</span>Number</a></li>
+<li id="_sidebar_11.5"><a href="#sec-Comments"><span class="spec-secid">11.5</span>Comments</a></li>
+<li id="_sidebar_11.6"><a href="#sec-Line-Terminators"><span class="spec-secid">11.6</span>Line Terminators</a></li>
+<li id="_sidebar_11.7"><a href="#sec-Source-Text"><span class="spec-secid">11.7</span>Source Text</a></li>
 </ol>
 </li>
 <li id="_sidebar_A"><a href="#sec-Appendix-Keywords"><span class="spec-secid">A</span>Appendix: Keywords</a></li>
