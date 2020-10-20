@@ -1,5 +1,9 @@
 Superface Map
-=============
+--------------
+
+*Current Working Draft*
+
+**Introduction**
 
 Superface map is a format describing one concrete implementation of a Superface profile. It essentially maps the application (business) semantics into concrete interface implementation.
 
@@ -368,7 +372,7 @@ HTTPBodyValueDefinition:
 HTTPRequestBodyAssignment : `=` RHS
 
 ```example
-http GET /greeting {
+http GET "/greeting" {
   request {
     query {
       myName = "John"
@@ -378,7 +382,7 @@ http GET /greeting {
 ```
 
 ```example
-http POST /users {
+http POST "/users" {
   request "application/json" {
     query {
       parameter = "Hello World!"
@@ -397,7 +401,7 @@ http POST /users {
 
 
 ```example
-http POST /users {
+http POST "/users" {
   request "application/json" {
     body = [1, 2, 3]
   }
@@ -516,7 +520,7 @@ URLValue :: `"` URL `"`
 StringValue :: `"` StringCharacter* `"`
 
 StringCharacter ::
-  - SourceCharacter but not `"` or \ or LineTerminator
+  - SourceCharacter but not `"` or \
   - \ EscapedCharacter
 
 EscapedCharacter :: one of `"` \ `/` n r t
@@ -527,7 +531,7 @@ Number :: /[0-9]+/
 
 ## Comments
 
-Comment :: `#` CommentChar*
+Comment :: `//` CommentChar*
 
 CommentChar :: SourceCharacter but not LineTerminator
 
