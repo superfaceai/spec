@@ -9,12 +9,7 @@ Superface map is a format describing one concrete implementation of a Superface 
 
 # Map Document
 
-MapDocument :
-
-- Profile
-- Provider
-- Map+
-- Operation*
+MapDocument : Profile Provider Map+ Operation*
 
 Profile : `profile` = ProfileId
 
@@ -350,11 +345,20 @@ HTTPTransaction : HTTPSecurity? HTTPRequest? HTTPResponse*
 
 ## HTTP Security 
 
-HTTPSecurity : `security` one of ApiKey Basic Bearer Oauth
+HTTPSecurity : `security` HTTPSecurityScheme
+
+HTTPSecurityScheme:
+
+ - ApiKey
+ - Basic
+ - Bearer
+ - Oauth
 
 ### Api Key Security Scheme
 
-ApiKey: `apikey` one of query header { name = StringValue }
+ApiKey: `apikey` ApiKeyPlacement { name = StringValue }
+
+ApiKeyPlacement : one of `query` `header`
 
 Authentication using an arbitrary API key. 
 
@@ -387,7 +391,7 @@ Using this scheme injects the following variables into the {HTTPRequest}'s conte
 
 ```example
 GET /users {
-  security apikey basic
+  security basic
   
   response {
     ...
@@ -407,7 +411,7 @@ Using this scheme injects the following variables into the {HTTPRequest}'s conte
 
 ```example
 GET /users {
-  security apikey bearer
+  security bearer
   
   response {
     ...
