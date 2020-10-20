@@ -346,7 +346,78 @@ map SendMessage {
 
 ## HTTP Transaction
 
-HTTPTransaction : HTTPRequest? HTTPResponse*
+HTTPTransaction : HTTPSecurity? HTTPRequest? HTTPResponse*
+
+## HTTP Security 
+
+HTTPSecurity : `security` one of ApiKey Basic Bearer Oauth
+
+### Api Key Security Scheme
+
+ApiKey: `apikey` one of query header { name = StringValue }
+
+Authentication using an arbitrary API key. 
+
+```example
+GET /users {
+  security apikey header {
+    name = "my-api-key-header"
+  }
+
+  response {
+    ...
+  }
+}
+```
+
+Using this scheme injects the following variables into the {HTTPRequest}'s context:
+
+- `security.apikey.key` - API key
+
+### Basic Security Scheme
+
+Basic: `basic`
+
+Basic authentication scheme as per [RFC7617](https://tools.ietf.org/html/rfc7617). 
+
+Using this scheme injects the following variables into the {HTTPRequest}'s context:
+
+- `security.basic.username` - Basic authentication user name
+- `security.basic.password` - Basic authentication password
+
+```example
+GET /users {
+  security apikey basic
+  
+  response {
+    ...
+  }
+}
+```
+
+### Bearer Security Scheme
+
+Bearer: `bearer`
+
+Bearer token authentication scheme as per [RFC6750](https://tools.ietf.org/html/rfc6750).
+
+Using this scheme injects the following variables into the {HTTPRequest}'s context:
+
+- `security.bearer.token` - Bearer token 
+
+```example
+GET /users {
+  security apikey bearer
+  
+  response {
+    ...
+  }
+}
+```
+
+### Oauth Security Scheme
+
+TODO: Add support for Oauth2
 
 ## HTTP Request
 
