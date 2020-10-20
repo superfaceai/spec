@@ -1165,38 +1165,38 @@ map RetrieveMessageStatus {
   }
 }
 </code></pre>
-<pre id="example-6f14c" class="spec-example"><a href="#example-6f14c">Example № 13</a><code>map RetrieveCustomers {
-  # Local variables
+<pre id="example-a403b" class="spec-example"><a href="#example-a403b">Example № 13</a><code>map RetrieveCustomers {
+  // Local variables
   set {
     filterId = null
   }
 
 
-  # Step 1
+  // Step 1
   call FindFilter(filterName = &quot;my-superface-map-filter&quot;) if(input.since) {
-    # conditional block for setting the variables
+    // conditional block for setting the variables
     set if (!error) {
       filterId = data.filterId
     }
   }
 
-  # Step 2
+  // Step 2
   call CreateFilter(filterId = filterId) if(input.since &amp;&amp; !filterId) {
     set if (!error) {
       filterId = data.filterId
     }
   }
 
-  # Step 3
+  // Step 3
   call RetrieveOrganizations(filterId = filterId) {
     map result if (!error &amp;&amp; data) {
       customers = data.customers
     }
   }
 
-  # Step 4
+  // Step 4
   call Cleanup() if(filterId) {
-    # ...
+    // ...
   }
 }
 </code></pre>
@@ -1478,6 +1478,11 @@ Well define what is Jessie and what expression we support</div>
 <div class="spec-production d2" id="CommentChar">
 <span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
 </div>
+<pre id="example-45f4d" class="spec-example"><a href="#example-45f4d">Example № 23</a><code>// This is a comment
+map GetWeather {
+  ...
+}
+</code></pre>
 </section>
 <section id="sec-Line-Terminators" secid="11.6">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Line-Terminators">11.6</a></span>Line Terminators</h3>

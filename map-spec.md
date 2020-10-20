@@ -235,37 +235,37 @@ operation Bar {
 
 ```example
 map RetrieveCustomers {
-  # Local variables
+  // Local variables
   set {
     filterId = null
   }
 
 
-  # Step 1
+  // Step 1
   call FindFilter(filterName = "my-superface-map-filter") if(input.since) {
-    # conditional block for setting the variables
+    // conditional block for setting the variables
     set if (!error) {
       filterId = data.filterId
     }
   }
 
-  # Step 2
+  // Step 2
   call CreateFilter(filterId = filterId) if(input.since && !filterId) {
     set if (!error) {
       filterId = data.filterId
     }
   }
 
-  # Step 3
+  // Step 3
   call RetrieveOrganizations(filterId = filterId) {
     map result if (!error && data) {
       customers = data.customers
     }
   }
 
-  # Step 4
+  // Step 4
   call Cleanup() if(filterId) {
-    # ...
+    // ...
   }
 }
 ```
@@ -534,6 +534,13 @@ Number :: /[0-9]+/
 Comment :: `//` CommentChar*
 
 CommentChar :: SourceCharacter but not LineTerminator
+
+```example
+// This is a comment
+map GetWeather {
+  ...
+}
+```
 
 ## Line Terminators
 
