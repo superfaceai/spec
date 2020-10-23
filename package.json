@@ -6,9 +6,10 @@
   "scripts": {
     "test": "supermodel schema validate ./AST/supermodel/superface",
     "publish-supermodel": "cd ./AST/supermodel/superface && supermodel push",
-    "build": "spec-md map-spec.md > map-spec.html",
+    "build": "spec-md map-spec.md > map-spec.html && spec-md profile-spec.md > profile-spec.html",
     "watch:map-spec": "nodemon --exec 'spec-md > map-spec.html' map-spec.md",
-    "surge": "yarn build && mkdir -p ./surge && cp ./map-spec.html surge/map.html  && surge --project ./surge/ --domain sfspec.surge.sh"
+    "watch:profile-spec": "nodemon --exec 'spec-md > profile-spec.html' profile-spec.md",
+    "surge": "yarn build && mkdir -p ./surge && cp ./map-spec.html surge/map.html && cp ./profile-spec.html surge/profile.html && surge --project ./surge/ --domain sfspec.surge.sh"
   },
   "repository": {
     "type": "git",

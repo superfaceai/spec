@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<!-- Built with spec-md https://spec-md.com -->
+<html>
+<head><meta charset="utf-8">
+<title>Superface Profile</title>
+<style>body {
+  color: #333333;
+  font: 13pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  margin: 6rem auto 3rem;
+  max-width: 780px;
+}
+
+/* Selections */
+
+.outdated-selection-link,
+.selection-link {
+  position: absolute;
+  display: block;
+  color: #fff;
+  background: #cacee0;
+  border-radius: 4px;
+  font-size: 36px;
+  height: 23px;
+  line-height: 48px;
+  text-align: center;
+  text-decoration: none;
+  width: 25px;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.outdated-selection-link:hover,
+.selection-link:hover {
+  text-decoration: none;
+}
+
+.outdated-selection-link:before,
+.selection-link:before {
+  border: 5px solid transparent;
+  border-left-color: #cacee0;
+  border-right: 0;
+  content: '';
+  height: 0;
+  margin-top: -5px;
+  margin-right: -5px;
+  position: absolute;
+  right: 1px;
+  top: 50%;
+  width: 0;
+}
+
+.selection-link:hover {
+  background: #3b5998;
+}
+
+.selection-link:hover:before {
+  border-left-color: #3b5998;
+}
+
+.outdated-selection-link {
+  background: #f0babe;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 27px;
+}
+
+.outdated-selection-link:before {
+  border-left-color: #f0babe;
+}
+
+.outdated-selection-link:hover:after {
+  content: "This selection content has changed since this link was created.";
+  font: 9pt/11pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  position: absolute;
+  display: block;
+  white-space: nowrap;
+  padding: 2px 5px 1px;
+  top: -20px;
+  background: black;
+  color: white;
+}
+
+/* Links */
+
+a {
+  color: #3B5998;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+/* Section headers */
+
+h1, h2, h3, h4, h5, h6, h7, h8 {
+  font-weight: bold;
+  margin: 3em 0 1em;
+  position: relative;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin: 6em 0 3em;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-top: 5em;
+}
+
+h3, h4 {
+  font-size: 1.25em;
+}
+
+h5, h6 {
+  font-size: 1em;
+}
+
+section.subsec > h6 {
+  margin-top: 2em;
+}
+
+section.subsec > h6 > a {
+  color: #333333;
+}
+
+section .spec-secid {
+  margin-right: 1ex;
+  position: absolute;
+  right: 100%;
+  text-align: right;
+  white-space: nowrap;
+}
+
+footer {
+  font-size: 75%;
+  opacity: 0.5;
+  text-align: center;
+  margin-top: 12rem;
+}
+
+
+/* Table of contents */
+
+.spec-toc {
+  margin: 1rem 0 3rem;
+}
+
+.spec-toc .title {
+  content: 'Contents';
+  display: block;
+  font-weight: bold;
+  margin: 5em 0 1em;
+}
+
+.spec-toc .spec-secid {
+  margin-right: 1ex;
+}
+
+.spec-toc ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+.spec-toc ol ol {
+  list-style: none;
+  padding-left: 2ex;
+}
+
+.spec-toc li {
+  position: relative;
+  padding: 5px 0 0 30px;
+  margin: -5px 0 0 -30px;
+}
+
+.spec-toc a {
+  color: #333333;
+}
+
+.spec-toc a:hover {
+  text-decoration: none;
+}
+
+.spec-toc a .spec-secid {
+  color: #3B5998;
+}
+
+.spec-toc a:hover .spec-secid {
+  text-decoration: underline;
+}
+
+.spec-toc .toggle {
+  display: none;
+}
+
+.spec-toc .toggle + label {
+  cursor: pointer;
+  left: 10px;
+  opacity: 1;
+  padding: 3px 5px 3px 6px;
+  position: absolute;
+  top: 8px;
+  transform: rotate(0deg);
+  transition: all 0.18s ease-in-out;
+}
+
+.spec-toc .toggle + label:after {
+  border-color: transparent transparent transparent #bbc;
+  border-style: solid;
+  border-width: 6px 0 6px 7px;
+  content: ' ';
+  display: block;
+  height: 0;
+  width: 0;
+}
+
+.spec-toc .toggle:checked + label {
+  transform: rotate(90deg);
+}
+
+.spec-toc li:not(:hover) > .toggle:checked + label {
+  opacity: 0;
+}
+
+.spec-toc .toggle:not(:checked) ~ ol {
+  max-height: 0;
+  overflow: hidden;
+}
+
+
+/* Sidebar */
+
+.spec-sidebar-toggle {
+  display: none;
+}
+
+.spec-sidebar-toggle + label {
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 10px 15px;
+  font-size: 30px;
+  color: rgba(0,0,0,0.7);
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.spec-sidebar {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 320px;
+  font-size: 80%;
+  overflow-y: scroll;
+  height: 100%;
+  padding: 0 0 5rem 30px;
+  box-sizing: border-box;
+  background: #f0f0f0;
+}
+
+.spec-sidebar {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.spec-sidebar-toggle:checked ~ .spec-sidebar {
+  display: block;
+  box-shadow:
+    -1px 0 rgba(0,0,0,0.12),
+    -4px 0 8px -2px rgba(0,0,0,0.05);
+}
+
+.spec-sidebar .viewing > a:after {
+  color: #8b9;
+  content: '\2022';
+  margin-left: 1ex;
+}
+
+@media (min-width: 1240px) {
+  .spec-sidebar-toggle + label {
+    display: none;
+  }
+
+  .spec-sidebar {
+    display: block;
+    box-shadow:
+      inset 1px 0 rgba(0,0,0,0.05),
+      inset 4px 0 8px -2px rgba(0,0,0,0.08) !important;
+  }
+
+  body {
+    padding-right: 300px;
+  }
+}
+
+
+/* Notes */
+
+.spec-note {
+  background: #FEFEF3;
+  border-left: solid 4px #F4E925;
+  margin: 1em -1em;
+  min-width: 416px;
+  padding: 1ex 1em 1ex calc(1em - 4px);
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+}
+
+.spec-note > a:first-child {
+  color: #6C6613;
+  display: block;
+  font: italic 11pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  opacity: 0.6;
+  user-select: none;
+}
+
+
+/* Todos */
+
+.spec-todo {
+  color: #666666;
+  margin: 1em 0 1em 5em;
+  min-height: 1em;
+}
+
+.spec-todo::before {
+  content: 'todo';
+  display: block;
+  float: left;
+  margin-left: -5em;
+  text-transform: uppercase;
+}
+
+/* Index table */
+
+.spec-index ol {
+  list-style-type: none;
+  margin: 0 0 0 2rem;
+  padding: 0;
+  column-width: 210px;
+  column-gap: 2rem;
+}
+
+.spec-index ol li {
+  width: min-content;
+}
+
+/* Code */
+
+code {
+  background: #FAFAFA;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 85%;
+  font-weight: inherit;
+  margin: -2px -1px;
+  padding: 3px 3px;
+  white-space: pre;
+}
+
+pre code {
+  background: none;
+  font-weight: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+pre {
+  background: #FAFAFA;
+  border-left: solid 4px #E9E9E9;
+  margin: 1em -1em;
+  min-width: 40ch;
+  padding: 1ex 1em 1ex calc(1em - 4px);
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+}
+
+.spec-example {
+  background: #FAFAFF;
+  border-left: solid 4px #BBBBFF;
+}
+
+.spec-counter-example {
+  background: #FFFAFA;
+  border-left: solid 4px #FFBBBB;
+}
+
+.spec-example > a,
+.spec-counter-example > a {
+  display: block;
+  font: italic 11pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  opacity: 0.6;
+  user-select: none;
+}
+
+.spec-counter-example > a {
+  color: #98593b;
+}
+
+
+/* Tables */
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #F9F9F9;
+}
+
+td, th {
+  border: 1px solid #D0D0D0;
+  padding: 0.4em;
+  vertical-align: baseline;
+}
+
+
+/* Edits */
+
+ins {
+  background-color: rgba(0, 200, 30, 0.08);
+  text-decoration: none;
+}
+
+del {
+  background-color: rgba(200, 0, 0, 0.08);
+}
+
+.spec-added, .spec-removed {
+  border-left: 4px solid;
+  margin-left: -18px;
+  padding-left: 14px;
+}
+
+.spec-added {
+  border-color: #396;
+}
+
+.spec-removed {
+  border-color: #933;
+  text-decoration: line-through;
+}
+
+
+/* Values */
+
+.spec-keyword {
+  font-weight: bold;
+}
+
+.spec-string {
+  font-family: Consolas, Monaco, monospace;
+  font-size: 85%;
+  white-space: pre;
+}
+
+var {
+  font-style: italic;
+}
+
+*[data-name] {
+  transition: 0.15s background ease-out;
+  border-radius: 2px;
+  padding: 0 3px;
+  margin: 0 -3px;
+}
+
+
+/* Grammar semantics, algorithms and calls */
+
+.spec-semantic,
+.spec-algo {
+  margin: 1rem 0 1rem 2rem;
+}
+
+.spec-semantic > .spec-rhs {
+  display: inline-block;
+  margin-left: 1ex;
+}
+
+.spec-semantic > .spec-nt::after,
+.spec-algo > .spec-call:first-child::after {
+  content: ':';
+  font-style: normal;
+  font-weight: bold;
+  margin-left: 1ex;
+}
+
+.spec-semantic ol, .spec-semantic ol ol ol ol,
+.spec-algo ol, .spec-algo ol ol ol ol {
+  list-style-type: decimal;
+}
+
+.spec-semantic ol ol, .spec-semantic ol ol ol ol ol,
+.spec-algo ol ol, .spec-algo ol ol ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.spec-semantic ol ol ol, .spec-semantic ol ol ol ol ol ol,
+.spec-algo ol ol ol, .spec-algo ol ol ol ol ol ol {
+  list-style-type: lower-roman;
+}
+
+.spec-call > a {
+  color: inherit;
+}
+
+
+/* Grammar productions */
+
+.spec-production {
+  margin: 1rem 0 1rem 2rem;
+}
+
+.spec-production > .spec-nt::after {
+  content: ':';
+  font-style: normal;
+  font-weight: bold;
+  margin: 0 1ex;
+}
+
+.spec-semantic.d2 > .spec-nt::after,
+.spec-production.d2 > .spec-nt::after {
+  content: '::';
+}
+
+.spec-semantic.d3 > .spec-nt::after,
+.spec-production.d3 > .spec-nt::after {
+  content: ':::';
+}
+
+.spec-rhs {
+  margin-left: 2rem;
+}
+
+.spec-oneof {
+  display: inline;
+}
+
+.spec-oneof::before {
+  content: 'one of';
+  font-style: normal;
+  font-weight: bold;
+}
+
+.spec-oneof > table {
+  margin-left: 2rem;
+}
+
+.spec-oneof .spec-rhs {
+  border: none;
+  margin: 0;
+  padding: 0 0.5em;
+  vertical-align: baseline;
+}
+
+.spec-rhs .spec-constrained:not(:first-child),
+.spec-rhs .spec-quantified:not(:first-child),
+.spec-rhs .spec-nt:not(:first-child),
+.spec-rhs .spec-t:not(:first-child),
+.spec-rhs .spec-rx:not(:first-child),
+.spec-rhs .spec-prose:not(:first-child),
+.spec-rhs .spec-empty:not(:first-child),
+.spec-rhs .spec-lookahead:not(:first-child) {
+  margin-left: 1ex;
+}
+
+.spec-condition {
+  font-size: 85%;
+}
+
+.spec-condition::before {
+  content: '[if '
+}
+
+.spec-condition.not::before {
+  content: '[if not '
+}
+
+.spec-condition::after {
+  content: ']'
+}
+
+.spec-empty,
+.spec-prose {
+  color: #666666;
+}
+
+.spec-nt {
+  font-style: italic;
+}
+
+.spec-nt > a {
+  color: inherit;
+}
+
+.spec-quantifiers,
+.spec-params {
+  font-size: 65%;
+  font-style: normal;
+  vertical-align: sub;
+}
+
+.spec-quantifier.list {
+  color: #3348D3;
+}
+
+.spec-quantifier.optional {
+  color: #83238E;
+}
+
+.spec-params,
+.spec-condition {
+  color: #1C7758;
+}
+
+.spec-params::before {
+  content: '[';
+}
+
+.spec-params::after {
+  content: ']';
+}
+
+.spec-quantifier:not(:last-child)::after,
+.spec-param:not(:last-child)::after {
+  color: #666666;
+  content: ', ';
+}
+
+.spec-param.conditional::before {
+  content: '?';
+}
+
+.spec-param.negated::before {
+  content: '!';
+}
+
+.spec-t, .spec-rx {
+  color: #333333;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.spec-butnot::before {
+  color: #666666;
+  content: 'but not';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-weight: normal;
+  margin-right: 1ex;
+}
+
+.spec-butnot > *:not(:first-child)::before {
+  color: #666666;
+  content: 'or';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-weight: normal;
+  margin-right: 1ex;
+}
+
+.spec-rhs .spec-oneof::before,
+.spec-rhs .spec-butnot::before {
+  margin-left: 1ex;
+}
+
+.spec-lookahead > * {
+  margin: 0 !important;
+}
+
+.spec-lookahead > *:not(:first-child)::before {
+  color: #666666;
+  content: ', ';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.spec-lookahead::before {
+  color: #666666;
+  content: '[lookahead = ';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.spec-lookahead.not::before {
+  content: '[lookahead \2260  ';
+}
+
+.spec-lookahead.set::before {
+  content: '[lookahead \2208  {';
+  margin-right: 0;
+}
+
+.spec-lookahead.set.not::before {
+  content: '[lookahead \2209  {';
+}
+
+.spec-lookahead.ntset::before {
+  content: '[lookahead \2208  ';
+  margin-right: 0;
+}
+
+.spec-lookahead.ntset.not::before {
+  content: '[lookahead \2209  ';
+}
+
+.spec-lookahead::after {
+  color: #666666;
+  content: ']';
+}
+
+.spec-lookahead.set::after {
+  content: '}]';
+}
+</style>
+<style>/* Copied from node_modules/prismjs/themes/prism.css */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+<script>(function(){var e,t=document.getElementsByTagName("style")[0].sheet;function n(){e&&(t.deleteRule(e),e=void 0)}document.documentElement.addEventListener("mouseover",(function(a){var u,d=a.target.attributes["data-name"];d&&(u=d.value,n(),e=t.insertRule('*[data-name="'+u+'"] { background: #FBF8D0; }',t.cssRules.length))})),document.documentElement.addEventListener("mouseout",n);})()</script>
+<script>(function(){var e,n,t,o,r="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";function a(e){c(new URL(e.target.href))}function i(){c(window.location)}function c(e){var n=e.hash.match(/^#sel-([A-Za-z0-9-_]+)$/);if(n){o=n[1];var a=(t=function(e){for(var n=new Array(64),t=0;t<64;t++)n[r.charCodeAt(t)]=t;var o=0,a=m(),i=m(),c=m(),d=w(),l=i.pop(),f=u(a.concat(i)),h=c.pop(),g=u(a.concat(c)),v=document.createRange();return v.setStart(f,l),v.setEnd(g,h),v.isOutdated=void 0!==d&&d!==s(v.toString()),v;function w(){for(var t=0,r=0;o<e.length;){var a=n[e.charCodeAt(o++)];if(t|=(31&a)<<r,r+=5,a<32)return t}}function m(){var e=w();if(null!=e){for(var n=new Array(e),t=0;t<e;t++)n[t]=w();return n}}}(o)).getBoundingClientRect(),i=Math.max(20,Math.floor(.4*(window.innerHeight-a.height)));window.scrollTo(0,window.scrollY+a.y-i);var c=document.getSelection();c.empty(),c.addRange(t),d()}}function d(){n||(n=document.getElementsByTagName("article")[0]),e||(e=document.createElement("a"),document.body.appendChild(e)),e.href="#sel-"+o,e.onclick=a,e.className=t.isOutdated?"outdated-selection-link":"selection-link",e.innerText=t.isOutdated?"!":"‟";var r=n.getBoundingClientRect().x,i=t.getBoundingClientRect().y;e.style.left=Math.floor(r+window.scrollX-37)+"px",e.style.top=Math.floor(i+window.scrollY-3)+"px"}function l(e){for(var n=[];e!=document.body;){var t=e.parentNode;n.push(Array.prototype.indexOf.call(t.childNodes,e)),e=t}return n.reverse()}function u(e){for(var n=document.body,t=0;t<e.length&&n;t++)n=n.childNodes[e[t]];return n}function s(e){for(var n=2166136261,t=0;t<e.length;++t)n^=e.charCodeAt(t),n+=(n<<1)+(n<<4)+(n<<7)+(n<<8)+(n<<24);return 32767&(n>>15^n)}document.addEventListener("selectionchange",(function(n){var a=document.getSelection();if(a.isCollapsed)e&&(e.parentNode.removeChild(e),e=null);else{var i=a.getRangeAt(0);t&&0===i.compareBoundaryPoints(Range.START_TO_START,t)&&0===i.compareBoundaryPoints(Range.END_TO_END,t)||(o=function(e){var n="",t=l(e.startContainer),o=l(e.endContainer),a=function(e,n){var t=0;for(;t<e.length&&t<n.length&&e[t]===n[t];)t++;return e.slice(0,t)}(t,o);return c(a),c(t.slice(a.length).concat(e.startOffset)),c(o.slice(a.length).concat(e.endOffset)),i(s(e.toString())),n;function i(e){do{n+=r[31&e|(e>31?32:0)],e>>=5}while(e>0)}function c(e){i(e.length);for(var n=0;n<e.length;n++)i(e[n])}}(t=i),d())}})),window.addEventListener("resize",d),window.addEventListener("hashchange",i),window.addEventListener("load",i);})()</script>
+</head>
+<body><article>
+<header>
+<h1>Superface Profile</h1>
+<section id="intro">
+<p><em>Current Working Draft</em></p>
+<section id="sec-Introduction" class="subsec">
+<h6><a href="#sec-Introduction" title="link to this subsection">Introduction</a></h6>
+<p>/Typed semantic profile/</p>
+<p>/Use&#8208;case description language/</p>
+<p>The superface profile language is a simple format to describe application use&#8208;cases. It enables you to describe the business behavior of an application without the need to go into detail of implementation. </p>
+<p>The profile language was designed with distributed systems applications in mind but can be used for describing any use cases or even for modeling entire domains using the DDD approach.</p>
+<p>Unlike other formats (E.g. Gherkin) Profile does not support the description of actors, roles, or pre&#8208;requisites. </p>
+<p>Contrary to pure semantic profiles (e.g. ALPS) Superface Profile allows adding a type overlay for defined models to allow for the creation of rich developer experiences.</p>
+<p>By convention, one profile file should comprise of one use case (E.g. &ldquo;Get weather&rdquo; or &ldquo;Make payment&rdquo;).</p>
+<p>When submitted to a profile store, the profile must be assigned a globally unique identifier in the form URL (preferably de&#8208;reference&#8208;able).</p>
+</section>
+</section>
+<nav class="spec-toc">
+<div class="title">Contents</div>
+<ol>
+<li><a href="#sec-Profile-Document"><span class="spec-secid">1</span>Profile Document</a></li>
+<li><a href="#sec-Description"><span class="spec-secid">2</span>Description</a></li>
+<li><a href="#sec-Use-case"><span class="spec-secid">3</span>Use-case</a></li>
+<li><a href="#sec-Models"><span class="spec-secid">4</span>Models</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_4" /><label for="_toggle_4"></label>
+<ol>
+<li><a href="#sec-Named-Model"><span class="spec-secid">4.1</span>Named Model</a></li>
+<li><a href="#sec-Model-Definition"><span class="spec-secid">4.2</span>Model Definition</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_4.2" /><label for="_toggle_4.2"></label>
+<ol>
+<li><a href="#sec-Object-Model"><span class="spec-secid">4.2.1</span>Object Model</a></li>
+<li><a href="#sec-List-Model"><span class="spec-secid">4.2.2</span>List Model</a></li>
+<li><a href="#sec-Enum-Model"><span class="spec-secid">4.2.3</span>Enum Model</a></li>
+<li><a href="#sec-Union-Model"><span class="spec-secid">4.2.4</span>Union Model</a></li>
+<li><a href="#sec-Alias-Model"><span class="spec-secid">4.2.5</span>Alias Model</a></li>
+<li><a href="#sec-Scalar-Model"><span class="spec-secid">4.2.6</span>Scalar Model</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#sec-Fields"><span class="spec-secid">5</span>Fields</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_5" /><label for="_toggle_5"></label>
+<ol>
+<li><a href="#sec-Named-Field"><span class="spec-secid">5.1</span>Named Field</a></li>
+<li><a href="#sec-Field-Definition"><span class="spec-secid">5.2</span>Field Definition</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_5.2" /><label for="_toggle_5.2"></label>
+<ol>
+<li><a href="#sec-Required-fields"><span class="spec-secid">5.2.1</span>Required fields</a></li>
+<li><a href="#sec-Non-null-field-value"><span class="spec-secid">5.2.2</span>Non-null field value</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#sec-Types"><span class="spec-secid">6</span>Types</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_6" /><label for="_toggle_6"></label>
+<ol>
+<li><a href="#sec-Primitive-types"><span class="spec-secid">6.1</span>Primitive types</a></li>
+</ol>
+</li>
+<li><a href="#index"><span class="spec-secid">§</span>Index</a></li>
+</ol>
+</nav>
+</header>
+<section id="sec-Profile-Document" secid="1">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Profile-Document">1</a></span>Profile Document</h2>
+<div class="spec-production" id="ProfileDocument">
+<span class="spec-nt"><a href="#ProfileDocument" data-name="ProfileDocument">ProfileDocument</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><a href="#Profile" data-name="Profile">Profile</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#Usecase" data-name="Usecase">Usecase</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#NamedModel" data-name="NamedModel">NamedModel</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#NamedField" data-name="NamedField">NamedField</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="Profile">
+<span class="spec-nt"><a href="#Profile" data-name="Profile">Profile</a></span><div class="spec-rhs"><span class="spec-t">profile</span><span class="spec-t">=</span><span class="spec-nt"><a href="#ProfileId" data-name="ProfileId">ProfileId</a></span></div>
+</div>
+<div class="spec-production" id="ProfileId">
+<span class="spec-nt"><a href="#ProfileId" data-name="ProfileId">ProfileId</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="URLValue">URLValue</span></span></div>
+</div>
+<pre id="example-349fc" class="spec-example"><a href="#example-349fc">Example № 1</a><code>profile = &quot;https://superface.ai/profile/weather/GetWeather&quot;
+
+usecase GetWeather {
+  ...
+}
+</code></pre>
+<pre id="example-74177" class="spec-example"><a href="#example-74177">Example № 2</a><code>profile = &quot;https://superface.ai/profile/weather/GetWeather&quot;
+
+usecase GetWeather {
+  ...
+}
+
+model WeatherInformation {
+  ...
+}
+</code></pre>
+<pre id="example-791cb" class="spec-example"><a href="#example-791cb">Example № 3</a><code>profile = &quot;https://superface.ai/profile/weather/GetWeather&quot;
+
+usecase GetWeather {
+  ...
+}
+
+model WeatherInformation {
+  ...
+}
+
+field location Place
+</code></pre>
+</section>
+<section id="sec-Description" secid="2">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Description">2</a></span>Description</h2>
+<div class="spec-production" id="Description">
+<span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-nt"><span data-name="String">String</span></span><span class="spec-t">&quot;</span></div>
+<div class="spec-rhs"><span class="spec-t">&quot;&quot;&quot;</span><span class="spec-nt"><span data-name="String">String</span></span><span class="spec-t">&quot;&quot;&quot;</span></div>
+</div>
+<p>Any definition in the profile document can have a preceding human&#8208;readable description. Any string literal or block string literal preceding a definition is treated as a description.</p>
+<pre id="example-eb6b8" class="spec-example"><a href="#example-eb6b8">Example № 4</a><code>&quot;Use-case description&quot;
+usecase GetWeather {
+  ...
+}
+</code></pre>
+<pre id="example-10f60" class="spec-example"><a href="#example-10f60">Example № 5</a><code>&quot;&quot;&quot;
+Retrieve Weather Information
+
+Use-case description
+&quot;&quot;&quot;
+usecase GetWeather {
+  ...
+}
+</code></pre>
+</section>
+<section id="sec-Use-case" secid="3">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Use-case">3</a></span>Use-case</h2>
+<div class="spec-production" id="Usecase">
+<span class="spec-nt"><a href="#Usecase" data-name="Usecase">Usecase</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">usecase</span><span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#Safety" data-name="Safety">Safety</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#Input" data-name="Input">Input</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#Result" data-name="Result">Result</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#AsyncResult" data-name="AsyncResult">AsyncResult</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#Error" data-name="Error">Error</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
+</div>
+<div class="spec-production" id="UsecaseName">
+<span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="Name">Name</span></span></div>
+</div>
+<div class="spec-production" id="Safety">
+<span class="spec-nt"><a href="#Safety" data-name="Safety">Safety</a></span><div class="spec-oneof"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">safe</span></td><td class="spec-rhs"><span class="spec-t">unsafe</span></td><td class="spec-rhs"><span class="spec-t">idempotent</span></td></tr>
+</table></div>
+</div>
+<div class="spec-production" id="Input">
+<span class="spec-nt"><a href="#Input" data-name="Input">Input</a></span><div class="spec-rhs"><span class="spec-t">input</span><span class="spec-nt"><a href="#ObjectModel" data-name="ObjectModel">ObjectModel</a></span></div>
+</div>
+<div class="spec-production" id="Result">
+<span class="spec-nt"><a href="#Result" data-name="Result">Result</a></span><div class="spec-rhs"><span class="spec-t">result</span><span class="spec-nt"><a href="#ModelDefinition" data-name="ModelDefinition">ModelDefinition</a></span></div>
+</div>
+<div class="spec-production" id="AsyncResult">
+<span class="spec-nt"><a href="#AsyncResult" data-name="AsyncResult">AsyncResult</a></span><div class="spec-rhs"><span class="spec-t">async</span><span class="spec-t">result</span><span class="spec-nt"><a href="#ModelDefinition" data-name="ModelDefinition">ModelDefinition</a></span></div>
+</div>
+<div class="spec-production" id="Error">
+<span class="spec-nt"><a href="#Error" data-name="Error">Error</a></span><div class="spec-rhs"><span class="spec-t">error</span><span class="spec-quantified"><span class="spec-nt"><a href="#ErrorName" data-name="ErrorName">ErrorName</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><a href="#ModelDefinition" data-name="ModelDefinition">ModelDefinition</a></span></div>
+</div>
+<div class="spec-production" id="ErrorName">
+<span class="spec-nt"><a href="#ErrorName" data-name="ErrorName">ErrorName</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="Name">Name</span></span></div>
+</div>
+<pre id="example-3e95e" class="spec-example"><a href="#example-3e95e">Example № 6</a><code>usecase GetWeather {
+  input {
+    location
+    units
+  }
+
+  result {
+    airTemperature
+    atmosphericPressure
+  }
+}
+</code></pre>
+<pre id="example-d07b1" class="spec-example"><a href="#example-d07b1">Example № 7</a><code>&quot;&quot;&quot;
+Send Message
+
+Send single conversation message
+&quot;&quot;&quot;
+usecase SendMessage unsafe {
+  input {
+    &quot;To
+      recepient of the message&quot;
+    to
+
+    &quot;From
+      sender of the message&quot;    
+    from
+    
+    channel
+
+    &quot;Text 
+      the text of the message&quot;
+    text
+  }
+
+  result {
+    messageId
+  }
+
+  async result {
+    messageId
+    deliveryStatus
+  }
+
+  error {
+    problem
+    detail
+    instance
+  }
+}
+</code></pre>
+</section>
+<section id="sec-Models" secid="4">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Models">4</a></span>Models</h2>
+<section id="sec-Named-Model" secid="4.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Named-Model">4.1</a></span>Named Model</h3>
+<div class="spec-production" id="NamedModel">
+<span class="spec-nt"><a href="#NamedModel" data-name="NamedModel">NamedModel</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">model</span><span class="spec-nt"><a href="#ModelName" data-name="ModelName">ModelName</a></span><span class="spec-nt"><a href="#ModelDefinition" data-name="ModelDefinition">ModelDefinition</a></span></div>
+</div>
+<div class="spec-production" id="ModelName">
+<span class="spec-nt"><a href="#ModelName" data-name="ModelName">ModelName</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="Name">Name</span></span></div>
+</div>
+</section>
+<section id="sec-Model-Definition" secid="4.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Model-Definition">4.2</a></span>Model Definition</h3>
+<div class="spec-production" id="ModelDefinition">
+<span class="spec-nt"><a href="#ModelDefinition" data-name="ModelDefinition">ModelDefinition</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ObjectModel" data-name="ObjectModel">ObjectModel</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#ListModel" data-name="ListModel">ListModel</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#EnumModel" data-name="EnumModel">EnumModel</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#UnionModel" data-name="UnionModel">UnionModel</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#AliasModel" data-name="AliasModel">AliasModel</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#ScalarModel" data-name="ScalarModel">ScalarModel</a></span></div>
+</div>
+<section id="sec-Object-Model" secid="4.2.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Object-Model">4.2.1</a></span>Object Model</h4>
+<div class="spec-production" id="ObjectModel">
+<span class="spec-nt"><a href="#ObjectModel" data-name="ObjectModel">ObjectModel</a></span><div class="spec-rhs"><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#FieldDefinition" data-name="FieldDefinition">FieldDefinition</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
+</div>
+<pre id="example-fc3bb" class="spec-example"><a href="#example-fc3bb">Example № 8</a><code>model WeatherInformation {
+  airTemperature
+  atmosphericPressure
+}
+</code></pre>
+<p>The field definitions of an object model type MUST be separated by a newline or comma <code>,</code> :</p>
+<pre id="example-817c7" class="spec-example"><a href="#example-817c7">Example № 9</a><code>// Newline-separated
+{
+  airTemperature
+  atmosphericPressure
+}
+
+// Comma-separated
+{ airTemperature, atmosphericPressure }
+</code></pre>
+</section>
+<section id="sec-List-Model" secid="4.2.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-List-Model">4.2.2</a></span>List Model</h4>
+<div class="spec-production" id="ListModel">
+<span class="spec-nt"><a href="#ListModel" data-name="ListModel">ListModel</a></span><div class="spec-rhs"><span class="spec-t">[</span><span class="spec-nt"><a href="#ListElement" data-name="ListElement">ListElement</a></span><span class="spec-t">]</span></div>
+</div>
+<div class="spec-production" id="ListElement">
+<span class="spec-nt"><a href="#ListElement" data-name="ListElement">ListElement</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="Model">Model</span></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span></div>
+</div>
+<pre id="example-06af6" class="spec-example"><a href="#example-06af6">Example № 10</a><code>model WeatherHistory [ WeatherInformation ]
+</code></pre>
+</section>
+<section id="sec-Enum-Model" secid="4.2.3">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Enum-Model">4.2.3</a></span>Enum Model</h4>
+<div class="spec-production" id="EnumModel">
+<span class="spec-nt"><a href="#EnumModel" data-name="EnumModel">EnumModel</a></span><div class="spec-rhs"><span class="spec-t">enum</span><span class="spec-t">{</span><span class="spec-nt"><a href="#EnumElement" data-name="EnumElement">EnumElement</a></span><span class="spec-t">}</span></div>
+</div>
+<div class="spec-production" id="EnumElement">
+<span class="spec-nt"><a href="#EnumElement" data-name="EnumElement">EnumElement</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#EnumElementName" data-name="EnumElementName">EnumElementName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#EnumElementValue" data-name="EnumElementValue">EnumElementValue</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="EnumElementName">
+<span class="spec-nt"><a href="#EnumElementName" data-name="EnumElementName">EnumElementName</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="Name">Name</span></span></div>
+</div>
+<div class="spec-production" id="EnumElementValue">
+<span class="spec-nt"><a href="#EnumElementValue" data-name="EnumElementValue">EnumElementValue</a></span><div class="spec-rhs"><span class="spec-t">=</span><span class="spec-nt"><span data-name="ScalarValue">ScalarValue</span></span></div>
+</div>
+<pre id="example-14f3e" class="spec-example"><a href="#example-14f3e">Example № 11</a><code>model Channel enum {
+  sms
+  whatsapp
+  viber
+}
+</code></pre>
+<pre id="example-33261" class="spec-example"><a href="#example-33261">Example № 12</a><code>model Unit enum {
+  &quot;Degrees of Celsius&quot;
+  C = &#x27;celsius&#x27;
+
+  &quot;Degrees of Fahrenheit&quot;
+  F = &#x27;fahrenheit&#x27;
+}
+</code></pre>
+<pre id="example-eb532" class="spec-example"><a href="#example-eb532">Example № 13</a><code>model Values enum {
+  byte = 8
+  kiloByte = 1024
+  fourKiloBytes = 4096
+}
+</code></pre>
+<pre id="example-18d4c" class="spec-example"><a href="#example-18d4c">Example № 14</a><code>// Newline-separated
+enum {
+  sms
+  whatsapp
+  viber
+}
+
+// Comma-separated
+enum { sms, whatsapp, viber }
+</code></pre>
+</section>
+<section id="sec-Union-Model" secid="4.2.4">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Union-Model">4.2.4</a></span>Union Model</h4>
+<div class="spec-production" id="UnionModel">
+<span class="spec-nt"><a href="#UnionModel" data-name="UnionModel">UnionModel</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#UnionModelReferenceList" data-name="UnionModelReferenceList">UnionModelReferenceList</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span></div>
+</div>
+<div class="spec-production" id="UnionModelReferenceList">
+<span class="spec-nt"><a href="#UnionModelReferenceList" data-name="UnionModelReferenceList">UnionModelReferenceList</a></span><div class="spec-rhs"><span class="spec-t">|</span><span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span></div>
+</div>
+<pre id="example-bb8b9" class="spec-example"><a href="#example-bb8b9">Example № 15</a><code>model WeatherData WeatherHistory | WeatherInformation
+</code></pre>
+</section>
+<section id="sec-Alias-Model" secid="4.2.5">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Alias-Model">4.2.5</a></span>Alias Model</h4>
+<div class="spec-production" id="AliasModel">
+<span class="spec-nt"><a href="#AliasModel" data-name="AliasModel">AliasModel</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span></div>
+</div>
+<pre id="example-df8b4" class="spec-example"><a href="#example-df8b4">Example № 16</a><code>model MyWeather WeatherInformation
+</code></pre>
+</section>
+<section id="sec-Scalar-Model" secid="4.2.6">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Scalar-Model">4.2.6</a></span>Scalar Model</h4>
+<div class="spec-production" id="ScalarModel">
+<span class="spec-nt"><a href="#ScalarModel" data-name="ScalarModel">ScalarModel</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#ScalarType" data-name="ScalarType">ScalarType</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<pre id="example-6c29d" class="spec-example"><a href="#example-6c29d">Example № 17</a><code>model Place
+</code></pre>
+<p>Scalar models can have a type overlay using one of the built&#8208;in primitive types:</p>
+<pre id="example-abecb" class="spec-example"><a href="#example-abecb">Example № 18</a><code>model Place string
+</code></pre>
+</section>
+</section>
+</section>
+<section id="sec-Fields" secid="5">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Fields">5</a></span>Fields</h2>
+<section id="sec-Named-Field" secid="5.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Named-Field">5.1</a></span>Named Field</h3>
+<div class="spec-production" id="NamedField">
+<span class="spec-nt"><a href="#NamedField" data-name="NamedField">NamedField</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">field</span><span class="spec-nt"><a href="#FieldDefinition" data-name="FieldDefinition">FieldDefinition</a></span></div>
+</div>
+</section>
+<section id="sec-Field-Definition" secid="5.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Field-Definition">5.2</a></span>Field Definition</h3>
+<div class="spec-production" id="FieldDefinition">
+<span class="spec-nt"><a href="#FieldDefinition" data-name="FieldDefinition">FieldDefinition</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><span data-name="FieldName">FieldName</span></span><span class="spec-quantified"><span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#FieldSpecification" data-name="FieldSpecification">FieldSpecification</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#NonNullField" data-name="NonNullField">NonNullField</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="RequiredField">
+<span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span><div class="spec-rhs"><span class="spec-t">!</span></div>
+</div>
+<div class="spec-production" id="FieldSpecification">
+<span class="spec-nt"><a href="#FieldSpecification" data-name="FieldSpecification">FieldSpecification</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ModelDefinition" data-name="ModelDefinition">ModelDefinition</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span></div>
+</div>
+<div class="spec-production" id="NonNullField">
+<span class="spec-nt"><a href="#NonNullField" data-name="NonNullField">NonNullField</a></span><div class="spec-rhs"><span class="spec-t">!</span></div>
+</div>
+<div class="spec-production" id="ModelReference">
+<span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ModelName" data-name="ModelName">ModelName</a></span></div>
+</div>
+<section id="sec-Required-fields" secid="5.2.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Required-fields">5.2.1</a></span>Required fields</h4>
+<p>By default all fields are optional. To declare field that is required use <span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span> after <span class="spec-nt"><span data-name="FieldName">FieldName</span></span></p>
+<pre id="example-deb51" class="spec-example"><a href="#example-deb51">Example № 19</a><code>model User {
+  name! string      // the field &quot;name&quot; is required (but can be null)
+  email string      // the field &quot;email&quot; is optional
+}
+</code></pre>
+</section>
+<section id="sec-Non-null-field-value" secid="5.2.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Non-null-field-value">5.2.2</a></span>Non-null field value</h4>
+<p>By default all fields are nullable. To declare field that can be null use <span class="spec-nt"><a href="#NonNullField" data-name="NonNullField">NonNullField</a></span> after <span class="spec-nt"><a href="#FieldSpecification" data-name="FieldSpecification">FieldSpecification</a></span></p>
+<pre id="example-e728c" class="spec-example"><a href="#example-e728c">Example № 20</a><code>model User {
+  name string!      // value of name can not be null
+  email string      // value of email can be null
+}
+</code></pre>
+</section>
+</section>
+</section>
+<section id="sec-Types" secid="6">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Types">6</a></span>Types</h2>
+<section id="sec-Primitive-types" secid="6.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Primitive-types">6.1</a></span>Primitive types</h3>
+<div class="spec-production" id="ScalarType">
+<span class="spec-nt"><a href="#ScalarType" data-name="ScalarType">ScalarType</a></span><div class="spec-oneof"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">boolean</span></td><td class="spec-rhs"><span class="spec-t">string</span></td><td class="spec-rhs"><span class="spec-t">number</span></td></tr>
+</table></div>
+</div>
+</section>
+</section>
+<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#AliasModel">AliasModel</a></li><li><a href="#AsyncResult">AsyncResult</a></li><li><a href="#Description">Description</a></li><li><a href="#EnumElement">EnumElement</a></li><li><a href="#EnumElementName">EnumElementName</a></li><li><a href="#EnumElementValue">EnumElementValue</a></li><li><a href="#EnumModel">EnumModel</a></li><li><a href="#Error">Error</a></li><li><a href="#ErrorName">ErrorName</a></li><li><a href="#FieldDefinition">FieldDefinition</a></li><li><a href="#FieldSpecification">FieldSpecification</a></li><li><a href="#Input">Input</a></li><li><a href="#ListElement">ListElement</a></li><li><a href="#ListModel">ListModel</a></li><li><a href="#ModelDefinition">ModelDefinition</a></li><li><a href="#ModelName">ModelName</a></li><li><a href="#ModelReference">ModelReference</a></li><li><a href="#NamedField">NamedField</a></li><li><a href="#NamedModel">NamedModel</a></li><li><a href="#NonNullField">NonNullField</a></li><li><a href="#ObjectModel">ObjectModel</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileDocument">ProfileDocument</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#RequiredField">RequiredField</a></li><li><a href="#Result">Result</a></li><li><a href="#Safety">Safety</a></li><li><a href="#ScalarModel">ScalarModel</a></li><li><a href="#ScalarType">ScalarType</a></li><li><a href="#UnionModel">UnionModel</a></li><li><a href="#UnionModelReferenceList">UnionModelReferenceList</a></li><li><a href="#Usecase">Usecase</a></li><li><a href="#UsecaseName">UsecaseName</a></li></ol></section></article>
+<footer>
+Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</footer>
+<input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label>
+<div class="spec-sidebar" aria-hidden>
+<div class="spec-toc">
+<div class="title"><a href="#">Superface Profile</a></div>
+<ol><li id="_sidebar_1"><a href="#sec-Profile-Document"><span class="spec-secid">1</span>Profile Document</a></li>
+<li id="_sidebar_2"><a href="#sec-Description"><span class="spec-secid">2</span>Description</a></li>
+<li id="_sidebar_3"><a href="#sec-Use-case"><span class="spec-secid">3</span>Use-case</a></li>
+<li id="_sidebar_4"><a href="#sec-Models"><span class="spec-secid">4</span>Models</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_4" /><label for="_sidebar_toggle_4"></label>
+<ol>
+<li id="_sidebar_4.1"><a href="#sec-Named-Model"><span class="spec-secid">4.1</span>Named Model</a></li>
+<li id="_sidebar_4.2"><a href="#sec-Model-Definition"><span class="spec-secid">4.2</span>Model Definition</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_4.2" /><label for="_sidebar_toggle_4.2"></label>
+<ol>
+<li id="_sidebar_4.2.1"><a href="#sec-Object-Model"><span class="spec-secid">4.2.1</span>Object Model</a></li>
+<li id="_sidebar_4.2.2"><a href="#sec-List-Model"><span class="spec-secid">4.2.2</span>List Model</a></li>
+<li id="_sidebar_4.2.3"><a href="#sec-Enum-Model"><span class="spec-secid">4.2.3</span>Enum Model</a></li>
+<li id="_sidebar_4.2.4"><a href="#sec-Union-Model"><span class="spec-secid">4.2.4</span>Union Model</a></li>
+<li id="_sidebar_4.2.5"><a href="#sec-Alias-Model"><span class="spec-secid">4.2.5</span>Alias Model</a></li>
+<li id="_sidebar_4.2.6"><a href="#sec-Scalar-Model"><span class="spec-secid">4.2.6</span>Scalar Model</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li id="_sidebar_5"><a href="#sec-Fields"><span class="spec-secid">5</span>Fields</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_5" /><label for="_sidebar_toggle_5"></label>
+<ol>
+<li id="_sidebar_5.1"><a href="#sec-Named-Field"><span class="spec-secid">5.1</span>Named Field</a></li>
+<li id="_sidebar_5.2"><a href="#sec-Field-Definition"><span class="spec-secid">5.2</span>Field Definition</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_5.2" /><label for="_sidebar_toggle_5.2"></label>
+<ol>
+<li id="_sidebar_5.2.1"><a href="#sec-Required-fields"><span class="spec-secid">5.2.1</span>Required fields</a></li>
+<li id="_sidebar_5.2.2"><a href="#sec-Non-null-field-value"><span class="spec-secid">5.2.2</span>Non-null field value</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li id="_sidebar_6"><a href="#sec-Types"><span class="spec-secid">6</span>Types</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_6" /><label for="_sidebar_toggle_6"></label>
+<ol>
+<li id="_sidebar_6.1"><a href="#sec-Primitive-types"><span class="spec-secid">6.1</span>Primitive types</a></li>
+</ol>
+</li>
+<li id="_sidebar_index"><a href="#index"><span class="spec-secid">§</span>Index</a></li>
+</ol>
+</div>
+<script>(function(){for(var e,t=[],n=document.getElementsByTagName("section"),o=0;o<n.length;o++)n[o].getAttribute("secid")&&t.push(n[o]);var i=window.scrollY,r=!1;function c(n){for(var o,i=n+document.documentElement.clientHeight/4,r=t.length-1;r>=0;r--)if(t[r].offsetTop<i){o=t[r];break}var c=o&&o.getAttribute("secid");c!==e&&(e&&d(e,!1),c&&d(c,!0),e=c)}function d(e,t){document.getElementById("_sidebar_"+e).className=t?"viewing":"";for(var n=e.split(".");n.length;){var o=document.getElementById("_sidebar_toggle_"+n.join("."));o&&(o.checked=t),n.pop()}}window.addEventListener("scroll",(function(e){i=window.scrollY,r||(r=!0,window.requestAnimationFrame((function(){c(i),r=!1})))})),c(window.scrollY);})()</script>
+</div>
+</body>
+</html>
