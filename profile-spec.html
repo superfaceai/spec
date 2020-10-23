@@ -927,6 +927,27 @@ pre[class*="language-"] {
 <li><a href="#sec-Primitive-types"><span class="spec-secid">6.1</span>Primitive types</a></li>
 </ol>
 </li>
+<li><a href="#sec-Language"><span class="spec-secid">7</span>Language</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_7" /><label for="_toggle_7"></label>
+<ol>
+<li><a href="#sec-Source-text"><span class="spec-secid">7.1</span>Source text</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_7.1" /><label for="_toggle_7.1"></label>
+<ol>
+<li><a href="#sec-Comments"><span class="spec-secid">7.1.1</span>Comments</a></li>
+<li><a href="#sec-Line-Terminators"><span class="spec-secid">7.1.2</span>Line Terminators</a></li>
+</ol>
+</li>
+<li><a href="#sec-Common-Definitions"><span class="spec-secid">7.2</span>Common Definitions</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_7.2" /><label for="_toggle_7.2"></label>
+<ol>
+<li><a href="#sec-Identifier"><span class="spec-secid">7.2.1</span>Identifier</a></li>
+<li><a href="#sec-URL-Value"><span class="spec-secid">7.2.2</span>URL Value</a></li>
+<li><a href="#sec-String-Value"><span class="spec-secid">7.2.3</span>String Value</a></li>
+<li><a href="#sec-Integer-Value"><span class="spec-secid">7.2.4</span>Integer Value</a></li>
+</ol>
+</li>
+</ol>
+</li>
 <li><a href="#index"><span class="spec-secid">§</span>Index</a></li>
 </ol>
 </nav>
@@ -940,7 +961,7 @@ pre[class*="language-"] {
 <span class="spec-nt"><a href="#Profile" data-name="Profile">Profile</a></span><div class="spec-rhs"><span class="spec-t">profile</span><span class="spec-t">=</span><span class="spec-nt"><a href="#ProfileId" data-name="ProfileId">ProfileId</a></span></div>
 </div>
 <div class="spec-production" id="ProfileId">
-<span class="spec-nt"><a href="#ProfileId" data-name="ProfileId">ProfileId</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="URLValue">URLValue</span></span></div>
+<span class="spec-nt"><a href="#ProfileId" data-name="ProfileId">ProfileId</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#URLValue" data-name="URLValue">URLValue</a></span></div>
 </div>
 <pre id="example-349fc" class="spec-example"><a href="#example-349fc">Example № 1</a><code>profile = &quot;https://superface.ai/profile/weather/GetWeather&quot;
 
@@ -1081,7 +1102,7 @@ usecase SendMessage unsafe {
 <span class="spec-nt"><a href="#NamedModel" data-name="NamedModel">NamedModel</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">model</span><span class="spec-nt"><a href="#ModelName" data-name="ModelName">ModelName</a></span><span class="spec-nt"><a href="#ModelDefinition" data-name="ModelDefinition">ModelDefinition</a></span></div>
 </div>
 <div class="spec-production" id="ModelName">
-<span class="spec-nt"><a href="#ModelName" data-name="ModelName">ModelName</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="Name">Name</span></span></div>
+<span class="spec-nt"><a href="#ModelName" data-name="ModelName">ModelName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
 </div>
 </section>
 <section id="sec-Model-Definition" secid="4.2">
@@ -1136,7 +1157,7 @@ usecase SendMessage unsafe {
 <span class="spec-nt"><a href="#EnumElement" data-name="EnumElement">EnumElement</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#EnumElementName" data-name="EnumElementName">EnumElementName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#EnumElementValue" data-name="EnumElementValue">EnumElementValue</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
 <div class="spec-production" id="EnumElementName">
-<span class="spec-nt"><a href="#EnumElementName" data-name="EnumElementName">EnumElementName</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="Name">Name</span></span></div>
+<span class="spec-nt"><a href="#EnumElementName" data-name="EnumElementName">EnumElementName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
 </div>
 <div class="spec-production" id="EnumElementValue">
 <span class="spec-nt"><a href="#EnumElementValue" data-name="EnumElementValue">EnumElementValue</a></span><div class="spec-rhs"><span class="spec-t">=</span><span class="spec-nt"><span data-name="ScalarValue">ScalarValue</span></span></div>
@@ -1215,7 +1236,10 @@ enum { sms, whatsapp, viber }
 <section id="sec-Field-Definition" secid="5.2">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Field-Definition">5.2</a></span>Field Definition</h3>
 <div class="spec-production" id="FieldDefinition">
-<span class="spec-nt"><a href="#FieldDefinition" data-name="FieldDefinition">FieldDefinition</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><span data-name="FieldName">FieldName</span></span><span class="spec-quantified"><span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#FieldSpecification" data-name="FieldSpecification">FieldSpecification</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#NonNullField" data-name="NonNullField">NonNullField</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+<span class="spec-nt"><a href="#FieldDefinition" data-name="FieldDefinition">FieldDefinition</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><a href="#FieldName" data-name="FieldName">FieldName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#FieldSpecification" data-name="FieldSpecification">FieldSpecification</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#NonNullField" data-name="NonNullField">NonNullField</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="FieldName">
+<span class="spec-nt"><a href="#FieldName" data-name="FieldName">FieldName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
 </div>
 <div class="spec-production" id="RequiredField">
 <span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span><div class="spec-rhs"><span class="spec-t">!</span></div>
@@ -1232,7 +1256,7 @@ enum { sms, whatsapp, viber }
 </div>
 <section id="sec-Required-fields" secid="5.2.1">
 <h4><span class="spec-secid" title="link to this section"><a href="#sec-Required-fields">5.2.1</a></span>Required fields</h4>
-<p>By default all fields are optional. To declare field that is required use <span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span> after <span class="spec-nt"><span data-name="FieldName">FieldName</span></span></p>
+<p>By default all fields are optional. To declare field that is required use <span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span> after <span class="spec-nt"><a href="#FieldName" data-name="FieldName">FieldName</a></span></p>
 <pre id="example-deb51" class="spec-example"><a href="#example-deb51">Example № 19</a><code>model User {
   name! string      // the field &quot;name&quot; is required (but can be null)
   email string      // the field &quot;email&quot; is optional
@@ -1262,7 +1286,72 @@ enum { sms, whatsapp, viber }
 </div>
 </section>
 </section>
-<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#AliasModel">AliasModel</a></li><li><a href="#AsyncResult">AsyncResult</a></li><li><a href="#Description">Description</a></li><li><a href="#EnumElement">EnumElement</a></li><li><a href="#EnumElementName">EnumElementName</a></li><li><a href="#EnumElementValue">EnumElementValue</a></li><li><a href="#EnumModel">EnumModel</a></li><li><a href="#Error">Error</a></li><li><a href="#ErrorName">ErrorName</a></li><li><a href="#FieldDefinition">FieldDefinition</a></li><li><a href="#FieldSpecification">FieldSpecification</a></li><li><a href="#Input">Input</a></li><li><a href="#ListElement">ListElement</a></li><li><a href="#ListModel">ListModel</a></li><li><a href="#ModelDefinition">ModelDefinition</a></li><li><a href="#ModelName">ModelName</a></li><li><a href="#ModelReference">ModelReference</a></li><li><a href="#NamedField">NamedField</a></li><li><a href="#NamedModel">NamedModel</a></li><li><a href="#NonNullField">NonNullField</a></li><li><a href="#ObjectModel">ObjectModel</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileDocument">ProfileDocument</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#RequiredField">RequiredField</a></li><li><a href="#Result">Result</a></li><li><a href="#Safety">Safety</a></li><li><a href="#ScalarModel">ScalarModel</a></li><li><a href="#ScalarType">ScalarType</a></li><li><a href="#UnionModel">UnionModel</a></li><li><a href="#UnionModelReferenceList">UnionModelReferenceList</a></li><li><a href="#Usecase">Usecase</a></li><li><a href="#UsecaseName">UsecaseName</a></li></ol></section></article>
+<section id="sec-Language" secid="7">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Language">7</a></span>Language</h2>
+<section id="sec-Source-text" secid="7.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Source-text">7.1</a></span>Source text</h3>
+<div class="spec-production d2" id="SourceCharacter">
+<span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><div class="spec-rhs"><span class="spec-rx">/[\u0009\u000A\u000D\u0020-\uFFFF]/</span></div>
+</div>
+<section id="sec-Comments" secid="7.1.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Comments">7.1.1</a></span>Comments</h4>
+<div class="spec-production d2" id="Comment">
+<span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-t">//</span><span class="spec-quantified"><span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production d2" id="CommentChar">
+<span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
+</div>
+<pre id="example-25c72" class="spec-example"><a href="#example-25c72">Example № 21</a><code>// This is a comment
+</code></pre>
+</section>
+<section id="sec-Line-Terminators" secid="7.1.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Line-Terminators">7.1.2</a></span>Line Terminators</h4>
+<div class="spec-production d2" id="LineTerminator">
+<span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span><div class="spec-rhs"><span class="spec-prose">New Line (U+000A)</span></div>
+<div class="spec-rhs"><span class="spec-prose">Carriage Return (U+000D)</span><span class="spec-lookahead not"><span class="spec-prose">New Line (U+000A)</span></span></div>
+<div class="spec-rhs"><span class="spec-prose">Carriage Return (U+000D)</span><span class="spec-prose">New Line (U+000A)</span></div>
+</div>
+</section>
+</section>
+<section id="sec-Common-Definitions" secid="7.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Common-Definitions">7.2</a></span>Common Definitions</h3>
+<section id="sec-Identifier" secid="7.2.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Identifier">7.2.1</a></span>Identifier</h4>
+<div class="spec-production d2" id="Identifier">
+<span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span><div class="spec-rhs"><span class="spec-rx">/[_A-Za-z][_0-9A-Za-z]*/</span></div>
+</div>
+</section>
+<section id="sec-URL-Value" secid="7.2.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-URL-Value">7.2.2</a></span>URL Value</h4>
+<div class="spec-production d2" id="URLValue">
+<span class="spec-nt"><a href="#URLValue" data-name="URLValue">URLValue</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-nt"><span data-name="URL">URL</span></span><span class="spec-t">&quot;</span></div>
+</div>
+</section>
+<section id="sec-String-Value" secid="7.2.3">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-String-Value">7.2.3</a></span>String Value</h4>
+<div class="spec-production d2" id="StringValue">
+<span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-quantified"><span class="spec-nt"><a href="#StringCharacter" data-name="StringCharacter">StringCharacter</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">&quot;</span></div>
+</div>
+<div class="spec-production d2" id="StringCharacter">
+<span class="spec-nt"><a href="#StringCharacter" data-name="StringCharacter">StringCharacter</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-t">&quot;</span><span class="spec-t">\</span></span></span></div>
+<div class="spec-rhs"><span class="spec-t">\</span><span class="spec-nt"><a href="#EscapedCharacter" data-name="EscapedCharacter">EscapedCharacter</a></span></div>
+</div>
+<div class="spec-production d2" id="EscapedCharacter">
+<span class="spec-nt"><a href="#EscapedCharacter" data-name="EscapedCharacter">EscapedCharacter</a></span><div class="spec-oneof"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">&quot;</span></td><td class="spec-rhs"><span class="spec-t">\</span></td><td class="spec-rhs"><span class="spec-t">/</span></td><td class="spec-rhs"><span class="spec-t">n</span></td><td class="spec-rhs"><span class="spec-t">r</span></td><td class="spec-rhs"><span class="spec-t">t</span></td></tr>
+</table></div>
+</div>
+</section>
+<section id="sec-Integer-Value" secid="7.2.4">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Integer-Value">7.2.4</a></span>Integer Value</h4>
+<div class="spec-production d2" id="IntegerValue">
+<span class="spec-nt"><a href="#IntegerValue" data-name="IntegerValue">IntegerValue</a></span><div class="spec-rhs"><span class="spec-rx">/[0-9]+/</span></div>
+</div>
+</section>
+</section>
+</section>
+<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#AliasModel">AliasModel</a></li><li><a href="#AsyncResult">AsyncResult</a></li><li><a href="#Comment">Comment</a></li><li><a href="#CommentChar">CommentChar</a></li><li><a href="#Description">Description</a></li><li><a href="#EnumElement">EnumElement</a></li><li><a href="#EnumElementName">EnumElementName</a></li><li><a href="#EnumElementValue">EnumElementValue</a></li><li><a href="#EnumModel">EnumModel</a></li><li><a href="#Error">Error</a></li><li><a href="#ErrorName">ErrorName</a></li><li><a href="#EscapedCharacter">EscapedCharacter</a></li><li><a href="#FieldDefinition">FieldDefinition</a></li><li><a href="#FieldName">FieldName</a></li><li><a href="#FieldSpecification">FieldSpecification</a></li><li><a href="#Identifier">Identifier</a></li><li><a href="#Input">Input</a></li><li><a href="#IntegerValue">IntegerValue</a></li><li><a href="#LineTerminator">LineTerminator</a></li><li><a href="#ListElement">ListElement</a></li><li><a href="#ListModel">ListModel</a></li><li><a href="#ModelDefinition">ModelDefinition</a></li><li><a href="#ModelName">ModelName</a></li><li><a href="#ModelReference">ModelReference</a></li><li><a href="#NamedField">NamedField</a></li><li><a href="#NamedModel">NamedModel</a></li><li><a href="#NonNullField">NonNullField</a></li><li><a href="#ObjectModel">ObjectModel</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileDocument">ProfileDocument</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#RequiredField">RequiredField</a></li><li><a href="#Result">Result</a></li><li><a href="#Safety">Safety</a></li><li><a href="#ScalarModel">ScalarModel</a></li><li><a href="#ScalarType">ScalarType</a></li><li><a href="#SourceCharacter">SourceCharacter</a></li><li><a href="#StringCharacter">StringCharacter</a></li><li><a href="#StringValue">StringValue</a></li><li><a href="#URLValue">URLValue</a></li><li><a href="#UnionModel">UnionModel</a></li><li><a href="#UnionModelReferenceList">UnionModelReferenceList</a></li><li><a href="#Usecase">Usecase</a></li><li><a href="#UsecaseName">UsecaseName</a></li></ol></section></article>
 <footer>
 Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</footer>
 <input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label>
@@ -1306,6 +1395,27 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_6" /><label for="_sidebar_toggle_6"></label>
 <ol>
 <li id="_sidebar_6.1"><a href="#sec-Primitive-types"><span class="spec-secid">6.1</span>Primitive types</a></li>
+</ol>
+</li>
+<li id="_sidebar_7"><a href="#sec-Language"><span class="spec-secid">7</span>Language</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_7" /><label for="_sidebar_toggle_7"></label>
+<ol>
+<li id="_sidebar_7.1"><a href="#sec-Source-text"><span class="spec-secid">7.1</span>Source text</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_7.1" /><label for="_sidebar_toggle_7.1"></label>
+<ol>
+<li id="_sidebar_7.1.1"><a href="#sec-Comments"><span class="spec-secid">7.1.1</span>Comments</a></li>
+<li id="_sidebar_7.1.2"><a href="#sec-Line-Terminators"><span class="spec-secid">7.1.2</span>Line Terminators</a></li>
+</ol>
+</li>
+<li id="_sidebar_7.2"><a href="#sec-Common-Definitions"><span class="spec-secid">7.2</span>Common Definitions</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_7.2" /><label for="_sidebar_toggle_7.2"></label>
+<ol>
+<li id="_sidebar_7.2.1"><a href="#sec-Identifier"><span class="spec-secid">7.2.1</span>Identifier</a></li>
+<li id="_sidebar_7.2.2"><a href="#sec-URL-Value"><span class="spec-secid">7.2.2</span>URL Value</a></li>
+<li id="_sidebar_7.2.3"><a href="#sec-String-Value"><span class="spec-secid">7.2.3</span>String Value</a></li>
+<li id="_sidebar_7.2.4"><a href="#sec-Integer-Value"><span class="spec-secid">7.2.4</span>Integer Value</a></li>
+</ol>
+</li>
 </ol>
 </li>
 <li id="_sidebar_index"><a href="#index"><span class="spec-secid">§</span>Index</a></li>

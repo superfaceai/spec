@@ -34,9 +34,9 @@ map RetrieveMessageStatus {
 
 # Usecase Map
 
-Map : UsecaseName { MapSlot* }
+Map : map UsecaseName { MapSlot* }
 
-UsecaseName : Name
+UsecaseName : Identifier
 
 MapSlot :
 
@@ -92,9 +92,9 @@ map GetWeather {
 
 # Operation
 
-Operation : OperationName { OperationSlot* }
+Operation : operation OperationName { OperationSlot* }
 
-OperationName : Name
+OperationName : Identifier
 
 OperationSlot :
 
@@ -159,12 +159,12 @@ VariableStatement : LHS `=` RHS
 LHS : VariableName VariableKeyPath[ObjectVariable]*
 
 VariableName : 
-- Name
+- Identifier
 - StringValue
 
 VariableKeyPath[ObjectVariable] : `.`KeyName
 
-KeyName[ObjectVariable] : Name
+KeyName[ObjectVariable] : Identifier
 
 RHS :
 
@@ -201,7 +201,7 @@ OperationCall: `call` OperationName OperationArguments? Condition? OperationCall
 
 OperationArguments : ( Argument* )
 
-Argument : Name `=` JessieExpression
+Argument : Identifier `=` JessieExpression
 
 OperationCallSlot: { SetVariables* SetOutcome* }
 
@@ -487,7 +487,7 @@ http POST "/users" {
 
 HTTPRespose : `response` StatusCode? ContentType? ContentLanguage? { HTTPResponseSlot* }
 
-HTTPStatusCode: Number
+HTTPStatusCode: IntegerValue
 
 ContentType: StringValue
 
@@ -580,54 +580,12 @@ TODO: Well define what is Jessie and what expression we support
 
 JessieExpression: JessieScript
 
+
 # Language
 
-## Name
+[SLANG source text](source-text.md)
 
-Name :: /[_A-Za-z][_0-9A-Za-z]*/
-
-## URL Value
-
-URLValue :: `"` URL `"`
-
-## String Value
-
-StringValue :: `"` StringCharacter* `"`
-
-StringCharacter ::
-  - SourceCharacter but not `"` or \
-  - \ EscapedCharacter
-
-EscapedCharacter :: one of `"` \ `/` n r t
-
-## Number
-
-Number :: /[0-9]+/
-
-## Comments
-
-Comment :: `//` CommentChar*
-
-CommentChar :: SourceCharacter but not LineTerminator
-
-```example
-// This is a comment
-map GetWeather {
-  ...
-}
-```
-
-## Line Terminators
-
-LineTerminator ::
-  - "New Line (U+000A)"
-  - "Carriage Return (U+000D)" [ lookahead ! "New Line (U+000A)" ]
-  - "Carriage Return (U+000D)" "New Line (U+000A)"
-
-## Source Text
-
-SourceCharacter :: /[\u0009\u000A\u000D\u0020-\uFFFF]/
-
+[SLANG common definitions](common-definitions.md)
 
 # A. Appendix: Keywords
 

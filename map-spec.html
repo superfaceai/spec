@@ -928,13 +928,22 @@ pre[class*="language-"] {
 <li><a href="#sec-Language"><span class="spec-secid">11</span>Language</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_11" /><label for="_toggle_11"></label>
 <ol>
-<li><a href="#sec-Name"><span class="spec-secid">11.1</span>Name</a></li>
-<li><a href="#sec-URL-Value"><span class="spec-secid">11.2</span>URL Value</a></li>
-<li><a href="#sec-String-Value"><span class="spec-secid">11.3</span>String Value</a></li>
-<li><a href="#sec-Number"><span class="spec-secid">11.4</span>Number</a></li>
-<li><a href="#sec-Comments"><span class="spec-secid">11.5</span>Comments</a></li>
-<li><a href="#sec-Line-Terminators"><span class="spec-secid">11.6</span>Line Terminators</a></li>
-<li><a href="#sec-Source-Text"><span class="spec-secid">11.7</span>Source Text</a></li>
+<li><a href="#sec-Source-text"><span class="spec-secid">11.1</span>Source text</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_11.1" /><label for="_toggle_11.1"></label>
+<ol>
+<li><a href="#sec-Comments"><span class="spec-secid">11.1.1</span>Comments</a></li>
+<li><a href="#sec-Line-Terminators"><span class="spec-secid">11.1.2</span>Line Terminators</a></li>
+</ol>
+</li>
+<li><a href="#sec-Common-Definitions"><span class="spec-secid">11.2</span>Common Definitions</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_11.2" /><label for="_toggle_11.2"></label>
+<ol>
+<li><a href="#sec-Identifier"><span class="spec-secid">11.2.1</span>Identifier</a></li>
+<li><a href="#sec-URL-Value"><span class="spec-secid">11.2.2</span>URL Value</a></li>
+<li><a href="#sec-String-Value"><span class="spec-secid">11.2.3</span>String Value</a></li>
+<li><a href="#sec-Integer-Value"><span class="spec-secid">11.2.4</span>Integer Value</a></li>
+</ol>
+</li>
 </ol>
 </li>
 <li><a href="#sec-Appendix-Keywords"><span class="spec-secid">A</span>Appendix: Keywords</a></li>
@@ -974,10 +983,10 @@ map RetrieveMessageStatus {
 <section id="sec-Usecase-Map" secid="2">
 <h2><span class="spec-secid" title="link to this section"><a href="#sec-Usecase-Map">2</a></span>Usecase Map</h2>
 <div class="spec-production" id="Map">
-<span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#MapSlot" data-name="MapSlot">MapSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
+<span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span><div class="spec-rhs"><span class="spec-t">map</span><span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#MapSlot" data-name="MapSlot">MapSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
 </div>
 <div class="spec-production" id="UsecaseName">
-<span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
+<span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
 </div>
 <div class="spec-production" id="MapSlot">
 <span class="spec-nt"><a href="#MapSlot" data-name="MapSlot">MapSlot</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#SetVariables" data-name="SetVariables">SetVariables</a></span></div>
@@ -1034,10 +1043,10 @@ map RetrieveMessageStatus {
 <section id="sec-Operation" secid="3">
 <h2><span class="spec-secid" title="link to this section"><a href="#sec-Operation">3</a></span>Operation</h2>
 <div class="spec-production" id="Operation">
-<span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#OperationSlot" data-name="OperationSlot">OperationSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
+<span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span><div class="spec-rhs"><span class="spec-t">operation</span><span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#OperationSlot" data-name="OperationSlot">OperationSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
 </div>
 <div class="spec-production" id="OperationName">
-<span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
+<span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
 </div>
 <div class="spec-production" id="OperationSlot">
 <span class="spec-nt"><a href="#OperationSlot" data-name="OperationSlot">OperationSlot</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#SetVariables" data-name="SetVariables">SetVariables</a></span></div>
@@ -1106,14 +1115,14 @@ map RetrieveMessageStatus {
 <span class="spec-nt"><a href="#LHS" data-name="LHS">LHS</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#VariableKeyPath" data-name="VariableKeyPath">VariableKeyPath</a><span class="spec-params"><span class="spec-param">ObjectVariable</span></span></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
 <div class="spec-production" id="VariableName">
-<span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
+<span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span></div>
 </div>
 <div class="spec-production" id="VariableKeyPath">
 <span class="spec-nt"><a href="#VariableKeyPath" data-name="VariableKeyPath">VariableKeyPath</a><span class="spec-params"><span class="spec-param">ObjectVariable</span></span></span><div class="spec-rhs"><span class="spec-t">.</span><span class="spec-nt"><a href="#KeyName" data-name="KeyName">KeyName</a></span></div>
 </div>
 <div class="spec-production" id="KeyName">
-<span class="spec-nt"><a href="#KeyName" data-name="KeyName">KeyName</a><span class="spec-params"><span class="spec-param">ObjectVariable</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span></div>
+<span class="spec-nt"><a href="#KeyName" data-name="KeyName">KeyName</a><span class="spec-params"><span class="spec-param">ObjectVariable</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
 </div>
 <div class="spec-production" id="RHS">
 <span class="spec-nt"><a href="#RHS" data-name="RHS">RHS</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span></div>
@@ -1145,7 +1154,7 @@ map RetrieveMessageStatus {
 <span class="spec-nt"><a href="#OperationArguments" data-name="OperationArguments">OperationArguments</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-quantified"><span class="spec-nt"><a href="#Argument" data-name="Argument">Argument</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">)</span></div>
 </div>
 <div class="spec-production" id="Argument">
-<span class="spec-nt"><a href="#Argument" data-name="Argument">Argument</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span><span class="spec-t">=</span><span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span></div>
+<span class="spec-nt"><a href="#Argument" data-name="Argument">Argument</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span><span class="spec-t">=</span><span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span></div>
 </div>
 <div class="spec-production" id="OperationCallSlot">
 <span class="spec-nt"><a href="#OperationCallSlot" data-name="OperationCallSlot">OperationCallSlot</a></span><div class="spec-rhs"><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#SetVariables" data-name="SetVariables">SetVariables</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#SetOutcome" data-name="SetOutcome">SetOutcome</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
@@ -1437,7 +1446,7 @@ Add support for Oauth2</div>
 <span class="spec-nt"><a href="#HTTPRespose" data-name="HTTPRespose">HTTPRespose</a></span><div class="spec-rhs"><span class="spec-t">response</span><span class="spec-quantified"><span class="spec-nt"><span data-name="StatusCode">StatusCode</span></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentLanguage" data-name="ContentLanguage">ContentLanguage</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#HTTPResponseSlot" data-name="HTTPResponseSlot">HTTPResponseSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
 </div>
 <div class="spec-production" id="HTTPStatusCode">
-<span class="spec-nt"><a href="#HTTPStatusCode" data-name="HTTPStatusCode">HTTPStatusCode</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Number" data-name="Number">Number</a></span></div>
+<span class="spec-nt"><a href="#HTTPStatusCode" data-name="HTTPStatusCode">HTTPStatusCode</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#IntegerValue" data-name="IntegerValue">IntegerValue</a></span></div>
 </div>
 <div class="spec-production" id="ContentType">
 <span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span></div>
@@ -1525,20 +1534,47 @@ Well define what is Jessie and what expression we support</div>
 </section>
 <section id="sec-Language" secid="11">
 <h2><span class="spec-secid" title="link to this section"><a href="#sec-Language">11</a></span>Language</h2>
-<section id="sec-Name" secid="11.1">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Name">11.1</a></span>Name</h3>
-<div class="spec-production d2" id="Name">
-<span class="spec-nt"><a href="#Name" data-name="Name">Name</a></span><div class="spec-rhs"><span class="spec-rx">/[_A-Za-z][_0-9A-Za-z]*/</span></div>
+<section id="sec-Source-text" secid="11.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Source-text">11.1</a></span>Source text</h3>
+<div class="spec-production d2" id="SourceCharacter">
+<span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><div class="spec-rhs"><span class="spec-rx">/[\u0009\u000A\u000D\u0020-\uFFFF]/</span></div>
+</div>
+<section id="sec-Comments" secid="11.1.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Comments">11.1.1</a></span>Comments</h4>
+<div class="spec-production d2" id="Comment">
+<span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-t">//</span><span class="spec-quantified"><span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production d2" id="CommentChar">
+<span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
+</div>
+<pre id="example-25c72" class="spec-example"><a href="#example-25c72">Example № 26</a><code>// This is a comment
+</code></pre>
+</section>
+<section id="sec-Line-Terminators" secid="11.1.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Line-Terminators">11.1.2</a></span>Line Terminators</h4>
+<div class="spec-production d2" id="LineTerminator">
+<span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span><div class="spec-rhs"><span class="spec-prose">New Line (U+000A)</span></div>
+<div class="spec-rhs"><span class="spec-prose">Carriage Return (U+000D)</span><span class="spec-lookahead not"><span class="spec-prose">New Line (U+000A)</span></span></div>
+<div class="spec-rhs"><span class="spec-prose">Carriage Return (U+000D)</span><span class="spec-prose">New Line (U+000A)</span></div>
 </div>
 </section>
-<section id="sec-URL-Value" secid="11.2">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-URL-Value">11.2</a></span>URL Value</h3>
+</section>
+<section id="sec-Common-Definitions" secid="11.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Common-Definitions">11.2</a></span>Common Definitions</h3>
+<section id="sec-Identifier" secid="11.2.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Identifier">11.2.1</a></span>Identifier</h4>
+<div class="spec-production d2" id="Identifier">
+<span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span><div class="spec-rhs"><span class="spec-rx">/[_A-Za-z][_0-9A-Za-z]*/</span></div>
+</div>
+</section>
+<section id="sec-URL-Value" secid="11.2.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-URL-Value">11.2.2</a></span>URL Value</h4>
 <div class="spec-production d2" id="URLValue">
 <span class="spec-nt"><a href="#URLValue" data-name="URLValue">URLValue</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-nt"><span data-name="URL">URL</span></span><span class="spec-t">&quot;</span></div>
 </div>
 </section>
-<section id="sec-String-Value" secid="11.3">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-String-Value">11.3</a></span>String Value</h3>
+<section id="sec-String-Value" secid="11.2.3">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-String-Value">11.2.3</a></span>String Value</h4>
 <div class="spec-production d2" id="StringValue">
 <span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-quantified"><span class="spec-nt"><a href="#StringCharacter" data-name="StringCharacter">StringCharacter</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">&quot;</span></div>
 </div>
@@ -1553,39 +1589,12 @@ Well define what is Jessie and what expression we support</div>
 </table></div>
 </div>
 </section>
-<section id="sec-Number" secid="11.4">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Number">11.4</a></span>Number</h3>
-<div class="spec-production d2" id="Number">
-<span class="spec-nt"><a href="#Number" data-name="Number">Number</a></span><div class="spec-rhs"><span class="spec-rx">/[0-9]+/</span></div>
+<section id="sec-Integer-Value" secid="11.2.4">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Integer-Value">11.2.4</a></span>Integer Value</h4>
+<div class="spec-production d2" id="IntegerValue">
+<span class="spec-nt"><a href="#IntegerValue" data-name="IntegerValue">IntegerValue</a></span><div class="spec-rhs"><span class="spec-rx">/[0-9]+/</span></div>
 </div>
 </section>
-<section id="sec-Comments" secid="11.5">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Comments">11.5</a></span>Comments</h3>
-<div class="spec-production d2" id="Comment">
-<span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-t">//</span><span class="spec-quantified"><span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
-</div>
-<div class="spec-production d2" id="CommentChar">
-<span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
-</div>
-<pre id="example-45f4d" class="spec-example"><a href="#example-45f4d">Example № 26</a><code>// This is a comment
-map GetWeather {
-  ...
-}
-</code></pre>
-</section>
-<section id="sec-Line-Terminators" secid="11.6">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Line-Terminators">11.6</a></span>Line Terminators</h3>
-<div class="spec-production d2" id="LineTerminator">
-<span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span><div class="spec-rhs"><span class="spec-prose">New Line (U+000A)</span></div>
-<div class="spec-rhs"><span class="spec-prose">Carriage Return (U+000D)</span><span class="spec-lookahead not"><span class="spec-prose">New Line (U+000A)</span></span></div>
-<div class="spec-rhs"><span class="spec-prose">Carriage Return (U+000D)</span><span class="spec-prose">New Line (U+000A)</span></div>
-</div>
-</section>
-<section id="sec-Source-Text" secid="11.7">
-<h3><span class="spec-secid" title="link to this section"><a href="#sec-Source-Text">11.7</a></span>Source Text</h3>
-<div class="spec-production d2" id="SourceCharacter">
-<span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><div class="spec-rhs"><span class="spec-rx">/[\u0009\u000A\u000D\u0020-\uFFFF]/</span></div>
-</div>
 </section>
 </section>
 <section id="sec-Appendix-Keywords" secid="A">
@@ -1593,7 +1602,7 @@ map GetWeather {
 <div class="spec-todo">
  </div>
 </section>
-<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#ApiKey">ApiKey</a></li><li><a href="#ApiKeyPlacement">ApiKeyPlacement</a></li><li><a href="#Argument">Argument</a></li><li><a href="#Basic">Basic</a></li><li><a href="#Bearer">Bearer</a></li><li><a href="#Comment">Comment</a></li><li><a href="#CommentChar">CommentChar</a></li><li><a href="#Condition">Condition</a></li><li><a href="#ContentLanguage">ContentLanguage</a></li><li><a href="#ContentType">ContentType</a></li><li><a href="#EscapedCharacter">EscapedCharacter</a></li><li><a href="#HTTPBody">HTTPBody</a></li><li><a href="#HTTPBodyValueDefinition">HTTPBodyValueDefinition</a></li><li><a href="#HTTPCall">HTTPCall</a></li><li><a href="#HTTPHeaders">HTTPHeaders</a></li><li><a href="#HTTPMethod">HTTPMethod</a></li><li><a href="#HTTPRequest">HTTPRequest</a></li><li><a href="#HTTPRequestBodyAssignment">HTTPRequestBodyAssignment</a></li><li><a href="#HTTPRequestSlot">HTTPRequestSlot</a></li><li><a href="#HTTPResponseSlot">HTTPResponseSlot</a></li><li><a href="#HTTPRespose">HTTPRespose</a></li><li><a href="#HTTPSecurity">HTTPSecurity</a></li><li><a href="#HTTPSecurityScheme">HTTPSecurityScheme</a></li><li><a href="#HTTPStatusCode">HTTPStatusCode</a></li><li><a href="#HTTPTransaction">HTTPTransaction</a></li><li><a href="#JessieExpression">JessieExpression</a></li><li><a href="#KeyName">KeyName</a></li><li><a href="#LHS">LHS</a></li><li><a href="#LineTerminator">LineTerminator</a></li><li><a href="#Map">Map</a></li><li><a href="#MapDocument">MapDocument</a></li><li><a href="#MapError">MapError</a></li><li><a href="#MapResult">MapResult</a></li><li><a href="#MapSlot">MapSlot</a></li><li><a href="#Name">Name</a></li><li><a href="#NetworkCall">NetworkCall</a></li><li><a href="#Number">Number</a></li><li><a href="#Operation">Operation</a></li><li><a href="#OperationArguments">OperationArguments</a></li><li><a href="#OperationCall">OperationCall</a></li><li><a href="#OperationCallSlot">OperationCallSlot</a></li><li><a href="#OperationFail">OperationFail</a></li><li><a href="#OperationName">OperationName</a></li><li><a href="#OperationReturn">OperationReturn</a></li><li><a href="#OperationSlot">OperationSlot</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#Provider">Provider</a></li><li><a href="#ProviderId">ProviderId</a></li><li><a href="#RHS">RHS</a></li><li><a href="#SetMapErrorVariables">SetMapErrorVariables</a></li><li><a href="#SetMapOutcome">SetMapOutcome</a></li><li><a href="#SetMapResultVariables">SetMapResultVariables</a></li><li><a href="#SetOperationFailVariables">SetOperationFailVariables</a></li><li><a href="#SetOperationOutcome">SetOperationOutcome</a></li><li><a href="#SetOperationReturnVariables">SetOperationReturnVariables</a></li><li><a href="#SetOutcome">SetOutcome</a></li><li><a href="#SetVariables">SetVariables</a></li><li><a href="#SourceCharacter">SourceCharacter</a></li><li><a href="#StringCharacter">StringCharacter</a></li><li><a href="#StringValue">StringValue</a></li><li><a href="#URLPath">URLPath</a></li><li><a href="#URLPathLiteral">URLPathLiteral</a></li><li><a href="#URLPathSegment">URLPathSegment</a></li><li><a href="#URLPathVariable">URLPathVariable</a></li><li><a href="#URLQuery">URLQuery</a></li><li><a href="#URLTemplate">URLTemplate</a></li><li><a href="#URLValue">URLValue</a></li><li><a href="#UsecaseName">UsecaseName</a></li><li><a href="#VariableKeyPath">VariableKeyPath</a></li><li><a href="#VariableName">VariableName</a></li><li><a href="#VariableStatement">VariableStatement</a></li><li><a href="#VariableStatements">VariableStatements</a></li></ol></section></article>
+<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#ApiKey">ApiKey</a></li><li><a href="#ApiKeyPlacement">ApiKeyPlacement</a></li><li><a href="#Argument">Argument</a></li><li><a href="#Basic">Basic</a></li><li><a href="#Bearer">Bearer</a></li><li><a href="#Comment">Comment</a></li><li><a href="#CommentChar">CommentChar</a></li><li><a href="#Condition">Condition</a></li><li><a href="#ContentLanguage">ContentLanguage</a></li><li><a href="#ContentType">ContentType</a></li><li><a href="#EscapedCharacter">EscapedCharacter</a></li><li><a href="#HTTPBody">HTTPBody</a></li><li><a href="#HTTPBodyValueDefinition">HTTPBodyValueDefinition</a></li><li><a href="#HTTPCall">HTTPCall</a></li><li><a href="#HTTPHeaders">HTTPHeaders</a></li><li><a href="#HTTPMethod">HTTPMethod</a></li><li><a href="#HTTPRequest">HTTPRequest</a></li><li><a href="#HTTPRequestBodyAssignment">HTTPRequestBodyAssignment</a></li><li><a href="#HTTPRequestSlot">HTTPRequestSlot</a></li><li><a href="#HTTPResponseSlot">HTTPResponseSlot</a></li><li><a href="#HTTPRespose">HTTPRespose</a></li><li><a href="#HTTPSecurity">HTTPSecurity</a></li><li><a href="#HTTPSecurityScheme">HTTPSecurityScheme</a></li><li><a href="#HTTPStatusCode">HTTPStatusCode</a></li><li><a href="#HTTPTransaction">HTTPTransaction</a></li><li><a href="#Identifier">Identifier</a></li><li><a href="#IntegerValue">IntegerValue</a></li><li><a href="#JessieExpression">JessieExpression</a></li><li><a href="#KeyName">KeyName</a></li><li><a href="#LHS">LHS</a></li><li><a href="#LineTerminator">LineTerminator</a></li><li><a href="#Map">Map</a></li><li><a href="#MapDocument">MapDocument</a></li><li><a href="#MapError">MapError</a></li><li><a href="#MapResult">MapResult</a></li><li><a href="#MapSlot">MapSlot</a></li><li><a href="#NetworkCall">NetworkCall</a></li><li><a href="#Operation">Operation</a></li><li><a href="#OperationArguments">OperationArguments</a></li><li><a href="#OperationCall">OperationCall</a></li><li><a href="#OperationCallSlot">OperationCallSlot</a></li><li><a href="#OperationFail">OperationFail</a></li><li><a href="#OperationName">OperationName</a></li><li><a href="#OperationReturn">OperationReturn</a></li><li><a href="#OperationSlot">OperationSlot</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#Provider">Provider</a></li><li><a href="#ProviderId">ProviderId</a></li><li><a href="#RHS">RHS</a></li><li><a href="#SetMapErrorVariables">SetMapErrorVariables</a></li><li><a href="#SetMapOutcome">SetMapOutcome</a></li><li><a href="#SetMapResultVariables">SetMapResultVariables</a></li><li><a href="#SetOperationFailVariables">SetOperationFailVariables</a></li><li><a href="#SetOperationOutcome">SetOperationOutcome</a></li><li><a href="#SetOperationReturnVariables">SetOperationReturnVariables</a></li><li><a href="#SetOutcome">SetOutcome</a></li><li><a href="#SetVariables">SetVariables</a></li><li><a href="#SourceCharacter">SourceCharacter</a></li><li><a href="#StringCharacter">StringCharacter</a></li><li><a href="#StringValue">StringValue</a></li><li><a href="#URLPath">URLPath</a></li><li><a href="#URLPathLiteral">URLPathLiteral</a></li><li><a href="#URLPathSegment">URLPathSegment</a></li><li><a href="#URLPathVariable">URLPathVariable</a></li><li><a href="#URLQuery">URLQuery</a></li><li><a href="#URLTemplate">URLTemplate</a></li><li><a href="#URLValue">URLValue</a></li><li><a href="#UsecaseName">UsecaseName</a></li><li><a href="#VariableKeyPath">VariableKeyPath</a></li><li><a href="#VariableName">VariableName</a></li><li><a href="#VariableStatement">VariableStatement</a></li><li><a href="#VariableStatements">VariableStatements</a></li></ol></section></article>
 <footer>
 Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</footer>
 <input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label>
@@ -1647,13 +1656,22 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <li id="_sidebar_11"><a href="#sec-Language"><span class="spec-secid">11</span>Language</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_11" /><label for="_sidebar_toggle_11"></label>
 <ol>
-<li id="_sidebar_11.1"><a href="#sec-Name"><span class="spec-secid">11.1</span>Name</a></li>
-<li id="_sidebar_11.2"><a href="#sec-URL-Value"><span class="spec-secid">11.2</span>URL Value</a></li>
-<li id="_sidebar_11.3"><a href="#sec-String-Value"><span class="spec-secid">11.3</span>String Value</a></li>
-<li id="_sidebar_11.4"><a href="#sec-Number"><span class="spec-secid">11.4</span>Number</a></li>
-<li id="_sidebar_11.5"><a href="#sec-Comments"><span class="spec-secid">11.5</span>Comments</a></li>
-<li id="_sidebar_11.6"><a href="#sec-Line-Terminators"><span class="spec-secid">11.6</span>Line Terminators</a></li>
-<li id="_sidebar_11.7"><a href="#sec-Source-Text"><span class="spec-secid">11.7</span>Source Text</a></li>
+<li id="_sidebar_11.1"><a href="#sec-Source-text"><span class="spec-secid">11.1</span>Source text</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_11.1" /><label for="_sidebar_toggle_11.1"></label>
+<ol>
+<li id="_sidebar_11.1.1"><a href="#sec-Comments"><span class="spec-secid">11.1.1</span>Comments</a></li>
+<li id="_sidebar_11.1.2"><a href="#sec-Line-Terminators"><span class="spec-secid">11.1.2</span>Line Terminators</a></li>
+</ol>
+</li>
+<li id="_sidebar_11.2"><a href="#sec-Common-Definitions"><span class="spec-secid">11.2</span>Common Definitions</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_11.2" /><label for="_sidebar_toggle_11.2"></label>
+<ol>
+<li id="_sidebar_11.2.1"><a href="#sec-Identifier"><span class="spec-secid">11.2.1</span>Identifier</a></li>
+<li id="_sidebar_11.2.2"><a href="#sec-URL-Value"><span class="spec-secid">11.2.2</span>URL Value</a></li>
+<li id="_sidebar_11.2.3"><a href="#sec-String-Value"><span class="spec-secid">11.2.3</span>String Value</a></li>
+<li id="_sidebar_11.2.4"><a href="#sec-Integer-Value"><span class="spec-secid">11.2.4</span>Integer Value</a></li>
+</ol>
+</li>
 </ol>
 </li>
 <li id="_sidebar_A"><a href="#sec-Appendix-Keywords"><span class="spec-secid">A</span>Appendix: Keywords</a></li>

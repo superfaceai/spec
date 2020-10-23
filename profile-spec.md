@@ -167,7 +167,7 @@ usecase SendMessage unsafe {
 
 NamedModel : Description? `model` ModelName ModelDefinition
 
-ModelName : Name
+ModelName : Identifier
 
 ## Model Definition
 
@@ -223,7 +223,7 @@ EnumModel : enum { EnumElement }
 
 EnumElement : EnumElementName EnumElementValue? 
 
-EnumElementName : Name
+EnumElementName : Identifier
 
 EnumElementValue : = ScalarValue
 
@@ -307,6 +307,8 @@ NamedField : Description? `field` FieldDefinition
 
 FieldDefinition : Description? FieldName RequiredField? FieldSpecification? NonNullField?
 
+FieldName : Identifier
+
 RequiredField : `!`
 
 FieldSpecification : 
@@ -346,5 +348,8 @@ model User {
 
 ScalarType : one of boolean string number
 
+# Language
 
+[SLANG source text](source-text.md)
 
+[SLANG common definitions](common-definitions.md)
