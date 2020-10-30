@@ -1115,6 +1115,13 @@ usecase SendMessage unsafe {
 <div class="spec-rhs"><span class="spec-nt"><a href="#AliasModel" data-name="AliasModel">AliasModel</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#ScalarModel" data-name="ScalarModel">ScalarModel</a></span></div>
 </div>
+<div class="spec-production" id="ModelSpecification">
+<span class="spec-nt"><a href="#ModelSpecification" data-name="ModelSpecification">ModelSpecification</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ModelDefinition" data-name="ModelDefinition">ModelDefinition</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span></div>
+</div>
+<div class="spec-production" id="ModelReference">
+<span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ModelName" data-name="ModelName">ModelName</a></span></div>
+</div>
 <section id="sec-Object-Model" secid="4.2.1">
 <h4><span class="spec-secid" title="link to this section"><a href="#sec-Object-Model">4.2.1</a></span>Object Model</h4>
 <div class="spec-production" id="ObjectModel">
@@ -1139,11 +1146,7 @@ usecase SendMessage unsafe {
 <section id="sec-List-Model" secid="4.2.2">
 <h4><span class="spec-secid" title="link to this section"><a href="#sec-List-Model">4.2.2</a></span>List Model</h4>
 <div class="spec-production" id="ListModel">
-<span class="spec-nt"><a href="#ListModel" data-name="ListModel">ListModel</a></span><div class="spec-rhs"><span class="spec-t">[</span><span class="spec-nt"><a href="#ListElement" data-name="ListElement">ListElement</a></span><span class="spec-t">]</span></div>
-</div>
-<div class="spec-production" id="ListElement">
-<span class="spec-nt"><a href="#ListElement" data-name="ListElement">ListElement</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="Model">Model</span></span></div>
-<div class="spec-rhs"><span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span></div>
+<span class="spec-nt"><a href="#ListModel" data-name="ListModel">ListModel</a></span><div class="spec-rhs"><span class="spec-t">[</span><span class="spec-nt"><a href="#ModelSpecification" data-name="ModelSpecification">ModelSpecification</a></span><span class="spec-t">]</span></div>
 </div>
 <pre id="example-06af6" class="spec-example"><a href="#example-06af6">Example № 10</a><code>model WeatherHistory [ WeatherInformation ]
 </code></pre>
@@ -1236,7 +1239,7 @@ enum { sms, whatsapp, viber }
 <section id="sec-Field-Definition" secid="5.2">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Field-Definition">5.2</a></span>Field Definition</h3>
 <div class="spec-production" id="FieldDefinition">
-<span class="spec-nt"><a href="#FieldDefinition" data-name="FieldDefinition">FieldDefinition</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><a href="#FieldName" data-name="FieldName">FieldName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#FieldSpecification" data-name="FieldSpecification">FieldSpecification</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#NonNullField" data-name="NonNullField">NonNullField</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+<span class="spec-nt"><a href="#FieldDefinition" data-name="FieldDefinition">FieldDefinition</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#Description" data-name="Description">Description</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><a href="#FieldName" data-name="FieldName">FieldName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#FieldSpecification" data-name="FieldSpecification">FieldSpecification</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
 <div class="spec-production" id="FieldName">
 <span class="spec-nt"><a href="#FieldName" data-name="FieldName">FieldName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
@@ -1245,14 +1248,10 @@ enum { sms, whatsapp, viber }
 <span class="spec-nt"><a href="#RequiredField" data-name="RequiredField">RequiredField</a></span><div class="spec-rhs"><span class="spec-t">!</span></div>
 </div>
 <div class="spec-production" id="FieldSpecification">
-<span class="spec-nt"><a href="#FieldSpecification" data-name="FieldSpecification">FieldSpecification</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ModelDefinition" data-name="ModelDefinition">ModelDefinition</a></span></div>
-<div class="spec-rhs"><span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span></div>
+<span class="spec-nt"><a href="#FieldSpecification" data-name="FieldSpecification">FieldSpecification</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ModelSpecification" data-name="ModelSpecification">ModelSpecification</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#NonNullField" data-name="NonNullField">NonNullField</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
 </div>
 <div class="spec-production" id="NonNullField">
 <span class="spec-nt"><a href="#NonNullField" data-name="NonNullField">NonNullField</a></span><div class="spec-rhs"><span class="spec-t">!</span></div>
-</div>
-<div class="spec-production" id="ModelReference">
-<span class="spec-nt"><a href="#ModelReference" data-name="ModelReference">ModelReference</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ModelName" data-name="ModelName">ModelName</a></span></div>
 </div>
 <section id="sec-Required-fields" secid="5.2.1">
 <h4><span class="spec-secid" title="link to this section"><a href="#sec-Required-fields">5.2.1</a></span>Required fields</h4>
@@ -1351,7 +1350,7 @@ enum { sms, whatsapp, viber }
 </section>
 </section>
 </section>
-<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#AliasModel">AliasModel</a></li><li><a href="#AsyncResult">AsyncResult</a></li><li><a href="#Comment">Comment</a></li><li><a href="#CommentChar">CommentChar</a></li><li><a href="#Description">Description</a></li><li><a href="#EnumElement">EnumElement</a></li><li><a href="#EnumElementName">EnumElementName</a></li><li><a href="#EnumElementValue">EnumElementValue</a></li><li><a href="#EnumModel">EnumModel</a></li><li><a href="#Error">Error</a></li><li><a href="#ErrorName">ErrorName</a></li><li><a href="#EscapedCharacter">EscapedCharacter</a></li><li><a href="#FieldDefinition">FieldDefinition</a></li><li><a href="#FieldName">FieldName</a></li><li><a href="#FieldSpecification">FieldSpecification</a></li><li><a href="#Identifier">Identifier</a></li><li><a href="#Input">Input</a></li><li><a href="#IntegerValue">IntegerValue</a></li><li><a href="#LineTerminator">LineTerminator</a></li><li><a href="#ListElement">ListElement</a></li><li><a href="#ListModel">ListModel</a></li><li><a href="#ModelDefinition">ModelDefinition</a></li><li><a href="#ModelName">ModelName</a></li><li><a href="#ModelReference">ModelReference</a></li><li><a href="#NamedField">NamedField</a></li><li><a href="#NamedModel">NamedModel</a></li><li><a href="#NonNullField">NonNullField</a></li><li><a href="#ObjectModel">ObjectModel</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileDocument">ProfileDocument</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#RequiredField">RequiredField</a></li><li><a href="#Result">Result</a></li><li><a href="#Safety">Safety</a></li><li><a href="#ScalarModel">ScalarModel</a></li><li><a href="#ScalarType">ScalarType</a></li><li><a href="#SourceCharacter">SourceCharacter</a></li><li><a href="#StringCharacter">StringCharacter</a></li><li><a href="#StringValue">StringValue</a></li><li><a href="#URLValue">URLValue</a></li><li><a href="#UnionModel">UnionModel</a></li><li><a href="#UnionModelReferenceList">UnionModelReferenceList</a></li><li><a href="#Usecase">Usecase</a></li><li><a href="#UsecaseName">UsecaseName</a></li></ol></section></article>
+<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#AliasModel">AliasModel</a></li><li><a href="#AsyncResult">AsyncResult</a></li><li><a href="#Comment">Comment</a></li><li><a href="#CommentChar">CommentChar</a></li><li><a href="#Description">Description</a></li><li><a href="#EnumElement">EnumElement</a></li><li><a href="#EnumElementName">EnumElementName</a></li><li><a href="#EnumElementValue">EnumElementValue</a></li><li><a href="#EnumModel">EnumModel</a></li><li><a href="#Error">Error</a></li><li><a href="#ErrorName">ErrorName</a></li><li><a href="#EscapedCharacter">EscapedCharacter</a></li><li><a href="#FieldDefinition">FieldDefinition</a></li><li><a href="#FieldName">FieldName</a></li><li><a href="#FieldSpecification">FieldSpecification</a></li><li><a href="#Identifier">Identifier</a></li><li><a href="#Input">Input</a></li><li><a href="#IntegerValue">IntegerValue</a></li><li><a href="#LineTerminator">LineTerminator</a></li><li><a href="#ListModel">ListModel</a></li><li><a href="#ModelDefinition">ModelDefinition</a></li><li><a href="#ModelName">ModelName</a></li><li><a href="#ModelReference">ModelReference</a></li><li><a href="#ModelSpecification">ModelSpecification</a></li><li><a href="#NamedField">NamedField</a></li><li><a href="#NamedModel">NamedModel</a></li><li><a href="#NonNullField">NonNullField</a></li><li><a href="#ObjectModel">ObjectModel</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileDocument">ProfileDocument</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#RequiredField">RequiredField</a></li><li><a href="#Result">Result</a></li><li><a href="#Safety">Safety</a></li><li><a href="#ScalarModel">ScalarModel</a></li><li><a href="#ScalarType">ScalarType</a></li><li><a href="#SourceCharacter">SourceCharacter</a></li><li><a href="#StringCharacter">StringCharacter</a></li><li><a href="#StringValue">StringValue</a></li><li><a href="#URLValue">URLValue</a></li><li><a href="#UnionModel">UnionModel</a></li><li><a href="#UnionModelReferenceList">UnionModelReferenceList</a></li><li><a href="#Usecase">Usecase</a></li><li><a href="#UsecaseName">UsecaseName</a></li></ol></section></article>
 <footer>
 Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</footer>
 <input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label>

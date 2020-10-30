@@ -180,6 +180,13 @@ ModelDefinition :
 - AliasModel
 - ScalarModel
 
+ModelSpecification: 
+
+- ModelDefinition
+- ModelReference
+
+ModelReference : ModelName
+
 ### Object Model
 
 ObjectModel : { FieldDefinition* }
@@ -206,12 +213,7 @@ The field definitions of an object model type MUST be separated by a newline or 
 
 ### List Model
 
-ListModel : `[` ListElement `]`
-
-ListElement : 
-
-- Model
-- ModelReference 
+ListModel : `[` ModelSpecification `]`
 
 ```example
 model WeatherHistory [ WeatherInformation ]
@@ -305,20 +307,15 @@ NamedField : Description? `field` FieldDefinition
 
 ## Field Definition
 
-FieldDefinition : Description? FieldName RequiredField? FieldSpecification? NonNullField?
+FieldDefinition : Description? FieldName RequiredField? FieldSpecification? 
 
 FieldName : Identifier
 
 RequiredField : `!`
 
-FieldSpecification : 
-
-- ModelDefinition
-- ModelReference
+FieldSpecification : ModelSpecification NonNullField?
 
 NonNullField : `!`
-
-ModelReference : ModelName
 
 ### Required fields
 
