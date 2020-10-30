@@ -897,7 +897,12 @@ pre[class*="language-"] {
 </ol>
 </li>
 <li><a href="#sec-Set-Variables"><span class="spec-secid">4</span>Set Variables</a></li>
-<li><a href="#sec-Operation-Call"><span class="spec-secid">5</span>Operation Call</a></li>
+<li><a href="#sec-Operation-Call"><span class="spec-secid">5</span>Operation Call</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_5" /><label for="_toggle_5"></label>
+<ol>
+<li><a href="#sec-Operation-Call-Shorthand"><span class="spec-secid">5.1</span>Operation Call Shorthand</a></li>
+</ol>
+</li>
 <li><a href="#sec-Outcome"><span class="spec-secid">6</span>Outcome</a>
 <input hidden class="toggle" type="checkbox" checked id="_toggle_6" /><label for="_toggle_6"></label>
 <ol>
@@ -917,6 +922,7 @@ pre[class*="language-"] {
 <li><a href="#sec-Basic-Security-Scheme"><span class="spec-secid">8.2.2</span>Basic Security Scheme</a></li>
 <li><a href="#sec-Bearer-Security-Scheme"><span class="spec-secid">8.2.3</span>Bearer Security Scheme</a></li>
 <li><a href="#sec-Oauth-Security-Scheme"><span class="spec-secid">8.2.4</span>Oauth Security Scheme</a></li>
+<li><a href="#sec-No-Security-Scheme"><span class="spec-secid">8.2.5</span>No Security Scheme</a></li>
 </ol>
 </li>
 <li><a href="#sec-HTTP-Request"><span class="spec-secid">8.3</span>HTTP Request</a></li>
@@ -995,6 +1001,8 @@ map RetrieveMessageStatus {
 <div class="spec-rhs"><span class="spec-nt"><a href="#MapResult" data-name="MapResult">MapResult</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#MapError" data-name="MapError">MapError</a></span></div>
 </div>
+<section id="sec-Usecase-Map.Context-Variables" class="subsec">
+<h6><a href="#sec-Usecase-Map.Context-Variables" title="link to this subsection">Context Variables</a></h6>
 <p><span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span> context variables :</p>
 <ul>
 <li><var data-name="input">input</var> - User input as stated in the profile</li>
@@ -1009,6 +1017,7 @@ map RetrieveMessageStatus {
   } 
 }
 </code></pre>
+</section>
 <section id="sec-Map-Result" secid="2.1">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Map-Result">2.1</a></span>Map Result</h3>
 <div class="spec-production" id="MapResult">
@@ -1055,6 +1064,8 @@ map RetrieveMessageStatus {
 <div class="spec-rhs"><span class="spec-nt"><a href="#OperationReturn" data-name="OperationReturn">OperationReturn</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#OperationFail" data-name="OperationFail">OperationFail</a></span></div>
 </div>
+<section id="sec-Operation.Context-Variables" class="subsec">
+<h6><a href="#sec-Operation.Context-Variables" title="link to this subsection">Context Variables</a></h6>
 <p><span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span> context variables :</p>
 <ul>
 <li><var data-name="args">args</var> - arguments as passed in the parent&rsquo;s <span class="spec-nt"><a href="#OperationCall" data-name="OperationCall">OperationCall</a></span></li>
@@ -1065,6 +1076,7 @@ map RetrieveMessageStatus {
   }
 }
 </code></pre>
+</section>
 <section id="sec-Operation-Return" secid="3.1">
 <h3><span class="spec-secid" title="link to this section"><a href="#sec-Operation-Return">3.1</a></span>Operation Return</h3>
 <div class="spec-production" id="OperationReturn">
@@ -1126,7 +1138,7 @@ map RetrieveMessageStatus {
 </div>
 <div class="spec-production" id="RHS">
 <span class="spec-nt"><a href="#RHS" data-name="RHS">RHS</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span></div>
-<div class="spec-rhs"><span class="spec-nt"><a href="#OperationCall" data-name="OperationCall">OperationCall</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#OperationCallShorthand" data-name="OperationCallShorthand">OperationCallShorthand</a></span></div>
 </div>
 <pre id="example-32e12" class="spec-example"><a href="#example-32e12">Example № 8</a><code>set {
   variable = 42
@@ -1159,28 +1171,30 @@ map RetrieveMessageStatus {
 <div class="spec-production" id="OperationCallSlot">
 <span class="spec-nt"><a href="#OperationCallSlot" data-name="OperationCallSlot">OperationCallSlot</a></span><div class="spec-rhs"><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#SetVariables" data-name="SetVariables">SetVariables</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#SetOutcome" data-name="SetOutcome">SetOutcome</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
 </div>
+<section id="sec-Operation-Call.Context-Variables" class="subsec">
+<h6><a href="#sec-Operation-Call.Context-Variables" title="link to this subsection">Context Variables</a></h6>
 <p><span class="spec-nt"><a href="#OperationCallSlot" data-name="OperationCallSlot">OperationCallSlot</a></span> context variables:</p>
 <ul>
-<li><var data-name="data">data</var> - data as returned by the callee</li>
-<li><var data-name="error">error</var> - error as returned by the callee</li>
+<li><code>outcome.data</code> - data as returned by the callee</li>
+<li><code>outcome.error</code> - error as returned by the callee</li>
 </ul>
-<pre id="example-c1f32" class="spec-example"><a href="#example-c1f32">Example № 12</a><code>operation Bar {
+<pre id="example-59fbf" class="spec-example"><a href="#example-59fbf">Example № 12</a><code>operation Bar {
   set {
     variable = 42
   }
 
   call FooWithArgs(text = `My string ${variable}` some = variable + 2 ) {
-    return if (!error) {
-      finalAnswer = &quot;The final answer is &quot; + data.answer
+    return if (!outcome.error) {
+      finalAnswer = &quot;The final answer is &quot; + outcome.data.answer
     }
 
-    fail if (error) {
-      finalAnswer = &quot;There was an error &quot; + error.message
+    fail if (outcome.error) {
+      finalAnswer = &quot;There was an error &quot; + outcome.error.message
     }
   }
 }
 </code></pre>
-<pre id="example-a403b" class="spec-example"><a href="#example-a403b">Example № 13</a><code>map RetrieveCustomers {
+<pre id="example-82e4c" class="spec-example"><a href="#example-82e4c">Example № 13</a><code>map RetrieveCustomers {
   // Local variables
   set {
     filterId = null
@@ -1190,22 +1204,22 @@ map RetrieveMessageStatus {
   // Step 1
   call FindFilter(filterName = &quot;my-superface-map-filter&quot;) if(input.since) {
     // conditional block for setting the variables
-    set if (!error) {
-      filterId = data.filterId
+    set if (!outcome.error) {
+      filterId = outcome.data.filterId
     }
   }
 
   // Step 2
   call CreateFilter(filterId = filterId) if(input.since &amp;&amp; !filterId) {
-    set if (!error) {
-      filterId = data.filterId
+    set if (!outcome.error) {
+      filterId = outcome.data.filterId
     }
   }
 
   // Step 3
   call RetrieveOrganizations(filterId = filterId) {
-    map result if (!error &amp;&amp; data) {
-      customers = data.customers
+    map result if (!outcome.error &amp;&amp; outcome.data) {
+      customers = outcome.data.customers
     }
   }
 
@@ -1215,6 +1229,18 @@ map RetrieveMessageStatus {
   }
 }
 </code></pre>
+</section>
+<section id="sec-Operation-Call-Shorthand" secid="5.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Operation-Call-Shorthand">5.1</a></span>Operation Call Shorthand</h3>
+<div class="spec-production" id="OperationCallShorthand">
+<span class="spec-nt"><a href="#OperationCallShorthand" data-name="OperationCallShorthand">OperationCallShorthand</a></span><div class="spec-rhs"><span class="spec-t">call</span><span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#OperationArguments" data-name="OperationArguments">OperationArguments</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<p>Used as <span class="spec-nt"><a href="#RHS" data-name="RHS">RHS</a></span> instead of <span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span> to invoke an <span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span> in&#8208;place. In the case of success the operation outcome&rsquo;s data is unbundled and returned by the call. See <span class="spec-nt"><a href="#OperationCall" data-name="OperationCall">OperationCall</a></span> context variable <code>outcome</code>.</p>
+<pre id="example-47178" class="spec-example"><a href="#example-47178">Example № 14</a><code>set {
+  someVariable = call Foo
+}
+</code></pre>
+</section>
 </section>
 <section id="sec-Outcome" secid="6">
 <h2><span class="spec-secid" title="link to this section"><a href="#sec-Outcome">6</a></span>Outcome</h2>
@@ -1274,7 +1300,7 @@ map RetrieveMessageStatus {
 <div class="spec-production" id="URLPathVariable">
 <span class="spec-nt"><a href="#URLPathVariable" data-name="URLPathVariable">URLPathVariable</a></span><div class="spec-rhs"><span class="spec-t">{</span><span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><span class="spec-t">}</span></div>
 </div>
-<pre id="example-cddc3" class="spec-example"><a href="#example-cddc3">Example № 14</a><code>map SendMessage {
+<pre id="example-cddc3" class="spec-example"><a href="#example-cddc3">Example № 15</a><code>map SendMessage {
   http POST &quot;/chat-api/v2/messages&quot; {
     request &quot;application/json&quot; {
       body {
@@ -1310,6 +1336,7 @@ map RetrieveMessageStatus {
 <div class="spec-rhs"><span class="spec-nt"><a href="#Basic" data-name="Basic">Basic</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#Bearer" data-name="Bearer">Bearer</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><span data-name="Oauth">Oauth</span></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#None" data-name="None">None</a></span></div>
 </div>
 <section id="sec-Api-Key-Security-Scheme" secid="8.2.1">
 <h4><span class="spec-secid" title="link to this section"><a href="#sec-Api-Key-Security-Scheme">8.2.1</a></span>Api Key Security Scheme</h4>
@@ -1323,7 +1350,7 @@ map RetrieveMessageStatus {
 </table></div>
 </div>
 <p>Authentication using an arbitrary API key. </p>
-<pre id="example-42580" class="spec-example"><a href="#example-42580">Example № 15</a><code>GET /users {
+<pre id="example-3783a" class="spec-example"><a href="#example-3783a">Example № 16</a><code>GET &quot;/users&quot; {
   security apikey header {
     name = &quot;my-api-key-header&quot;
   }
@@ -1333,10 +1360,13 @@ map RetrieveMessageStatus {
   }
 }
 </code></pre>
+<section id="sec-Api-Key-Security-Scheme.Context-Variables" class="subsec">
+<h6><a href="#sec-Api-Key-Security-Scheme.Context-Variables" title="link to this subsection">Context Variables</a></h6>
 <p>Using this scheme injects the following variables into the <span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span>&lsquo;s context:</p>
 <ul>
 <li><code>security.apikey.key</code> - API key</li>
 </ul>
+</section>
 </section>
 <section id="sec-Basic-Security-Scheme" secid="8.2.2">
 <h4><span class="spec-secid" title="link to this section"><a href="#sec-Basic-Security-Scheme">8.2.2</a></span>Basic Security Scheme</h4>
@@ -1344,12 +1374,14 @@ map RetrieveMessageStatus {
 <span class="spec-nt"><a href="#Basic" data-name="Basic">Basic</a></span><div class="spec-rhs"><span class="spec-t">basic</span></div>
 </div>
 <p>Basic authentication scheme as per <a href="https://tools.ietf.org/html/rfc7617">RFC7617</a>. </p>
+<section id="sec-Basic-Security-Scheme.Context-Variables" class="subsec">
+<h6><a href="#sec-Basic-Security-Scheme.Context-Variables" title="link to this subsection">Context Variables</a></h6>
 <p>Using this scheme injects the following variables into the <span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span>&lsquo;s context:</p>
 <ul>
 <li><code>security.basic.username</code> - Basic authentication user name</li>
 <li><code>security.basic.password</code> - Basic authentication password</li>
 </ul>
-<pre id="example-ddb58" class="spec-example"><a href="#example-ddb58">Example № 16</a><code>GET /users {
+<pre id="example-ea01a" class="spec-example"><a href="#example-ea01a">Example № 17</a><code>GET &quot;/users&quot; {
   security basic
   
   response {
@@ -1358,17 +1390,20 @@ map RetrieveMessageStatus {
 }
 </code></pre>
 </section>
+</section>
 <section id="sec-Bearer-Security-Scheme" secid="8.2.3">
 <h4><span class="spec-secid" title="link to this section"><a href="#sec-Bearer-Security-Scheme">8.2.3</a></span>Bearer Security Scheme</h4>
 <div class="spec-production" id="Bearer">
 <span class="spec-nt"><a href="#Bearer" data-name="Bearer">Bearer</a></span><div class="spec-rhs"><span class="spec-t">bearer</span></div>
 </div>
 <p>Bearer token authentication scheme as per <a href="https://tools.ietf.org/html/rfc6750">RFC6750</a>.</p>
+<section id="sec-Bearer-Security-Scheme.Context-Variables" class="subsec">
+<h6><a href="#sec-Bearer-Security-Scheme.Context-Variables" title="link to this subsection">Context Variables</a></h6>
 <p>Using this scheme injects the following variables into the <span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span>&lsquo;s context:</p>
 <ul>
 <li><code>security.bearer.token</code> - Bearer token </li>
 </ul>
-<pre id="example-7be3b" class="spec-example"><a href="#example-7be3b">Example № 17</a><code>GET /users {
+<pre id="example-30eb1" class="spec-example"><a href="#example-30eb1">Example № 18</a><code>GET &quot;/users&quot; {
   security bearer
   
   response {
@@ -1377,10 +1412,26 @@ map RetrieveMessageStatus {
 }
 </code></pre>
 </section>
+</section>
 <section id="sec-Oauth-Security-Scheme" secid="8.2.4">
 <h4><span class="spec-secid" title="link to this section"><a href="#sec-Oauth-Security-Scheme">8.2.4</a></span>Oauth Security Scheme</h4>
 <div class="spec-todo">
 Add support for Oauth2</div>
+</section>
+<section id="sec-No-Security-Scheme" secid="8.2.5">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-No-Security-Scheme">8.2.5</a></span>No Security Scheme</h4>
+<div class="spec-production" id="None">
+<span class="spec-nt"><a href="#None" data-name="None">None</a></span><div class="spec-rhs"><span class="spec-t">none</span></div>
+</div>
+<p>Default security scheme if no other <span class="spec-nt"><a href="#HTTPSecurity" data-name="HTTPSecurity">HTTPSecurity</a></span> is provided. Explicitly signifies public endpoints. </p>
+<pre id="example-a8b4e" class="spec-example"><a href="#example-a8b4e">Example № 19</a><code>GET &quot;/public-endpoint&quot; {
+  security none
+  
+  response {
+    ...
+  }
+}
+</code></pre>
 </section>
 </section>
 <section id="sec-HTTP-Request" secid="8.3">
@@ -1409,7 +1460,7 @@ Add support for Oauth2</div>
 <div class="spec-production" id="HTTPRequestBodyAssignment">
 <span class="spec-nt"><a href="#HTTPRequestBodyAssignment" data-name="HTTPRequestBodyAssignment">HTTPRequestBodyAssignment</a></span><div class="spec-rhs"><span class="spec-t">=</span><span class="spec-nt"><a href="#RHS" data-name="RHS">RHS</a></span></div>
 </div>
-<pre id="example-74e1a" class="spec-example"><a href="#example-74e1a">Example № 18</a><code>http GET &quot;/greeting&quot; {
+<pre id="example-74e1a" class="spec-example"><a href="#example-74e1a">Example № 20</a><code>http GET &quot;/greeting&quot; {
   request {
     query {
       myName = &quot;John&quot;
@@ -1417,7 +1468,7 @@ Add support for Oauth2</div>
   }
 }
 </code></pre>
-<pre id="example-9d4f0" class="spec-example"><a href="#example-9d4f0">Example № 19</a><code>http POST &quot;/users&quot; {
+<pre id="example-9d4f0" class="spec-example"><a href="#example-9d4f0">Example № 21</a><code>http POST &quot;/users&quot; {
   request &quot;application/json&quot; {
     query {
       parameter = &quot;Hello World!&quot;
@@ -1433,7 +1484,7 @@ Add support for Oauth2</div>
   }
 }
 </code></pre>
-<pre id="example-d4170" class="spec-example"><a href="#example-d4170">Example № 20</a><code>http POST &quot;/users&quot; {
+<pre id="example-d4170" class="spec-example"><a href="#example-d4170">Example № 22</a><code>http POST &quot;/users&quot; {
   request &quot;application/json&quot; {
     body = [1, 2, 3]
   }
@@ -1458,13 +1509,15 @@ Add support for Oauth2</div>
 <span class="spec-nt"><a href="#HTTPResponseSlot" data-name="HTTPResponseSlot">HTTPResponseSlot</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#SetVariables" data-name="SetVariables">SetVariables</a></span></div>
 <div class="spec-rhs"><span class="spec-nt"><a href="#SetOutcome" data-name="SetOutcome">SetOutcome</a></span></div>
 </div>
+<section id="sec-HTTP-Response.Context-Variables" class="subsec">
+<h6><a href="#sec-HTTP-Response.Context-Variables" title="link to this subsection">Context Variables</a></h6>
 <p><span class="spec-nt"><a href="#HTTPResponseSlot" data-name="HTTPResponseSlot">HTTPResponseSlot</a></span> context variables :</p>
 <ul>
 <li><var data-name="statusCode">statusCode</var> - HTTP response status code parsed as number</li>
 <li><var data-name="headers">headers</var> - HTTP response headers in the form of object</li>
 <li><var data-name="body">body</var> - HTTP response body parsed as JSON</li>
 </ul>
-<pre id="example-002a5" class="spec-example"><a href="#example-002a5">Example № 21</a><code>http GET / {
+<pre id="example-caecb" class="spec-example"><a href="#example-caecb">Example № 23</a><code>http GET &quot;/&quot; {
   response 200 &quot;application/json&quot; {
     map result {
       outputKey = body.someKey
@@ -1472,7 +1525,7 @@ Add support for Oauth2</div>
   }
 }
 </code></pre>
-<pre id="example-ef794" class="spec-example"><a href="#example-ef794">Example № 22</a><code>http POST &quot;/users&quot; {
+<pre id="example-ef794" class="spec-example"><a href="#example-ef794">Example № 24</a><code>http POST &quot;/users&quot; {
   response 201 &quot;application/json&quot; {
     return {
       id = body.userId
@@ -1481,7 +1534,7 @@ Add support for Oauth2</div>
 }
 </code></pre>
 <p>Handling HTTP errors:</p>
-<pre id="example-0bee7" class="spec-example"><a href="#example-0bee7">Example № 23</a><code>http POST &quot;/users&quot; {
+<pre id="example-0bee7" class="spec-example"><a href="#example-0bee7">Example № 25</a><code>http POST &quot;/users&quot; {
   response 201 &quot;application/json&quot; {
     ...
   }
@@ -1495,7 +1548,7 @@ Add support for Oauth2</div>
 }
 </code></pre>
 <p>Handling business errors:</p>
-<pre id="example-f0035" class="spec-example"><a href="#example-f0035">Example № 24</a><code>http POST &quot;/users&quot; {
+<pre id="example-f0035" class="spec-example"><a href="#example-f0035">Example № 26</a><code>http POST &quot;/users&quot; {
   response 201 &quot;application/json&quot; {
     map result if(body.ok) {
       ...
@@ -1508,7 +1561,7 @@ Add support for Oauth2</div>
 }
 </code></pre>
 <p>When <span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span> is not relevant but <span class="spec-nt"><a href="#ContentLanguage" data-name="ContentLanguage">ContentLanguage</a></span> is needed, use the <code>*</code> wildchar in place of the <span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span> as follows:</p>
-<pre id="example-446cd" class="spec-example"><a href="#example-446cd">Example № 25</a><code>http GET / {
+<pre id="example-b7127" class="spec-example"><a href="#example-b7127">Example № 27</a><code>http GET &quot;/&quot; {
   response  &quot;*&quot; &quot;en-US&quot; {
     map result {
       rawOutput = body
@@ -1516,6 +1569,7 @@ Add support for Oauth2</div>
   }
 }
 </code></pre>
+</section>
 </section>
 </section>
 <section id="sec-Conditions" secid="9">
@@ -1547,7 +1601,7 @@ Well define what is Jessie and what expression we support</div>
 <div class="spec-production d2" id="CommentChar">
 <span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
 </div>
-<pre id="example-25c72" class="spec-example"><a href="#example-25c72">Example № 26</a><code>// This is a comment
+<pre id="example-25c72" class="spec-example"><a href="#example-25c72">Example № 28</a><code>// This is a comment
 </code></pre>
 </section>
 <section id="sec-Line-Terminators" secid="11.1.2">
@@ -1602,7 +1656,7 @@ Well define what is Jessie and what expression we support</div>
 <div class="spec-todo">
  </div>
 </section>
-<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#ApiKey">ApiKey</a></li><li><a href="#ApiKeyPlacement">ApiKeyPlacement</a></li><li><a href="#Argument">Argument</a></li><li><a href="#Basic">Basic</a></li><li><a href="#Bearer">Bearer</a></li><li><a href="#Comment">Comment</a></li><li><a href="#CommentChar">CommentChar</a></li><li><a href="#Condition">Condition</a></li><li><a href="#ContentLanguage">ContentLanguage</a></li><li><a href="#ContentType">ContentType</a></li><li><a href="#EscapedCharacter">EscapedCharacter</a></li><li><a href="#HTTPBody">HTTPBody</a></li><li><a href="#HTTPBodyValueDefinition">HTTPBodyValueDefinition</a></li><li><a href="#HTTPCall">HTTPCall</a></li><li><a href="#HTTPHeaders">HTTPHeaders</a></li><li><a href="#HTTPMethod">HTTPMethod</a></li><li><a href="#HTTPRequest">HTTPRequest</a></li><li><a href="#HTTPRequestBodyAssignment">HTTPRequestBodyAssignment</a></li><li><a href="#HTTPRequestSlot">HTTPRequestSlot</a></li><li><a href="#HTTPResponseSlot">HTTPResponseSlot</a></li><li><a href="#HTTPRespose">HTTPRespose</a></li><li><a href="#HTTPSecurity">HTTPSecurity</a></li><li><a href="#HTTPSecurityScheme">HTTPSecurityScheme</a></li><li><a href="#HTTPStatusCode">HTTPStatusCode</a></li><li><a href="#HTTPTransaction">HTTPTransaction</a></li><li><a href="#Identifier">Identifier</a></li><li><a href="#IntegerValue">IntegerValue</a></li><li><a href="#JessieExpression">JessieExpression</a></li><li><a href="#KeyName">KeyName</a></li><li><a href="#LHS">LHS</a></li><li><a href="#LineTerminator">LineTerminator</a></li><li><a href="#Map">Map</a></li><li><a href="#MapDocument">MapDocument</a></li><li><a href="#MapError">MapError</a></li><li><a href="#MapResult">MapResult</a></li><li><a href="#MapSlot">MapSlot</a></li><li><a href="#NetworkCall">NetworkCall</a></li><li><a href="#Operation">Operation</a></li><li><a href="#OperationArguments">OperationArguments</a></li><li><a href="#OperationCall">OperationCall</a></li><li><a href="#OperationCallSlot">OperationCallSlot</a></li><li><a href="#OperationFail">OperationFail</a></li><li><a href="#OperationName">OperationName</a></li><li><a href="#OperationReturn">OperationReturn</a></li><li><a href="#OperationSlot">OperationSlot</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#Provider">Provider</a></li><li><a href="#ProviderId">ProviderId</a></li><li><a href="#RHS">RHS</a></li><li><a href="#SetMapErrorVariables">SetMapErrorVariables</a></li><li><a href="#SetMapOutcome">SetMapOutcome</a></li><li><a href="#SetMapResultVariables">SetMapResultVariables</a></li><li><a href="#SetOperationFailVariables">SetOperationFailVariables</a></li><li><a href="#SetOperationOutcome">SetOperationOutcome</a></li><li><a href="#SetOperationReturnVariables">SetOperationReturnVariables</a></li><li><a href="#SetOutcome">SetOutcome</a></li><li><a href="#SetVariables">SetVariables</a></li><li><a href="#SourceCharacter">SourceCharacter</a></li><li><a href="#StringCharacter">StringCharacter</a></li><li><a href="#StringValue">StringValue</a></li><li><a href="#URLPath">URLPath</a></li><li><a href="#URLPathLiteral">URLPathLiteral</a></li><li><a href="#URLPathSegment">URLPathSegment</a></li><li><a href="#URLPathVariable">URLPathVariable</a></li><li><a href="#URLQuery">URLQuery</a></li><li><a href="#URLTemplate">URLTemplate</a></li><li><a href="#URLValue">URLValue</a></li><li><a href="#UsecaseName">UsecaseName</a></li><li><a href="#VariableKeyPath">VariableKeyPath</a></li><li><a href="#VariableName">VariableName</a></li><li><a href="#VariableStatement">VariableStatement</a></li><li><a href="#VariableStatements">VariableStatements</a></li></ol></section></article>
+<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#ApiKey">ApiKey</a></li><li><a href="#ApiKeyPlacement">ApiKeyPlacement</a></li><li><a href="#Argument">Argument</a></li><li><a href="#Basic">Basic</a></li><li><a href="#Bearer">Bearer</a></li><li><a href="#Comment">Comment</a></li><li><a href="#CommentChar">CommentChar</a></li><li><a href="#Condition">Condition</a></li><li><a href="#ContentLanguage">ContentLanguage</a></li><li><a href="#ContentType">ContentType</a></li><li><a href="#EscapedCharacter">EscapedCharacter</a></li><li><a href="#HTTPBody">HTTPBody</a></li><li><a href="#HTTPBodyValueDefinition">HTTPBodyValueDefinition</a></li><li><a href="#HTTPCall">HTTPCall</a></li><li><a href="#HTTPHeaders">HTTPHeaders</a></li><li><a href="#HTTPMethod">HTTPMethod</a></li><li><a href="#HTTPRequest">HTTPRequest</a></li><li><a href="#HTTPRequestBodyAssignment">HTTPRequestBodyAssignment</a></li><li><a href="#HTTPRequestSlot">HTTPRequestSlot</a></li><li><a href="#HTTPResponseSlot">HTTPResponseSlot</a></li><li><a href="#HTTPRespose">HTTPRespose</a></li><li><a href="#HTTPSecurity">HTTPSecurity</a></li><li><a href="#HTTPSecurityScheme">HTTPSecurityScheme</a></li><li><a href="#HTTPStatusCode">HTTPStatusCode</a></li><li><a href="#HTTPTransaction">HTTPTransaction</a></li><li><a href="#Identifier">Identifier</a></li><li><a href="#IntegerValue">IntegerValue</a></li><li><a href="#JessieExpression">JessieExpression</a></li><li><a href="#KeyName">KeyName</a></li><li><a href="#LHS">LHS</a></li><li><a href="#LineTerminator">LineTerminator</a></li><li><a href="#Map">Map</a></li><li><a href="#MapDocument">MapDocument</a></li><li><a href="#MapError">MapError</a></li><li><a href="#MapResult">MapResult</a></li><li><a href="#MapSlot">MapSlot</a></li><li><a href="#NetworkCall">NetworkCall</a></li><li><a href="#None">None</a></li><li><a href="#Operation">Operation</a></li><li><a href="#OperationArguments">OperationArguments</a></li><li><a href="#OperationCall">OperationCall</a></li><li><a href="#OperationCallShorthand">OperationCallShorthand</a></li><li><a href="#OperationCallSlot">OperationCallSlot</a></li><li><a href="#OperationFail">OperationFail</a></li><li><a href="#OperationName">OperationName</a></li><li><a href="#OperationReturn">OperationReturn</a></li><li><a href="#OperationSlot">OperationSlot</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#Provider">Provider</a></li><li><a href="#ProviderId">ProviderId</a></li><li><a href="#RHS">RHS</a></li><li><a href="#SetMapErrorVariables">SetMapErrorVariables</a></li><li><a href="#SetMapOutcome">SetMapOutcome</a></li><li><a href="#SetMapResultVariables">SetMapResultVariables</a></li><li><a href="#SetOperationFailVariables">SetOperationFailVariables</a></li><li><a href="#SetOperationOutcome">SetOperationOutcome</a></li><li><a href="#SetOperationReturnVariables">SetOperationReturnVariables</a></li><li><a href="#SetOutcome">SetOutcome</a></li><li><a href="#SetVariables">SetVariables</a></li><li><a href="#SourceCharacter">SourceCharacter</a></li><li><a href="#StringCharacter">StringCharacter</a></li><li><a href="#StringValue">StringValue</a></li><li><a href="#URLPath">URLPath</a></li><li><a href="#URLPathLiteral">URLPathLiteral</a></li><li><a href="#URLPathSegment">URLPathSegment</a></li><li><a href="#URLPathVariable">URLPathVariable</a></li><li><a href="#URLQuery">URLQuery</a></li><li><a href="#URLTemplate">URLTemplate</a></li><li><a href="#URLValue">URLValue</a></li><li><a href="#UsecaseName">UsecaseName</a></li><li><a href="#VariableKeyPath">VariableKeyPath</a></li><li><a href="#VariableName">VariableName</a></li><li><a href="#VariableStatement">VariableStatement</a></li><li><a href="#VariableStatements">VariableStatements</a></li></ol></section></article>
 <footer>
 Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</footer>
 <input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label>
@@ -1625,7 +1679,12 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 </ol>
 </li>
 <li id="_sidebar_4"><a href="#sec-Set-Variables"><span class="spec-secid">4</span>Set Variables</a></li>
-<li id="_sidebar_5"><a href="#sec-Operation-Call"><span class="spec-secid">5</span>Operation Call</a></li>
+<li id="_sidebar_5"><a href="#sec-Operation-Call"><span class="spec-secid">5</span>Operation Call</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_5" /><label for="_sidebar_toggle_5"></label>
+<ol>
+<li id="_sidebar_5.1"><a href="#sec-Operation-Call-Shorthand"><span class="spec-secid">5.1</span>Operation Call Shorthand</a></li>
+</ol>
+</li>
 <li id="_sidebar_6"><a href="#sec-Outcome"><span class="spec-secid">6</span>Outcome</a>
 <input hidden class="toggle" type="checkbox" id="_sidebar_toggle_6" /><label for="_sidebar_toggle_6"></label>
 <ol>
@@ -1645,6 +1704,7 @@ Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</foo
 <li id="_sidebar_8.2.2"><a href="#sec-Basic-Security-Scheme"><span class="spec-secid">8.2.2</span>Basic Security Scheme</a></li>
 <li id="_sidebar_8.2.3"><a href="#sec-Bearer-Security-Scheme"><span class="spec-secid">8.2.3</span>Bearer Security Scheme</a></li>
 <li id="_sidebar_8.2.4"><a href="#sec-Oauth-Security-Scheme"><span class="spec-secid">8.2.4</span>Oauth Security Scheme</a></li>
+<li id="_sidebar_8.2.5"><a href="#sec-No-Security-Scheme"><span class="spec-secid">8.2.5</span>No Security Scheme</a></li>
 </ol>
 </li>
 <li id="_sidebar_8.3"><a href="#sec-HTTP-Request"><span class="spec-secid">8.3</span>HTTP Request</a></li>

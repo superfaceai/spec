@@ -46,6 +46,8 @@ MapSlot :
 - MapResult
 - MapError
 
+**Context Variables**
+
 {Map} context variables :
 
 - {input} - User input as stated in the profile
@@ -103,6 +105,8 @@ OperationSlot :
 - NetworkCall
 - OperationReturn
 - OperationFail
+
+**Context Variables**
 
 {Operation} context variables :
 
@@ -169,7 +173,7 @@ KeyName[ObjectVariable] : Identifier
 RHS :
 
 - JessieExpression
-- OperationCall
+- OperationCallShorthand
 
 ```example
 set {
@@ -205,10 +209,12 @@ Argument : Identifier `=` JessieExpression
 
 OperationCallSlot: { SetVariables* SetOutcome* }
 
+**Context Variables**
+
 {OperationCallSlot} context variables:
 
-- {data} - data as returned by the callee
-- {error} - error as returned by the callee
+- `outcome.data` -  data as returned by the callee
+- `outcome.error` - error as returned by the callee
 
 ```example
 operation Bar {
@@ -217,12 +223,12 @@ operation Bar {
   }
 
   call FooWithArgs(text = `My string ${variable}` some = variable + 2 ) {
-    return if (!error) {
-      finalAnswer = "The final answer is " + data.answer
+    return if (!outcome.error) {
+      finalAnswer = "The final answer is " + outcome.data.answer
     }
 
-    fail if (error) {
-      finalAnswer = "There was an error " + error.message
+    fail if (outcome.error) {
+      finalAnswer = "There was an error " + outcome.error.message
     }
   }
 }
@@ -239,22 +245,22 @@ map RetrieveCustomers {
   // Step 1
   call FindFilter(filterName = "my-superface-map-filter") if(input.since) {
     // conditional block for setting the variables
-    set if (!error) {
-      filterId = data.filterId
+    set if (!outcome.error) {
+      filterId = outcome.data.filterId
     }
   }
 
   // Step 2
   call CreateFilter(filterId = filterId) if(input.since && !filterId) {
-    set if (!error) {
-      filterId = data.filterId
+    set if (!outcome.error) {
+      filterId = outcome.data.filterId
     }
   }
 
   // Step 3
   call RetrieveOrganizations(filterId = filterId) {
-    map result if (!error && data) {
-      customers = data.customers
+    map result if (!outcome.error && outcome.data) {
+      customers = outcome.data.customers
     }
   }
 
@@ -264,6 +270,20 @@ map RetrieveCustomers {
   }
 }
 ```
+
+## Operation Call Shorthand
+
+OperationCallShorthand: `call` OperationName OperationArguments? 
+
+Used as {RHS} instead of {JessieExpression} to invoke an {Operation} in-place. In the case of success the operation outcome's data is unbundled and returned by the call. See {OperationCall} context variable `outcome`.
+
+
+```example
+set {
+  someVariable = call Foo
+}
+```
+
 
 # Outcome
 
@@ -353,6 +373,7 @@ HTTPSecurityScheme:
  - Basic
  - Bearer
  - Oauth
+ - None
 
 ### Api Key Security Scheme
 
@@ -363,7 +384,7 @@ ApiKeyPlacement : one of `query` `header`
 Authentication using an arbitrary API key. 
 
 ```example
-GET /users {
+GET "/users" {
   security apikey header {
     name = "my-api-key-header"
   }
@@ -373,6 +394,8 @@ GET /users {
   }
 }
 ```
+
+**Context Variables**
 
 Using this scheme injects the following variables into the {HTTPRequest}'s context:
 
@@ -384,13 +407,15 @@ Basic: `basic`
 
 Basic authentication scheme as per [RFC7617](https://tools.ietf.org/html/rfc7617). 
 
+**Context Variables**
+
 Using this scheme injects the following variables into the {HTTPRequest}'s context:
 
 - `security.basic.username` - Basic authentication user name
 - `security.basic.password` - Basic authentication password
 
 ```example
-GET /users {
+GET "/users" {
   security basic
   
   response {
@@ -405,12 +430,14 @@ Bearer: `bearer`
 
 Bearer token authentication scheme as per [RFC6750](https://tools.ietf.org/html/rfc6750).
 
+**Context Variables**
+
 Using this scheme injects the following variables into the {HTTPRequest}'s context:
 
 - `security.bearer.token` - Bearer token 
 
 ```example
-GET /users {
+GET "/users" {
   security bearer
   
   response {
@@ -422,6 +449,22 @@ GET /users {
 ### Oauth Security Scheme
 
 TODO: Add support for Oauth2
+
+### No Security Scheme
+
+None: `none`
+
+Default security scheme if no other {HTTPSecurity} is provided. Explicitly signifies public endpoints. 
+
+```example
+GET "/public-endpoint" {
+  security none
+  
+  response {
+    ...
+  }
+}
+```
 
 ## HTTP Request
 
@@ -498,6 +541,8 @@ HTTPResponseSlot :
 - SetVariables
 - SetOutcome
 
+**Context Variables**
+
 {HTTPResponseSlot} context variables :
 
 - {statusCode} - HTTP response status code parsed as number
@@ -506,7 +551,7 @@ HTTPResponseSlot :
 
 
 ```example
-http GET / {
+http GET "/" {
   response 200 "application/json" {
     map result {
       outputKey = body.someKey
@@ -561,7 +606,7 @@ http POST "/users" {
 When {ContentType} is not relevant but {ContentLanguage} is needed, use the `*` wildchar in place of the {ContentType} as follows:
 
 ```example
-http GET / {
+http GET "/" {
   response  "*" "en-US" {
     map result {
       rawOutput = body
