@@ -103,9 +103,7 @@ Result : result ModelDefinition
 
 AsyncResult : async result ModelDefinition
 
-Error : error ErrorName? ModelDefinition
-
-ErrorName : Name
+Error : error ModelDefinition
 
 ```example
 usecase GetWeather {
