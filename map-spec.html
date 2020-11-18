@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<!-- Built with spec-md https://spec-md.com -->
+<html>
+<head><meta charset="utf-8">
+<title>Superface Map</title>
+<style>body {
+  color: #333333;
+  font: 13pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  margin: 6rem auto 3rem;
+  max-width: 780px;
+}
+
+/* Selections */
+
+.outdated-selection-link,
+.selection-link {
+  position: absolute;
+  display: block;
+  color: #fff;
+  background: #cacee0;
+  border-radius: 4px;
+  font-size: 36px;
+  height: 23px;
+  line-height: 48px;
+  text-align: center;
+  text-decoration: none;
+  width: 25px;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.outdated-selection-link:hover,
+.selection-link:hover {
+  text-decoration: none;
+}
+
+.outdated-selection-link:before,
+.selection-link:before {
+  border: 5px solid transparent;
+  border-left-color: #cacee0;
+  border-right: 0;
+  content: '';
+  height: 0;
+  margin-top: -5px;
+  margin-right: -5px;
+  position: absolute;
+  right: 1px;
+  top: 50%;
+  width: 0;
+}
+
+.selection-link:hover {
+  background: #3b5998;
+}
+
+.selection-link:hover:before {
+  border-left-color: #3b5998;
+}
+
+.outdated-selection-link {
+  background: #f0babe;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 27px;
+}
+
+.outdated-selection-link:before {
+  border-left-color: #f0babe;
+}
+
+.outdated-selection-link:hover:after {
+  content: "This selection content has changed since this link was created.";
+  font: 9pt/11pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  position: absolute;
+  display: block;
+  white-space: nowrap;
+  padding: 2px 5px 1px;
+  top: -20px;
+  background: black;
+  color: white;
+}
+
+/* Links */
+
+a {
+  color: #3B5998;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+/* Section headers */
+
+h1, h2, h3, h4, h5, h6, h7, h8 {
+  font-weight: bold;
+  margin: 3em 0 1em;
+  position: relative;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin: 6em 0 3em;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin-top: 5em;
+}
+
+h3, h4 {
+  font-size: 1.25em;
+}
+
+h5, h6 {
+  font-size: 1em;
+}
+
+section.subsec > h6 {
+  margin-top: 2em;
+}
+
+section.subsec > h6 > a {
+  color: #333333;
+}
+
+section .spec-secid {
+  margin-right: 1ex;
+  position: absolute;
+  right: 100%;
+  text-align: right;
+  white-space: nowrap;
+}
+
+footer {
+  font-size: 75%;
+  opacity: 0.5;
+  text-align: center;
+  margin-top: 12rem;
+}
+
+
+/* Table of contents */
+
+.spec-toc {
+  margin: 1rem 0 3rem;
+}
+
+.spec-toc .title {
+  content: 'Contents';
+  display: block;
+  font-weight: bold;
+  margin: 5em 0 1em;
+}
+
+.spec-toc .spec-secid {
+  margin-right: 1ex;
+}
+
+.spec-toc ol {
+  list-style: none;
+  padding-left: 0;
+}
+
+.spec-toc ol ol {
+  list-style: none;
+  padding-left: 2ex;
+}
+
+.spec-toc li {
+  position: relative;
+  padding: 5px 0 0 30px;
+  margin: -5px 0 0 -30px;
+}
+
+.spec-toc a {
+  color: #333333;
+}
+
+.spec-toc a:hover {
+  text-decoration: none;
+}
+
+.spec-toc a .spec-secid {
+  color: #3B5998;
+}
+
+.spec-toc a:hover .spec-secid {
+  text-decoration: underline;
+}
+
+.spec-toc .toggle {
+  display: none;
+}
+
+.spec-toc .toggle + label {
+  cursor: pointer;
+  left: 10px;
+  opacity: 1;
+  padding: 3px 5px 3px 6px;
+  position: absolute;
+  top: 8px;
+  transform: rotate(0deg);
+  transition: all 0.18s ease-in-out;
+}
+
+.spec-toc .toggle + label:after {
+  border-color: transparent transparent transparent #bbc;
+  border-style: solid;
+  border-width: 6px 0 6px 7px;
+  content: ' ';
+  display: block;
+  height: 0;
+  width: 0;
+}
+
+.spec-toc .toggle:checked + label {
+  transform: rotate(90deg);
+}
+
+.spec-toc li:not(:hover) > .toggle:checked + label {
+  opacity: 0;
+}
+
+.spec-toc .toggle:not(:checked) ~ ol {
+  max-height: 0;
+  overflow: hidden;
+}
+
+
+/* Sidebar */
+
+.spec-sidebar-toggle {
+  display: none;
+}
+
+.spec-sidebar-toggle + label {
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 10px 15px;
+  font-size: 30px;
+  color: rgba(0,0,0,0.7);
+  z-index: 2;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.spec-sidebar {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 320px;
+  font-size: 80%;
+  overflow-y: scroll;
+  height: 100%;
+  padding: 0 0 5rem 30px;
+  box-sizing: border-box;
+  background: #f0f0f0;
+}
+
+.spec-sidebar {
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.spec-sidebar-toggle:checked ~ .spec-sidebar {
+  display: block;
+  box-shadow:
+    -1px 0 rgba(0,0,0,0.12),
+    -4px 0 8px -2px rgba(0,0,0,0.05);
+}
+
+.spec-sidebar .viewing > a:after {
+  color: #8b9;
+  content: '\2022';
+  margin-left: 1ex;
+}
+
+@media (min-width: 1240px) {
+  .spec-sidebar-toggle + label {
+    display: none;
+  }
+
+  .spec-sidebar {
+    display: block;
+    box-shadow:
+      inset 1px 0 rgba(0,0,0,0.05),
+      inset 4px 0 8px -2px rgba(0,0,0,0.08) !important;
+  }
+
+  body {
+    padding-right: 300px;
+  }
+}
+
+
+/* Notes */
+
+.spec-note {
+  background: #FEFEF3;
+  border-left: solid 4px #F4E925;
+  margin: 1em -1em;
+  min-width: 416px;
+  padding: 1ex 1em 1ex calc(1em - 4px);
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+}
+
+.spec-note > a:first-child {
+  color: #6C6613;
+  display: block;
+  font: italic 11pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  opacity: 0.6;
+  user-select: none;
+}
+
+
+/* Todos */
+
+.spec-todo {
+  color: #666666;
+  margin: 1em 0 1em 5em;
+  min-height: 1em;
+}
+
+.spec-todo::before {
+  content: 'todo';
+  display: block;
+  float: left;
+  margin-left: -5em;
+  text-transform: uppercase;
+}
+
+/* Index table */
+
+.spec-index ol {
+  list-style-type: none;
+  margin: 0 0 0 2rem;
+  padding: 0;
+  column-width: 210px;
+  column-gap: 2rem;
+}
+
+.spec-index ol li {
+  width: min-content;
+}
+
+/* Code */
+
+code {
+  background: #FAFAFA;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 85%;
+  font-weight: inherit;
+  margin: -2px -1px;
+  padding: 3px 3px;
+  white-space: pre;
+}
+
+pre code {
+  background: none;
+  font-weight: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+pre {
+  background: #FAFAFA;
+  border-left: solid 4px #E9E9E9;
+  margin: 1em -1em;
+  min-width: 40ch;
+  padding: 1ex 1em 1ex calc(1em - 4px);
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+}
+
+.spec-example {
+  background: #FAFAFF;
+  border-left: solid 4px #BBBBFF;
+}
+
+.spec-counter-example {
+  background: #FFFAFA;
+  border-left: solid 4px #FFBBBB;
+}
+
+.spec-example > a,
+.spec-counter-example > a {
+  display: block;
+  font: italic 11pt/18pt Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  opacity: 0.6;
+  user-select: none;
+}
+
+.spec-counter-example > a {
+  color: #98593b;
+}
+
+
+/* Tables */
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #F9F9F9;
+}
+
+td, th {
+  border: 1px solid #D0D0D0;
+  padding: 0.4em;
+  vertical-align: baseline;
+}
+
+
+/* Edits */
+
+ins {
+  background-color: rgba(0, 200, 30, 0.08);
+  text-decoration: none;
+}
+
+del {
+  background-color: rgba(200, 0, 0, 0.08);
+}
+
+.spec-added, .spec-removed {
+  border-left: 4px solid;
+  margin-left: -18px;
+  padding-left: 14px;
+}
+
+.spec-added {
+  border-color: #396;
+}
+
+.spec-removed {
+  border-color: #933;
+  text-decoration: line-through;
+}
+
+
+/* Values */
+
+.spec-keyword {
+  font-weight: bold;
+}
+
+.spec-string {
+  font-family: Consolas, Monaco, monospace;
+  font-size: 85%;
+  white-space: pre;
+}
+
+var {
+  font-style: italic;
+}
+
+*[data-name] {
+  transition: 0.15s background ease-out;
+  border-radius: 2px;
+  padding: 0 3px;
+  margin: 0 -3px;
+}
+
+
+/* Grammar semantics, algorithms and calls */
+
+.spec-semantic,
+.spec-algo {
+  margin: 1rem 0 1rem 2rem;
+}
+
+.spec-semantic > .spec-rhs {
+  display: inline-block;
+  margin-left: 1ex;
+}
+
+.spec-semantic > .spec-nt::after,
+.spec-algo > .spec-call:first-child::after {
+  content: ':';
+  font-style: normal;
+  font-weight: bold;
+  margin-left: 1ex;
+}
+
+.spec-semantic ol, .spec-semantic ol ol ol ol,
+.spec-algo ol, .spec-algo ol ol ol ol {
+  list-style-type: decimal;
+}
+
+.spec-semantic ol ol, .spec-semantic ol ol ol ol ol,
+.spec-algo ol ol, .spec-algo ol ol ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.spec-semantic ol ol ol, .spec-semantic ol ol ol ol ol ol,
+.spec-algo ol ol ol, .spec-algo ol ol ol ol ol ol {
+  list-style-type: lower-roman;
+}
+
+.spec-call > a {
+  color: inherit;
+}
+
+
+/* Grammar productions */
+
+.spec-production {
+  margin: 1rem 0 1rem 2rem;
+}
+
+.spec-production > .spec-nt::after {
+  content: ':';
+  font-style: normal;
+  font-weight: bold;
+  margin: 0 1ex;
+}
+
+.spec-semantic.d2 > .spec-nt::after,
+.spec-production.d2 > .spec-nt::after {
+  content: '::';
+}
+
+.spec-semantic.d3 > .spec-nt::after,
+.spec-production.d3 > .spec-nt::after {
+  content: ':::';
+}
+
+.spec-rhs {
+  margin-left: 2rem;
+}
+
+.spec-oneof {
+  display: inline;
+}
+
+.spec-oneof::before {
+  content: 'one of';
+  font-style: normal;
+  font-weight: bold;
+}
+
+.spec-oneof > table {
+  margin-left: 2rem;
+}
+
+.spec-oneof .spec-rhs {
+  border: none;
+  margin: 0;
+  padding: 0 0.5em;
+  vertical-align: baseline;
+}
+
+.spec-rhs .spec-constrained:not(:first-child),
+.spec-rhs .spec-quantified:not(:first-child),
+.spec-rhs .spec-nt:not(:first-child),
+.spec-rhs .spec-t:not(:first-child),
+.spec-rhs .spec-rx:not(:first-child),
+.spec-rhs .spec-prose:not(:first-child),
+.spec-rhs .spec-empty:not(:first-child),
+.spec-rhs .spec-lookahead:not(:first-child) {
+  margin-left: 1ex;
+}
+
+.spec-condition {
+  font-size: 85%;
+}
+
+.spec-condition::before {
+  content: '[if '
+}
+
+.spec-condition.not::before {
+  content: '[if not '
+}
+
+.spec-condition::after {
+  content: ']'
+}
+
+.spec-empty,
+.spec-prose {
+  color: #666666;
+}
+
+.spec-nt {
+  font-style: italic;
+}
+
+.spec-nt > a {
+  color: inherit;
+}
+
+.spec-quantifiers,
+.spec-params {
+  font-size: 65%;
+  font-style: normal;
+  vertical-align: sub;
+}
+
+.spec-quantifier.list {
+  color: #3348D3;
+}
+
+.spec-quantifier.optional {
+  color: #83238E;
+}
+
+.spec-params,
+.spec-condition {
+  color: #1C7758;
+}
+
+.spec-params::before {
+  content: '[';
+}
+
+.spec-params::after {
+  content: ']';
+}
+
+.spec-quantifier:not(:last-child)::after,
+.spec-param:not(:last-child)::after {
+  color: #666666;
+  content: ', ';
+}
+
+.spec-param.conditional::before {
+  content: '?';
+}
+
+.spec-param.negated::before {
+  content: '!';
+}
+
+.spec-t, .spec-rx {
+  color: #333333;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.spec-butnot::before {
+  color: #666666;
+  content: 'but not';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-weight: normal;
+  margin-right: 1ex;
+}
+
+.spec-butnot > *:not(:first-child)::before {
+  color: #666666;
+  content: 'or';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-weight: normal;
+  margin-right: 1ex;
+}
+
+.spec-rhs .spec-oneof::before,
+.spec-rhs .spec-butnot::before {
+  margin-left: 1ex;
+}
+
+.spec-lookahead > * {
+  margin: 0 !important;
+}
+
+.spec-lookahead > *:not(:first-child)::before {
+  color: #666666;
+  content: ', ';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.spec-lookahead::before {
+  color: #666666;
+  content: '[lookahead = ';
+  font-family: Cambria, "Palatino Linotype", Palatino, "Liberation Serif", serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.spec-lookahead.not::before {
+  content: '[lookahead \2260  ';
+}
+
+.spec-lookahead.set::before {
+  content: '[lookahead \2208  {';
+  margin-right: 0;
+}
+
+.spec-lookahead.set.not::before {
+  content: '[lookahead \2209  {';
+}
+
+.spec-lookahead.ntset::before {
+  content: '[lookahead \2208  ';
+  margin-right: 0;
+}
+
+.spec-lookahead.ntset.not::before {
+  content: '[lookahead \2209  ';
+}
+
+.spec-lookahead::after {
+  color: #666666;
+  content: ']';
+}
+
+.spec-lookahead.set::after {
+  content: '}]';
+}
+</style>
+<style>/* Copied from node_modules/prismjs/themes/prism.css */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+<script>(function(){var e,t=document.getElementsByTagName("style")[0].sheet;function n(){e&&(t.deleteRule(e),e=void 0)}document.documentElement.addEventListener("mouseover",(function(a){var u,d=a.target.attributes["data-name"];d&&(u=d.value,n(),e=t.insertRule('*[data-name="'+u+'"] { background: #FBF8D0; }',t.cssRules.length))})),document.documentElement.addEventListener("mouseout",n);})()</script>
+<script>(function(){var e,n,t,o,r="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";function a(e){c(new URL(e.target.href))}function i(){c(window.location)}function c(e){var n=e.hash.match(/^#sel-([A-Za-z0-9-_]+)$/);if(n){o=n[1];var a=(t=function(e){for(var n=new Array(64),t=0;t<64;t++)n[r.charCodeAt(t)]=t;var o=0,a=m(),i=m(),c=m(),d=w(),l=i.pop(),f=u(a.concat(i)),h=c.pop(),g=u(a.concat(c)),v=document.createRange();return v.setStart(f,l),v.setEnd(g,h),v.isOutdated=void 0!==d&&d!==s(v.toString()),v;function w(){for(var t=0,r=0;o<e.length;){var a=n[e.charCodeAt(o++)];if(t|=(31&a)<<r,r+=5,a<32)return t}}function m(){var e=w();if(null!=e){for(var n=new Array(e),t=0;t<e;t++)n[t]=w();return n}}}(o)).getBoundingClientRect(),i=Math.max(20,Math.floor(.4*(window.innerHeight-a.height)));window.scrollTo(0,window.scrollY+a.y-i);var c=document.getSelection();c.empty(),c.addRange(t),d()}}function d(){n||(n=document.getElementsByTagName("article")[0]),e||(e=document.createElement("a"),document.body.appendChild(e)),e.href="#sel-"+o,e.onclick=a,e.className=t.isOutdated?"outdated-selection-link":"selection-link",e.innerText=t.isOutdated?"!":"‟";var r=n.getBoundingClientRect().x,i=t.getBoundingClientRect().y;e.style.left=Math.floor(r+window.scrollX-37)+"px",e.style.top=Math.floor(i+window.scrollY-3)+"px"}function l(e){for(var n=[];e!=document.body;){var t=e.parentNode;n.push(Array.prototype.indexOf.call(t.childNodes,e)),e=t}return n.reverse()}function u(e){for(var n=document.body,t=0;t<e.length&&n;t++)n=n.childNodes[e[t]];return n}function s(e){for(var n=2166136261,t=0;t<e.length;++t)n^=e.charCodeAt(t),n+=(n<<1)+(n<<4)+(n<<7)+(n<<8)+(n<<24);return 32767&(n>>15^n)}document.addEventListener("selectionchange",(function(n){var a=document.getSelection();if(a.isCollapsed)e&&(e.parentNode.removeChild(e),e=null);else{var i=a.getRangeAt(0);t&&0===i.compareBoundaryPoints(Range.START_TO_START,t)&&0===i.compareBoundaryPoints(Range.END_TO_END,t)||(o=function(e){var n="",t=l(e.startContainer),o=l(e.endContainer),a=function(e,n){var t=0;for(;t<e.length&&t<n.length&&e[t]===n[t];)t++;return e.slice(0,t)}(t,o);return c(a),c(t.slice(a.length).concat(e.startOffset)),c(o.slice(a.length).concat(e.endOffset)),i(s(e.toString())),n;function i(e){do{n+=r[31&e|(e>31?32:0)],e>>=5}while(e>0)}function c(e){i(e.length);for(var n=0;n<e.length;n++)i(e[n])}}(t=i),d())}})),window.addEventListener("resize",d),window.addEventListener("hashchange",i),window.addEventListener("load",i);})()</script>
+</head>
+<body><article>
+<header>
+<h1>Superface Map</h1>
+<section id="intro">
+<p><em>Current Working Draft</em></p>
+<section id="sec-Introduction" class="subsec">
+<h6><a href="#sec-Introduction" title="link to this subsection">Introduction</a></h6>
+<p>Superface map is a format describing one concrete implementation of a Superface profile. It essentially maps the application (business) semantics into concrete interface implementation.</p>
+</section>
+</section>
+<nav class="spec-toc">
+<div class="title">Contents</div>
+<ol>
+<li><a href="#sec-Map-Document"><span class="spec-secid">1</span>Map Document</a></li>
+<li><a href="#sec-Usecase-Map"><span class="spec-secid">2</span>Usecase Map</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_2" /><label for="_toggle_2"></label>
+<ol>
+<li><a href="#sec-Map-Result"><span class="spec-secid">2.1</span>Map Result</a></li>
+<li><a href="#sec-Map-Error"><span class="spec-secid">2.2</span>Map Error</a></li>
+</ol>
+</li>
+<li><a href="#sec-Operation"><span class="spec-secid">3</span>Operation</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_3" /><label for="_toggle_3"></label>
+<ol>
+<li><a href="#sec-Operation-Return"><span class="spec-secid">3.1</span>Operation Return</a></li>
+<li><a href="#sec-Operation-Fail"><span class="spec-secid">3.2</span>Operation Fail</a></li>
+</ol>
+</li>
+<li><a href="#sec-Set-Variables"><span class="spec-secid">4</span>Set Variables</a></li>
+<li><a href="#sec-Operation-Call"><span class="spec-secid">5</span>Operation Call</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_5" /><label for="_toggle_5"></label>
+<ol>
+<li><a href="#sec-Operation-Call-Shorthand"><span class="spec-secid">5.1</span>Operation Call Shorthand</a></li>
+</ol>
+</li>
+<li><a href="#sec-Outcome"><span class="spec-secid">6</span>Outcome</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_6" /><label for="_toggle_6"></label>
+<ol>
+<li><a href="#sec-Map-Outcome"><span class="spec-secid">6.1</span>Map Outcome</a></li>
+<li><a href="#sec-Operation-Outcome"><span class="spec-secid">6.2</span>Operation Outcome</a></li>
+</ol>
+</li>
+<li><a href="#sec-Network-Operation"><span class="spec-secid">7</span>Network Operation</a></li>
+<li><a href="#sec-HTTP-Call"><span class="spec-secid">8</span>HTTP Call</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_8" /><label for="_toggle_8"></label>
+<ol>
+<li><a href="#sec-HTTP-Transaction"><span class="spec-secid">8.1</span>HTTP Transaction</a></li>
+<li><a href="#sec-HTTP-Security"><span class="spec-secid">8.2</span>HTTP Security</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_8.2" /><label for="_toggle_8.2"></label>
+<ol>
+<li><a href="#sec-Api-Key-Security-Scheme"><span class="spec-secid">8.2.1</span>Api Key Security Scheme</a></li>
+<li><a href="#sec-Basic-Security-Scheme"><span class="spec-secid">8.2.2</span>Basic Security Scheme</a></li>
+<li><a href="#sec-Bearer-Security-Scheme"><span class="spec-secid">8.2.3</span>Bearer Security Scheme</a></li>
+<li><a href="#sec-Oauth-Security-Scheme"><span class="spec-secid">8.2.4</span>Oauth Security Scheme</a></li>
+<li><a href="#sec-No-Security-Scheme"><span class="spec-secid">8.2.5</span>No Security Scheme</a></li>
+</ol>
+</li>
+<li><a href="#sec-HTTP-Request"><span class="spec-secid">8.3</span>HTTP Request</a></li>
+<li><a href="#sec-HTTP-Response"><span class="spec-secid">8.4</span>HTTP Response</a></li>
+</ol>
+</li>
+<li><a href="#sec-Conditions"><span class="spec-secid">9</span>Conditions</a></li>
+<li><a href="#sec-Jessie"><span class="spec-secid">10</span>Jessie</a></li>
+<li><a href="#sec-Language"><span class="spec-secid">11</span>Language</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_11" /><label for="_toggle_11"></label>
+<ol>
+<li><a href="#sec-Source-text"><span class="spec-secid">11.1</span>Source text</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_11.1" /><label for="_toggle_11.1"></label>
+<ol>
+<li><a href="#sec-Comments"><span class="spec-secid">11.1.1</span>Comments</a></li>
+<li><a href="#sec-Line-Terminators"><span class="spec-secid">11.1.2</span>Line Terminators</a></li>
+</ol>
+</li>
+<li><a href="#sec-Common-Definitions"><span class="spec-secid">11.2</span>Common Definitions</a>
+<input hidden class="toggle" type="checkbox" checked id="_toggle_11.2" /><label for="_toggle_11.2"></label>
+<ol>
+<li><a href="#sec-Identifier"><span class="spec-secid">11.2.1</span>Identifier</a></li>
+<li><a href="#sec-URL-Value"><span class="spec-secid">11.2.2</span>URL Value</a></li>
+<li><a href="#sec-String-Value"><span class="spec-secid">11.2.3</span>String Value</a></li>
+<li><a href="#sec-Integer-Value"><span class="spec-secid">11.2.4</span>Integer Value</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><a href="#sec-Appendix-Keywords"><span class="spec-secid">A</span>Appendix: Keywords</a></li>
+<li><a href="#index"><span class="spec-secid">§</span>Index</a></li>
+</ol>
+</nav>
+</header>
+<section id="sec-Map-Document" secid="1">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Map-Document">1</a></span>Map Document</h2>
+<div class="spec-production" id="MapDocument">
+<span class="spec-nt"><a href="#MapDocument" data-name="MapDocument">MapDocument</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Profile" data-name="Profile">Profile</a></span><span class="spec-nt"><a href="#Provider" data-name="Provider">Provider</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="Profile">
+<span class="spec-nt"><a href="#Profile" data-name="Profile">Profile</a></span><div class="spec-rhs"><span class="spec-t">profile</span><span class="spec-t">=</span><span class="spec-nt"><a href="#ProfileId" data-name="ProfileId">ProfileId</a></span></div>
+</div>
+<div class="spec-production" id="ProfileId">
+<span class="spec-nt"><a href="#ProfileId" data-name="ProfileId">ProfileId</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#URLValue" data-name="URLValue">URLValue</a></span></div>
+</div>
+<div class="spec-production" id="Provider">
+<span class="spec-nt"><a href="#Provider" data-name="Provider">Provider</a></span><div class="spec-rhs"><span class="spec-t">provider</span><span class="spec-t">=</span><span class="spec-nt"><a href="#ProviderId" data-name="ProviderId">ProviderId</a></span></div>
+</div>
+<div class="spec-production" id="ProviderId">
+<span class="spec-nt"><a href="#ProviderId" data-name="ProviderId">ProviderId</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#URLValue" data-name="URLValue">URLValue</a></span></div>
+</div>
+<pre id="example-a835c" class="spec-example"><a href="#example-a835c">Example № 1</a><code>profile = &quot;http://superface.ai/profile/conversation/SendMessage&quot;
+provider = &quot;http://superface.ai/directory/MyTelcoCompany&quot;
+
+map SendMessage {
+  ...
+}
+
+map RetrieveMessageStatus {
+  ...
+}
+</code></pre>
+</section>
+<section id="sec-Usecase-Map" secid="2">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Usecase-Map">2</a></span>Usecase Map</h2>
+<div class="spec-production" id="Map">
+<span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span><div class="spec-rhs"><span class="spec-t">map</span><span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#MapSlot" data-name="MapSlot">MapSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
+</div>
+<div class="spec-production" id="UsecaseName">
+<span class="spec-nt"><a href="#UsecaseName" data-name="UsecaseName">UsecaseName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
+</div>
+<div class="spec-production" id="MapSlot">
+<span class="spec-nt"><a href="#MapSlot" data-name="MapSlot">MapSlot</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#SetVariables" data-name="SetVariables">SetVariables</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#OperationCall" data-name="OperationCall">OperationCall</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#NetworkCall" data-name="NetworkCall">NetworkCall</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#MapResult" data-name="MapResult">MapResult</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#MapError" data-name="MapError">MapError</a></span></div>
+</div>
+<section id="sec-Usecase-Map.Context-Variables" class="subsec">
+<h6><a href="#sec-Usecase-Map.Context-Variables" title="link to this subsection">Context Variables</a></h6>
+<p><span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span> context variables :</p>
+<ul>
+<li><var data-name="input">input</var> - User input as stated in the profile</li>
+</ul>
+<pre id="example-0c5b6" class="spec-example"><a href="#example-0c5b6">Example № 2</a><code>map RetrieveMessageStatus {  
+  http GET &quot;/chat-api/v2/messages/{input.messageId}/history&quot; {
+    response 200 &quot;application/json&quot; {
+      map result {
+        deliveryStatus = body.history[0].state
+      }
+    }
+  } 
+}
+</code></pre>
+</section>
+<section id="sec-Map-Result" secid="2.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Map-Result">2.1</a></span>Map Result</h3>
+<div class="spec-production" id="MapResult">
+<span class="spec-nt"><a href="#MapResult" data-name="MapResult">MapResult</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-t">return</span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">map result</span><span class="spec-quantified"><span class="spec-nt"><a href="#Condition" data-name="Condition">Condition</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#SetMapResultVariables" data-name="SetMapResultVariables">SetMapResultVariables</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="SetMapResultVariables">
+<span class="spec-nt"><a href="#SetMapResultVariables" data-name="SetMapResultVariables">SetMapResultVariables</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#VariableStatements" data-name="VariableStatements">VariableStatements</a></span></div>
+</div>
+<pre id="example-a646a" class="spec-example"><a href="#example-a646a">Example № 3</a><code>map GetWeather {
+  map result {
+    airTemperature = 42  # Sets the value returned to user
+  }
+}
+</code></pre>
+</section>
+<section id="sec-Map-Error" secid="2.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Map-Error">2.2</a></span>Map Error</h3>
+<div class="spec-production" id="MapError">
+<span class="spec-nt"><a href="#MapError" data-name="MapError">MapError</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-t">return</span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">map error</span><span class="spec-quantified"><span class="spec-nt"><a href="#Condition" data-name="Condition">Condition</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#SetMapErrorVariables" data-name="SetMapErrorVariables">SetMapErrorVariables</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="SetMapErrorVariables">
+<span class="spec-nt"><a href="#SetMapErrorVariables" data-name="SetMapErrorVariables">SetMapErrorVariables</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#VariableStatements" data-name="VariableStatements">VariableStatements</a></span></div>
+</div>
+<pre id="example-dac19" class="spec-example"><a href="#example-dac19">Example № 4</a><code>map GetWeather {
+  map error {
+    title = &quot;Location not found&quot;
+  }
+}
+</code></pre>
+</section>
+</section>
+<section id="sec-Operation" secid="3">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Operation">3</a></span>Operation</h2>
+<div class="spec-production" id="Operation">
+<span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span><div class="spec-rhs"><span class="spec-t">operation</span><span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#OperationSlot" data-name="OperationSlot">OperationSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
+</div>
+<div class="spec-production" id="OperationName">
+<span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
+</div>
+<div class="spec-production" id="OperationSlot">
+<span class="spec-nt"><a href="#OperationSlot" data-name="OperationSlot">OperationSlot</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#SetVariables" data-name="SetVariables">SetVariables</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#OperationCall" data-name="OperationCall">OperationCall</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#NetworkCall" data-name="NetworkCall">NetworkCall</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#OperationReturn" data-name="OperationReturn">OperationReturn</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#OperationFail" data-name="OperationFail">OperationFail</a></span></div>
+</div>
+<section id="sec-Operation.Context-Variables" class="subsec">
+<h6><a href="#sec-Operation.Context-Variables" title="link to this subsection">Context Variables</a></h6>
+<p><span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span> context variables :</p>
+<ul>
+<li><var data-name="args">args</var> - arguments as passed in the parent&rsquo;s <span class="spec-nt"><a href="#OperationCall" data-name="OperationCall">OperationCall</a></span></li>
+</ul>
+<pre id="example-9e045" class="spec-example"><a href="#example-9e045">Example № 5</a><code>operation CountArray {
+  return {
+    answer = &quot;This is the count &quot; + args.array.length
+  }
+}
+</code></pre>
+</section>
+<section id="sec-Operation-Return" secid="3.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Operation-Return">3.1</a></span>Operation Return</h3>
+<div class="spec-production" id="OperationReturn">
+<span class="spec-nt"><a href="#OperationReturn" data-name="OperationReturn">OperationReturn</a></span><div class="spec-rhs"><span class="spec-t">return</span><span class="spec-quantified"><span class="spec-nt"><a href="#Condition" data-name="Condition">Condition</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#SetOperationReturnVariables" data-name="SetOperationReturnVariables">SetOperationReturnVariables</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="SetOperationReturnVariables">
+<span class="spec-nt"><a href="#SetOperationReturnVariables" data-name="SetOperationReturnVariables">SetOperationReturnVariables</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#VariableStatements" data-name="VariableStatements">VariableStatements</a></span></div>
+</div>
+<pre id="example-aa84a" class="spec-example"><a href="#example-aa84a">Example № 6</a><code>operation Foo {
+  return if (args.condition) {
+    message = &quot;I have a condition!&quot;
+  }
+
+  return {
+    message = &quot;Hello World!&quot;
+  }
+}
+</code></pre>
+</section>
+<section id="sec-Operation-Fail" secid="3.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Operation-Fail">3.2</a></span>Operation Fail</h3>
+<div class="spec-production" id="OperationFail">
+<span class="spec-nt"><a href="#OperationFail" data-name="OperationFail">OperationFail</a></span><div class="spec-rhs"><span class="spec-t">fail</span><span class="spec-quantified"><span class="spec-nt"><a href="#Condition" data-name="Condition">Condition</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#SetOperationFailVariables" data-name="SetOperationFailVariables">SetOperationFailVariables</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="SetOperationFailVariables">
+<span class="spec-nt"><a href="#SetOperationFailVariables" data-name="SetOperationFailVariables">SetOperationFailVariables</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#VariableStatements" data-name="VariableStatements">VariableStatements</a></span></div>
+</div>
+<pre id="example-48dd2" class="spec-example"><a href="#example-48dd2">Example № 7</a><code>operation Foo {
+  fail if (args.condition) {
+    errorMessage = &quot;I have failed!&quot;
+  }
+}
+</code></pre>
+</section>
+</section>
+<section id="sec-Set-Variables" secid="4">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Set-Variables">4</a></span>Set Variables</h2>
+<div class="spec-production" id="SetVariables">
+<span class="spec-nt"><a href="#SetVariables" data-name="SetVariables">SetVariables</a></span><div class="spec-rhs"><span class="spec-t">set</span><span class="spec-quantified"><span class="spec-nt"><a href="#Condition" data-name="Condition">Condition</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-nt"><a href="#VariableStatements" data-name="VariableStatements">VariableStatements</a></span></div>
+</div>
+<div class="spec-production" id="VariableStatements">
+<span class="spec-nt"><a href="#VariableStatements" data-name="VariableStatements">VariableStatements</a></span><div class="spec-rhs"><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#VariableStatement" data-name="VariableStatement">VariableStatement</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span><span class="spec-t">}</span></div>
+</div>
+<div class="spec-production" id="VariableStatement">
+<span class="spec-nt"><a href="#VariableStatement" data-name="VariableStatement">VariableStatement</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#LHS" data-name="LHS">LHS</a></span><span class="spec-t">=</span><span class="spec-nt"><a href="#RHS" data-name="RHS">RHS</a></span></div>
+</div>
+<div class="spec-production" id="LHS">
+<span class="spec-nt"><a href="#LHS" data-name="LHS">LHS</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#VariableKeyPath" data-name="VariableKeyPath">VariableKeyPath</a><span class="spec-params"><span class="spec-param">ObjectVariable</span></span></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="VariableName">
+<span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span></div>
+</div>
+<div class="spec-production" id="VariableKeyPath">
+<span class="spec-nt"><a href="#VariableKeyPath" data-name="VariableKeyPath">VariableKeyPath</a><span class="spec-params"><span class="spec-param">ObjectVariable</span></span></span><div class="spec-rhs"><span class="spec-t">.</span><span class="spec-nt"><a href="#KeyName" data-name="KeyName">KeyName</a></span></div>
+</div>
+<div class="spec-production" id="KeyName">
+<span class="spec-nt"><a href="#KeyName" data-name="KeyName">KeyName</a><span class="spec-params"><span class="spec-param">ObjectVariable</span></span></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span></div>
+</div>
+<div class="spec-production" id="RHS">
+<span class="spec-nt"><a href="#RHS" data-name="RHS">RHS</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#OperationCallShorthand" data-name="OperationCallShorthand">OperationCallShorthand</a></span></div>
+</div>
+<pre id="example-32e12" class="spec-example"><a href="#example-32e12">Example № 8</a><code>set {
+  variable = 42
+}
+</code></pre>
+<pre id="example-83966" class="spec-example"><a href="#example-83966">Example № 9</a><code>set if (true) {
+  variable = 42
+}
+</code></pre>
+<pre id="example-00ea5" class="spec-example"><a href="#example-00ea5">Example № 10</a><code>set {
+  variable.key = 42
+}
+</code></pre>
+<pre id="example-e2afd" class="spec-example"><a href="#example-e2afd">Example № 11</a><code>set {
+  variable = call ConvertToCelsius(tempF = 100)
+}
+</code></pre>
+</section>
+<section id="sec-Operation-Call" secid="5">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Operation-Call">5</a></span>Operation Call</h2>
+<div class="spec-production" id="OperationCall">
+<span class="spec-nt"><a href="#OperationCall" data-name="OperationCall">OperationCall</a></span><div class="spec-rhs"><span class="spec-t">call</span><span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#OperationArguments" data-name="OperationArguments">OperationArguments</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#Condition" data-name="Condition">Condition</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#OperationCallSlot" data-name="OperationCallSlot">OperationCallSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production" id="OperationArguments">
+<span class="spec-nt"><a href="#OperationArguments" data-name="OperationArguments">OperationArguments</a></span><div class="spec-rhs"><span class="spec-t">(</span><span class="spec-quantified"><span class="spec-nt"><a href="#Argument" data-name="Argument">Argument</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">)</span></div>
+</div>
+<div class="spec-production" id="Argument">
+<span class="spec-nt"><a href="#Argument" data-name="Argument">Argument</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span><span class="spec-t">=</span><span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span></div>
+</div>
+<div class="spec-production" id="OperationCallSlot">
+<span class="spec-nt"><a href="#OperationCallSlot" data-name="OperationCallSlot">OperationCallSlot</a></span><div class="spec-rhs"><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#SetVariables" data-name="SetVariables">SetVariables</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#SetOutcome" data-name="SetOutcome">SetOutcome</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
+</div>
+<section id="sec-Operation-Call.Context-Variables" class="subsec">
+<h6><a href="#sec-Operation-Call.Context-Variables" title="link to this subsection">Context Variables</a></h6>
+<p><span class="spec-nt"><a href="#OperationCallSlot" data-name="OperationCallSlot">OperationCallSlot</a></span> context variables:</p>
+<ul>
+<li><code>outcome.data</code> - data as returned by the callee</li>
+<li><code>outcome.error</code> - error as returned by the callee</li>
+</ul>
+<pre id="example-59fbf" class="spec-example"><a href="#example-59fbf">Example № 12</a><code>operation Bar {
+  set {
+    variable = 42
+  }
+
+  call FooWithArgs(text = `My string ${variable}` some = variable + 2 ) {
+    return if (!outcome.error) {
+      finalAnswer = &quot;The final answer is &quot; + outcome.data.answer
+    }
+
+    fail if (outcome.error) {
+      finalAnswer = &quot;There was an error &quot; + outcome.error.message
+    }
+  }
+}
+</code></pre>
+<pre id="example-82e4c" class="spec-example"><a href="#example-82e4c">Example № 13</a><code>map RetrieveCustomers {
+  // Local variables
+  set {
+    filterId = null
+  }
+
+
+  // Step 1
+  call FindFilter(filterName = &quot;my-superface-map-filter&quot;) if(input.since) {
+    // conditional block for setting the variables
+    set if (!outcome.error) {
+      filterId = outcome.data.filterId
+    }
+  }
+
+  // Step 2
+  call CreateFilter(filterId = filterId) if(input.since &amp;&amp; !filterId) {
+    set if (!outcome.error) {
+      filterId = outcome.data.filterId
+    }
+  }
+
+  // Step 3
+  call RetrieveOrganizations(filterId = filterId) {
+    map result if (!outcome.error &amp;&amp; outcome.data) {
+      customers = outcome.data.customers
+    }
+  }
+
+  // Step 4
+  call Cleanup() if(filterId) {
+    // ...
+  }
+}
+</code></pre>
+</section>
+<section id="sec-Operation-Call-Shorthand" secid="5.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Operation-Call-Shorthand">5.1</a></span>Operation Call Shorthand</h3>
+<div class="spec-production" id="OperationCallShorthand">
+<span class="spec-nt"><a href="#OperationCallShorthand" data-name="OperationCallShorthand">OperationCallShorthand</a></span><div class="spec-rhs"><span class="spec-t">call</span><span class="spec-nt"><a href="#OperationName" data-name="OperationName">OperationName</a></span><span class="spec-quantified"><span class="spec-nt"><a href="#OperationArguments" data-name="OperationArguments">OperationArguments</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<p>Used as <span class="spec-nt"><a href="#RHS" data-name="RHS">RHS</a></span> instead of <span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span> to invoke an <span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span> in&#8208;place. In the case of success the operation outcome&rsquo;s data is unbundled and returned by the call. See <span class="spec-nt"><a href="#OperationCall" data-name="OperationCall">OperationCall</a></span> context variable <code>outcome</code>.</p>
+<pre id="example-47178" class="spec-example"><a href="#example-47178">Example № 14</a><code>set {
+  someVariable = call Foo
+}
+</code></pre>
+</section>
+</section>
+<section id="sec-Outcome" secid="6">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Outcome">6</a></span>Outcome</h2>
+<div class="spec-production" id="SetOutcome">
+<span class="spec-nt"><a href="#SetOutcome" data-name="SetOutcome">SetOutcome</a><span class="spec-params"><span class="spec-param">Map</span><span class="spec-param">Operation</span></span></span><div class="spec-rhs"><span class="spec-condition">Map</span><span class="spec-nt"><a href="#SetMapOutcome" data-name="SetMapOutcome">SetMapOutcome</a></span></div>
+<div class="spec-rhs"><span class="spec-condition">Operation</span><span class="spec-nt"><a href="#SetOperationOutcome" data-name="SetOperationOutcome">SetOperationOutcome</a></span></div>
+</div>
+<p>Evaluation of a use&#8208;case map or operation outcome. The outcome definition depends on its context. When specified in the <span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span> context the outcome is defined as <span class="spec-nt"><a href="#SetMapOutcome" data-name="SetMapOutcome">SetMapOutcome</a></span>. When specified in the <span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span> context the outcome is defined as <span class="spec-nt"><a href="#SetOperationOutcome" data-name="SetOperationOutcome">SetOperationOutcome</a></span>.</p>
+<section id="sec-Map-Outcome" secid="6.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Map-Outcome">6.1</a></span>Map Outcome</h3>
+<div class="spec-production" id="SetMapOutcome">
+<span class="spec-nt"><a href="#SetMapOutcome" data-name="SetMapOutcome">SetMapOutcome</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#MapResult" data-name="MapResult">MapResult</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#MapError" data-name="MapError">MapError</a></span></div>
+</div>
+<p>Outcome in the <span class="spec-nt"><a href="#Map" data-name="Map">Map</a></span> context.</p>
+</section>
+<section id="sec-Operation-Outcome" secid="6.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Operation-Outcome">6.2</a></span>Operation Outcome</h3>
+<div class="spec-production" id="SetOperationOutcome">
+<span class="spec-nt"><a href="#SetOperationOutcome" data-name="SetOperationOutcome">SetOperationOutcome</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#OperationReturn" data-name="OperationReturn">OperationReturn</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#OperationFail" data-name="OperationFail">OperationFail</a></span></div>
+</div>
+<p>Outcome in the <span class="spec-nt"><a href="#Operation" data-name="Operation">Operation</a></span> context.</p>
+</section>
+</section>
+<section id="sec-Network-Operation" secid="7">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Network-Operation">7</a></span>Network Operation</h2>
+<div class="spec-production" id="NetworkCall">
+<span class="spec-nt"><a href="#NetworkCall" data-name="NetworkCall">NetworkCall</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#HTTPCall" data-name="HTTPCall">HTTPCall</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><span data-name="GraphQLCall">GraphQLCall</span></span></div>
+</div>
+</section>
+<section id="sec-HTTP-Call" secid="8">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-HTTP-Call">8</a></span>HTTP Call</h2>
+<div class="spec-production" id="HTTPCall">
+<span class="spec-nt"><a href="#HTTPCall" data-name="HTTPCall">HTTPCall</a></span><div class="spec-rhs"><span class="spec-t">http</span><span class="spec-nt"><a href="#HTTPMethod" data-name="HTTPMethod">HTTPMethod</a></span><span class="spec-nt"><a href="#URLTemplate" data-name="URLTemplate">URLTemplate</a></span><span class="spec-t">{</span><span class="spec-nt"><a href="#HTTPTransaction" data-name="HTTPTransaction">HTTPTransaction</a></span><span class="spec-t">}</span></div>
+</div>
+<div class="spec-production" id="HTTPMethod">
+<span class="spec-nt"><a href="#HTTPMethod" data-name="HTTPMethod">HTTPMethod</a></span><div class="spec-oneof"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-nt"><span data-name="GET">GET</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="HEAD">HEAD</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="POST">POST</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="PUT">PUT</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="DELETE">DELETE</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="CONNECT">CONNECT</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="OPTIONS">OPTIONS</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="TRACE">TRACE</span></span></td><td class="spec-rhs"><span class="spec-nt"><span data-name="PATCH">PATCH</span></span></td></tr>
+</table></div>
+</div>
+<div class="spec-production" id="URLTemplate">
+<span class="spec-nt"><a href="#URLTemplate" data-name="URLTemplate">URLTemplate</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-quantified"><span class="spec-nt"><a href="#URLPath" data-name="URLPath">URLPath</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span><span class="spec-t">&quot;</span></div>
+</div>
+<div class="spec-production" id="URLPath">
+<span class="spec-nt"><a href="#URLPath" data-name="URLPath">URLPath</a></span><div class="spec-rhs"><span class="spec-t">/</span><span class="spec-nt"><a href="#URLPathSegment" data-name="URLPathSegment">URLPathSegment</a></span></div>
+</div>
+<div class="spec-production" id="URLPathSegment">
+<span class="spec-nt"><a href="#URLPathSegment" data-name="URLPathSegment">URLPathSegment</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#URLPathLiteral" data-name="URLPathLiteral">URLPathLiteral</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#URLPathVariable" data-name="URLPathVariable">URLPathVariable</a></span></div>
+</div>
+<div class="spec-production" id="URLPathLiteral">
+<span class="spec-nt"><a href="#URLPathLiteral" data-name="URLPathLiteral">URLPathLiteral</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#StringCharacter" data-name="StringCharacter">StringCharacter</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span></span></span></div>
+</div>
+<div class="spec-production" id="URLPathVariable">
+<span class="spec-nt"><a href="#URLPathVariable" data-name="URLPathVariable">URLPathVariable</a></span><div class="spec-rhs"><span class="spec-t">{</span><span class="spec-nt"><a href="#VariableName" data-name="VariableName">VariableName</a></span><span class="spec-t">}</span></div>
+</div>
+<pre id="example-cddc3" class="spec-example"><a href="#example-cddc3">Example № 15</a><code>map SendMessage {
+  http POST &quot;/chat-api/v2/messages&quot; {
+    request &quot;application/json&quot; {
+      body {
+        to = input.to
+        channels = [&#x27;sms&#x27;]
+        sms.from = input.from
+        sms.contentType = &#x27;text&#x27;
+        sms.text = input.text
+      }
+    }
+
+    response 200 &quot;application/json&quot; {
+      map result {
+        messageId = body.messageId
+      }
+    }
+  }
+}
+</code></pre>
+<section id="sec-HTTP-Transaction" secid="8.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-HTTP-Transaction">8.1</a></span>HTTP Transaction</h3>
+<div class="spec-production" id="HTTPTransaction">
+<span class="spec-nt"><a href="#HTTPTransaction" data-name="HTTPTransaction">HTTPTransaction</a></span><div class="spec-rhs"><span class="spec-quantified"><span class="spec-nt"><a href="#HTTPSecurity" data-name="HTTPSecurity">HTTPSecurity</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><span data-name="HTTPResponse">HTTPResponse</span></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+</section>
+<section id="sec-HTTP-Security" secid="8.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-HTTP-Security">8.2</a></span>HTTP Security</h3>
+<div class="spec-production" id="HTTPSecurity">
+<span class="spec-nt"><a href="#HTTPSecurity" data-name="HTTPSecurity">HTTPSecurity</a></span><div class="spec-rhs"><span class="spec-t">security</span><span class="spec-nt"><a href="#HTTPSecurityScheme" data-name="HTTPSecurityScheme">HTTPSecurityScheme</a></span></div>
+</div>
+<div class="spec-production" id="HTTPSecurityScheme">
+<span class="spec-nt"><a href="#HTTPSecurityScheme" data-name="HTTPSecurityScheme">HTTPSecurityScheme</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#ApiKey" data-name="ApiKey">ApiKey</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#Basic" data-name="Basic">Basic</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#Bearer" data-name="Bearer">Bearer</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><span data-name="Oauth">Oauth</span></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#None" data-name="None">None</a></span></div>
+</div>
+<section id="sec-Api-Key-Security-Scheme" secid="8.2.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Api-Key-Security-Scheme">8.2.1</a></span>Api Key Security Scheme</h4>
+<div class="spec-production" id="ApiKey">
+<span class="spec-nt"><a href="#ApiKey" data-name="ApiKey">ApiKey</a></span><div class="spec-rhs"><span class="spec-t">apikey</span><span class="spec-nt"><a href="#ApiKeyPlacement" data-name="ApiKeyPlacement">ApiKeyPlacement</a></span><span class="spec-t">{</span><span class="spec-t">name</span><span class="spec-t">=</span><span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span><span class="spec-t">}</span></div>
+</div>
+<div class="spec-production" id="ApiKeyPlacement">
+<span class="spec-nt"><a href="#ApiKeyPlacement" data-name="ApiKeyPlacement">ApiKeyPlacement</a></span><div class="spec-oneof"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">query</span></td><td class="spec-rhs"><span class="spec-t">header</span></td></tr>
+</table></div>
+</div>
+<p>Authentication using an arbitrary API key. </p>
+<pre id="example-3783a" class="spec-example"><a href="#example-3783a">Example № 16</a><code>GET &quot;/users&quot; {
+  security apikey header {
+    name = &quot;my-api-key-header&quot;
+  }
+
+  response {
+    ...
+  }
+}
+</code></pre>
+<section id="sec-Api-Key-Security-Scheme.Context-Variables" class="subsec">
+<h6><a href="#sec-Api-Key-Security-Scheme.Context-Variables" title="link to this subsection">Context Variables</a></h6>
+<p>Using this scheme injects the following variables into the <span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span>&lsquo;s context:</p>
+<ul>
+<li><code>security.apikey.key</code> - API key</li>
+</ul>
+</section>
+</section>
+<section id="sec-Basic-Security-Scheme" secid="8.2.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Basic-Security-Scheme">8.2.2</a></span>Basic Security Scheme</h4>
+<div class="spec-production" id="Basic">
+<span class="spec-nt"><a href="#Basic" data-name="Basic">Basic</a></span><div class="spec-rhs"><span class="spec-t">basic</span></div>
+</div>
+<p>Basic authentication scheme as per <a href="https://tools.ietf.org/html/rfc7617">RFC7617</a>. </p>
+<section id="sec-Basic-Security-Scheme.Context-Variables" class="subsec">
+<h6><a href="#sec-Basic-Security-Scheme.Context-Variables" title="link to this subsection">Context Variables</a></h6>
+<p>Using this scheme injects the following variables into the <span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span>&lsquo;s context:</p>
+<ul>
+<li><code>security.basic.username</code> - Basic authentication user name</li>
+<li><code>security.basic.password</code> - Basic authentication password</li>
+</ul>
+<pre id="example-ea01a" class="spec-example"><a href="#example-ea01a">Example № 17</a><code>GET &quot;/users&quot; {
+  security basic
+  
+  response {
+    ...
+  }
+}
+</code></pre>
+</section>
+</section>
+<section id="sec-Bearer-Security-Scheme" secid="8.2.3">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Bearer-Security-Scheme">8.2.3</a></span>Bearer Security Scheme</h4>
+<div class="spec-production" id="Bearer">
+<span class="spec-nt"><a href="#Bearer" data-name="Bearer">Bearer</a></span><div class="spec-rhs"><span class="spec-t">bearer</span></div>
+</div>
+<p>Bearer token authentication scheme as per <a href="https://tools.ietf.org/html/rfc6750">RFC6750</a>.</p>
+<section id="sec-Bearer-Security-Scheme.Context-Variables" class="subsec">
+<h6><a href="#sec-Bearer-Security-Scheme.Context-Variables" title="link to this subsection">Context Variables</a></h6>
+<p>Using this scheme injects the following variables into the <span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span>&lsquo;s context:</p>
+<ul>
+<li><code>security.bearer.token</code> - Bearer token </li>
+</ul>
+<pre id="example-30eb1" class="spec-example"><a href="#example-30eb1">Example № 18</a><code>GET &quot;/users&quot; {
+  security bearer
+  
+  response {
+    ...
+  }
+}
+</code></pre>
+</section>
+</section>
+<section id="sec-Oauth-Security-Scheme" secid="8.2.4">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Oauth-Security-Scheme">8.2.4</a></span>Oauth Security Scheme</h4>
+<div class="spec-todo">
+Add support for Oauth2</div>
+</section>
+<section id="sec-No-Security-Scheme" secid="8.2.5">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-No-Security-Scheme">8.2.5</a></span>No Security Scheme</h4>
+<div class="spec-production" id="None">
+<span class="spec-nt"><a href="#None" data-name="None">None</a></span><div class="spec-rhs"><span class="spec-t">none</span></div>
+</div>
+<p>Default security scheme if no other <span class="spec-nt"><a href="#HTTPSecurity" data-name="HTTPSecurity">HTTPSecurity</a></span> is provided. Explicitly signifies public endpoints. </p>
+<pre id="example-a8b4e" class="spec-example"><a href="#example-a8b4e">Example № 19</a><code>GET &quot;/public-endpoint&quot; {
+  security none
+  
+  response {
+    ...
+  }
+}
+</code></pre>
+</section>
+</section>
+<section id="sec-HTTP-Request" secid="8.3">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-HTTP-Request">8.3</a></span>HTTP Request</h3>
+<div class="spec-production" id="HTTPRequest">
+<span class="spec-nt"><a href="#HTTPRequest" data-name="HTTPRequest">HTTPRequest</a></span><div class="spec-rhs"><span class="spec-t">request</span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentLanguage" data-name="ContentLanguage">ContentLanguage</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#HTTPRequestSlot" data-name="HTTPRequestSlot">HTTPRequestSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
+</div>
+<div class="spec-production" id="HTTPRequestSlot">
+<span class="spec-nt"><a href="#HTTPRequestSlot" data-name="HTTPRequestSlot">HTTPRequestSlot</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#URLQuery" data-name="URLQuery">URLQuery</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#HTTPHeaders" data-name="HTTPHeaders">HTTPHeaders</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#HTTPBody" data-name="HTTPBody">HTTPBody</a></span></div>
+</div>
+<div class="spec-production" id="URLQuery">
+<span class="spec-nt"><a href="#URLQuery" data-name="URLQuery">URLQuery</a></span><div class="spec-rhs"><span class="spec-t">query</span><span class="spec-nt"><a href="#VariableStatements" data-name="VariableStatements">VariableStatements</a></span></div>
+</div>
+<div class="spec-production" id="HTTPHeaders">
+<span class="spec-nt"><a href="#HTTPHeaders" data-name="HTTPHeaders">HTTPHeaders</a></span><div class="spec-rhs"><span class="spec-t">headers</span><span class="spec-nt"><a href="#VariableStatements" data-name="VariableStatements">VariableStatements</a></span></div>
+</div>
+<div class="spec-production" id="HTTPBody">
+<span class="spec-nt"><a href="#HTTPBody" data-name="HTTPBody">HTTPBody</a></span><div class="spec-rhs"><span class="spec-t">body</span><span class="spec-nt"><a href="#HTTPBodyValueDefinition" data-name="HTTPBodyValueDefinition">HTTPBodyValueDefinition</a></span></div>
+</div>
+<div class="spec-production" id="HTTPBodyValueDefinition">
+<span class="spec-nt"><a href="#HTTPBodyValueDefinition" data-name="HTTPBodyValueDefinition">HTTPBodyValueDefinition</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#HTTPRequestBodyAssignment" data-name="HTTPRequestBodyAssignment">HTTPRequestBodyAssignment</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#VariableStatements" data-name="VariableStatements">VariableStatements</a></span></div>
+</div>
+<div class="spec-production" id="HTTPRequestBodyAssignment">
+<span class="spec-nt"><a href="#HTTPRequestBodyAssignment" data-name="HTTPRequestBodyAssignment">HTTPRequestBodyAssignment</a></span><div class="spec-rhs"><span class="spec-t">=</span><span class="spec-nt"><a href="#RHS" data-name="RHS">RHS</a></span></div>
+</div>
+<pre id="example-74e1a" class="spec-example"><a href="#example-74e1a">Example № 20</a><code>http GET &quot;/greeting&quot; {
+  request {
+    query {
+      myName = &quot;John&quot;
+    }
+  }
+}
+</code></pre>
+<pre id="example-9d4f0" class="spec-example"><a href="#example-9d4f0">Example № 21</a><code>http POST &quot;/users&quot; {
+  request &quot;application/json&quot; {
+    query {
+      parameter = &quot;Hello World!&quot;
+    }
+
+    headers {
+      &quot;my-header&quot; = 42
+    }
+
+    body {
+      key = 1
+    }
+  }
+}
+</code></pre>
+<pre id="example-d4170" class="spec-example"><a href="#example-d4170">Example № 22</a><code>http POST &quot;/users&quot; {
+  request &quot;application/json&quot; {
+    body = [1, 2, 3]
+  }
+}
+</code></pre>
+</section>
+<section id="sec-HTTP-Response" secid="8.4">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-HTTP-Response">8.4</a></span>HTTP Response</h3>
+<div class="spec-production" id="HTTPRespose">
+<span class="spec-nt"><a href="#HTTPRespose" data-name="HTTPRespose">HTTPRespose</a></span><div class="spec-rhs"><span class="spec-t">response</span><span class="spec-quantified"><span class="spec-nt"><span data-name="StatusCode">StatusCode</span></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-quantified"><span class="spec-nt"><a href="#ContentLanguage" data-name="ContentLanguage">ContentLanguage</a></span><span class="spec-quantifiers"><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">{</span><span class="spec-quantified"><span class="spec-nt"><a href="#HTTPResponseSlot" data-name="HTTPResponseSlot">HTTPResponseSlot</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">}</span></div>
+</div>
+<div class="spec-production" id="HTTPStatusCode">
+<span class="spec-nt"><a href="#HTTPStatusCode" data-name="HTTPStatusCode">HTTPStatusCode</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#IntegerValue" data-name="IntegerValue">IntegerValue</a></span></div>
+</div>
+<div class="spec-production" id="ContentType">
+<span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span></div>
+</div>
+<div class="spec-production" id="ContentLanguage">
+<span class="spec-nt"><a href="#ContentLanguage" data-name="ContentLanguage">ContentLanguage</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span></div>
+</div>
+<div class="spec-production" id="HTTPResponseSlot">
+<span class="spec-nt"><a href="#HTTPResponseSlot" data-name="HTTPResponseSlot">HTTPResponseSlot</a></span><div class="spec-rhs"><span class="spec-nt"><a href="#SetVariables" data-name="SetVariables">SetVariables</a></span></div>
+<div class="spec-rhs"><span class="spec-nt"><a href="#SetOutcome" data-name="SetOutcome">SetOutcome</a></span></div>
+</div>
+<section id="sec-HTTP-Response.Context-Variables" class="subsec">
+<h6><a href="#sec-HTTP-Response.Context-Variables" title="link to this subsection">Context Variables</a></h6>
+<p><span class="spec-nt"><a href="#HTTPResponseSlot" data-name="HTTPResponseSlot">HTTPResponseSlot</a></span> context variables :</p>
+<ul>
+<li><var data-name="statusCode">statusCode</var> - HTTP response status code parsed as number</li>
+<li><var data-name="headers">headers</var> - HTTP response headers in the form of object</li>
+<li><var data-name="body">body</var> - HTTP response body parsed as JSON</li>
+</ul>
+<pre id="example-caecb" class="spec-example"><a href="#example-caecb">Example № 23</a><code>http GET &quot;/&quot; {
+  response 200 &quot;application/json&quot; {
+    map result {
+      outputKey = body.someKey
+    }
+  }
+}
+</code></pre>
+<pre id="example-ef794" class="spec-example"><a href="#example-ef794">Example № 24</a><code>http POST &quot;/users&quot; {
+  response 201 &quot;application/json&quot; {
+    return {
+      id = body.userId
+    }
+  }
+}
+</code></pre>
+<p>Handling HTTP errors:</p>
+<pre id="example-0bee7" class="spec-example"><a href="#example-0bee7">Example № 25</a><code>http POST &quot;/users&quot; {
+  response 201 &quot;application/json&quot; {
+    ...
+  }
+  
+  response 400 &quot;application/json&quot; {
+    error {
+      title = &quot;Wrong attributes&quot;
+      details = body.message
+    }
+  }
+}
+</code></pre>
+<p>Handling business errors:</p>
+<pre id="example-f0035" class="spec-example"><a href="#example-f0035">Example № 26</a><code>http POST &quot;/users&quot; {
+  response 201 &quot;application/json&quot; {
+    map result if(body.ok) {
+      ...
+    }
+
+    map error if(!body.ok) {
+      ...
+    }
+  }
+}
+</code></pre>
+<p>When <span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span> is not relevant but <span class="spec-nt"><a href="#ContentLanguage" data-name="ContentLanguage">ContentLanguage</a></span> is needed, use the <code>*</code> wildchar in place of the <span class="spec-nt"><a href="#ContentType" data-name="ContentType">ContentType</a></span> as follows:</p>
+<pre id="example-b7127" class="spec-example"><a href="#example-b7127">Example № 27</a><code>http GET &quot;/&quot; {
+  response  &quot;*&quot; &quot;en-US&quot; {
+    map result {
+      rawOutput = body
+    }
+  }
+}
+</code></pre>
+</section>
+</section>
+</section>
+<section id="sec-Conditions" secid="9">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Conditions">9</a></span>Conditions</h2>
+<div class="spec-production" id="Condition">
+<span class="spec-nt"><a href="#Condition" data-name="Condition">Condition</a></span><div class="spec-rhs"><span class="spec-t">if</span><span class="spec-t">(</span><span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span><span class="spec-t">)</span></div>
+</div>
+</section>
+<section id="sec-Jessie" secid="10">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Jessie">10</a></span>Jessie</h2>
+<div class="spec-todo">
+Well define what is Jessie and what expression we support</div>
+<div class="spec-production" id="JessieExpression">
+<span class="spec-nt"><a href="#JessieExpression" data-name="JessieExpression">JessieExpression</a></span><div class="spec-rhs"><span class="spec-nt"><span data-name="JessieScript">JessieScript</span></span></div>
+</div>
+</section>
+<section id="sec-Language" secid="11">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Language">11</a></span>Language</h2>
+<section id="sec-Source-text" secid="11.1">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Source-text">11.1</a></span>Source text</h3>
+<div class="spec-production d2" id="SourceCharacter">
+<span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><div class="spec-rhs"><span class="spec-rx">/[\u0009\u000A\u000D\u0020-\uFFFF]/</span></div>
+</div>
+<section id="sec-Comments" secid="11.1.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Comments">11.1.1</a></span>Comments</h4>
+<div class="spec-production d2" id="Comment">
+<span class="spec-nt"><a href="#Comment" data-name="Comment">Comment</a></span><div class="spec-rhs"><span class="spec-t">//</span><span class="spec-quantified"><span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span></div>
+</div>
+<div class="spec-production d2" id="CommentChar">
+<span class="spec-nt"><a href="#CommentChar" data-name="CommentChar">CommentChar</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span></span></span></div>
+</div>
+<pre id="example-25c72" class="spec-example"><a href="#example-25c72">Example № 28</a><code>// This is a comment
+</code></pre>
+</section>
+<section id="sec-Line-Terminators" secid="11.1.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Line-Terminators">11.1.2</a></span>Line Terminators</h4>
+<div class="spec-production d2" id="LineTerminator">
+<span class="spec-nt"><a href="#LineTerminator" data-name="LineTerminator">LineTerminator</a></span><div class="spec-rhs"><span class="spec-prose">New Line (U+000A)</span></div>
+<div class="spec-rhs"><span class="spec-prose">Carriage Return (U+000D)</span><span class="spec-lookahead not"><span class="spec-prose">New Line (U+000A)</span></span></div>
+<div class="spec-rhs"><span class="spec-prose">Carriage Return (U+000D)</span><span class="spec-prose">New Line (U+000A)</span></div>
+</div>
+</section>
+</section>
+<section id="sec-Common-Definitions" secid="11.2">
+<h3><span class="spec-secid" title="link to this section"><a href="#sec-Common-Definitions">11.2</a></span>Common Definitions</h3>
+<section id="sec-Identifier" secid="11.2.1">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Identifier">11.2.1</a></span>Identifier</h4>
+<div class="spec-production d2" id="Identifier">
+<span class="spec-nt"><a href="#Identifier" data-name="Identifier">Identifier</a></span><div class="spec-rhs"><span class="spec-rx">/[_A-Za-z][_0-9A-Za-z]*/</span></div>
+</div>
+</section>
+<section id="sec-URL-Value" secid="11.2.2">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-URL-Value">11.2.2</a></span>URL Value</h4>
+<div class="spec-production d2" id="URLValue">
+<span class="spec-nt"><a href="#URLValue" data-name="URLValue">URLValue</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-nt"><span data-name="URL">URL</span></span><span class="spec-t">&quot;</span></div>
+</div>
+</section>
+<section id="sec-String-Value" secid="11.2.3">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-String-Value">11.2.3</a></span>String Value</h4>
+<div class="spec-production d2" id="StringValue">
+<span class="spec-nt"><a href="#StringValue" data-name="StringValue">StringValue</a></span><div class="spec-rhs"><span class="spec-t">&quot;</span><span class="spec-quantified"><span class="spec-nt"><a href="#StringCharacter" data-name="StringCharacter">StringCharacter</a></span><span class="spec-quantifiers"><span class="spec-quantifier list">list</span><span class="spec-quantifier optional">opt</span></span></span><span class="spec-t">&quot;</span></div>
+</div>
+<div class="spec-production d2" id="StringCharacter">
+<span class="spec-nt"><a href="#StringCharacter" data-name="StringCharacter">StringCharacter</a></span><div class="spec-rhs"><span class="spec-constrained"><span class="spec-nt"><a href="#SourceCharacter" data-name="SourceCharacter">SourceCharacter</a></span><span class="spec-butnot"><span class="spec-t">&quot;</span><span class="spec-t">\</span></span></span></div>
+<div class="spec-rhs"><span class="spec-t">\</span><span class="spec-nt"><a href="#EscapedCharacter" data-name="EscapedCharacter">EscapedCharacter</a></span></div>
+</div>
+<div class="spec-production d2" id="EscapedCharacter">
+<span class="spec-nt"><a href="#EscapedCharacter" data-name="EscapedCharacter">EscapedCharacter</a></span><div class="spec-oneof"><table>
+<tr>
+<td class="spec-rhs"><span class="spec-t">&quot;</span></td><td class="spec-rhs"><span class="spec-t">\</span></td><td class="spec-rhs"><span class="spec-t">/</span></td><td class="spec-rhs"><span class="spec-t">n</span></td><td class="spec-rhs"><span class="spec-t">r</span></td><td class="spec-rhs"><span class="spec-t">t</span></td></tr>
+</table></div>
+</div>
+</section>
+<section id="sec-Integer-Value" secid="11.2.4">
+<h4><span class="spec-secid" title="link to this section"><a href="#sec-Integer-Value">11.2.4</a></span>Integer Value</h4>
+<div class="spec-production d2" id="IntegerValue">
+<span class="spec-nt"><a href="#IntegerValue" data-name="IntegerValue">IntegerValue</a></span><div class="spec-rhs"><span class="spec-rx">/[0-9]+/</span></div>
+</div>
+</section>
+</section>
+</section>
+<section id="sec-Appendix-Keywords" secid="A">
+<h2><span class="spec-secid" title="link to this section"><a href="#sec-Appendix-Keywords">A</a></span>Appendix: Keywords</h2>
+<div class="spec-todo">
+ </div>
+</section>
+<section id="index" secid="index" class="spec-index"><h1><span class="spec-secid" title="link to the index"><a href="#index">§</a></span>Index</h1><ol><li><a href="#ApiKey">ApiKey</a></li><li><a href="#ApiKeyPlacement">ApiKeyPlacement</a></li><li><a href="#Argument">Argument</a></li><li><a href="#Basic">Basic</a></li><li><a href="#Bearer">Bearer</a></li><li><a href="#Comment">Comment</a></li><li><a href="#CommentChar">CommentChar</a></li><li><a href="#Condition">Condition</a></li><li><a href="#ContentLanguage">ContentLanguage</a></li><li><a href="#ContentType">ContentType</a></li><li><a href="#EscapedCharacter">EscapedCharacter</a></li><li><a href="#HTTPBody">HTTPBody</a></li><li><a href="#HTTPBodyValueDefinition">HTTPBodyValueDefinition</a></li><li><a href="#HTTPCall">HTTPCall</a></li><li><a href="#HTTPHeaders">HTTPHeaders</a></li><li><a href="#HTTPMethod">HTTPMethod</a></li><li><a href="#HTTPRequest">HTTPRequest</a></li><li><a href="#HTTPRequestBodyAssignment">HTTPRequestBodyAssignment</a></li><li><a href="#HTTPRequestSlot">HTTPRequestSlot</a></li><li><a href="#HTTPResponseSlot">HTTPResponseSlot</a></li><li><a href="#HTTPRespose">HTTPRespose</a></li><li><a href="#HTTPSecurity">HTTPSecurity</a></li><li><a href="#HTTPSecurityScheme">HTTPSecurityScheme</a></li><li><a href="#HTTPStatusCode">HTTPStatusCode</a></li><li><a href="#HTTPTransaction">HTTPTransaction</a></li><li><a href="#Identifier">Identifier</a></li><li><a href="#IntegerValue">IntegerValue</a></li><li><a href="#JessieExpression">JessieExpression</a></li><li><a href="#KeyName">KeyName</a></li><li><a href="#LHS">LHS</a></li><li><a href="#LineTerminator">LineTerminator</a></li><li><a href="#Map">Map</a></li><li><a href="#MapDocument">MapDocument</a></li><li><a href="#MapError">MapError</a></li><li><a href="#MapResult">MapResult</a></li><li><a href="#MapSlot">MapSlot</a></li><li><a href="#NetworkCall">NetworkCall</a></li><li><a href="#None">None</a></li><li><a href="#Operation">Operation</a></li><li><a href="#OperationArguments">OperationArguments</a></li><li><a href="#OperationCall">OperationCall</a></li><li><a href="#OperationCallShorthand">OperationCallShorthand</a></li><li><a href="#OperationCallSlot">OperationCallSlot</a></li><li><a href="#OperationFail">OperationFail</a></li><li><a href="#OperationName">OperationName</a></li><li><a href="#OperationReturn">OperationReturn</a></li><li><a href="#OperationSlot">OperationSlot</a></li><li><a href="#Profile">Profile</a></li><li><a href="#ProfileId">ProfileId</a></li><li><a href="#Provider">Provider</a></li><li><a href="#ProviderId">ProviderId</a></li><li><a href="#RHS">RHS</a></li><li><a href="#SetMapErrorVariables">SetMapErrorVariables</a></li><li><a href="#SetMapOutcome">SetMapOutcome</a></li><li><a href="#SetMapResultVariables">SetMapResultVariables</a></li><li><a href="#SetOperationFailVariables">SetOperationFailVariables</a></li><li><a href="#SetOperationOutcome">SetOperationOutcome</a></li><li><a href="#SetOperationReturnVariables">SetOperationReturnVariables</a></li><li><a href="#SetOutcome">SetOutcome</a></li><li><a href="#SetVariables">SetVariables</a></li><li><a href="#SourceCharacter">SourceCharacter</a></li><li><a href="#StringCharacter">StringCharacter</a></li><li><a href="#StringValue">StringValue</a></li><li><a href="#URLPath">URLPath</a></li><li><a href="#URLPathLiteral">URLPathLiteral</a></li><li><a href="#URLPathSegment">URLPathSegment</a></li><li><a href="#URLPathVariable">URLPathVariable</a></li><li><a href="#URLQuery">URLQuery</a></li><li><a href="#URLTemplate">URLTemplate</a></li><li><a href="#URLValue">URLValue</a></li><li><a href="#UsecaseName">UsecaseName</a></li><li><a href="#VariableKeyPath">VariableKeyPath</a></li><li><a href="#VariableName">VariableName</a></li><li><a href="#VariableStatement">VariableStatement</a></li><li><a href="#VariableStatements">VariableStatements</a></li></ol></section></article>
+<footer>
+Written in <a href="https://spec-md.com" target="_blank">Spec Markdown</a>.</footer>
+<input hidden class="spec-sidebar-toggle" type="checkbox" id="spec-sidebar-toggle" aria-hidden /><label for="spec-sidebar-toggle" aria-hidden>&#x2630;</label>
+<div class="spec-sidebar" aria-hidden>
+<div class="spec-toc">
+<div class="title"><a href="#">Superface Map</a></div>
+<ol><li id="_sidebar_1"><a href="#sec-Map-Document"><span class="spec-secid">1</span>Map Document</a></li>
+<li id="_sidebar_2"><a href="#sec-Usecase-Map"><span class="spec-secid">2</span>Usecase Map</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_2" /><label for="_sidebar_toggle_2"></label>
+<ol>
+<li id="_sidebar_2.1"><a href="#sec-Map-Result"><span class="spec-secid">2.1</span>Map Result</a></li>
+<li id="_sidebar_2.2"><a href="#sec-Map-Error"><span class="spec-secid">2.2</span>Map Error</a></li>
+</ol>
+</li>
+<li id="_sidebar_3"><a href="#sec-Operation"><span class="spec-secid">3</span>Operation</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_3" /><label for="_sidebar_toggle_3"></label>
+<ol>
+<li id="_sidebar_3.1"><a href="#sec-Operation-Return"><span class="spec-secid">3.1</span>Operation Return</a></li>
+<li id="_sidebar_3.2"><a href="#sec-Operation-Fail"><span class="spec-secid">3.2</span>Operation Fail</a></li>
+</ol>
+</li>
+<li id="_sidebar_4"><a href="#sec-Set-Variables"><span class="spec-secid">4</span>Set Variables</a></li>
+<li id="_sidebar_5"><a href="#sec-Operation-Call"><span class="spec-secid">5</span>Operation Call</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_5" /><label for="_sidebar_toggle_5"></label>
+<ol>
+<li id="_sidebar_5.1"><a href="#sec-Operation-Call-Shorthand"><span class="spec-secid">5.1</span>Operation Call Shorthand</a></li>
+</ol>
+</li>
+<li id="_sidebar_6"><a href="#sec-Outcome"><span class="spec-secid">6</span>Outcome</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_6" /><label for="_sidebar_toggle_6"></label>
+<ol>
+<li id="_sidebar_6.1"><a href="#sec-Map-Outcome"><span class="spec-secid">6.1</span>Map Outcome</a></li>
+<li id="_sidebar_6.2"><a href="#sec-Operation-Outcome"><span class="spec-secid">6.2</span>Operation Outcome</a></li>
+</ol>
+</li>
+<li id="_sidebar_7"><a href="#sec-Network-Operation"><span class="spec-secid">7</span>Network Operation</a></li>
+<li id="_sidebar_8"><a href="#sec-HTTP-Call"><span class="spec-secid">8</span>HTTP Call</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_8" /><label for="_sidebar_toggle_8"></label>
+<ol>
+<li id="_sidebar_8.1"><a href="#sec-HTTP-Transaction"><span class="spec-secid">8.1</span>HTTP Transaction</a></li>
+<li id="_sidebar_8.2"><a href="#sec-HTTP-Security"><span class="spec-secid">8.2</span>HTTP Security</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_8.2" /><label for="_sidebar_toggle_8.2"></label>
+<ol>
+<li id="_sidebar_8.2.1"><a href="#sec-Api-Key-Security-Scheme"><span class="spec-secid">8.2.1</span>Api Key Security Scheme</a></li>
+<li id="_sidebar_8.2.2"><a href="#sec-Basic-Security-Scheme"><span class="spec-secid">8.2.2</span>Basic Security Scheme</a></li>
+<li id="_sidebar_8.2.3"><a href="#sec-Bearer-Security-Scheme"><span class="spec-secid">8.2.3</span>Bearer Security Scheme</a></li>
+<li id="_sidebar_8.2.4"><a href="#sec-Oauth-Security-Scheme"><span class="spec-secid">8.2.4</span>Oauth Security Scheme</a></li>
+<li id="_sidebar_8.2.5"><a href="#sec-No-Security-Scheme"><span class="spec-secid">8.2.5</span>No Security Scheme</a></li>
+</ol>
+</li>
+<li id="_sidebar_8.3"><a href="#sec-HTTP-Request"><span class="spec-secid">8.3</span>HTTP Request</a></li>
+<li id="_sidebar_8.4"><a href="#sec-HTTP-Response"><span class="spec-secid">8.4</span>HTTP Response</a></li>
+</ol>
+</li>
+<li id="_sidebar_9"><a href="#sec-Conditions"><span class="spec-secid">9</span>Conditions</a></li>
+<li id="_sidebar_10"><a href="#sec-Jessie"><span class="spec-secid">10</span>Jessie</a></li>
+<li id="_sidebar_11"><a href="#sec-Language"><span class="spec-secid">11</span>Language</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_11" /><label for="_sidebar_toggle_11"></label>
+<ol>
+<li id="_sidebar_11.1"><a href="#sec-Source-text"><span class="spec-secid">11.1</span>Source text</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_11.1" /><label for="_sidebar_toggle_11.1"></label>
+<ol>
+<li id="_sidebar_11.1.1"><a href="#sec-Comments"><span class="spec-secid">11.1.1</span>Comments</a></li>
+<li id="_sidebar_11.1.2"><a href="#sec-Line-Terminators"><span class="spec-secid">11.1.2</span>Line Terminators</a></li>
+</ol>
+</li>
+<li id="_sidebar_11.2"><a href="#sec-Common-Definitions"><span class="spec-secid">11.2</span>Common Definitions</a>
+<input hidden class="toggle" type="checkbox" id="_sidebar_toggle_11.2" /><label for="_sidebar_toggle_11.2"></label>
+<ol>
+<li id="_sidebar_11.2.1"><a href="#sec-Identifier"><span class="spec-secid">11.2.1</span>Identifier</a></li>
+<li id="_sidebar_11.2.2"><a href="#sec-URL-Value"><span class="spec-secid">11.2.2</span>URL Value</a></li>
+<li id="_sidebar_11.2.3"><a href="#sec-String-Value"><span class="spec-secid">11.2.3</span>String Value</a></li>
+<li id="_sidebar_11.2.4"><a href="#sec-Integer-Value"><span class="spec-secid">11.2.4</span>Integer Value</a></li>
+</ol>
+</li>
+</ol>
+</li>
+<li id="_sidebar_A"><a href="#sec-Appendix-Keywords"><span class="spec-secid">A</span>Appendix: Keywords</a></li>
+<li id="_sidebar_index"><a href="#index"><span class="spec-secid">§</span>Index</a></li>
+</ol>
+</div>
+<script>(function(){for(var e,t=[],n=document.getElementsByTagName("section"),o=0;o<n.length;o++)n[o].getAttribute("secid")&&t.push(n[o]);var i=window.scrollY,r=!1;function c(n){for(var o,i=n+document.documentElement.clientHeight/4,r=t.length-1;r>=0;r--)if(t[r].offsetTop<i){o=t[r];break}var c=o&&o.getAttribute("secid");c!==e&&(e&&d(e,!1),c&&d(c,!0),e=c)}function d(e,t){document.getElementById("_sidebar_"+e).className=t?"viewing":"";for(var n=e.split(".");n.length;){var o=document.getElementById("_sidebar_toggle_"+n.join("."));o&&(o.checked=t),n.pop()}}window.addEventListener("scroll",(function(e){i=window.scrollY,r||(r=!0,window.requestAnimationFrame((function(){c(i),r=!1})))})),c(window.scrollY);})()</script>
+</div>
+</body>
+</html>
