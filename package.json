@@ -6,26 +6,26 @@
   "scripts": {
     "test": "supermodel schema validate ./AST/supermodel/superface",
     "publish-supermodel": "cd ./AST/supermodel/superface && supermodel push",
-    "build": "spec-md map-spec.md > map-spec.html && spec-md profile-spec.md > profile-spec.html",
-    "watch:map-spec": "nodemon --exec 'spec-md > map-spec.html' map-spec.md",
-    "watch:profile-spec": "nodemon --exec 'spec-md > profile-spec.html' profile-spec.md",
-    "surge": "yarn build && mkdir -p ./surge && cp ./map-spec.html surge/map.html && cp ./profile-spec.html surge/profile.html && surge --project ./surge/ --domain sfspec.surge.sh"
+    "build": "mkdir -p public && yarn build:map && yarn build:profile",
+    "build:map": "spec-md map-spec.md > public/map.html",
+    "build:profile": "spec-md profile-spec.md > public/profile.html",
+    "watch:map-spec": "nodemon --exec 'spec-md > public/map.html' map-spec.md",
+    "watch:profile-spec": "nodemon --exec 'spec-md > public/profile.html' profile-spec.md"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/superindustries/dsl.git"
+    "url": "git+https://github.com/superfaceai/dsl.git"
   },
   "author": "z@superface.ai",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/superindustries/dsl/issues"
+    "url": "https://github.com/superfaceai/dsl/issues"
   },
-  "homepage": "https://github.com/superindustries/dsl#readme",
+  "homepage": "https://github.com/superfaceai/dsl#readme",
   "private": true,
   "devDependencies": {
     "@supermodel/cli": "^0.48.1",
     "nodemon": "^2.0.4",
-    "spec-md": "^1.1.1",
-    "surge": "^0.21.6"
+    "spec-md": "^1.1.1"
   }
 }
