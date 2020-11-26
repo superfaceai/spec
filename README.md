@@ -1,20 +1,22 @@
 # Superface DSL
+
 Superface Profile and Map languages specification, research and demos.
 
-[Read Map Specification](http://sfspec.surge.sh/map)
+[Read Profile Specification](https://spec.superface.dev/profile)
+[Read Map Specification](https://spec.superface.dev/map)
 
 ## Develop spec
 
+### Profile specification
+
+```
+$ yarn watch:profile-spec
+$ open public/profile.html
+```
+
 ### Map specification
+
 ```
 $ yarn watch:map-spec
-$ open map.html
-```
-
-## Publish spec
-
-Need to be logged in into Surge.sh using their CLI
-
-```
-$ surge
+$ open profile/map.html
 ```
