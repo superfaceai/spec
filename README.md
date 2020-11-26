@@ -1,4 +1,4 @@
-# Superface DSL
+# Superface Specification
 
 Superface Profile and Map languages specification, research and demos.
 
