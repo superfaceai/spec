@@ -23,14 +23,14 @@ When submitted to a profile store, the profile must be assigned a globally uniqu
 
 # Profile Document
 
-ProfileDocument : Description? Profile Usecase+ NamedModel* NamedField*
+ProfileDocument : Description? ProfileName ProfileVersion? Usecase+ NamedModel* NamedField*
 
-Profile : `profile` = ProfileId
+ProfileName : `name` = ProfileIdentifier
 
-ProfileId : URLValue
+ProfileVersion : `version` = SemanticVersion
 
 ```example
-profile = "https://superface.ai/profile/weather/GetWeather"
+name = "meteo/get-weather"
 
 usecase GetWeather {
   ...
@@ -38,7 +38,8 @@ usecase GetWeather {
 ```
 
 ```example
-profile = "https://superface.ai/profile/weather/GetWeather"
+name = "meteo/get-weather"
+version = "1.0.0"
 
 usecase GetWeather {
   ...
@@ -50,7 +51,8 @@ model WeatherInformation {
 ```
 
 ```example
-profile = "https://superface.ai/profile/weather/GetWeather"
+name = "meteo/get-weather"
+version = "1.0.0"
 
 usecase GetWeather {
   ...
