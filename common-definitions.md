@@ -4,16 +4,15 @@
 
 Identifier :: /[_A-Za-z][_0-9A-Za-z]*/
 
-
 ## Profile Identifier
 
 ProfileIdentifier : ProfileScope? ProfileName
 
-ProfileScope : NameIdentifier `/`
+ProfileScope : DocumentNameIdentifier `/`
 
-ProfileName : NameIdentifier
+ProfileName : DocumentNameIdentifier
 
-NameIdentifier :: /[a-z][a-z0-9_-]*/
+DocumentNameIdentifier :: /[a-z][a-z0-9_-]*/
 
 Identifier of a profile regardless its version.
 
@@ -56,6 +55,10 @@ Profile identifier used in maps does not include the patch number.
 ```example
 starwars/character-information@1.1
 ```
+
+## Provider Identifier
+
+ProviderIdentifier : DocumentNameIdentifier
 
 ## URL Value
 

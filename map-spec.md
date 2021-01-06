@@ -5,23 +5,40 @@ Superface Map
 
 **Introduction**
 
-Superface map is a format describing one concrete implementation of a Superface profile. It essentially maps the application (business) semantics into concrete interface implementation.
+Superface map is a format describing one concrete implementation of a Superface profile. It essentially maps the application (business) semantics into provider's interface implementation.
 
 # Map Document
 
-MapDocument : Profile Provider Map+ Operation*
+MapDocument : Profile Provider Variant? Map+ Operation*
 
-Profile : `profile` = ProfileId
+Profile : `profile` = `"` MapProfileIdentifier `"`
 
-ProfileId : URLValue
+Provider : `provider` = `"` ProviderIdentifier `"`
 
-Provider : `provider` = ProviderId
+Variant : DocumentNameIdentifier
 
-ProviderId : URLValue
+Defines a document that maps a profile into a particular provider's API. At minimum, the map document consists of the profile and provider identifiers and a profile use-case map. 
+
+Optionally, map document may specify a variant. {Variant} allows for mutliple maps for the same {MapProfileIdentifier} and {ProviderIdentifier}.
+
 
 ```example
-profile = "http://superface.ai/profile/conversation/SendMessage"
-provider = "http://superface.ai/directory/MyTelcoCompany"
+profile = "conversation/send-message"
+provider = "some-telco-api"
+
+map SendMessage {
+  ...
+}
+
+map RetrieveMessageStatus {
+  ...
+}
+```
+
+```example
+profile = "conversation/send-message"
+provider = "some-telco-api"
+variant = "my-bugfix"
 
 map SendMessage {
   ...
