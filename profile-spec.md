@@ -23,7 +23,7 @@ When submitted to a profile store, the profile must be assigned a globally uniqu
 
 # Profile Document
 
-ProfileDocument : Description? ProfileName ProfileVersion? Usecase+ NamedModel* NamedField*
+ProfileDocument : Description? ProfileName ProfileVersion Usecase+ NamedModel* NamedField*
 
 ProfileName : `name` = `"` ProfileIdentifier `"`
 
@@ -31,6 +31,7 @@ ProfileVersion : `version` = `"` SemanticVersion `"`
 
 ```example
 name = "meteo/get-weather"
+version = "1.0.0"
 
 usecase GetWeather {
   ...
