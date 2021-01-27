@@ -7,6 +7,13 @@ Superface Profile and Map languages specification, research and demos.
 
 ## Develop spec
 
+### Install and setup
+
+```
+$ yarn install
+$ yarn build
+```
+
 ### Profile specification
 
 ```
