@@ -442,7 +442,7 @@ GET "/users" {
 
 Bearer: `bearer` SecuritySchemeIdentifier
 
-Security requirement eferencing a bearer token authentication scheme defined in provider definition as per [RFC6750](https://tools.ietf.org/html/rfc6750).
+Security requirement referencing a bearer token authentication scheme defined in provider definition as per [RFC6750](https://tools.ietf.org/html/rfc6750).
 
 **Context Variables**
 
