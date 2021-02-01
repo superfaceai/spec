@@ -21,7 +21,6 @@ Defines a document that maps a profile into a particular provider's API. At mini
 
 Optionally, map document may specify a variant. {Variant} allows for mutliple maps for the same {MapProfileIdentifier} and {ProviderIdentifier}.
 
-
 ```example
 profile = "conversation/send-message"
 provider = "some-telco-api"
@@ -48,6 +47,15 @@ map RetrieveMessageStatus {
   ...
 }
 ```
+
+**Context Variables**
+
+The following context variables are available globally in the {MapDocument}.
+
+context variables :
+
+- `services.<service-id>.baseUrl` - Base URL of a service, where `service-id` is the corresponding {ServiceIdentifier} found in a provider definition
+- `defaultService` - Default {ServiceIdentifier} to use when a service is not provided
 
 # Usecase Map
 
