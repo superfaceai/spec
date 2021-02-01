@@ -6,9 +6,10 @@
   "scripts": {
     "test": "supermodel schema validate ./AST/supermodel/superface",
     "publish-supermodel": "cd ./AST/supermodel/superface && supermodel push",
-    "build": "mkdir -p public && yarn build:map && yarn build:profile",
+    "build": "mkdir -p public && yarn build:map && yarn build:profile && yarn build:provider",
     "build:map": "spec-md map-spec.md > public/map.html",
     "build:profile": "spec-md profile-spec.md > public/profile.html",
+    "build:provider": "cp provider-spec.yaml public",
     "watch:map-spec": "nodemon --exec 'spec-md > public/map.html' map-spec.md",
     "watch:profile-spec": "nodemon --exec 'spec-md > public/profile.html' profile-spec.md"
   },
