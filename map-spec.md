@@ -412,8 +412,8 @@ GET "/users" {
 
 Using this security requirement injects the following variables into the {HTTPRequest}'s context:
 
-- `security.<service-id>.key` - API key
-- `security.<service-id>.placement` - API placement, either query or header
+- `security.<security-scheme-id>.key` - API key
+- `security.<security-scheme-id>.placement` - API placement, either query or header
 
 ### Basic Security Requirement
 
