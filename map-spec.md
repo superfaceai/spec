@@ -468,7 +468,7 @@ TODO: Add support for Oauth2
 
 None: `none`
 
-Default security scheme if no other {HTTPSecurityRequirement} is provided. Explicitly signifies public endpoints. 
+Default security scheme if no other {HTTPSecurity} is provided. Explicitly signifies public endpoints. 
 
 ```example
 GET "/public-endpoint" {
