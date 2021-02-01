@@ -6,7 +6,7 @@ properties:
     items:
       $ref: "#/definitions/Service"
     minItems: 1
-  security:
+  securitySchemes:
     type: array
     items:
       $ref: "#/definitions/SecurityScheme"
