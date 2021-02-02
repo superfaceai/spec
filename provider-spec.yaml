@@ -10,13 +10,11 @@ properties:
     type: array
     items:
       $ref: "#/definitions/SecurityScheme"
-    minItems: 1
   defaultService:
-    description: ServiceIdentifier must correspond to existing Service `id` from services
+    description: ServiceIdentifier must correspond to existing Service `id` from services.
     $ref: "#/definitions/ServiceIdentifier"
 required:
 - services
-- security
 - defaultService
 definitions:
   Service:
