@@ -55,7 +55,7 @@ The following context variables are available globally in the {MapDocument}.
 context variables :
 
 - `services.<service-id>.baseUrl` - Base URL of a service, where `service-id` is the corresponding {ServiceIdentifier} found in a provider definition
-- `defaultService` - Default {ServiceIdentifier} to use when a service is not provided
+- `defaultService` - Default {ServiceIdentifier} which MUST be used for all relative paths in requests when a service is not provided.
 
 # Usecase Map
 
