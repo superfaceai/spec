@@ -412,7 +412,6 @@ GET "/users" {
 
 Using this security requirement injects the following variables into the {HTTPRequest}'s context:
 
-- `security.<security-scheme-id>.key` - API key
 - `security.<security-scheme-id>.placement` - API placement, either query or header
 
 ### Basic Security Requirement
@@ -426,7 +425,6 @@ Security requirement eferencing a basic authentication scheme defined in provide
 Using this scheme injects the following variables into the {HTTPRequest}'s context:
 
 - `security.<security-scheme-id>.username` - Basic authentication user name
-- `security.<security-scheme-id>.password` - Basic authentication password
 
 ```example
 GET "/users" {
@@ -448,7 +446,7 @@ Security requirement referencing a bearer token authentication scheme defined in
 
 Using this scheme injects the following variables into the {HTTPRequest}'s context:
 
-- `security.<security-scheme-id>.token` - Bearer token 
+- `security.<security-scheme-id>.bearerFormat` - The `bearerFormat` as defined in the Security Scheme in the provider definition.
 
 ```example
 GET "/users" {
