@@ -18,12 +18,12 @@ $ yarn build
 
 ```
 $ yarn watch:profile-spec
-$ open public/profile.html
+$ open public/draft/profile.html
 ```
 
 ### Map specification
 
 ```
 $ yarn watch:map-spec
-$ open profile/map.html
+$ open public/draft/map.html
 ```

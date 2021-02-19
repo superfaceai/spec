@@ -348,6 +348,6 @@ ScalarType : one of boolean string number
 
 # Language
 
-[SLANG source text](source-text.md)
+[SLANG source text](common/source-text.md)
 
-[SLANG common definitions](common-definitions.md)
+[SLANG common definitions](common/definitions.md)
