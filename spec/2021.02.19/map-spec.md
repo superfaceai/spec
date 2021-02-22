@@ -1,7 +1,7 @@
 Superface Map
 --------------
 
-*Current Working Draft*
+*Version 2021.02.19*
 
 **Introduction**
 
