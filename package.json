@@ -1,17 +1,17 @@
 {
   "name": "@superfaceai/spec",
   "version": "1.0.0",
-  "description": "DSL and AST definitions for superface",
+  "description": "Superface Profile, Map and Provider specifications",
   "main": "index.js",
   "scripts": {
     "test": "supermodel schema validate ./AST/supermodel/superface",
     "publish-supermodel": "cd ./AST/supermodel/superface && supermodel push",
-    "build": "mkdir -p public && yarn build:map && yarn build:profile && yarn build:provider",
-    "build:map": "spec-md map-spec.md > public/map.html",
-    "build:profile": "spec-md profile-spec.md > public/profile.html",
-    "build:provider": "cp provider-spec.yaml public",
-    "watch:map-spec": "nodemon --exec 'spec-md > public/map.html' map-spec.md",
-    "watch:profile-spec": "nodemon --exec 'spec-md > public/profile.html' profile-spec.md"
+    "watch:map-spec": "nodemon --exec 'spec-md > public/draft/map.html' spec/draft/map-spec.md",
+    "watch:profile-spec": "nodemon --exec 'spec-md > public/draft/profile.html' spec/draft/profile-spec.md",
+    "build": "yarn prepare && yarn build-provider && yarn build-specs",
+    "prepare": "foreach -g 'spec/*/*.md' -x 'mkdir -p public/#{reldir}'",
+    "build-provider": "foreach -g 'spec/*/*.yaml' -x 'cp #{path} public/#{reldir}/#{base}'",
+    "build-specs": "foreach -g 'spec/*/*.md' -x 'spec-md #{path} > public/#{reldir}/#{name}.html'"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "private": true,
   "devDependencies": {
     "@supermodel/cli": "^0.48.1",
+    "foreach-cli": "^1.8.1",
     "nodemon": "^2.0.4",
     "spec-md": "^1.1.1"
   }
