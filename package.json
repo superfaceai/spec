@@ -6,8 +6,8 @@
   "scripts": {
     "test": "supermodel schema validate ./AST/supermodel/superface",
     "publish-supermodel": "cd ./AST/supermodel/superface && supermodel push",
-    "watch:map-spec": "nodemon --exec 'spec-md > public/draft/map.html' spec/draft/map-spec.md",
-    "watch:profile-spec": "nodemon --exec 'spec-md > public/draft/profile.html' spec/draft/profile-spec.md",
+    "watch:map-spec": "nodemon --exec 'spec-md > public/draft/map-spec.html' spec/draft/map-spec.md",
+    "watch:profile-spec": "nodemon --exec 'spec-md > public/draft/profile-spec.html' spec/draft/profile-spec.md",
     "build": "yarn prepare && yarn build-provider && yarn build-specs",
     "prepare": "foreach -g 'spec/*/*.md' -x 'mkdir -p public/#{reldir}'",
     "build-provider": "foreach -g 'spec/*/*.yaml' -x 'cp #{path} public/#{reldir}/#{base}'",
