@@ -305,6 +305,16 @@ operation Baz {
 }
 ```
 
+Note there is a convenient way to call operations in {VariableStament}. Using the {OperationCallShorthand}, the example above can be written as: 
+
+```example
+operation Baz {
+  array = [1, 2, 3, 4]
+  data = call foreach(x of array) Foo(argument = x) if (x % 2)
+  count = data.length
+}
+```
+
 ## Operation Call Shorthand
 
 OperationCallShorthand: `call` Iteration? OperationName OperationArguments? Condition?
