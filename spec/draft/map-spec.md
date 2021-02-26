@@ -307,16 +307,20 @@ operation Baz {
 
 ## Operation Call Shorthand
 
-OperationCallShorthand: `call` OperationName OperationArguments? 
+OperationCallShorthand: `call` Iteration? OperationName OperationArguments? Condition?
 
 Used as {RHS} instead of {JessieExpression} to invoke an {Operation} in-place. In the case of success the operation outcome's data is unbundled and returned by the call. See {OperationCall} context variable `outcome`.
-
 
 ```example
 set {
   someVariable = call Foo
 }
 ```
+
+**Iteration and operation call shorthand**
+
+When an iteration is specified ther result of the {OperationCallShorthand} is always an array.
+
 
 ```example
 operationOutcome = call SomeOperation()
@@ -689,7 +693,7 @@ if ( variable.length == 42 )
 
 Iteration : `foreach` ( VariableName `of` JessieExpression )
 
-When the given {JessieExpression} evaluates to an array, this statement iterates over its elements assigning the respective element value to its context {VariableName} variable.
+When the given {JessieExpression} evaluates to an array (or any other ECMA Script iterable), this statement iterates over its elements assigning the respective element value to its context {VariableName} variable.
 
 ```example
 foreach (x of [1, 2, 3])
@@ -698,7 +702,6 @@ foreach (x of [1, 2, 3])
 ```example
 foreach (element of variable.nestedArray)
 ```
-
 
 # Jessie
 
