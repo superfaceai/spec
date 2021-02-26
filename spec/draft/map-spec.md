@@ -218,13 +218,17 @@ set {
 
 # Operation Call
 
-OperationCall: `call` OperationName OperationArguments? Condition? OperationCallSlot?
+OperationCall: `call` Iteration? OperationName OperationArguments? Condition? OperationCallSlot?
 
 OperationArguments : ( Argument* )
 
 Argument : Identifier `=` JessieExpression
 
 OperationCallSlot: { SetVariables* SetOutcome* }
+
+**Condition and iteration**
+
+When both {Condition} and {Iteration} are specified, the condition is evaluated for every element of the iteration.
 
 **Context Variables**
 
@@ -288,17 +292,58 @@ map RetrieveCustomers {
 }
 ```
 
+```example
+operation Baz {
+  array = [1, 2, 3, 4]
+  count = 0
+  data = []
+
+  call foreach(x of array) Foo(argument = x) if (x % 2) {
+    count = count + 1
+    data = data.concat(outcome.data)
+  }
+}
+```
+
+Note there is a convenient way to call operations in {VariableStament}. Using the {OperationCallShorthand}, the example above can be written as: 
+
+```example
+operation Baz {
+  array = [1, 2, 3, 4]
+  data = call foreach(x of array) Foo(argument = x) if (x % 2)
+  count = data.length
+}
+```
+
 ## Operation Call Shorthand
 
-OperationCallShorthand: `call` OperationName OperationArguments? 
+OperationCallShorthand: `call` Iteration? OperationName OperationArguments? Condition?
 
 Used as {RHS} instead of {JessieExpression} to invoke an {Operation} in-place. In the case of success the operation outcome's data is unbundled and returned by the call. See {OperationCall} context variable `outcome`.
-
 
 ```example
 set {
   someVariable = call Foo
 }
+```
+
+**Iteration and operation call shorthand**
+
+When an iteration is specified ther result of the {OperationCallShorthand} is always an array.
+
+
+```example
+operationOutcome = call SomeOperation()
+
+users = call foreach(user of operationOutcome.users) Foo(user = user) if (operationOutcome)
+
+// Intepretation: 
+// `Foo` is called for every `user` of `operationOutcome.users` if the `operationOutcome` is truthy
+
+superusers = call foreach(user of operationOutcome.users) Bar(user = user) if (user.super)
+
+// Intepretation: 
+// `Bar` is called for an `user` of `operationOutcome.users` if the `user.super` is truthy
 ```
 
 
@@ -636,9 +681,41 @@ http GET "/" {
 
 Condition : `if` ( JessieExpression )
 
+Conditional statement evalutess its {JessieExpression} for truthiness.
+
+```example
+if ( true )
+```
+
+```example
+if ( 1 + 1 )
+```
+
+```example
+if ( variable % 2 )
+```
+
+```example
+if ( variable.length == 42 )
+```
+
+# Iterations
+
+Iteration : `foreach` ( VariableName `of` JessieExpression )
+
+When the given {JessieExpression} evaluates to an array (or any other ECMA Script iterable), this statement iterates over its elements assigning the respective element value to its context {VariableName} variable.
+
+```example
+foreach (x of [1, 2, 3])
+```
+
+```example
+foreach (element of variable.nestedArray)
+```
+
 # Jessie
 
-TODO: Well define what is Jessie and what expression we support
+TODO: Define what is Jessie and what expression we support
 
 JessieExpression: JessieScript
 
