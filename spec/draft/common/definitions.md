@@ -64,6 +64,12 @@ ProviderIdentifier : DocumentNameIdentifier
 
 URLValue :: `"` URL `"`
 
+## Security Scheme Identifier
+
+SecuritySchemeIdentifier : Identifier
+
+References the security scheme found within a provider definition.
+
 ## String Value
 
 StringValue :: `"` StringCharacter* `"`
