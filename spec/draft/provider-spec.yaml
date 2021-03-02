@@ -3,7 +3,7 @@ type: object
 properties:
   name:
     type: string
-    pattern: "^[_A-Za-z][_\\-0-9A-Za-z]*$"
+    pattern: "^[a-z][_\\-0-9a-z]*$"
   services:
     type: array
     items:
