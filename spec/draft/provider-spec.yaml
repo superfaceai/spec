@@ -37,7 +37,7 @@ definitions:
     $ref: "#/definitions/Identifier"
   Identifier:
     type: string
-    regex: "[_A-Za-z][_0-9A-Za-z]*"
+    pattern: "[_A-Za-z][_0-9A-Za-z]*"
     examples:
     - swapidev
   SecurityScheme:
