@@ -427,9 +427,9 @@ HTTPTransaction : HTTPSecurity? HTTPRequest? HTTPResponse*
 
 ## HTTP Security 
 
-HTTPSecurity : `security` HTTPSecurityScheme
+HTTPSecurity : `security` HTTPSecurityRequirement
 
-HTTPSecurityScheme:
+HTTPSecurityRequirement:
 
  - ApiKey
  - Basic
@@ -439,46 +439,29 @@ HTTPSecurityScheme:
 
 ### Api Key Security Scheme
 
-ApiKey: `apikey` ApiKeyPlacement { name = StringValue }
+ApiKey: `apikey` SecuritySchemeIdentifier
 
-ApiKeyPlacement : one of `query` `header`
-
-Authentication using an arbitrary API key. 
+Security requirement referencing an API security scheme defined in provider definition.
 
 ```example
 GET "/users" {
-  security apikey header {
-    name = "my-api-key-header"
-  }
+  security apikey api_key_scheme_id
 
   response {
     ...
   }
 }
 ```
-
-**Context Variables**
-
-Using this scheme injects the following variables into the {HTTPRequest}'s context:
-
-- `security.apikey.key` - API key
 
 ### Basic Security Scheme
 
-Basic: `basic`
+Basic: `basic` SecuritySchemeIdentifier
 
-Basic authentication scheme as per [RFC7617](https://tools.ietf.org/html/rfc7617). 
-
-**Context Variables**
-
-Using this scheme injects the following variables into the {HTTPRequest}'s context:
-
-- `security.basic.username` - Basic authentication user name
-- `security.basic.password` - Basic authentication password
+Security requirement eferencing a basic authentication scheme defined in provider definition as per [RFC7617](https://tools.ietf.org/html/rfc7617).
 
 ```example
 GET "/users" {
-  security basic
+  security basic basic_scheme_id
   
   response {
     ...
@@ -486,21 +469,15 @@ GET "/users" {
 }
 ```
 
-### Bearer Security Scheme
+### Bearer Security Requirement
 
-Bearer: `bearer`
+Bearer: `bearer` SecuritySchemeIdentifier
 
-Bearer token authentication scheme as per [RFC6750](https://tools.ietf.org/html/rfc6750).
-
-**Context Variables**
-
-Using this scheme injects the following variables into the {HTTPRequest}'s context:
-
-- `security.bearer.token` - Bearer token 
+Security requirement referencing a bearer token authentication scheme defined in provider definition as per [RFC6750](https://tools.ietf.org/html/rfc6750).
 
 ```example
 GET "/users" {
-  security bearer
+  security bearer bearer_scheme_id
   
   response {
     ...
@@ -508,15 +485,15 @@ GET "/users" {
 }
 ```
 
-### Oauth Security Scheme
+### Oauth Security Requirement
 
 TODO: Add support for Oauth2
 
-### No Security Scheme
+### No Security Requirement
 
 None: `none`
 
-Default security scheme if no other {HTTPSecurity} is provided. Explicitly signifies public endpoints. 
+Default security requirement if no other {HTTPSecurity} is provided. Explicitly signifies public endpoints. 
 
 ```example
 GET "/public-endpoint" {
