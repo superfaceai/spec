@@ -1,0 +1,34 @@
+name: Publish
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  publish:
+    name: Publish Specification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Deploy Preview
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: amondnet/vercel-action@v20.0.0
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          scope: ${{ secrets.VERCEL_SCOPE }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
+          vercel-project-name: ${{ secrets.VERCEL_PROJECT_NAME }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
+      - name: Deploy to Production
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: amondnet/vercel-action@v20.0.0
+        with:
+          vercel-args: '--prod'
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          scope: ${{ secrets.VERCEL_SCOPE }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
+          vercel-project-name: ${{ secrets.VERCEL_PROJECT_NAME }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
