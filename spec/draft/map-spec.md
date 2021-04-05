@@ -427,25 +427,11 @@ HTTPTransaction : HTTPSecurity? HTTPRequest? HTTPResponse*
 
 ## HTTP Security 
 
-HTTPSecurity : `security` HTTPSecurityRequirement
-
-HTTPSecurityRequirement:
-
- - ApiKey
- - Basic
- - Bearer
- - Oauth
- - None
-
-### Api Key Security Scheme
-
-ApiKey: `apikey` SecuritySchemeIdentifier
-
-Security requirement referencing an API security scheme defined in provider definition.
+HTTPSecurity : `security` SecuritySchemeIdentifier
 
 ```example
 GET "/users" {
-  security apikey api_key_scheme_id
+  security "api_key_scheme_id"
 
   response {
     ...
@@ -453,47 +439,7 @@ GET "/users" {
 }
 ```
 
-### Basic Security Scheme
-
-Basic: `basic` SecuritySchemeIdentifier
-
-Security requirement eferencing a basic authentication scheme defined in provider definition as per [RFC7617](https://tools.ietf.org/html/rfc7617).
-
-```example
-GET "/users" {
-  security basic basic_scheme_id
-  
-  response {
-    ...
-  }
-}
-```
-
-### Bearer Security Requirement
-
-Bearer: `bearer` SecuritySchemeIdentifier
-
-Security requirement referencing a bearer token authentication scheme defined in provider definition as per [RFC6750](https://tools.ietf.org/html/rfc6750).
-
-```example
-GET "/users" {
-  security bearer bearer_scheme_id
-  
-  response {
-    ...
-  }
-}
-```
-
-### Oauth Security Requirement
-
-TODO: Add support for Oauth2
-
-### No Security Requirement
-
-None: `none`
-
-Default security requirement if no other {HTTPSecurity} is provided. Explicitly signifies public endpoints. 
+If no other {HTTPSecurity} is provided, the default is `none`. Explicitly signify public endpoints as `none` as so. 
 
 ```example
 GET "/public-endpoint" {

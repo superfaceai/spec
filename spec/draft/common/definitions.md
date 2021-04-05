@@ -66,7 +66,10 @@ URLValue :: `"` URL `"`
 
 ## Security Scheme Identifier
 
-SecuritySchemeIdentifier : Identifier
+SecuritySchemeIdentifier ::
+
+- `"` Identifier `"`
+- `none`
 
 References the security scheme found within a provider definition.
 
