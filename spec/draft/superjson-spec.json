@@ -1,0 +1,186 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/profileEntry"
+      }
+    },
+    "providers": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/providerEntry"
+      }
+    }
+  },
+  "definitions": {
+    "fileUri": {
+      "type": "string",
+      "pattern": "^file:\/\/"
+    },
+    "semanticVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    },
+    "profileEntry": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/fileUri"
+        },
+        {
+          "$ref": "#/definitions/semanticVersion"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "$ref": "#/definitions/semanticVersion"
+            },
+            "defaults": {
+              "$ref": "#/definitions/profileUsecaseDefaults"
+            },
+            "providers": {
+              "$ref": "#/definitions/profileProviderEntry"
+            }
+          },
+          "required": ["version"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "defaults": {
+              "$ref": "#/definitions/profileUsecaseDefaults"
+            },
+            "providers": {
+              "$ref": "#/definitions/profileProviderEntry"
+            }
+          },
+          "required": ["file"]
+        }
+      ]
+    },
+    "profileUsecaseDefaults": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "profileProviderEntry": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/fileUri"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "file": {
+              "$ref": "#/definitions/fileUri"
+            },
+            "defaults": {
+              "$ref": "#/definitions/profileUsecaseDefaults"
+            }
+          },
+          "required": ["file"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mapVariant": {
+              "type": "string"
+            },
+            "mapRevision": {
+              "type": "string"
+            },
+            "defaults": {
+              "$ref": "#/definitions/profileUsecaseDefaults"
+            }
+          }
+        }
+      ]
+    },
+    "providerEntry": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/fileUri"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "security": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/securityValues"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "securityValues": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "apikey": {
+              "type": "string"
+            }
+          },
+          "required": ["id", "apikey"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "required": ["id", "username", "password"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "token": {
+              "type": "string"
+            }
+          },
+          "required": ["id", "token"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "digest": {
+              "type": "string"
+            }
+          },
+          "required": ["id", "digest"]
+        }
+      ]
+    }
+  }
+}
