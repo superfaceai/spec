@@ -572,7 +572,7 @@ http POST "/users" {
   }
   
   response 400 "application/json" {
-    error {
+    map error {
       title = "Wrong attributes"
       details = body.message
     }
