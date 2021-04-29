@@ -1,5 +1,5 @@
 $schema: http://json-schema.org/draft-07/schema
-$id: https://spec.superface.dev/2021.06.26/provider-spec.yaml
+$id: https://spec.superface.dev/2021.04.26/provider-spec.yaml
 type: object
 properties:
   name:

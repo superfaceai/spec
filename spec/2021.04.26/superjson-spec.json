@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://spec.superface.dev/2021.06.26/superjson-spec.json",
+  "$id": "https://spec.superface.dev/2021.04.26/superjson-spec.json",
   "type": "object",
   "properties": {
     "profiles": {
