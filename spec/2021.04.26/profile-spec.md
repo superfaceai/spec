@@ -1,4 +1,4 @@
-Superface Profile
+Comlink Profile
 -----------------
 
 *Version 2021.04.26*
@@ -9,13 +9,13 @@ Superface Profile
 
 /Use-case description language/
 
-The superface profile language is a simple format to describe application use-cases. It enables you to describe the business behavior of an application without the need to go into detail of implementation. 
+Comlink Profile is a simple format for describing application use-cases. It enables you to describe the business behavior of an application without the need to go into detail of implementation. 
 
 The profile language was designed with distributed systems applications in mind but can be used for describing any use cases or even for modeling entire domains using the DDD approach.
 
 Unlike other formats (E.g. Gherkin) Profile does not support the description of actors, roles, or pre-requisites.  
 
-Contrary to pure semantic profiles (e.g. ALPS) Superface Profile allows adding a type overlay for defined models to allow for the creation of rich developer experiences.
+Contrary to pure semantic profiles (e.g. ALPS) Comlink Profile allows adding a type overlay for defined models to allow for the creation of rich developer experiences.
 
 By convention, one profile file should comprise of one use case (E.g. “Get weather” or “Make payment”).
 

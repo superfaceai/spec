@@ -5,7 +5,7 @@ Superface Map
 
 **Introduction**
 
-Superface map is a format describing one concrete implementation of a Superface profile. It essentially maps the application (business) semantics into provider's interface implementation.
+Comlink Map is a format for describing one concrete implementation of a Comlink Profile. It essentially maps the application (business) semantics into provider's interface implementation.
 
 # Map Document
 
