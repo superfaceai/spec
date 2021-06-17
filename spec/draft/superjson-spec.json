@@ -43,9 +43,18 @@
             },
             "providers": {
               "$ref": "#/definitions/profileProviderEntry"
+            },
+            "priority": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
             }
           },
-          "required": ["version"]
+          "required": [
+            "version"
+          ]
         },
         {
           "type": "object",
@@ -58,9 +67,18 @@
             },
             "providers": {
               "$ref": "#/definitions/profileProviderEntry"
+            },
+            "priority": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
             }
           },
-          "required": ["file"]
+          "required": [
+            "file"
+          ]
         }
       ]
     },
@@ -70,6 +88,73 @@
         "input": {
           "type": "object",
           "additionalProperties": true
+        },
+        "providerFailover": {
+          "type": "boolean"
+        }
+      }
+    },
+    "profileProviderUsecaseDefaults": {
+      "type": "object",
+      "properties": {
+        "input": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "retryPolicy": {
+          "type": "object",
+          "properties": {
+            "onFail": {
+              "oneOf": [
+                {
+                  "enum": [
+                    "none"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "enum": [
+                        "circuit-breaker"
+                      ]
+                    },
+                    "maxContiguousRetries": {
+                      "type": "integer"
+                    },
+                    "requestTimeout": {
+                      "type": "integer"
+                    },
+                    "backoff": {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "enum": [
+                            "exponential"
+                          ]
+                        },
+                        "start": {
+                          "type": "integer"
+                        },
+                        "factor": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "kind"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "onFail"
+          ]
         }
       }
     },
@@ -85,10 +170,12 @@
               "$ref": "#/definitions/fileUri"
             },
             "defaults": {
-              "$ref": "#/definitions/profileUsecaseDefaults"
+              "$ref": "#/definitions/profileProviderUsecaseDefaults"
             }
           },
-          "required": ["file"]
+          "required": [
+            "file"
+          ]
         },
         {
           "type": "object",
@@ -100,7 +187,7 @@
               "type": "string"
             },
             "defaults": {
-              "$ref": "#/definitions/profileUsecaseDefaults"
+              "$ref": "#/definitions/profileProviderUsecaseDefaults"
             }
           }
         }
@@ -139,7 +226,10 @@
               "type": "string"
             }
           },
-          "required": ["id", "apikey"]
+          "required": [
+            "id",
+            "apikey"
+          ]
         },
         {
           "type": "object",
@@ -154,7 +244,11 @@
               "type": "string"
             }
           },
-          "required": ["id", "username", "password"]
+          "required": [
+            "id",
+            "username",
+            "password"
+          ]
         },
         {
           "type": "object",
@@ -166,7 +260,10 @@
               "type": "string"
             }
           },
-          "required": ["id", "token"]
+          "required": [
+            "id",
+            "token"
+          ]
         },
         {
           "type": "object",
@@ -178,7 +275,10 @@
               "type": "string"
             }
           },
-          "required": ["id", "digest"]
+          "required": [
+            "id",
+            "digest"
+          ]
         }
       ]
     }
