@@ -610,9 +610,9 @@ http GET "/" {
 
 # Conditions
 
-Condition : `if` ( JessieExpression )
+Condition : `if` ( ScriptExpression )
 
-Conditional statement evalutess its {JessieExpression} for truthiness.
+Conditional statement evalutess its {ScriptExpression} for truthiness.
 
 ```example
 if ( true )
@@ -632,9 +632,9 @@ if ( variable.length == 42 )
 
 # Iterations
 
-Iteration : `foreach` ( VariableName `of` JessieExpression )
+Iteration : `foreach` ( VariableName `of` ScriptExpression )
 
-When the given {JessieExpression} evaluates to an array (or any other ECMA Script iterable), this statement iterates over its elements assigning the respective element value to its context {VariableName} variable.
+When the given {ScriptExpression} evaluates to an array (or any other ECMA Script iterable), this statement iterates over its elements assigning the respective element value to its context {VariableName} variable.
 
 ```example
 foreach (x of [1, 2, 3])
