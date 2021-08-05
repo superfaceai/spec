@@ -646,7 +646,7 @@ foreach (element of variable.nestedArray)
 
 # Script
 
-This is a subset of Javascript programming language designed to be familiar to a great number of programmers while reducing the possible attack surface of the runtime environment.
+This is a subset of the Javascript programming language designed to be familiar to a great number of programmers while reducing the possible attack surface of the runtime environment.
 
 This specification is based on and references [ECMA 262](https://262.ecma-international.org/11.0) and heavily inspired by [Jessie](https://github.com/endojs/Jessie/).
 
@@ -740,9 +740,9 @@ for if null return switch true while
 
 ## Expressions
 
-Expressions are the bread and butter of the script. Expressions appear on the right-hand side of {VariableStatement}, in {Condition}s and in operation call {Argument} list.
+Expressions are central to the script. Expressions appear on the right-hand side of {VariableStatement}, in {Condition}s and in operation call {Argument} list.
 
-Since the only way to obtain a lexical context in which statements can be declared is to create an {ScriptArrowFunction} it is often more convenient to use functional patterns to transform data:
+Since the only way to obtain a lexical context in which statements can be declared is to create an {ScriptArrowFunction}, it is often more convenient to use functional patterns to transform data:
 
 ```example
 Object.entries(foo).filter(
@@ -836,7 +836,7 @@ Javascript binding pattern production: [BindingPattern](https://262.ecma-interna
 
 ## Arrow function
 
-Arrow functions are the only way to declare callable items in the script. They can be passed to built-in methods like `Array.map` or in the most complex cases uses as immediately invoked function expressions (e.g. `(() => 1)()`).
+Arrow functions are the only way to declare callable items in the script. They can be passed to built-in methods like `Array.map` or in the most complex cases used as immediately-invoked function expressions (e.g. `(() => 1)()`).
 
 ScriptArrowFunction: "Javascript arrow function production"
 
@@ -849,11 +849,11 @@ Note: Javascript arrow function production: [ArrowFunction](https://262.ecma-int
 
 ## Statements
 
-Statements are usually not very relevant in the script, as expressions should be preferred instead.
+Statements are usually not relevant in the script, as expressions should be preferred instead.
 
 ScriptStatement: "One of the allowed Javascript statement productions"
 
-The allowed Javascript statement productions are with the following caveats recursively:
+The allowed Javascript statement productions have the following caveats recursively:
 - Each production without `yield`, `await` and [Declaration](https://262.ecma-international.org/11.0/#prod-Declaration)
 - [IterationStatement](https://262.ecma-international.org/11.0/#prod-IterationStatement) without `for/in` and without async variants
 - [AssignmentExpression](https://262.ecma-international.org/11.0/#prod-AssignmentExpression) production replaced by {ScriptExpression}
