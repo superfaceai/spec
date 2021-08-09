@@ -5,9 +5,11 @@ Comlink Provider Definition
 
 **Introduction**
 
-A Provider Definition is a JSON description of provider and the provider's services.
+A Provider Definition is a JSON description of provider and the provider's services. Comlink Maps make use of the Provider Definition by defining which service to call based on the Service ID and which security scheme to use based on the Security Scheme ID. A Provider Definition can be reused across many profiles and maps which is why it has its own separate definition.
 
 # Provider Definition
+
+This is the root of the Provider Definition file.
 
 - `services` (array of Service)
 - `securitySchemes` (array of Security Scheme)
@@ -34,12 +36,14 @@ A Provider Definition is a JSON description of provider and the provider's servi
 
 # Service
 
+A service is software that makes itself available over the internet.
+
 - `id` (string) - Unique ID for service
 - `baseUrl` - Base URL for the service
 
 ## Default Service
 
-The Comlink Maps allow for leaving out the service ID when specifying an HTTP call and defaulting to the `defaultService` as defined in the provider definition. 
+A provider can have several services associated with it. Comlink Maps allow for leaving out the service ID when specifying an HTTP call and defaulting to the `defaultService` as defined in the provider definition.
 
 # Security Scheme
 
