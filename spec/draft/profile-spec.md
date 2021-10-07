@@ -23,7 +23,7 @@ When submitted to a profile store, the profile must be assigned a globally uniqu
 
 # Profile Document
 
-ProfileDocument : Description? ProfileName ProfileVersion Usecase+ NamedModel* NamedField*
+ProfileDocument : Description? ProfileName ProfileVersion Usecase+ NamedModel* NamedField* Example*
 
 ProfileName : `name` = `"` ProfileIdentifier `"`
 
@@ -339,6 +339,53 @@ model User {
   email string      // value of email can be null
 }
 ```
+
+# Example
+
+Example : example ExampleName { ExampleInput ExampleOutput }
+
+ExampleInput : input ExampleLiteral
+
+ExampleOutput : 
+- ExampleResult
+- ExampleError
+
+ExampleResult : result ExampleLiteral
+
+ExampleError : error ExampleLiteral
+
+# Literal
+
+## Example Literal
+
+ExampleLiteral :
+- PrimitiveLiteral
+- ObjectLiteral
+- ArrayLiteral
+
+## Primitive Literal
+
+PrimitiveLiteral : "One of the allowed Javascript literal productions"
+
+The allowed Javascript literal productions are:
+
+- [DecimalLiteral](https://262.ecma-international.org/11.0/#prod-DecimalLiteral)
+- [NonDecimalIntegerLiteral](https://262.ecma-international.org/11.0/#prod-NonDecimalIntegerLiteral)
+- [StringLiteral](https://262.ecma-international.org/11.0/#prod-StringLiteral)
+- [BooleanLiteral](https://262.ecma-international.org/11.0/#prod-BooleanLiteral)
+- [NullLiteral](https://262.ecma-international.org/11.0/#prod-NullLiteral)
+
+## Object Literal
+
+ObjectLiteral : { KeyValueAssignment+ }
+
+KeyValueAssignment : Identifier: ExampleLiteral
+
+## Array Literal
+
+ArrayLiteral : [ ArrayItemList ]
+
+ArrayItemList : ArrayItemList , ExampleLiteral
 
 # Types
 
