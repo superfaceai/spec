@@ -23,7 +23,7 @@ When submitted to a profile store, the profile must be assigned a globally uniqu
 
 # Profile Document
 
-ProfileDocument : Description? ProfileName ProfileVersion Usecase+ NamedModel* NamedField* Example*
+ProfileDocument : Description? ProfileName ProfileVersion Usecase+ NamedModel* NamedField*
 
 ProfileName : `name` = `"` ProfileIdentifier `"`
 
@@ -94,7 +94,7 @@ usecase GetWeather {
 
 # Use-case
 
-Usecase : Description? `usecase` UsecaseName Safety? { Input? Result? AsyncResult? Error* }
+Usecase : Description? `usecase` UsecaseName Safety? { Input? Result? AsyncResult? Error* Example* }
 
 UsecaseName: Name
 
@@ -342,50 +342,70 @@ model User {
 
 # Example
 
-Example : example ExampleName { ExampleInput ExampleOutput }
+Example : example Identifier { ExampleInput ExampleOutput }
 
-ExampleInput : input ExampleLiteral
+ExampleInput : input ComlinkLiteral
 
 ExampleOutput : 
 - ExampleResult
 - ExampleError
 
-ExampleResult : result ExampleLiteral
+ExampleResult : result ComlinkLiteral
 
-ExampleError : error ExampleLiteral
+ExampleError : error ComlinkLiteral
 
 # Literal
 
-## Example Literal
+## Comlink Literal
 
-ExampleLiteral :
+ComlinkLiteral :
 - PrimitiveLiteral
 - ObjectLiteral
 - ArrayLiteral
 
 ## Primitive Literal
 
-PrimitiveLiteral : "One of the allowed Javascript literal productions"
+PrimitiveLiteral : StringLiteral | NumberLiteral | BooleanLiteral | NullLiteral
 
-The allowed Javascript literal productions are:
+StringLiteral : `"` Character* `"`
 
-- [DecimalLiteral](https://262.ecma-international.org/11.0/#prod-DecimalLiteral)
-- [NonDecimalIntegerLiteral](https://262.ecma-international.org/11.0/#prod-NonDecimalIntegerLiteral)
-- [StringLiteral](https://262.ecma-international.org/11.0/#prod-StringLiteral)
-- [BooleanLiteral](https://262.ecma-international.org/11.0/#prod-BooleanLiteral)
-- [NullLiteral](https://262.ecma-international.org/11.0/#prod-NullLiteral)
+Character : /./
+
+NumberLiteral : Minus? Digit+ DecimalDigits?
+
+Minus : `-`
+
+Digit : /0-9/
+
+DecimalDigits : `.`Digit*
+
+BooleanLiteral : `true` | `false`
+
+NullLiteral : `null`
 
 ## Object Literal
 
 ObjectLiteral : { KeyValueAssignment+ }
 
-KeyValueAssignment : Identifier: ExampleLiteral
+KeyValueAssignment : LHS = ComlinkLiteral
+
+LHS : VariableName VariableKeyPath[ObjectVariable]*
+
+VariableName : 
+- Identifier
+- StringValue
+
+VariableKeyPath[ObjectVariable] : `.`KeyName
+
+KeyName[ObjectVariable] : Identifier
 
 ## Array Literal
 
-ArrayLiteral : [ ArrayItemList ]
+ArrayLiteral : [ ArrayItems? ]
 
-ArrayItemList : ArrayItemList , ExampleLiteral
+ArrayItems : ComlinkLiteral ArrayItemContinued*
+
+ArrayItemContinued : , ComlinkLiteral
 
 # Types
 
