@@ -16,6 +16,13 @@ properties:
   defaultService:
     description: ServiceIdentifier must correspond to existing Service `id` from services.
     $ref: "#/definitions/ServiceIdentifier"
+  parameters:
+    type: array
+    description: |
+      Parameters define user-provided values that may be used within a Comlink Map 
+      or within the provider definition.
+    items:
+      $ref: "#/definitions/Parameter"
 required:
 - name
 - services
@@ -134,3 +141,16 @@ definitions:
     - id
     - type
     - scheme
+  Parameter:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the parameter
+      description:
+        type: string
+      default:
+        type: string
+        description: Default value for the parameter if the user does not provide a value
+    required:
+    - name
