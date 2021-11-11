@@ -365,19 +365,33 @@ ComlinkLiteral :
 
 ## Primitive Literal
 
-PrimitiveLiteral : StringLiteral | NumberLiteral | BooleanLiteral | NullLiteral
+PrimitiveLiteral : StringValue | NumberLiteral | BooleanLiteral | NullLiteral
 
-StringLiteral : `"` Character* `"`
+NumberLiteral: NumberSign? NumberLiteralDigits
 
-Character : /./
+NumberSign : `-` | `+`
 
-NumberLiteral : Minus? Digit+ DecimalDigits?
+NumberLiteralDigits : NumberLiteralInteger | NumberLiteralFloat
 
-Minus : `-`
+NumberLiteralInteger : NumberLiteralIntegerBaseTen | NumberLiteralIntegerBaseTwo | NumberLiteralIntegerBaseEight | NumberLiteralIntegerBaseSixteen
 
-Digit : /0-9/
+NumberLiteralIntegerBaseTen : DigitBaseTen+
 
-DecimalDigits : `.`Digit*
+NumberLiteralIntegerBaseTwo : 0b DigitBaseTwo+
+
+NumberLiteralIntegerBaseEight : 0o DigitBaseEight+
+
+NumberLiteralIntegerBaseSixteen : 0x DigitBaseSixteen+
+
+DigitBaseTen : /[0-9]/
+
+DigitBaseTwo : /[0-1]/
+
+DigitBaseEight : /[0-7]/
+
+DigitBaseSixteen : /[0-9a-fA-F]/
+
+NumberLiteralFloat : DigitBaseTen+ . DigitBaseTen+
 
 BooleanLiteral : `true` | `false`
 
@@ -395,9 +409,7 @@ VariableName :
 - Identifier
 - StringValue
 
-VariableKeyPath[ObjectVariable] : `.`KeyName
-
-KeyName[ObjectVariable] : Identifier
+VariableKeyPath[ObjectVariable] : `.`VariableName
 
 ## Array Literal
 
