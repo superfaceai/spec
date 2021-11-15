@@ -342,7 +342,7 @@ model User {
 
 # Example
 
-Example : example Identifier { ExampleInput ExampleOutput }
+Example : example Identifier? { ExampleInput ExampleOutput }
 
 ExampleInput : input ComlinkLiteral
 
@@ -365,7 +365,7 @@ ComlinkLiteral :
 
 ## Primitive Literal
 
-PrimitiveLiteral : StringValue | NumberLiteral | BooleanLiteral | NullLiteral
+PrimitiveLiteral : StringValue | NumberLiteral | BooleanLiteral
 
 NumberLiteral: NumberSign? NumberLiteralDigits
 
@@ -395,11 +395,9 @@ NumberLiteralFloat : DigitBaseTen+ . DigitBaseTen+
 
 BooleanLiteral : `true` | `false`
 
-NullLiteral : `null`
-
 ## Object Literal
 
-ObjectLiteral : { KeyValueAssignment+ }
+ObjectLiteral : { KeyValueAssignment* }
 
 KeyValueAssignment : LHS = ComlinkLiteral
 
