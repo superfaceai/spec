@@ -1,0 +1,79 @@
+{
+  "$schema": "../superjson-spec.json",
+  "profiles": {
+    "foo": "1.23.4-label",
+    "bar": "file://test.supr",
+    "baz": {
+      "version": "1.2.34-x0"
+    },
+    "quz": {
+      "file": "test.supr"
+    },
+    "aaa": {
+      "version": "0.0.0",
+      "defaults": {
+        "input": {
+          "a": 1,
+          "b": 2,
+          "c": {
+            "d": false
+          }
+        }
+      }
+    },
+    "bbb": {
+      "version": "1.0.0",
+      "providers": {
+        "file": "test.map",
+        "defaults": {
+          "input": {}
+        }
+      }
+    },
+    "ccc": {
+      "file": "path/ccc.supr",
+      "defaults": {
+        "input": {
+          "CCC": "jest"
+        }
+      },
+      "providers": {
+        "mapVariant": "bugfix",
+        "mapRevision": "1",
+        "defaults": {
+          "input": {
+            "CCC": "test"
+          }
+        }
+      }
+    }
+  },
+  "providers": {
+    "foo": "file://path/provider.json",
+    "bar": {
+      "file": "bar.provider.json",
+      "security": []
+    },
+    "baz": {
+      "security": [
+        {
+          "id": "apikey_auth",
+          "apikey": "apikey"
+        },
+        {
+          "id": "basic_auth",
+          "username": "username",
+          "password": "password"
+        },
+        {
+          "id": "bearer_auth",
+          "token": "token"
+        },
+        {
+          "id": "digest",
+          "digest": "digest"
+        }
+      ]
+    }
+  }
+}
