@@ -94,7 +94,7 @@ usecase GetWeather {
 
 # Use-case
 
-Usecase : Description? `usecase` UsecaseName Safety? { Input? Result? AsyncResult? Error* }
+Usecase : Description? `usecase` UsecaseName Safety? { Input? Result? AsyncResult? Error* Example* }
 
 UsecaseName: Name
 
@@ -339,6 +339,83 @@ model User {
   email string      // value of email can be null
 }
 ```
+
+# Example
+
+Example : example Identifier? { ExampleInput ExampleOutput }
+
+ExampleInput : input ComlinkLiteral
+
+ExampleOutput : 
+- ExampleResult
+- ExampleError
+
+ExampleResult : result ComlinkLiteral
+
+ExampleError : error ComlinkLiteral
+
+# Literal
+
+## Comlink Literal
+
+ComlinkLiteral :
+- PrimitiveLiteral
+- ObjectLiteral
+- ArrayLiteral
+
+## Primitive Literal
+
+PrimitiveLiteral : StringValue | NumberLiteral | BooleanLiteral
+
+NumberLiteral: NumberSign? NumberLiteralDigits
+
+NumberSign : `-` | `+`
+
+NumberLiteralDigits : NumberLiteralInteger | NumberLiteralFloat
+
+NumberLiteralInteger : NumberLiteralIntegerBaseTen | NumberLiteralIntegerBaseTwo | NumberLiteralIntegerBaseEight | NumberLiteralIntegerBaseSixteen
+
+NumberLiteralIntegerBaseTen : DigitBaseTen+
+
+NumberLiteralIntegerBaseTwo : 0b DigitBaseTwo+
+
+NumberLiteralIntegerBaseEight : 0o DigitBaseEight+
+
+NumberLiteralIntegerBaseSixteen : 0x DigitBaseSixteen+
+
+DigitBaseTen : /[0-9]/
+
+DigitBaseTwo : /[0-1]/
+
+DigitBaseEight : /[0-7]/
+
+DigitBaseSixteen : /[0-9a-fA-F]/
+
+NumberLiteralFloat : DigitBaseTen+ . DigitBaseTen+
+
+BooleanLiteral : `true` | `false`
+
+## Object Literal
+
+ObjectLiteral : { KeyValueAssignment* }
+
+KeyValueAssignment : LHS = ComlinkLiteral
+
+LHS : VariableName VariableKeyPath[ObjectVariable]*
+
+VariableName : 
+- Identifier
+- StringValue
+
+VariableKeyPath[ObjectVariable] : `.`VariableName
+
+## Array Literal
+
+ArrayLiteral : [ ArrayItems? ]
+
+ArrayItems : ComlinkLiteral ArrayItemContinued*
+
+ArrayItemContinued : , ComlinkLiteral
 
 # Types
 
