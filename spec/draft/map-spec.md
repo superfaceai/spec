@@ -246,7 +246,7 @@ operation Bar {
     variable = 42
   }
 
-  call FooWithArgs(text = `My string ${variable}`, some = variable + 2 ) {
+  call FooWithArgs(text = `My string ${variable}`, some = variable + 2) {
     return if (!outcome.error) {
       finalAnswer = "The final answer is " + outcome.data.answer
     }
