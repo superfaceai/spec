@@ -218,13 +218,16 @@ set {
 
 # Operation Call
 
-OperationCall: `call` Iteration? OperationName OperationArguments? Condition? OperationCallSlot?
+OperationCall: `call` Iteration? OperationName OperationArguments Condition? { OperationCallSlot* }
 
-OperationArguments : ( Argument* )
+OperationArguments : ( Argument[comma]* )
 
 Argument : Identifier `=` ScriptExpression
 
-OperationCallSlot: { SetVariables* SetOutcome* }
+OperationCallSlot :
+
+- SetVariables
+- SetOutcome
 
 **Condition and iteration**
 
@@ -243,7 +246,7 @@ operation Bar {
     variable = 42
   }
 
-  call FooWithArgs(text = `My string ${variable}` some = variable + 2 ) {
+  call FooWithArgs(text = `My string ${variable}`, some = variable + 2) {
     return if (!outcome.error) {
       finalAnswer = "The final answer is " + outcome.data.answer
     }
@@ -317,13 +320,13 @@ operation Baz {
 
 ## Operation Call Shorthand
 
-OperationCallShorthand: `call` Iteration? OperationName OperationArguments? Condition?
+OperationCallShorthand: `call` Iteration? OperationName OperationArguments Condition?
 
 Used as {RHS} instead of {ScriptExpression} to invoke an {Operation} in-place. In the case of success the operation outcome's data is unbundled and returned by the call. See {OperationCall} context variable `outcome`.
 
 ```example
 set {
-  someVariable = call Foo
+  someVariable = call Foo()
 }
 ```
 
@@ -521,7 +524,7 @@ http POST "/users" {
 
 ## HTTP Response
 
-HTTPRespose : `response` StatusCode? ContentType? ContentLanguage? { HTTPResponseSlot* }
+HTTPResponse : `response` StatusCode? ContentType? ContentLanguage? { HTTPResponseSlot* }
 
 HTTPStatusCode: IntegerValue
 
