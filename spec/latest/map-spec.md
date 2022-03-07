@@ -1,7 +1,7 @@
 Superface Map
 --------------
 
-*Version 2021.11.15*
+*Version 2022.03.07*
 
 **Introduction**
 
@@ -383,7 +383,7 @@ NetworkCall :
 
 # HTTP Call
 
-HTTPCall : `http` HTTPMethod URLTemplate { HTTPTransaction }
+HTTPCall : `http` HTTPMethod ServiceIdentifier? URLTemplate { HTTPTransaction }
 
 HTTPMethod : one of GET HEAD POST PUT DELETE CONNECT OPTIONS TRACE PATCH 
 
@@ -418,6 +418,14 @@ map SendMessage {
       }
     }
   }
+}
+```
+
+Example of HTTP call to a service other than the `defaultService`.
+
+```example
+http GET service2 "/users" {
+  ...
 }
 ```
 
