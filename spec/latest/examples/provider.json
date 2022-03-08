@@ -1,0 +1,40 @@
+{
+  "$schema": "../provider-spec.yaml",
+  "name": "example",
+  "services": [
+    {
+      "id": "default",
+      "baseUrl": "https://swapi.dev/api"
+    },
+    {
+      "id": "secondary",
+      "baseUrl": "https://example.com/mirror/swapidev/api"
+    }
+  ],
+  "securitySchemes": [
+    {
+      "id": "my_apikey_header",
+      "type": "apiKey",
+      "in": "header",
+      "name": "api-key"
+    },
+    {
+      "id": "my_apikey_query",
+      "type": "apiKey",
+      "in": "query",
+      "name": "apiKey"
+    },
+    {
+      "id": "my_basic_auth",
+      "type": "http",
+      "scheme": "basic"
+    },
+    {
+      "id": "my_bearer_token",
+      "type": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT"
+    }
+  ],
+  "defaultService": "default"
+}
