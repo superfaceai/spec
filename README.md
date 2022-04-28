@@ -42,6 +42,6 @@ $ open public/draft/map.html
 
 ## License
 
-The Superface is licensed under the [MIT](LICENSE).
+Superface Specification is licensed under the [MIT](LICENSE).
 
 © 2022 Superface s.r.o.
