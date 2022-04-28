@@ -19,7 +19,7 @@
     "url": "git+https://github.com/superfaceai/spec.git"
   },
   "author": "z@superface.ai",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/superfaceai/spec/issues"
   },

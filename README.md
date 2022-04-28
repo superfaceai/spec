@@ -11,11 +11,11 @@ The `draft` directory provides a copy of the specifications based on the current
 
 ## How to create a new version
 
-* All changes should start out as drafts. If there is no `draft` folder, create one by copying the `latest` directory.
-* When it is time to convert the `draft` to the latest version, start by renaming the `latest` directory to the version number of the specification.
-* Remove the line in the profile and map specs that includes the version and replace with `*Current Working Draft*`
-* Give the files in the `draft` directory a version based on the current day using the format YYYY.MM.DD.
-* Rename the `draft` directory to `latest`.
+- All changes should start out as drafts. If there is no `draft` folder, create one by copying the `latest` directory.
+- When it is time to convert the `draft` to the latest version, start by renaming the `latest` directory to the version number of the specification.
+- Remove the line in the profile and map specs that includes the version and replace with `*Current Working Draft*`
+- Give the files in the `draft` directory a version based on the current day using the format YYYY.MM.DD.
+- Rename the `draft` directory to `latest`.
 
 ## Develop spec
 
@@ -39,3 +39,9 @@ $ open public/draft/profile.html
 $ yarn watch:map-spec
 $ open public/draft/map.html
 ```
+
+## License
+
+Superface Specification is licensed under the [MIT](LICENSE).
+
+© 2022 Superface s.r.o.
