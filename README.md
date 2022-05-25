@@ -1,9 +1,8 @@
 # Superface Specification
 
-Superface Profile and Map languages specification, research and demos.
+Superface Comlink Profile and Map languages specification.
 
-[Read Profile Specification](https://spec.superface.dev/profile)
-[Read Map Specification](https://spec.superface.dev/map)
+[Read online](https://superface.ai/docs/comlink/specification)
 
 ## Draft specifications
 
