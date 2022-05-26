@@ -4,6 +4,16 @@
       "source": "/:file(profile|map)",
       "destination": "/latest/:file-spec.html",
       "permanent": true
+    },
+    {
+      "source": "/provider",
+      "destination": "/latest/provider-spec.yaml",
+      "permanent": true
+    },
+    {
+      "source": "/superjson",
+      "destination": "/latest/superjson-spec.json",
+      "permanent": true
     }
   ]
 }
