@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/:file(profile|map)",
+      "destination": "/latest/:file-spec.html",
+      "permanent": true
+    }
+  ]
+}
