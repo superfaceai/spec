@@ -1,5 +1,5 @@
-Superface Map
---------------
+Comlink Map
+-----------
 
 *Current Working Draft*
 
