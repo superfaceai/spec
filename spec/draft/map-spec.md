@@ -583,16 +583,16 @@ http POST "/users" {
 }
 ```
 
-Handling business errors:
+Handling business errors, status code is left out and the handler processes everything:
 
 ```example
 http POST "/users" {
-  response 201 "application/json" {
-    map result if(body.ok) {
+  response "application/json" {
+    map result if (body.ok) {
       ...
     }
 
-    map error if(!body.ok) {
+    map error if (!body.ok) {
       ...
     }
   }
@@ -603,7 +603,7 @@ When {ContentType} is not relevant but {ContentLanguage} is needed, use the `*` 
 
 ```example
 http GET "/" {
-  response  "*" "en-US" {
+  response "*" "en-US" {
     map result {
       rawOutput = body
     }
