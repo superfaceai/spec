@@ -314,9 +314,9 @@ FieldName : Identifier
 
 RequiredField : `!`
 
-FieldSpecification : ModelSpecification NonNullField?
+FieldSpecification : ModelSpecification RequiredValue?
 
-NonNullField : `!`
+RequiredValue : `!`
 
 ### Required fields
 
@@ -329,14 +329,14 @@ model User {
 }
 ```
 
-### Non-null field value
+### Required value
 
-By default all fields are nullable. To declare field that can be null use {NonNullField} after {FieldSpecification}
+By default all values are optional. To declare value that cannot be null or undefined use {RequiredValue} after {FieldSpecification}
 
 ```example
 model User {
-  name string!      // value of name can not be null
-  email string      // value of email can be null
+  name string!      // value of name can not be null or undefined
+  email string      // value of email can be null or undefined
 }
 ```
 
