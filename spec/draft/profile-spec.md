@@ -316,7 +316,7 @@ RequiredField : `!`
 
 FieldSpecification : ModelSpecification
 
-### Required fields
+### Required field
 
 By default all fields are optional. To declare field that is required use {RequiredField} after {FieldName}
 
