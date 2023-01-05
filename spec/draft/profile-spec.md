@@ -183,7 +183,7 @@ ModelDefinition :
 
 ModelSpecification: 
 
-- ModelDefinition
+- ModelDefinition RequiredValue?
 - ModelReference
 
 ModelReference : ModelName
@@ -314,9 +314,7 @@ FieldName : Identifier
 
 RequiredField : `!`
 
-FieldSpecification : ModelSpecification RequiredValue?
-
-RequiredValue : `!`
+FieldSpecification : ModelSpecification
 
 ### Required fields
 
@@ -326,17 +324,6 @@ By default all fields are optional. To declare field that is required use {Requi
 model User {
   name! string      // the field "name" is required (but can be null)
   email string      // the field "email" is optional
-}
-```
-
-### Required value
-
-By default all values are optional. To declare value that cannot be null or undefined use {RequiredValue} after {FieldSpecification}
-
-```example
-model User {
-  name string!      // value of name can not be null or undefined
-  email string      // value of email can be null or undefined
 }
 ```
 
@@ -422,6 +409,25 @@ ArrayItemContinued : , ComlinkLiteral
 ## Primitive types
 
 ScalarType : one of boolean string number
+
+## Required value
+
+By default all values are optional. To declare value that cannot be None use {RequiredValue} after {ModelDefinition}
+
+RequiredValue : `!`
+
+```example
+model User {
+  name string!      // value of name cannot be None
+  email string      // value of email can be None
+}
+```
+
+```example
+usecase Example {
+  result string! // result must be of type string
+}
+```
 
 # Language
 
