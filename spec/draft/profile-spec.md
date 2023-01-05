@@ -322,7 +322,7 @@ By default all fields are optional. To declare field that is required use {Requi
 
 ```example
 model User {
-  name! string      // the field "name" is required (but can be null)
+  name! string      // the field "name" is required (but can be None)
   email string      // the field "email" is optional
 }
 ```
