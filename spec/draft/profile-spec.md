@@ -346,9 +346,14 @@ ExampleError : error ComlinkLiteral
 ## Comlink Literal
 
 ComlinkLiteral :
+- NoneLiteral
 - PrimitiveLiteral
 - ObjectLiteral
 - ArrayLiteral
+
+## None Literal
+
+NoneLiteral : `None`
 
 ## Primitive Literal
 
