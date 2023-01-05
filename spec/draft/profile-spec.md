@@ -357,7 +357,15 @@ NoneLiteral : `None`
 
 ## Primitive Literal
 
-PrimitiveLiteral : StringValue | NumberLiteral | BooleanLiteral
+PrimitiveLiteral : StringLiteral | NumberLiteral | BooleanLiteral
+
+StringLiteral: `"` CharacterLiteral* `"`
+
+CharacterLiteral ::
+  - SourceCharacter but not `"` or \
+  - \ EscapedCharacter
+
+EscapedCharacter :: one of `"` \ `/` n r t
 
 NumberLiteral: NumberSign? NumberLiteralDigits
 
@@ -397,7 +405,7 @@ LHS : VariableName VariableKeyPath[ObjectVariable]*
 
 VariableName : 
 - Identifier
-- StringValue
+- StringLiteral
 
 VariableKeyPath[ObjectVariable] : `.`VariableName
 
