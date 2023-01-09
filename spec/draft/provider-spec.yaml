@@ -50,9 +50,12 @@ definitions:
   SecurityScheme:
     oneOf:
     - $ref: "#/definitions/ApiKeyHeaderSecurity"
+    - $ref: "#/definitions/ApiKeyPathParamSecurity"
+    - $ref: "#/definitions/ApiKeyBodyParamSecurity"
     - $ref: "#/definitions/ApiKeyQueryParamSecurity"
     - $ref: "#/definitions/BasicAuthSecurity"
     - $ref: "#/definitions/BearerTokenSecurity"
+    - $ref: "#/definitions/DigestSecurity"
   SecurityIdentifier:
     $ref: "#/definitions/Identifier"
   ApiKeyHeaderSecurity:
@@ -77,7 +80,6 @@ definitions:
     - id
     - type
     - in
-    - name
   ApiKeyQueryParamSecurity:
     type: object
     properties:
@@ -98,7 +100,74 @@ definitions:
     - id
     - type
     - in
-    - name
+  ApiKeyPathParamSecurity:
+    type: object
+    properties:
+      id:
+        $ref: "#/definitions/SecurityIdentifier"
+      type:
+        type: string
+        enum:
+        - apiKey
+      in:
+        type: string
+        enum:
+        - path
+      name:
+        type: string
+        description: Name of path parameter
+    required:
+    - id
+    - type
+    - in
+  ApiKeyBodyParamSecurity:
+    type: object
+    properties:
+      id:
+        $ref: "#/definitions/SecurityIdentifier"
+      type:
+        type: string
+        enum:
+        - apiKey
+      in:
+        type: string
+        enum:
+        - body
+      name:
+        type: string
+        description: Name of body parameter
+    required:
+    - id
+    - type
+    - in
+  DigestSecurity:
+    type: object
+    properties:
+      authorizationHeader:
+        description: Name of header containing authorization eg. Authorization
+        type: string
+      challengeHeader:
+        description: Name of header containing challenge from the server eg. www-authenticate
+        type: string
+        default: www-authenticate
+      id:
+        type: string
+      scheme:
+        enum:
+        - digest
+        type: string
+      statusCode:
+        description: Code that should be returned from initial call for challenge eg. 401
+        type: number
+        default: 401
+      type:
+        enum:
+        - http
+        type: string
+    required:
+      - id
+      - scheme
+      - type
   BasicAuthSecurity:
     type: object
     properties:
