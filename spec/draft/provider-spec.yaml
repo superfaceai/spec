@@ -80,8 +80,6 @@ definitions:
     - id
     - type
     - in
-    # TODO: this is optional in implementation
-    - name
   ApiKeyQueryParamSecurity:
     type: object
     properties:
@@ -102,8 +100,6 @@ definitions:
     - id
     - type
     - in
-    # TODO: this is optional in implementation
-    - name
   ApiKeyPathParamSecurity:
     type: object
     properties:
