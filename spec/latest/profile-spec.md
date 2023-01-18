@@ -1,7 +1,7 @@
 Comlink Profile
 -----------------
 
-*Current Working Draft*
+*Version 2023.01.16*
 
 **Introduction**
 
