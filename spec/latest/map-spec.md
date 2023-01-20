@@ -220,7 +220,9 @@ set {
 
 OperationCall: `call` Iteration? OperationName OperationArguments Condition? { OperationCallSlot* }
 
-OperationArguments : ( Argument[comma]* )
+OperationArguments : ( ArgumentList* )
+
+ArgumentList: ArgumentList `,`? Argument
 
 Argument : Identifier `=` ScriptExpression
 
