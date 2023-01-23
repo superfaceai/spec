@@ -222,7 +222,9 @@ OperationCall: `call` Iteration? OperationName OperationArguments Condition? { O
 
 OperationArguments : ( ArgumentList* )
 
-ArgumentList: ArgumentList `,`? Argument
+ArgumentList : Argument ArgumentListContinued* `,`?
+
+ArgumentListContinued : , Argument
 
 Argument : Identifier `=` ScriptExpression
 
