@@ -1,7 +1,7 @@
 Comlink Profile
 -----------------
 
-*Current Working Draft*
+*Version 2022.03.07*
 
 **Introduction**
 
@@ -183,7 +183,7 @@ ModelDefinition :
 
 ModelSpecification: 
 
-- ModelDefinition RequiredValue?
+- ModelDefinition
 - ModelReference
 
 ModelReference : ModelName
@@ -314,16 +314,29 @@ FieldName : Identifier
 
 RequiredField : `!`
 
-FieldSpecification : ModelSpecification
+FieldSpecification : ModelSpecification NonNullField?
 
-### Required field
+NonNullField : `!`
+
+### Required fields
 
 By default all fields are optional. To declare field that is required use {RequiredField} after {FieldName}
 
 ```example
 model User {
-  name! string      // the field "name" is required (but can be None)
+  name! string      // the field "name" is required (but can be null)
   email string      // the field "email" is optional
+}
+```
+
+### Non-null field value
+
+By default all fields are nullable. To declare field that can be null use {NonNullField} after {FieldSpecification}
+
+```example
+model User {
+  name string!      // value of name can not be null
+  email string      // value of email can be null
 }
 ```
 
@@ -346,26 +359,13 @@ ExampleError : error ComlinkLiteral
 ## Comlink Literal
 
 ComlinkLiteral :
-- NoneLiteral
 - PrimitiveLiteral
 - ObjectLiteral
 - ArrayLiteral
 
-## None Literal
-
-NoneLiteral : `None`
-
 ## Primitive Literal
 
-PrimitiveLiteral : StringLiteral | NumberLiteral | BooleanLiteral
-
-StringLiteral: `"` CharacterLiteral* `"`
-
-CharacterLiteral ::
-  - SourceCharacter but not `"` or \
-  - \ EscapedCharacter
-
-EscapedCharacter :: one of `"` \ `/` n r t
+PrimitiveLiteral : StringValue | NumberLiteral | BooleanLiteral
 
 NumberLiteral: NumberSign? NumberLiteralDigits
 
@@ -405,7 +405,7 @@ LHS : VariableName VariableKeyPath[ObjectVariable]*
 
 VariableName : 
 - Identifier
-- StringLiteral
+- StringValue
 
 VariableKeyPath[ObjectVariable] : `.`VariableName
 
@@ -422,25 +422,6 @@ ArrayItemContinued : , ComlinkLiteral
 ## Primitive types
 
 ScalarType : one of boolean string number
-
-## Required value
-
-By default all values are optional. To declare value that cannot be None use {RequiredValue} after {ModelDefinition}
-
-RequiredValue : `!`
-
-```example
-model User {
-  name string!      // value of name cannot be None
-  email string      // value of email can be None
-}
-```
-
-```example
-usecase Example {
-  result string! // result must be of type string
-}
-```
 
 # Language
 

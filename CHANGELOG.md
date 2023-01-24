@@ -7,7 +7,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- Profile spec: introduced None literal
 - Map spec: service identifiers for HTTP calls 
+
+### Fixed 
+
+- Profile spec: moved requiredValue modifier
+- Map spec: example of operation shorthand call
 
 ## [2021.11.15] - 2021-11-15
 

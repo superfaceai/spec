@@ -1,6 +1,6 @@
 {
   "name": "@superfaceai/spec",
-  "version": "1.0.0",
+  "version": "2023.01.16",
   "description": "Superface Profile, Map and Provider specifications",
   "main": "index.js",
   "scripts": {

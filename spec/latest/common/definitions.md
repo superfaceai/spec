@@ -60,6 +60,12 @@ starwars/character-information@1.1
 
 ProviderIdentifier : DocumentNameIdentifier
 
+## Service Identifier
+
+ServiceIdentifier : Identifier
+
+Service identifier form provider's definition. Generally used for specifying a service base (host) URL. 
+
 ## URL Value
 
 URLValue :: `"` URL `"`

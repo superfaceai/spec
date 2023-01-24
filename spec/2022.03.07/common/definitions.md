@@ -60,10 +60,6 @@ starwars/character-information@1.1
 
 ProviderIdentifier : DocumentNameIdentifier
 
-## Service Identifier
-
-ServiceIdentifier : Identifier
-
 ## URL Value
 
 URLValue :: `"` URL `"`

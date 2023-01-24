@@ -1,7 +1,7 @@
 Comlink Map
 -----------
 
-*Current Working Draft*
+*Version 2022.03.07*
 
 **Introduction**
 
@@ -218,16 +218,13 @@ set {
 
 # Operation Call
 
-OperationCall: `call` Iteration? OperationName OperationArguments Condition? { OperationCallSlot* }
+OperationCall: `call` Iteration? OperationName OperationArguments? Condition? OperationCallSlot?
 
-OperationArguments : ( Argument[comma]* )
+OperationArguments : ( Argument* )
 
 Argument : Identifier `=` ScriptExpression
 
-OperationCallSlot :
-
-- SetVariables
-- SetOutcome
+OperationCallSlot: { SetVariables* SetOutcome* }
 
 **Condition and iteration**
 
@@ -246,7 +243,7 @@ operation Bar {
     variable = 42
   }
 
-  call FooWithArgs(text = `My string ${variable}`, some = variable + 2) {
+  call FooWithArgs(text = `My string ${variable}` some = variable + 2 ) {
     return if (!outcome.error) {
       finalAnswer = "The final answer is " + outcome.data.answer
     }
@@ -320,13 +317,13 @@ operation Baz {
 
 ## Operation Call Shorthand
 
-OperationCallShorthand: `call` Iteration? OperationName OperationArguments Condition?
+OperationCallShorthand: `call` Iteration? OperationName OperationArguments? Condition?
 
 Used as {RHS} instead of {ScriptExpression} to invoke an {Operation} in-place. In the case of success the operation outcome's data is unbundled and returned by the call. See {OperationCall} context variable `outcome`.
 
 ```example
 set {
-  someVariable = call Foo()
+  someVariable = call Foo
 }
 ```
 
@@ -524,7 +521,7 @@ http POST "/users" {
 
 ## HTTP Response
 
-HTTPResponse : `response` StatusCode? ContentType? ContentLanguage? { HTTPResponseSlot* }
+HTTPRespose : `response` StatusCode? ContentType? ContentLanguage? { HTTPResponseSlot* }
 
 HTTPStatusCode: IntegerValue
 
@@ -583,16 +580,16 @@ http POST "/users" {
 }
 ```
 
-Handling business errors, status code is left out and the handler processes everything:
+Handling business errors:
 
 ```example
 http POST "/users" {
-  response "application/json" {
-    map result if (body.ok) {
+  response 201 "application/json" {
+    map result if(body.ok) {
       ...
     }
 
-    map error if (!body.ok) {
+    map error if(!body.ok) {
       ...
     }
   }
@@ -603,7 +600,7 @@ When {ContentType} is not relevant but {ContentLanguage} is needed, use the `*` 
 
 ```example
 http GET "/" {
-  response "*" "en-US" {
+  response  "*" "en-US" {
     map result {
       rawOutput = body
     }
