@@ -94,7 +94,7 @@ usecase GetWeather {
 
 # Use-case
 
-Usecase : Description? `usecase` UsecaseName Safety? { Input? Result? AsyncResult? Error* }
+Usecase : Description? `usecase` UsecaseName Safety? { Input? Result? AsyncResult? Error? }
 
 UsecaseName: Name
 
